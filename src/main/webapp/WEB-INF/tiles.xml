@@ -4,7 +4,7 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="test" template="/layouts/testHeader.jsp">
+	<definition name="test" template="/WEB-INF/layouts/testHeader.jsp">
 		<put-attribute name="title" value="Test" />
 	</definition>
 </tiles-definitions>
