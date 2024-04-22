@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import co.yedam.board.BoardList;
+import co.yedam.board.addBoard;
 import co.yedam.control.TestControl;
 
 public class FrontControl extends HttpServlet {
@@ -22,6 +24,9 @@ public class FrontControl extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/test.do", new TestControl());
+		
+		//게시판 관련
+		FrontControlBoard.push(map);
 	}
 
 	@Override

@@ -18,11 +18,27 @@
 	    <put-attribute name="product" value="/WEB-INF/mainLayouts/product.jsp" />
 	    <put-attribute name="testimonial" value="/WEB-INF/mainLayouts/testimonial.jsp" />
 	    <put-attribute name="whyChooseUs" value="/WEB-INF/mainLayouts/whyChooseUs.jsp" />
+	    <put-attribute name="cart" value="/WEB-INF/mainLayouts/cart.jsp" />
+	    
 	</definition>
 	
 	<definition name="WILDCARD:yogi/*" extends="mainapp">
 	  	<put-attribute name="" value="/WEB-INF/view/{1}.jsp" />
 	</definition>
+	
+	<definition name="boardapp" template="/WEB-INF/boardLayouts/boardTemplate.jsp">
+		<put-attribute name="boardNav" value="/WEB-INF/boardLayouts/boardNav.jsp" />
+	    <put-attribute name="boardHero" value="/WEB-INF/boardLayouts/boardhero.jsp" />
+	    <put-attribute name="board" value="/WEB-INF/boardLayouts/board.jsp" />
+	    <put-attribute name="testimonial" value="/WEB-INF/mainLayouts/testimonial.jsp" />
+	    <put-attribute name="footer" value="/WEB-INF/mainLayouts/footer.jsp" />
+	    
+	</definition>
+	
+	<definition name="WILDCARD:board/*" extends="boardapp">
+	  	<put-attribute name="board" value="/WEB-INF/view/{1}.jsp" />
+	</definition>
+	
 </tiles-definitions>
 
 
