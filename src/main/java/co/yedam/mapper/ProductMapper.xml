@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.yedam.mapper.ProductMapper">
+	<select id="productList" parameterType="co.yedam.vo.ProductVO" resultType ="co.yedam.vo.ProductVO">
+		select *
+		from product
+		order by product_no desc
+	</select>
+	
+	
+	<insert id="addProd" parameterType="co.yedam.vo.ProductVO">
+		INSERT INTO product (product_no , 
+		                     product_name, 
+		                     product_price,
+		                     desc_text,
+		                     desc_img, 
+		                     left_cnt,
+		                     category, 
+		                     product_img, 
+		                     company, 
+		                     discount_pct) 
+					VALUES(product_no.nextval, 
+					       #{productName},
+					       #{productPrice}, 
+					       #{descText}, 
+					       #{descImg}, 
+					       #{leftCnt}, 
+					       #{category}, 
+					       #{productImg}, 
+					       #{company},  
+					       #{discountPct});
+	</insert>
+	
+	
+	<update id="delProd" parameterType="co.yedam.vo.ProductVO">
+	update product
+	set delete_chk = ${deleteChk}
+	where product_no = ${productNo}
+	</update>
+	
+</mapper>

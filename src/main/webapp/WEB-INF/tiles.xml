@@ -25,6 +25,18 @@
 	<definition name="WILDCARD:yogi/*" extends="mainapp">
 	  	<put-attribute name="" value="/WEB-INF/view/{1}.jsp" />
 	</definition>
+
+	<definition name="prodapp" template="/WEB-INF/shopLayouts/shopTemplate.jsp">
+		<put-attribute name="footer" value="/WEB-INF/mainLayouts/footer.jsp" />
+		<put-attribute name="hero" value="/WEB-INF/shopLayouts/hero.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/mainLayouts/nav.jsp" />
+		<put-attribute name="product" value="/WEB-INF/shopLayouts/product.jsp" />
+	</definition>
+
+	<definition name="WILDCARD:prod/*" extends="prodapp">
+		<put-attribute name="product" value="/WEB-INF/view/product/{1}.jsp" />
+	</definition>
+
 	
 	<definition name="boardapp" template="/WEB-INF/boardLayouts/boardTemplate.jsp">
 		<put-attribute name="boardNav" value="/WEB-INF/boardLayouts/boardNav.jsp" />
@@ -38,6 +50,7 @@
 	<definition name="WILDCARD:board/*" extends="boardapp">
 	  	<put-attribute name="board" value="/WEB-INF/view/{1}.jsp" />
 	</definition>
+
 	
 </tiles-definitions>
 
