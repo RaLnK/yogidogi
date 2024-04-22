@@ -13,35 +13,43 @@ public class MemberServiceImpl implements MemberService{
 	MemberMapper mapper = session.getMapper(MemberMapper.class);
 	@Override
 	public List<MemberVO> memberList() {
-		return null;
+		return mapper.memberList();
 	}
 	@Override
 	public MemberVO login(MemberVO mvo) {
-		return null;
+		return mapper.login(mvo);
+	}
+	@Override
+	public int loginCheck(int memberAuthority) {
+		return mapper.loginCheck(memberAuthority);
 	}
 	@Override
 	public boolean addMember(MemberVO mvo) {
-		return false;
+		return mapper.addMember(mvo);
+	}
+	@Override
+	public MemberVO quitMember(MemberVO mvo) {
+		return mapper.quitMember(mvo);
 	}
 	@Override
 	public boolean delMember(int no) {
-		return false;
+		return mapper.delMember(no);
 	}
 	@Override
 	public MemberVO findId(MemberVO mvo) {
-		return null;
+		return mapper.findId(mvo);
 	}
 	@Override
 	public int findIdCheck(String email) {
-		return 0;
+		return mapper.findIdCheck(email);
 	}
 	@Override
 	public MemberVO findPw(MemberVO mvo) {
-		return null;
+		return mapper.findPw(mvo);
 	}
 	@Override
 	public int findPwCheck(String memberId) {
-		return 0;
+		return mapper.findPwCheck(memberId);
 	}
 	
 	

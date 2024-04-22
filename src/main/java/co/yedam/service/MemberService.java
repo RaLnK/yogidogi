@@ -8,8 +8,12 @@ public interface MemberService {
 	public List<MemberVO> memberList();
 	//로그인
 	public MemberVO login(MemberVO mvo);
+	public int loginCheck(int memberAuthority);
 	//회원가입
 	public boolean addMember(MemberVO mvo);
+	//회원탈퇴
+	public MemberVO quitMember(MemberVO mvo);
+	//회원삭제
 	public boolean delMember(int no);
 	//아이디 찾기
 	public MemberVO findId(MemberVO mvo);
