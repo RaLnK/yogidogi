@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import co.yedam.control.TestControl;
+import co.yedam.control.AddCartControl;
+import co.yedam.control.CartListControl;
+import co.yedam.control.RemoveCartControl;
 
 public class FrontControl extends HttpServlet {
 	Map<String, Control> map;
@@ -21,7 +23,11 @@ public class FrontControl extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		
+		// 장바구니
+		map.put("/cartList.do", new CartListControl()); // 카트페이지 이동
+		map.put("/removeCart.do", new RemoveCartControl()); // 카트삭제
+		//map.put("/modifyCart.do", new ModifyCartControl()); // 카트수정
+		map.put("/addCart.do", new AddCartControl()); // 카트등록
 		FrontControlProd.push(map);
 	}
 
