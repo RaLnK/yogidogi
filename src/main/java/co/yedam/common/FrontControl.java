@@ -15,6 +15,15 @@ import co.yedam.control.CartListControl;
 import co.yedam.control.ModifyCartControl;
 import co.yedam.control.RemoveCartControl;
 import co.yedam.control.TestControl;
+import co.yedam.loginControl.addMemberControl;
+import co.yedam.loginControl.addMemberFormControl;
+import co.yedam.loginControl.idCheckControl;
+import co.yedam.loginControl.idCheckFormControl;
+import co.yedam.loginControl.loginControl;
+import co.yedam.loginControl.loginFormControl;
+import co.yedam.loginControl.logoutControl;
+import co.yedam.loginControl.pwCheckControl;
+import co.yedam.loginControl.pwCheckFormControl;
 
 public class FrontControl extends HttpServlet {
 	Map<String, Control> map;
@@ -31,6 +40,9 @@ public class FrontControl extends HttpServlet {
 		map.put("/removeCart.do", new RemoveCartControl()); // 카트삭제
 		map.put("/modifyCart.do", new ModifyCartControl()); // 카트수정
 		map.put("/addCart.do", new AddCartControl()); // 카트등록
+		
+		//로그인
+		FrontControlLogin.push(map);
 	}
 
 	@Override
