@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+import co.yedam.board.BoardList;
+import co.yedam.board.addBoard;
 import co.yedam.control.AddCartControl;
 import co.yedam.control.CartListControl;
 import co.yedam.control.RemoveCartControl;
@@ -23,12 +26,24 @@ public class FrontControl extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
+
+
+		
+		//게시판 관련
+		FrontControlBoard.push(map);
+
+
 		// 장바구니
 		map.put("/cartList.do", new CartListControl()); // 카트페이지 이동
 		map.put("/removeCart.do", new RemoveCartControl()); // 카트삭제
 		//map.put("/modifyCart.do", new ModifyCartControl()); // 카트수정
 		map.put("/addCart.do", new AddCartControl()); // 카트등록
+
 		FrontControlProd.push(map);
+
+		//로그인
+		FrontControlLogin.push(map);
+
 	}
 
 	@Override

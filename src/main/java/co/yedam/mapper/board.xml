@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.yedam.board.mapper">
+
+	<select id="boardList" parameterType="co.yedam.vo.BoardVO" resultType="co.yedam.vo.BoardVO">
+		select *
+		from board
+		order by board_no desc
+	</select>
+	
+	<insert id="addBoard" parameterType="co.yedam.vo.BoardVO" >
+		insert into board(board_no,
+						  board_title, 
+						  board_content,
+						  board_category,
+						  board_img)
+		
+		values(board_seq.nextval, #{boardTitle}, #{boardContent}, #{boardCategory},#{boardImg})
+	</insert>
+
+</mapper>
