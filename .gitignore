@@ -1,2 +1,11 @@
 /build/
 /target/
+git rm .settings
+git commit -m "setting 제거"
+git rm .classpath
+git commit -m "classpath 제거"
+git rm .project
+git commit -m "project 제거"
+/.settings/
+*.classpath
+*.project
