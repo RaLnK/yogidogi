@@ -19,6 +19,6 @@
     </environment>
   </environments>
   <mappers>
-  	
+  	<package name="co.yedam.mapper"/>
   </mappers>
 </configuration>
