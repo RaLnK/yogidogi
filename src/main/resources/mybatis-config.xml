@@ -23,6 +23,6 @@
     </environment>
   </environments>
   <mappers>
-  	<package name="co.yedam.mapper"/>
+  	<mapper resource="co/yedam/mapper/MemberMapper.xml"/>
   </mappers>
 </configuration>
