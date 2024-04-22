@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="co.yedam.mapper.CartMapper">
+	<select id="selectList" resultType="co.yedam.vo.CartVO" parameterType="int">
+  		select c.cart_no, c.quantity, c.product_no, c.member_no, p.product_name, p.product_price, p.product_img
+		from cart c join product p on p.product_no = p.product_no
+		where member_no = #{memberNo}
+		order by 1
+  	</select>
+	
+	<insert id="insertCart" parameterType="co.yedam.vo.CartVO">
+  		insert into cart values (cart_seq.nextval, #{quantity}, #{proNo}, #{memberNo})
+  	</insert>
+  	
+  	<delete id="deleteCart" parameterType="int">
+  		delete from cart where cart_no = #{cartNo}
+  	</delete>
+  	
+  	<update id="updateCart" parameterType="co.yedam.vo.CartVO">
+  		update cart set quantity = #{quantity} where cart_no = #{cartNo}
+ 	</update>
+ 	
+ 	<select id="checkCart" resultType="co.yedam.vo.CartVO" parameterType="co.yedam.vo.CartVO">
+    	select * from cart 
+    	where member_no = #{memberNo} and product_no = #{proNo}
+	</select>
+
+</mapper>  
