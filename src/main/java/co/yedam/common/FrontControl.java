@@ -21,7 +21,6 @@ public class FrontControl extends HttpServlet {
 
 	@Override
 	public void init(ServletConfig config) throws ServletException {
-		map.put("/test.do", new TestControl());
 		
 		FrontControlProd.push(map);
 	}
