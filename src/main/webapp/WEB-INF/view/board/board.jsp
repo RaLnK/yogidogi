@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
 
+<<<<<<< HEAD
+=======
 <h4>제목</h4>
 
 <table class="table">
@@ -19,3 +21,4 @@
 		<td>글 본문 내용</td>
 	</tr>
 </table>
+>>>>>>> branch 'master' of https://github.com/RaLnK/yogidogi.git
