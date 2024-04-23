@@ -17,13 +17,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<BoardVO> boardList() {
 		// TODO Auto-generated method stub
-		return mapper.BoardList();
+		return mapper.boardList();
 	}
 
 	@Override
 	public boolean addBoard(BoardVO bvo) {
 		// TODO Auto-generated method stub
-		return mapper.insertBoard(bvo) == 1;
+		return mapper.addBoard(bvo) == 1;
 	}
 
 }
