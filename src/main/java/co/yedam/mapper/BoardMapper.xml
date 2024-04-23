@@ -13,9 +13,10 @@
 						  board_title, 
 						  board_content,
 						  board_category,
-						  board_img)
+						  board_img,
+						  board_date)
 		
-		values(board_seq.nextval, #{boardTitle}, #{boardContent}, #{boardCategory},#{boardImg})
+		values(board_seq.nextval, #{boardTitle}, #{boardContent},#{boardDate}, #{boardCategory},#{boardImg})
 	</insert>
 
 </mapper>
