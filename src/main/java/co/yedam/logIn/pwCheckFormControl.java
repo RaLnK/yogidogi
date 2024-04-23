@@ -1,4 +1,4 @@
-package co.yedam.login;
+package co.yedam.logIn;
 
 import java.io.IOException;
 
@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-public class loginFormControl implements Control {
+public class pwCheckFormControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/login/loginForm.tiles").forward(req, resp);
+		// TODO Auto-generated method stub
+
 	}
 
 }

@@ -21,12 +21,12 @@
 <meta name="keywords" content="bootstrap, bootstrap4" />
 
 <!-- Bootstrap CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/yogidogi/css/bootstrap.min.css" rel="stylesheet">
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 	rel="stylesheet">
-<link href="css/tiny-slider.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
+<link href="/yogidogi/css/tiny-slider.css" rel="stylesheet">
+<link href="/yogidogi/css/style.css" rel="stylesheet">
 <title>Furni Free Bootstrap 5 Template for Furniture and
 	Interior Design Websites by Untree.co</title>
 </head>
@@ -46,45 +46,47 @@
 	<!-- End Hero Section -->
 
 
-
+	<!-- Start Body Section -->
+		<tiles:insertAttribute name="body" />
+	<!-- End Body Section -->
 
 
 	<!-- Start Product Section -->
-		<tiles:insertAttribute name="product" />
+		
 	<!-- End Product Section -->
 
 
 
 
 	<!-- Start Why Choose Us Section -->
-		<tiles:insertAttribute name="whyChooseUs" />
+		
 	<!-- End Why Choose Us Section -->
 
 
 
 
 	<!-- Start We Help Section -->
-		<tiles:insertAttribute name="help" />
+		
 	<!-- End We Help Section -->
 
 
 
 
 	<!-- Start Popular Product -->
-		<tiles:insertAttribute name="popularProduct" />
+		
 	<!-- End Popular Product -->
 
 
 
 
 	<!-- Start Testimonial Slider -->
-		<tiles:insertAttribute name="testimonial" />
+		
 	<!-- End Testimonial Slider -->
 
 
 
 	<!-- Start Blog Section -->
-		<tiles:insertAttribute name="blog" />
+		
 	<!-- End Blog Section -->
 
 
@@ -94,9 +96,9 @@
 	<!-- End Footer Section -->
 
 
-	<script src="js/bootstrap.bundle.min.js"></script>
-	<script src="js/tiny-slider.js"></script>
-	<script src="js/custom.js"></script>
+	<script src="/yogidogi/js/bootstrap.bundle.min.js"></script>
+	<script src="/yogidogi/js/tiny-slider.js"></script>
+	<script src="/yogidogi/js/custom.js"></script>
 </body>
 
 </html>
