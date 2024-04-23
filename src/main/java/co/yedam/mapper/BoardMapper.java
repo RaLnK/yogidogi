@@ -6,8 +6,8 @@ import co.yedam.vo.BoardVO;
 
 public interface BoardMapper {
 
-	public List<BoardVO> BoardList();
+	public List<BoardVO> boardList();
 
-	public int insertBoard(BoardVO bvo);
+	public int addBoard(BoardVO bvo);
 
 }
