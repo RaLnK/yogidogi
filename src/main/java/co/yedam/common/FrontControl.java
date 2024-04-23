@@ -36,6 +36,9 @@ public class FrontControl extends HttpServlet {
 		
 		//게시판
 		FrontControlBoard.push(map);
+		
+		//상품
+		FrontControlProd.push(map); 
 	}
 
 	@Override

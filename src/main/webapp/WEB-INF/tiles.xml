@@ -4,7 +4,6 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	
 	<definition name="mainapp" template="/WEB-INF/mainLayouts/mainTemplate.jsp">
 	    <put-attribute name="footer" value="/WEB-INF/mainLayouts/footer.jsp" />
 	    <put-attribute name="hero" value="/WEB-INF/mainLayouts/hero.jsp" />
@@ -21,5 +20,4 @@
 	<definition name="WILDCARD:login/*" extends="logapp">
 		<put-attribute name="login" value="/WEB-INF/view/login/{1}.jsp"></put-attribute>
   	</definition>
-	
 </tiles-definitions>

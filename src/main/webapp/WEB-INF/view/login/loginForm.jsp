@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../css/login.css">
 <title>Insert title here</title>
 </head>
 <body>
