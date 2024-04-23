@@ -11,7 +11,7 @@ public class CartVO {
 	    private int proPrice; // 제품 가격
 	    private int totalPrice; // 제품 총 가격
 	    private String img; // 제품 이미지 URL (필요한 경우)
-	    private int memberNo;
+	    private int memberNo; // 회원 번호
 }	
 
 

@@ -22,6 +22,11 @@
 	  	<put-attribute name="body" value="/WEB-INF/view/product/{1}.jsp" />
 	</definition>
 	
+	<definition name="WILDCARD:cart/*" extends="mainapp">
+	  	<put-attribute name="menu" value="/WEB-INF/view/cart/menu.jsp" />
+	  	<put-attribute name="body" value="/WEB-INF/view/cart/{1}.jsp" />
+	</definition>
+	
 	<definition name="logapp" template="/WEB-INF/loginLayouts/log.html"></definition>
     
 	<definition name="WILDCARD:login/*" extends="logapp">
