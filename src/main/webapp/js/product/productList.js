@@ -2,7 +2,7 @@
  * productList.js
  */
 $(function() {
-	$('nav li')
+	//$('.active').removeClass('active');
 	//const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 	//const category =[0, 1, 2, 3, 4, 5]
 	//$('.product').hide();
@@ -55,7 +55,7 @@ $(function() {
 							default: '';
 						}
 						row.append(product);
-					} else if (targetId == 'all') {
+					} else if (targetId == 'all' || targetId =='yogi') {
 						$('.product').hide();
 						result.forEach(ele => {
 							$('.product:eq(0)').hide();

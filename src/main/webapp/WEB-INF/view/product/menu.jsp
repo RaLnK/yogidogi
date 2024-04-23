@@ -3,7 +3,7 @@
 <aside class="side-bar side">
 
 	<ul>
-		<li><a href="#">YOGI DOGI</a>
+		<li id ='yogi'><a href="#">YOGI DOGI</a>
 		<li id ='all'><a href="#">전체보기</a>
 		<li id="1"><a href="#">사료간식</a></li>
 		<li id="2"><a href="#">위생배변</a></li>
