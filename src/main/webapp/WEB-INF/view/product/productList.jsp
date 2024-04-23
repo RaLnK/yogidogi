@@ -3,43 +3,27 @@
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<style>
-.sticky-box{
-    position: sticky;
-    top: 380px;
-}
-</style>
- 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="css/productList.css" type="text/css" />
 
-<div class="w3-sidebar w3-bar-block w3-light-grey w3-card sticky-box" style="width:200px;">
-  <a href="#" class="w3-bar-item w3-button">Link 1</a>
-  <button class="w3-button w3-block w3-left-align" onclick="myAccFunc()">
-  Accordion <i class="fa fa-caret-down"></i>
-  </button>
-  <div id="demoAcc" class="w3-hide w3-white w3-card">
-    <a href="#" class="w3-bar-item w3-button">Link</a>
-    <a href="#" class="w3-bar-item w3-button">Link</a>
-  </div>
+<div class="d-flex" id="wrapper">
+	<aside class="side-bar side">
 
-  <div class="w3-dropdown-click">
-    <button class="w3-button" onclick="myDropFunc()">
-      Dropdown <i class="fa fa-caret-down"></i>
-    </button>
-    <div id="demoDrop" class="w3-dropdown-content w3-bar-block w3-white w3-card">
-      <a href="#" class="w3-bar-item w3-button">Link</a>
-      <a href="#" class="w3-bar-item w3-button">Link</a>
-    </div>
-  </div>
-  <a href="#" class="w3-bar-item w3-button">Link 2</a>
-  <a href="#" class="w3-bar-item w3-button">Link 3</a>
-</div>
+		<ul>
+			<li><a href="#">YOGI DOGI</a>
+			<li id ="0"><a href="#">기타잡화</a>
+			<li id ="1"><a href="#">사료간식</a></li>
+			<li id ="2"><a href="#">위생배변</a></li>
+			<li id ="3"><a href="#">의류</a></li>
+			<li id ="4"><a href="#">장난감</a></li>
+			<li id ="5"><a href="#">집</a></li>
+		</ul>
+	</aside>
 
-<div class="untree_co-section product-section before-footer-section">
-	<div class="container">
-		<div class="row one">
+	<div
+		class="untree_co-section product-section before-footer-section section">
+		<div class="container">
+			<div class="row one">
 				<!-- Start Column 1 -->
 				<div class="col-12 col-md-4 col-lg-3 mb-5 product">
 					<a class="product-item item" href="#"> <img
@@ -54,6 +38,7 @@
 				<!-- End Column 1 -->
 
 
+			</div>
 		</div>
 	</div>
 </div>

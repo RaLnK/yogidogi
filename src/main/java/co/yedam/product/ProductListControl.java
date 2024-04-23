@@ -19,7 +19,7 @@ public class ProductListControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		
-		RequestDispatcher rd = req.getRequestDispatcher("prod/productList.tiles");
+		RequestDispatcher rd = req.getRequestDispatcher("product/productList.tiles");
 		
 		try {
 			rd.forward(req, resp);
