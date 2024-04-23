@@ -30,7 +30,6 @@
                   <div class="form-group">
                     <label for="id" class="sr-only">ID</label>
                     <input type="text" name="id" id="id" class="form-control" placeholder="ID(숫자, 영문자 조합 5자리 이상)">
-                    <button type="button" onclick="idCheck()" name="idCheck" class="btn btn-block login-btn mb-4">중복확인</button>
                   </div>
                   <div class="form-group mb-4">
                     <label for="name" class="sr-only">Name</label>
@@ -63,5 +62,6 @@
           <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="./js/loginJS/addMember.js"></script>
 </body>
 </html>

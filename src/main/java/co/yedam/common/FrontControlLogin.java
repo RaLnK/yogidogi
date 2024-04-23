@@ -15,8 +15,8 @@ import co.yedam.login.pwCheckFormControl;
 public class FrontControlLogin {
 	public static void push(Map<String, Control> map) {
 		// 로그인
-		map.put("/logInForm.do", new loginFormControl());
-		map.put("/logIn.do", new loginControl());
+		map.put("/loginForm.do", new loginFormControl());
+		map.put("/login.do", new loginControl());
 		map.put("/logout.do", new logoutControl());
 		map.put("/addMemberForm.do", new addMemberFormControl());
 		map.put("/addMember.do", new addMemberControl());

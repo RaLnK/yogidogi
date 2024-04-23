@@ -26,7 +26,7 @@
                 <img src="images/logo.PNG" alt="logo" class="logo">
               </div>
               <p class="login-card-description">Sign into your account</p>
-              <form action="#!">
+              <form action="login.do">
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="ID">
