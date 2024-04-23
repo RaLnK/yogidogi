@@ -12,7 +12,7 @@ public class pwCheckFormControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		req.getRequestDispatcher("WEB-INF/view/login/pwForm.jsp").forward(req, resp);
 
 	}
 
