@@ -21,5 +21,3 @@
 		<put-attribute name="login" value="/WEB-INF/view/login/{1}.jsp"></put-attribute>
   	</definition>
 </tiles-definitions>
-
-
