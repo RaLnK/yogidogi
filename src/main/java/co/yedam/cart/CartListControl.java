@@ -1,4 +1,4 @@
-package co.yedam.control;
+package co.yedam.cart;
 
 import java.io.IOException;
 import java.util.List;
@@ -21,7 +21,7 @@ public class CartListControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		resp.setContentType("text/json;charset=utf-8");
+	//	resp.setContentType("text/json;charset=utf-8");
 		String memberNo = req.getParameter("memberNo");
 
 		CartService svc = new CartServiceImpl();
