@@ -2,7 +2,7 @@
  * productList.js
  */
 $(function() {
-<<<<<<< HEAD
+
 	//const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 	//const category =[0, 1, 2, 3, 4, 5]
 	//$('.product').hide();
@@ -40,7 +40,6 @@ $(function() {
 			let target = $(e.target);
 			let targetId = target.$('id');
 			console.log(targetId);
-=======
 	$('nav li')
 	//const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 	//const category =[0, 1, 2, 3, 4, 5]
@@ -67,17 +66,13 @@ $(function() {
 			row.append(product);
 
 		})
->>>>>>> branch 'master' of https://github.com/RaLnK/yogidogi.git
 
-
-<<<<<<< HEAD
 
 		})
 	})	
 
 
 })
-=======
 		// 카테고리별 
 		$('.side ul li').each((idx, category) => {
 			//console.log(ele);
@@ -103,7 +98,7 @@ $(function() {
 							default: '';
 						}
 						row.append(product);
-					} else if (targetId == 'all') {
+					} else if (targetId == 'all' || targetId =='yogi') {
 						$('.product').hide();
 						result.forEach(ele => {
 							$('.product:eq(0)').hide();
@@ -134,13 +129,6 @@ $(function() {
 	})// end of productList
 
 
-
-})
-
-function showProduct(){
-	
-}
->>>>>>> branch 'master' of https://github.com/RaLnK/yogidogi.git
 
 const svc ={
 	//상품 리스트
