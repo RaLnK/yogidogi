@@ -107,7 +107,7 @@
                           <span class="text-black">Subtotal</span>
                         </div>
                         <div class="col-md-6 text-right">
-                          <strong class="text-black">$230.00</strong>
+                          <strong class="text-black">230.00</strong>
                         </div>
                       </div>
                       <div class="row mb-5">
@@ -115,7 +115,7 @@
                           <span class="text-black">Total</span>
                         </div>
                         <div class="col-md-6 text-right">
-                          <strong class="text-black">$230.00</strong>
+                          <strong class="text-black">230.00</strong>
                         </div>
                       </div>
         

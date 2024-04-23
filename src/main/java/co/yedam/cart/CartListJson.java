@@ -3,7 +3,6 @@ package co.yedam.cart;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,16 +15,22 @@ import co.yedam.service.CartService;
 import co.yedam.service.CartServiceImpl;
 import co.yedam.vo.CartVO;
 
-public class CartListControl implements Control {
+public class CartListJson implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("cart/cartList.tiles");
+		resp.setContentType("text/json;charset=utf-8");
+		String memberNo = req.getParameter("memberNo");
+
+		CartService svc = new CartServiceImpl();
+		List<CartVO> list = svc.cartList(Integer.parseInt(memberNo));
+		Gson gson = new GsonBuilder().create();
+
 		try {
-			rd.forward(req, resp);
-		} catch (ServletException | IOException e) {
+			resp.getWriter().print(gson.toJson(list));
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-}
 
+}

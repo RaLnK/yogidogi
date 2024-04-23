@@ -20,8 +20,8 @@ public interface OrderService {
 	// 주문 삭제
 	public boolean remOrder(int odNo);
 	
-//	// 주문상세 삭제
-//	public boolean remOrderItem(int odNo);
-//	
-//	public List<OrderVO> OrderInfo(int odNo);
+	// 주문상세 삭제
+	public boolean remOrderItem(int odNo);
+	
+	public List<OrderVO> producteInfo(int odNo);
 }

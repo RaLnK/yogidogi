@@ -1,18 +1,22 @@
-package co.yedam.control;
+package co.yedam.login;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.yedam.common.Control;
 
-public class TestControl implements Control {
+public class logoutControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("test.do").forward(req, resp);
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		resp.sendRedirect("loginForm.do");
 	}
 
 }

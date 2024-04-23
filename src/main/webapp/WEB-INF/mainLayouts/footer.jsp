@@ -4,14 +4,14 @@
 	<div class="container relative">
 
 		<div class="sofa-img">
-			<img src="images/sofa.png" alt="Image" class="img-fluid">
+			<img src="/yogidogi/images/sofa.png" alt="Image" class="img-fluid">
 		</div>
 
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="subscription-form">
 					<h3 class="d-flex align-items-center">
-						<span class="me-1"><img src="images/envelope-outline.svg"
+						<span class="me-1"><img src="/yogidogi/images/envelope-outline.svg"
 							alt="Image" class="img-fluid"></span><span>Subscribe to
 							Newsletter</span>
 					</h3>
@@ -104,7 +104,7 @@
 						</script>
 						. All Rights Reserved. &mdash; Designed with love by <a
 							href="https://untree.co">Untree.co</a> Distributed By <a
-							hreff="https://themewagon.com">ThemeWagon</a>
+							href="https://themewagon.com">ThemeWagon</a>
 						<!-- License information: https://untree.co/license/ -->
 					</p>
 				</div>
