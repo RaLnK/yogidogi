@@ -1,4 +1,4 @@
-package co.yedam.logIn;
+package co.yedam.login;
 
 import java.io.IOException;
 

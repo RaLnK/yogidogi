@@ -2,15 +2,15 @@ package co.yedam.common;
 
 import java.util.Map;
 
-import co.yedam.logIn.addMemberControl;
-import co.yedam.logIn.addMemberFormControl;
-import co.yedam.logIn.idCheckControl;
-import co.yedam.logIn.idCheckFormControl;
-import co.yedam.logIn.loginControl;
-import co.yedam.logIn.loginFormControl;
-import co.yedam.logIn.logoutControl;
-import co.yedam.logIn.pwCheckControl;
-import co.yedam.logIn.pwCheckFormControl;
+import co.yedam.login.addMemberControl;
+import co.yedam.login.addMemberFormControl;
+import co.yedam.login.idCheckControl;
+import co.yedam.login.idCheckFormControl;
+import co.yedam.login.loginControl;
+import co.yedam.login.loginFormControl;
+import co.yedam.login.logoutControl;
+import co.yedam.login.pwCheckControl;
+import co.yedam.login.pwCheckFormControl;
 
 public class FrontControlLogin {
 	public static void push(Map<String, Control> map) {

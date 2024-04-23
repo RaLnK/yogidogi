@@ -1,4 +1,4 @@
-package co.yedam.logIn;
+package co.yedam.login;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-public class addMemberFormControl implements Control {
+public class idCheckControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
