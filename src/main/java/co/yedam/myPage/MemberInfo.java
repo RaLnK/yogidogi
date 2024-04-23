@@ -1,4 +1,4 @@
-package co.yedam.control;
+package co.yedam.myPage;
 
 import java.io.IOException;
 
@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-public class ModifyCartControl implements Control {
+public class MemberInfo implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+		req.getRequestDispatcher("myPage/memberInfo.tiles").forward(req, resp);
 	}
 
 }
