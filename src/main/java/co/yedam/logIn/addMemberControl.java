@@ -1,22 +1,19 @@
-package co.yedam.login;
+package co.yedam.logIn;
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import co.yedam.common.Control;
 
-public class logoutControl implements Control {
+public class addMemberControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		HttpSession session = req.getSession();
-		session.invalidate();
-		
-		resp.sendRedirect("loginForm.do");
+		// TODO Auto-generated method stub
+
 	}
 
 }
