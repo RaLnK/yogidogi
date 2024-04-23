@@ -32,13 +32,13 @@ public class loginControl implements Control {
 			session.setAttribute("auth", vo.getMemberAuthority());
 			if(vo.getMemberAuthority() == 0) {
 				//사용자
-				req.getRequestDispatcher("").forward(req, resp);
+				req.getRequestDispatcher("mainapp.tiles").forward(req, resp);
 			}else {
 				//관리자
 			}
 		}else {
 			req.setAttribute("msg", "ID와 PASSWORD를 확인해주세요");
-			req.getRequestDispatcher("").forward(req, resp);
+			req.getRequestDispatcher("/login/loginForm.tiles").forward(req, resp);
 		}
 	}
 
