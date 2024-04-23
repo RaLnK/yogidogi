@@ -25,8 +25,11 @@
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 	rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="/yogidogi/css/tiny-slider.css" rel="stylesheet">
 <link href="/yogidogi/css/style.css" rel="stylesheet">
+<link href="/yogidogi/css/menu-style.css" rel="stylesheet" />
+<link href="/yogidogi/css/side-bar-style.css" rel="stylesheet">
 <title>Furni Free Bootstrap 5 Template for Furniture and
 	Interior Design Websites by Untree.co</title>
 </head>
@@ -45,49 +48,19 @@
 		<tiles:insertAttribute name="hero" />
 	<!-- End Hero Section -->
 
-
-	<!-- Start Body Section -->
-		<tiles:insertAttribute name="body" />
-	<!-- End Body Section -->
-
-
-	<!-- Start Product Section -->
-		
-	<!-- End Product Section -->
-
-
-
-
-	<!-- Start Why Choose Us Section -->
-		
-	<!-- End Why Choose Us Section -->
-
-
-
-
-	<!-- Start We Help Section -->
-		
-	<!-- End We Help Section -->
-
-
-
-
-	<!-- Start Popular Product -->
-		
-	<!-- End Popular Product -->
-
-
-
-
-	<!-- Start Testimonial Slider -->
-		
-	<!-- End Testimonial Slider -->
-
-
-
-	<!-- Start Blog Section -->
-		
-	<!-- End Blog Section -->
+	<div class="d-flex" id="wrapper">
+		<!-- Start Menu Section -->
+			<tiles:insertAttribute name="menu" />
+		<!-- End Menu Section -->
+	
+	
+		<div class="container container-fluid">
+			<!-- Start Body Section -->
+				<tiles:insertAttribute name="body" />
+			<!-- End Body Section -->
+		</div>
+	
+	</div>
 
 
 
