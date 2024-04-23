@@ -1,19 +1,24 @@
-package co.yedam.login;
+package co.yedam.order;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-public class pwCheckFormControl implements Control {
+public class OrderListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("WEB-INF/view/login/pwForm.jsp").forward(req, resp);
-
+		RequestDispatcher rd = req.getRequestDispatcher("order/orderList.tiles");
+		try {
+			rd.forward(req, resp);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
-
 }
