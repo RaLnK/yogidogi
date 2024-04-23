@@ -34,6 +34,10 @@ public class FrontControl extends HttpServlet {
 		
 		//로그인
 		FrontControlLogin.push(map);
+		
+		
+		//게시판
+		FrontControlBoard.push(map);
 	}
 
 	@Override
