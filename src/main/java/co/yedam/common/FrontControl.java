@@ -40,7 +40,7 @@ public class FrontControl extends HttpServlet {
 		FrontControlBoard.push(map);
 		
 		//상품
-		FrontControlProd.push(map);
+		FrontControlProd.push(map); 
 	}
 
 	@Override
