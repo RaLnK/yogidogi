@@ -16,6 +16,11 @@
 	  	<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
 	</definition>
 	
+	<definition name="logapp" template="/WEB-INF/loginLayouts/log.html">
+    
+  </definition>
+	<definition name="WILDCARD:login/*" extends="logapp">
+		<put-attribute name="login" value="/WEB-INF/view/login/{1}.jsp"></put-attribute>
+  </definition>
+	
 </tiles-definitions>
-
-
