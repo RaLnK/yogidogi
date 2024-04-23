@@ -30,6 +30,8 @@
 <link href="/yogidogi/css/style.css" rel="stylesheet">
 <link href="/yogidogi/css/menu-style.css" rel="stylesheet" />
 <link href="/yogidogi/css/side-bar-style.css" rel="stylesheet">
+<link href="css/productList.css" rel="stylesheet"/>
+
 <title>Furni Free Bootstrap 5 Template for Furniture and
 	Interior Design Websites by Untree.co</title>
 </head>
@@ -39,9 +41,6 @@
 	<!-- Start Header/Navigation -->
 		<tiles:insertAttribute name="nav" />
 	<!-- End Header/Navigation -->
-
-
-
 
 
 	<!-- Start Hero Section -->

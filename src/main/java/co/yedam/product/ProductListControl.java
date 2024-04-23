@@ -18,12 +18,8 @@ public class ProductListControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		ProductService svc = new ProductServiceImpl();
-		List<ProductVO> list = svc.productList();
-	
-		req.setAttribute("plist", list);
 		
-		RequestDispatcher rd = req.getRequestDispatcher("prod/productList.tiles");
+		RequestDispatcher rd = req.getRequestDispatcher("product/productList.tiles");
 		
 		try {
 			rd.forward(req, resp);
