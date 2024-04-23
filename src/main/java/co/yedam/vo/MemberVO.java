@@ -16,4 +16,5 @@ public class MemberVO {
 	private int memberAuthority;
 	private int existence;
 	private Date renewDate;
+	private String memberPwChk;
 }
