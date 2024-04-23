@@ -4,58 +4,20 @@
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-	<definition name="main" template="/WEB-INF/layouts/testHeader.jsp">
-		<put-attribute name="title" value="Test" />
-	</definition>
-	
 	<definition name="mainapp" template="/WEB-INF/mainLayouts/mainTemplate.jsp">
-	    <put-attribute name="blog" value="/WEB-INF/mainLayouts/blog.jsp" />
 	    <put-attribute name="footer" value="/WEB-INF/mainLayouts/footer.jsp" />
-	    <put-attribute name="help" value="/WEB-INF/mainLayouts/help.jsp" />
 	    <put-attribute name="hero" value="/WEB-INF/mainLayouts/hero.jsp" />
 	    <put-attribute name="nav" value="/WEB-INF/mainLayouts/nav.jsp" />
-	    <put-attribute name="popularProduct" value="/WEB-INF/mainLayouts/popularProduct.jsp" />
-	    <put-attribute name="product" value="/WEB-INF/mainLayouts/product.jsp" />
-	    <put-attribute name="testimonial" value="/WEB-INF/mainLayouts/testimonial.jsp" />
-	    <put-attribute name="whyChooseUs" value="/WEB-INF/mainLayouts/whyChooseUs.jsp" />
-	    <put-attribute name="cart" value="/WEB-INF/mainLayouts/cart.jsp" />
-	    
+	    <put-attribute name="body" value="/WEB-INF/mainLayouts/product.jsp" />	    
 	</definition>
 	
-	<definition name="WILDCARD:yogi/*" extends="mainapp">
-	  	<put-attribute name="" value="/WEB-INF/view/{1}.jsp" />
-	</definition>
-
-	<definition name="prodapp" template="/WEB-INF/shopLayouts/shopTemplate.jsp">
-		<put-attribute name="footer" value="/WEB-INF/mainLayouts/footer.jsp" />
-		<put-attribute name="hero" value="/WEB-INF/shopLayouts/hero.jsp" />
-		<put-attribute name="nav" value="/WEB-INF/mainLayouts/nav.jsp" />
-		<put-attribute name="product" value="/WEB-INF/shopLayouts/product.jsp" />
-	</definition>
-
-	<definition name="WILDCARD:prod/*" extends="prodapp">
-		<put-attribute name="product" value="/WEB-INF/view/product/{1}.jsp" />
-	</definition>
-
-	
-	<definition name="boardapp" template="/WEB-INF/boardLayouts/boardTemplate.jsp">
-		<put-attribute name="boardNav" value="/WEB-INF/boardLayouts/boardNav.jsp" />
-	    <put-attribute name="boardHero" value="/WEB-INF/boardLayouts/boardhero.jsp" />
-	    <put-attribute name="board" value="/WEB-INF/boardLayouts/board.jsp" />
-	    <put-attribute name="testimonial" value="/WEB-INF/mainLayouts/testimonial.jsp" />
-	    <put-attribute name="footer" value="/WEB-INF/mainLayouts/footer.jsp" />
-	    
-	</definition>
-	
-	<definition name="WILDCARD:board/*" extends="boardapp">
-	  	<put-attribute name="board" value="/WEB-INF/view/{1}.jsp" />
+	<definition name="WILDCARD:*/*" extends="mainapp">
+	  	<put-attribute name="body" value="/WEB-INF/view/{1}/{2}.jsp" />
 	</definition>
 	
 	<definition name="logapp" template="/WEB-INF/loginLayouts/log.html"></definition>
+    
 	<definition name="WILDCARD:login/*" extends="logapp">
 		<put-attribute name="login" value="/WEB-INF/view/login/{1}.jsp"></put-attribute>
-	</definition>
-	
+  	</definition>
 </tiles-definitions>
-
-
