@@ -12,12 +12,16 @@
 		 result.forEach(board=>{
 			 let temp = $('#boardclone').find(".board").clone()
 			 //temp.css('display','block');
-			 temp.find('.img-fluid').attr('src','./imges/' +   encodeURI(board.boardImg));
+			 let image ='기본이미지.jpg'
+			 if(board.boardImg != null){
+				 image = board.boardImg
+			 }
+			 
+			 temp.find('.boardImg').attr('src','./images/' + image  );				
 			 temp.find('.title').text(board.boardTitle);
 			 temp.find('.writer').text('작성자' + board.memberNo);
 			 temp.find('.date').text('작성일시' + board.boardDate);
 			 temp.appendTo('.boardList')
-			 
 			 
 		 })
 		 
