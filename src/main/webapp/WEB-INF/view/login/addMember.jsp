@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Insert title here</title>
+	<title>회원가입</title>
 	<link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -40,7 +40,7 @@
                     <input type="password" name="password" id="password" class="form-control" placeholder="password(숫자, 영문자 조합 8자리 이상)">
                   </div>
                   <div class="form-group mb-4">
-                    <label for="password" class="sr-only">PasswordCheck</label>
+                    <label for="passwordCheck" class="sr-only">PasswordCheck</label>
                     <input type="password" name="passwordCheck" id="passwordCheck" class="form-control" placeholder="password와 동일해야 합니다">
                   </div>
                   <div class="form-group mb-4">
@@ -51,8 +51,25 @@
                     <label for="phone" class="sr-only">Phone</label>
                     <input type="text" name="phone" id="phone" class="form-control" placeholder="연락처">
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="가입">
+                  <a href="#myModal" id="login" class="btn btn-block login-btn mb-4" type="button" data-toggle="modal">가입</a>	             
                 </form>
+                <!-- modal -->          
+				<div id="myModal" class="modal">
+				     <div class="modal-dialog">
+				          <div class="modal-content">
+				               <div class="modal-header">
+				                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>				                    
+				               </div>
+				               <div class="modal-body">
+				                    <p>회원가입이 완료되었습니다. 메인화면으로 이동하시겠습니까?</p>				                  
+				               </div>
+				               <div class="modal-footer">
+				                    <button type="button" class="btn btn-primary">네</button>
+				                    <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
+				               </div>
+				          </div>
+				     </div>
+				</div>
                </div>
               </div>
              </div>
