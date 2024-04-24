@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean addMember(MemberVO mvo) {
-		return mapper.addMember(mvo);
+		return mapper.addMember(mvo) == 1;
 	}
 	@Override
 	public MemberVO quitMember(MemberVO mvo) {
@@ -40,16 +40,16 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.findId(mvo);
 	}
 	@Override
-	public int findIdCheck(String email) {
-		return mapper.findIdCheck(email);
+	public boolean findIdCheck(String email) {
+		return mapper.findIdCheck(email) == 1;
 	}
 	@Override
 	public MemberVO findPw(MemberVO mvo) {
 		return mapper.findPw(mvo);
 	}
 	@Override
-	public int findPwCheck(String memberId) {
-		return mapper.findPwCheck(memberId);
+	public boolean findPwCheck(String memberId) {
+		return mapper.findPwCheck(memberId) ==  1;
 	}
 	
 	
