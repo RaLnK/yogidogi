@@ -20,12 +20,7 @@ public class CartListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher rd = req.getRequestDispatcher("cart/cartList.tiles");
-		try {
-			rd.forward(req, resp);
-		} catch (ServletException | IOException e) {
-			e.printStackTrace();
-		}
+		req.getRequestDispatcher("cart/cartList.tiles").forward(req, resp);
 	}
 }
 

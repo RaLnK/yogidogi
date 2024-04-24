@@ -18,10 +18,6 @@ public class OrderVO {
 		private int odPoint;        // 사용한 포인트
 		private String odStatus;	// 주문상태
 		private Date odt;   		// 주문일자
-
 //		private int odTotal;		// 총 결제금액
-		
-		private String name;
-		private int quantity;
 }
 

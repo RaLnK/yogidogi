@@ -9,5 +9,7 @@ public interface BoardMapper {
 	public List<BoardVO> boardList();
 
 	public int addBoard(BoardVO bvo);
+	
+	public BoardVO getBoard(int bno);
 
 }

@@ -2,6 +2,7 @@ package co.yedam.common;
 
 import java.util.Map;
 
+import co.yedam.login.MemberListControl;
 import co.yedam.login.addMemberControl;
 import co.yedam.login.addMemberFormControl;
 import co.yedam.login.idCheckControl;
@@ -15,6 +16,7 @@ import co.yedam.login.pwCheckFormControl;
 public class FrontControlLogin {
 	public static void push(Map<String, Control> map) {
 		// 로그인
+		map.put("/memberList.do", new MemberListControl());
 		map.put("/loginForm.do", new loginFormControl());
 		map.put("/login.do", new loginControl());
 		map.put("/logout.do", new logoutControl());
