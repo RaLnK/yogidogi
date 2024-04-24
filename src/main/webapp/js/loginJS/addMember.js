@@ -2,51 +2,29 @@
  * addMember.js
  */
 console.log('start');
-const id = document.querySelector('#id'),
-	nm = document.querySelector('#name'),
-	password = document.querySelector('#password'),
-	passwordCheck = document.querySelector('#passwordCheck'),
-	email = document.querySelector('#email'),
-	phone = document.querySelector('#phone'),
-	addBtn = document.querySelector('#login');
-	
-addBtn.addEventListener('click', addMember);
-	
+document.getElementById('login').addEventListener('click', addMember);
+
 function addMember() {
-	const req = {
-		mid : id.value,
-		mnm : nm.value,
-		mpw : password.value,
-		pwc : passwordCheck.value,
-		email : email.value,
-		phone : phone.value
-	};
+	let id = document.querySelector('#id').value;
+	let nm = document.querySelector('#name').value;
+	let password = document.querySelector('#password').value;
+	let passwordCheck = document.querySelector('#passwordCheck').value;
+	let email = document.querySelector('#email').value;
+	let phone = document.querySelector('#phone').value;
 	
-	fetch('addMember.do', {
-		method: 'post',
-		headers: { 'Content-Type': 'application/json' },
-		body: JSON.stringify(req)
-	})
-	.then((result) => result.json())
-	.then((result) => {
+	const addHtp = new XMLHttpRequest();
+	addHtp.open('POST', '/yogidogi/addMember.do');
+	addHtp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	addHtp.send('memberId=' + id + '&memberName=' + nm + '&memberPw=' + password
+				+ '&email=' + email + '&phone=' + phone);
+	addHtp.onload = function() {
+		const result = JSON.parse(addHtp.response);
 		if(result.retCode == 'Success') {
-			locatin.href = 'loginForm.do'
-			alignModal();
+			console.log(result);
+		}else if(result.retCode == 'fail') {
+			alert('모든 정보를 입력해주세요.')
 		}else {
-			
+			alert('모든 정보를 입력해주세요.')
 		}
-	})
-	.catch((err) => {
-		console.log(err);
-	})
+	}
 }
-
-function alignModal() {
-	var modalDialog = $(this).find(".modal-dialog");
-	modalDialog.css("margin-top", Math.max(0, ($(window).height() - modalDialog.height()) / 2));
-}
-$(".modal").on("shown.bs.modal", alignModal);
-
-$(window).on("resize", function() {
-	$(".modal:visible").each(alignModal);
-});   
