@@ -16,13 +16,20 @@
       <transactionManager type="JDBC"/>
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@192.168.0.22:1521:xe"/>
+
+        <property name="url" value="jdbc:oracle:thin:@(오라클 서버 주소):1521:xe"/>
+
         <property name="username" value="yogi"/>
         <property name="password" value="yogi"/>
       </dataSource>
     </environment>
   </environments>
   <mappers>
+  	<mapper resource="co/yedam/mapper/BoardMapper.xml"/>
+  	<mapper resource="co/yedam/mapper/CartMapper.xml"/>
   	<mapper resource="co/yedam/mapper/MemberMapper.xml"/>
+  	<mapper resource="co/yedam/mapper/MyPageMapper.xml"/>
+  	<mapper resource="co/yedam/mapper/OrderMapper.xml"/>
+  	<mapper resource="co/yedam/mapper/ProductMapper.xml"/>
   </mappers>
 </configuration>

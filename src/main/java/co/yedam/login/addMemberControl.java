@@ -15,10 +15,9 @@ public class addMemberControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String id = req.getParameter("mid");
-		String name = req.getParameter("mnm");
-		String pw = req.getParameter("mpw");
-		String pwc = req.getParameter("pwc");
+		String id = req.getParameter("memberId");
+		String name = req.getParameter("memberName");
+		String pw = req.getParameter("memberPw");
 		String email = req.getParameter("email");
 		String phone = req.getParameter("phone");
 		
@@ -26,7 +25,6 @@ public class addMemberControl implements Control {
 		vo.setMemberId(id);
 		vo.setMemberName(name);
 		vo.setMemberPw(pw);
-		vo.setMemberPwChk(pwc);
 		vo.setEmail(email);
 		vo.setPhone(phone);
 		

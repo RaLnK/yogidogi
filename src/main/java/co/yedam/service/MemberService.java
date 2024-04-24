@@ -17,8 +17,8 @@ public interface MemberService {
 	public boolean delMember(int no);
 	//아이디 찾기
 	public MemberVO findId(MemberVO mvo);
-	public int findIdCheck(String email);
+	public boolean findIdCheck(String email);
 	//비밀번호 찾기
 	public MemberVO findPw(MemberVO mvo);
-	public int findPwCheck(String memberId);
+	public boolean findPwCheck(String memberId);
 }
