@@ -31,6 +31,12 @@ public class FrontControl extends HttpServlet {
 		
 		//상품
 		FrontControlProd.push(map);
+		
+		//장바구니
+		FrontControlCart.push(map);
+		
+		//주문결제
+		FrontControlOrder.push(map);
 	}
 
 	@Override

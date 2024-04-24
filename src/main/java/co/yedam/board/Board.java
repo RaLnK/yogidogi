@@ -14,6 +14,7 @@ public class Board implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		req.getRequestDispatcher("board/board.tiles").forward(req, resp);
 	}
 
 }

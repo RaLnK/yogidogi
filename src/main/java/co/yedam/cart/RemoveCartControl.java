@@ -21,8 +21,11 @@ public class RemoveCartControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String cartNo = req.getParameter("cno");
+		String qty = req.getParameter("qty");
 		
 		CartService svc = new CartServiceImpl();
+		
+		
 		Map<String, Object> map = new HashMap<>();
 		if(svc.remCart(Integer.parseInt(cartNo))) {
 			map.put("retCode", "OK");
