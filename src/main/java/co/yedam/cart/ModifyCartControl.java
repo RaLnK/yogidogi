@@ -21,12 +21,12 @@ public class ModifyCartControl implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String cartNo = req.getParameter("cno");
-		String quantity = req.getParameter("quan");
+		String cartNo = req.getParameter("cNo");
+		String qty = req.getParameter("qty");
 		
 		CartVO vo = new CartVO();
 		vo.setCartNo(Integer.parseInt(cartNo));
-		vo.setQty(Integer.parseInt(quantity));
+		vo.setQty(Integer.parseInt(qty));
 		
 		CartService svc = new CartServiceImpl();
 		Map<String, Object> map = new HashMap<>();

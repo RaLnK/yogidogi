@@ -26,13 +26,13 @@ public class AddCartControl implements Control {
         // memberNo와 proNo 요청 파라미터를 받아옴
         String memberNo = req.getParameter("memberNo");
         String proNo = req.getParameter("proNo");
-        int quantity = 1;
+        int qty = 1;
 
         // CartVO 객체 생성 및 설정
         CartVO vo = new CartVO();
         vo.setMemberNo(Integer.parseInt(memberNo));
         vo.setProNo(Integer.parseInt(proNo));
-        vo.setQty(quantity);
+        vo.setQty(qty);
         
         // CartService 인스턴스 생성
         CartService svc = new CartServiceImpl();

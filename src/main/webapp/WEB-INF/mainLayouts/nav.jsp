@@ -27,7 +27,7 @@
 
 			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 				<li><a class="nav-link" href="#"><img src="/yogidogi/images/user.svg"></a></li>
-				<li><a class="nav-link" href="cart.html"><img
+				<li><a class="nav-link" href="cartList.do"><img
 						src="/yogidogi/images/cart.svg"></a></li>
 			</ul>
 		</div>
