@@ -51,25 +51,11 @@
                     <label for="phone" class="sr-only">Phone</label>
                     <input type="text" name="phone" id="phone" class="form-control" placeholder="연락처">
                   </div>
-                  <a href="#myModal" id="login" class="btn btn-block login-btn mb-4" type="button" data-toggle="modal">가입</a>	             
+                  <a id="login" class="btn btn-block login-btn mb-4" type="button" data-toggle="modal">가입</a>	             
                 </form>
                 <!-- modal -->          
-				<div id="myModal" class="modal">
-				     <div class="modal-dialog">
-				          <div class="modal-content">
-				               <div class="modal-header">
-				                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>				                    
-				               </div>
-				               <div class="modal-body">
-				                    <p>회원가입이 완료되었습니다. 메인화면으로 이동하시겠습니까?</p>				                  
-				               </div>
-				               <div class="modal-footer">
-				                    <button type="button" class="btn btn-primary">네</button>
-				                    <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
-				               </div>
-				          </div>
-				     </div>
-				</div>
+				
+				<!-- modal -->
                </div>
               </div>
              </div>

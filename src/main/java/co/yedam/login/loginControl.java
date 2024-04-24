@@ -29,17 +29,17 @@ public class loginControl implements Control {
 		
 		if(vo != null) {
 			HttpSession session = req.getSession();
-			session.setAttribute("logId", vo.getMemberId());
-			session.setAttribute("auth", vo.getMemberAuthority());
+			session.setAttribute("memberNo", vo.getMemberNo());
+			session.setAttribute("memberId", vo.getMemberId());
+			session.setAttribute("memberAuthority", vo.getMemberAuthority());
 			if(vo.getMemberAuthority() == 0) {
 				//사용자
 				resp.sendRedirect("mainapp.tiles");
-			}else {
+			}else if(vo.getMemberAuthority() == 1){
 				//관리자
 				resp.sendRedirect("mainapp.tiles");
 			}
 		}else {
-			req.setAttribute("msg", "ID와 PASSWORD를 확인해주세요");
 			req.getRequestDispatcher("WEB-INF/view/login/loginForm.jsp").forward(req, resp);
 		}
 	}
