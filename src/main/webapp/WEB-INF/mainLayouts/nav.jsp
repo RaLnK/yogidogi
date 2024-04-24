@@ -18,7 +18,7 @@
 			<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 				<li class="nav-item active"><a class="nav-link"
 					href="index.html">Home</a></li>
-				<li><a class="nav-link shop" href="productList.do">Shop</a></li>
+				<li class="shop"><a class="nav-link" href="productList.do">Shop</a></li>
 				<li><a class="nav-link" href="about.html">About us</a></li>
 				<li><a class="nav-link" href="services.html">Services</a></li>
 				<li><a class="nav-link" href="blog.html">Blog</a></li>
