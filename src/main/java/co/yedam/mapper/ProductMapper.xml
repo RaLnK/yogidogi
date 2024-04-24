@@ -7,7 +7,7 @@
 	<select id="productList" parameterType="co.yedam.vo.ProductVO" resultType ="co.yedam.vo.ProductVO">
 		select *
 		from product
-		order by product_no desc
+		order by launch_date desc
 	</select>
 	
 	
