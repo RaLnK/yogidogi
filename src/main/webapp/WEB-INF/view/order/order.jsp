@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<form>
 		<div class="untree_co-section">
 		    <div class="container">
 		      <div class="row mb-5">
@@ -269,3 +270,5 @@
 		      <!-- </form> -->
 		    </div>
 		 </div>
+</form>
+<script src ="/js/orderjs/order.js"></script>
