@@ -12,4 +12,7 @@ public interface BoardMapper {
 	
 	public BoardVO getBoard(int bno);
 
+	public int updateBoard(BoardVO vo);
+
+	public int delBoard(int bno);
 }

@@ -8,19 +8,19 @@
 	<table class="table">
 	<tr>
 		<th>글제목</th>
-		<td><input class="form-control" type="text" name="boardTitle"></td>
+		<td><input class="form-control" type="text" name="title"></td>
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea class="form-control" name="boardContent"></textarea></td>
+		<td><textarea class="form-control" name="content"></textarea></td>
 	</tr>
 	<tr>
 		<th>이미지</th>
-		<td><input class="form-control" type="file" name="boardImg"></td>
+		<td><input class="form-control" type="file" name="myImg"></td>
 	</tr>	
 	<tr>
 		<th>작성자</th>
-		<td><input class="form-control" type="text" name="memberNo" ></td>
+		<td><input class="form-control" type="text" name="mno" ></td>
 	</tr>
 	<tr>
 		<td colspan="2" align = "center"><input class="btn-primary" type = "submit" value="글등록"></td>
