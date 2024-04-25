@@ -36,6 +36,7 @@ $(function() {
 						return new Date(b.launchDate) - new Date(a.launchDate)
 					});
 				}
+				all(sort); 
 				cateChoose(sort);
 			})
 		}) //end of sort
@@ -74,11 +75,9 @@ function all(result) { // 전체 상품
 				default: '';
 			}
 			row.append(product);
-
 		}
 	})
 }
-
 
 
 function cateCnt(result) { // 카테고리 count
