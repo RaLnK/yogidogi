@@ -32,4 +32,16 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getBoard(bno);
 	}
 
+	@Override
+	public boolean updateBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.updateBoard(vo) == 1;
+	}
+
+	@Override
+	public boolean removeBoard(int bno) {
+		// TODO Auto-generated method stub
+		return mapper.delBoard(bno) == 1 ;
+	}
+
 }

@@ -20,20 +20,20 @@ public class AddBoard implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		String savePath = req.getServletContext().getRealPath("images/board"); 
+		String savePath = req.getServletContext().getRealPath("images"); 
 		int maxSize = 1024 * 1024 * 5;
 		MultipartRequest multi = new MultipartRequest(req,savePath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		
 		
 		String tit = multi.getParameter("title");
 		String con = multi.getParameter("content");
-		String wri = multi.getParameter("writer");
+		String mno = multi.getParameter("mno");
 		String img = multi.getFilesystemName("myImg");
 			
 			BoardVO vo = new BoardVO();
 			vo.setBoardTitle(tit);
 			vo.setBoardContent(con);
-			vo.setMemberNo(Integer.parseInt(wri));
+			vo.setMemberNo(Integer.parseInt(mno));
 			vo.setBoardImg(img);
 			
 			vo.setBoardDate(new Date());

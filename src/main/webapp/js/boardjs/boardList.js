@@ -2,9 +2,12 @@
  * boardList.js
  */
 
+
+
  console.log('start');
  
  document.addEventListener('DOMContentLoaded',function(e){
+
 	 // 게시글 목록 출력
 	 $.get('AjaxBoardList.do',function(result){
 		 console.log(result);

@@ -37,8 +37,8 @@ h4{
 	</tr>
 	<tr>
 		<td colspan="4">
-			<button type="submit" align="center" class="btn" >글 수정하기</button>
-			<button type="button" align="center" class="btn" >글 삭제</button>
+			<button type="submit" align="center" class="btn" > <a href="updateBoardForm.do?bno=${bno.boardNo }">글 수정하기</a></button>
+			<button type="button" align="center" class="btn" id="delBtn" action="delBoard.do?bno=${bno.boardNo }" method="post" onclick="deleteBoard()" >삭제</button>
 		</td>
 	</tr>
 
