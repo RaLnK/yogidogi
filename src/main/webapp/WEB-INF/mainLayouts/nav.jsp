@@ -4,9 +4,10 @@
 <nav
 	class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark"
 	arial-label="Furni navigation bar">
+	<script src="./js/nav.js"></script>
 
 	<div class="container">
-		<a class="navbar-brand" href="index.html">Furni<span>.</span></a>
+		<a class="navbar-brand" href="index.html">YOGIDOGI<span></span></a>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarsFurni" aria-controls="navbarsFurni"
@@ -19,14 +20,14 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="index.html">Home</a></li>
 				<li class="shop"><a class="nav-link" href="productList.do">Shop</a></li>
-				<li><a class="nav-link" href="about.html">About us</a></li>
-				<li><a class="nav-link" href="services.html">Services</a></li>
-				<li><a class="nav-link" href="blog.html">Blog</a></li>
-				<li><a class="nav-link" href="contact.html">Contact us</a></li>
+				<li><a class="nav-link" href="about.html">Notice</a></li>
+				<li><a class="nav-link" href="services.html">Ask</a></li>
+				<li><a class="nav-link" href="blog.html">Board</a></li>
+				<li><a class="nav-link" href="memberInfo.do">My Page</a></li>
 			</ul>
 
 			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-				<li><a class="nav-link" href="#"><img src="/yogidogi/images/user.svg"></a></li>
+				<li><a class="nav-link" href="loginForm.do"><img src="/yogidogi/images/user.svg"></a></li>
 				<li><a class="nav-link" href="cartList.do"><img
 						src="/yogidogi/images/cart.svg"></a></li>
 			</ul>
