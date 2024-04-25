@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="untree_co-section" style="padding-top: 2rem;">
 	<div class="container">
@@ -13,7 +12,9 @@
 						<div class="col-md-2">
 							<h6 class="text-black" style="line-height: 50px;">아이디 :</h6>
 						</div>
-						<div class="col-md-10" id="id-div"></div>
+						<div class="col-md-10" id="id-div">
+							
+						</div>
 					</div>
 
 					<div class="form-group row" style="padding: 1rem;">
