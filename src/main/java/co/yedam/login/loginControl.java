@@ -34,10 +34,10 @@ public class loginControl implements Control {
 			session.setAttribute("member", vo);
 			if(vo.getMemberAuthority() == 0) {
 				//사용자
-				resp.sendRedirect("mainapp.tiles");
+				resp.getWriter().print("{\"retCode\": \"Success\"}");
 			}else if(vo.getMemberAuthority() == 1){
 				//관리자
-				resp.sendRedirect("mainapp.tiles");
+				resp.getWriter().print("{\"retCode\": \"Success\"}");
 			}
 		}else {
 			resp.getWriter().print("{\"retCode\": \"Fail\"}");

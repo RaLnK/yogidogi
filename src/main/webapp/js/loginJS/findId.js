@@ -15,9 +15,16 @@ function findId() {
 		if(result.retCode != 'Fail') {
 			openModal();
 			$('div.modal-content').append($('<p>해당 이메일에 등록된 ID는 '+ result.retCode +' 입니다.</p>'));
+			$('.close').on('click', function() {
+				$('.modal').css('display', 'none');
+				location.href = 'http://localhost:8080/yogidogi/loginForm.do'
+			})
 		}else {
 			openModal();
 			$('div.modal-content').append($('<p>등록되지 않은 email입니다.</p>'));
+			$('.close').on('click', function() {
+				$('.modal').css('display', 'none');
+			})
 		}
 	}
 }
@@ -26,7 +33,6 @@ function openModal() {
 	$('.modal').css('display', 'block');
 }
 
-$('.close').on('click', function() {
-	$('.modal').css('display', 'none');
-	location.href = 'http://localhost:8080/yogidogi/loginForm.do'
+$('.logo').on('click', function() {
+	location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
 })
