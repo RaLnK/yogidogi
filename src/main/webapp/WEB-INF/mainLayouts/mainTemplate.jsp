@@ -70,7 +70,6 @@
 
 	<script src="/yogidogi/js/bootstrap.bundle.min.js"></script>
 	<script src="/yogidogi/js/tiny-slider.js"></script>
-	<script src="/yogidogi/js/custom.js"></script>
 </body>
 
 </html>

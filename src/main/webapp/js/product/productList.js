@@ -1,6 +1,6 @@
 /**
  * productList.js 
- * 해야 할 것 : 페이징, sort : 들어간 시간이 똑같으면 정렬이 안 됨..
+ * 해야 할 것 : 페이징
  */
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 
@@ -10,17 +10,16 @@ $(function() {
 	$('.shop').addClass('active');
 
 	svc.productList(function(result) {	// start of productList
-
-		all(result); // 처음 들어 갔을 때 전체 카테고리 보여주기
+		all(result); // 처음 들어 갔을 때 show all category
 		allCnt(result); // 전체 수량 cnt
-		cateCnt(result); // category count
-		cateChoose(result);
-
-		//cateChoose(result);	// category 고르기
+		cateCnt(result); // category cnt
+		cateChoose(result);//choose category 
+		
+		// 전제 상품 sort
 		$('#sort a').each((idx, sortMenu) => {
 			$(sortMenu).on('click', e => {
 				e.preventDefault();
-				// give active class when click sorts
+				// give active class when click sorts(카테고리 어떤 게 선택 됐는 지 구분하기 위해)
 				$(sortMenu).siblings().removeClass('active');
 				$(sortMenu).addClass('active');
 				let sort = result;
@@ -34,32 +33,30 @@ $(function() {
 					});
 				} else if ($(sortMenu).prop('id') == 'news') {
 					sort = result.sort(function(a, b) {
-						return new Date(b.launchDate) - new Date(a.launchDate)
+						return new Date(b.productNo) - new Date(a.productNo)
 					});
 				}
 
 				all(sort);
-				cateChoose(sort);
 			})
 		}) //end of sort
-
-
+		
 	}, function(err) {
 		console.error(err);
 	})// end of productList
 })
 
 
-
 //functions 
 function all(result) { // 전체 상품
-	$('.product').hide();
+	$('.product:gt(0)').remove();
 	let row = $('.container .one');
 	result.forEach(ele => {
 		if (parseInt(ele.deleteChk) == 0) {
 			$('.product:eq(0)').hide();
 			let product = $('.product:eq(0)').clone().show();
 			product.find('.title').text(ele.productName);
+			product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
 			let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
 			product.find('.discPrice').text(discPrice);
 			product.find('.price').text(ele.productPrice);
@@ -115,22 +112,26 @@ function allCnt(result) { // 전체 count
 }
 
 function cateChoose(result) {
-	let sortCate = [];
+	let sortCate = []; // sort된 카테고리 담아줄 배열
 	let row = $('.container .one');
 	let targetId;
 	$('.side ul li').each((idx, cate) => {
 		$(cate).on('click', function(e) {
 			e.preventDefault();
-			$('.product').hide();
+			$('.showProduct').remove();
+			$('#sort').show();
+			$('.section').show();
+			$('.product:gt(0)').remove();
 			targetId = e.target.parentElement.id;
 			sortCate = [];
 			result.forEach(ele => {
 				if (parseInt(targetId) == ele.category && parseInt(ele.deleteChk) == 0) {
-					sortCate.push(ele);
+					sortCate.push(ele); // 같은 category 배열에 저장
 					$('.product:eq(0)').hide();
 					let product = $('.product:eq(0)').clone().show();
 					product.find('.title').text(ele.productName);
 					product.find('.price').text(ele.productPrice);
+					product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
 					let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
 					product.find('.discPrice').text(discPrice);
 					product.find('.price').text(ele.productPrice);
@@ -149,7 +150,9 @@ function cateChoose(result) {
 					}
 					row.append(product);
 				} else if (targetId == 'all' || targetId == 'yogi') {
-					$('.product').hide();
+				
+					$('.product:gt(0)').remove();
+					sortCate.push(ele);
 					all(result); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
 				}
 			})
@@ -160,7 +163,7 @@ function cateChoose(result) {
 					// give active class when click sorts
 					$(sortMenu).siblings().removeClass('active');
 					$(sortMenu).addClass('active');
-					let sort = sortCate;
+					let sort = sortCate;// sortCate 담은 애들 정렬
 					if ($(sortMenu).prop('id') == 'discount') {
 						sort = sortCate.sort(function(a, b) {
 							return b.discountPct - a.discountPct
@@ -171,16 +174,17 @@ function cateChoose(result) {
 						});
 					} else if ($(sortMenu).prop('id') == 'news') {
 						sort = sortCate.sort(function(a, b) {
-							return new Date(b.launchDate) - new Date(a.launchDate)
+							return new Date(b.productNo) - new Date(a.productNo)
 						});
 					}
-					$('.product').hide();
-					sort.forEach(cateSort => {
+					$('.product:gt(0)').remove();
+					sort.forEach(cateSort => { // sortCate 담은 애들 forEach
 						if (parseInt(targetId) == cateSort.category && parseInt(cateSort.deleteChk) == 0) {
 							$('.product:eq(0)').hide();
 							let product = $('.product:eq(0)').clone().show();
 							product.find('.title').text(cateSort.productName);
 							product.find('.price').text(cateSort.productPrice);
+							product.find('.item').attr('href', 'product.do?pno=' + cateSort.productNo);
 							let discPrice = Math.round(parseInt(cateSort.productPrice) * (1 - parseInt(cateSort.discountPct) * 0.01) / 100) * 100;
 							product.find('.discPrice').text(discPrice);
 							product.find('.price').text(cateSort.productPrice);
@@ -199,8 +203,8 @@ function cateChoose(result) {
 							}
 							row.append(product);
 						} else if (targetId == 'all' || targetId == 'yogi') {
-							$('.product').hide();
-							all(result); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
+							$('.product:gt(0)').remove(); // gt : greater than. 첫번째 요소 제외 지우기
+							all(sort); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
 						}
 					})
 				})

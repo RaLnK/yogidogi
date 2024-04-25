@@ -23,7 +23,7 @@
 
 <div class="blog-section">
 	<div class=btnalign>
-		<button type="submit" class="btn"><a href="addBoard.do">글쓰기</a></button>
+		<button type="submit" class="btn"><a href="addBoardForm.do">글쓰기</a></button>
 	</div>
 <div id="boardclone" style="display:none">
 	

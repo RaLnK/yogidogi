@@ -31,4 +31,18 @@
         	on b.member_no = m.member_no
 		where board_no = #{bno}
 	</select>
+	
+	
+	<update id="updateBoard" parameterType="co.yedam.vo.BoardVO">
+   update board
+   set board_title = #{boardTitle}
+   		,board_content = #{boardContent}
+   		,board_img = #{boardImg}
+   where board_no = #{boardNo}
+   </update>
+   
+   <delete id="delBoard" parameterType="int">
+   	delete from board
+   	where board_no = #{bno}
+   </delete>
 </mapper>

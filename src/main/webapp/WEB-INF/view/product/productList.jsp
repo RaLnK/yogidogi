@@ -25,7 +25,7 @@
 	<div class="container">
 		<div class="row one">
 			<!-- Start Column 1 -->
-			<div class="col-12 col-md-4 col-lg-3 mb-5 product">
+			<div class="col-12 col-md-4 col-lg-3 mb-5 product" style="display: none;" >
 				<a class="product-item item" href="#"> 
 				<img src="images/product-3.png" class="img-fluid product-thumbnail img">
 					<h3 class="product-title title">Nordic Chair</h3> 
@@ -43,6 +43,4 @@
 </div>
 
 
-<script src ="js/product/productList.js">
-
-</script>
+<script src ="js/product/productList.js"></script>

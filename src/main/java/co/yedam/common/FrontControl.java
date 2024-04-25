@@ -32,6 +32,9 @@ public class FrontControl extends HttpServlet {
 		//상품
 		FrontControlProd.push(map);
 		
+		//리뷰
+		FrontControlReview.push(map);
+		
 		//장바구니
 		FrontControlCart.push(map);
 		

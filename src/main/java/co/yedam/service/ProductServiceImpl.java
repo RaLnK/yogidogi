@@ -23,6 +23,10 @@ public class ProductServiceImpl implements ProductService{
 	public boolean delProduct(ProductVO pvo) { // 상품 삭제
 		return mapper.delProd(pvo)==1;
 	}
+	@Override
+	public ProductVO getProduct(int pno) {
+		return mapper.getProduct(pno);
+	}
 
 	
 }

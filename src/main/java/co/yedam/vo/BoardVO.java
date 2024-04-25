@@ -14,5 +14,5 @@ public class BoardVO {
 	private String boardContent;	//게시글내용
 	private int boardCategory;		//게시글 카테고리(0-자유게시판, 1-공지게시판, 2-문의게시판)
 	private String boardImg;		//게시글 이미지
-	private String memberId;
+	private String memberId;		//회원 아이디(member테이블)
 }

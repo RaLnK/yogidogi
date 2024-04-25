@@ -9,4 +9,6 @@ public interface BoardService {
 	List<BoardVO> boardList();
 	boolean addBoard(BoardVO bvo);
 	BoardVO getBoard(int bno);
+	boolean updateBoard(BoardVO vo);
+	boolean removeBoard(int bno);
 }

@@ -9,7 +9,7 @@
   	
   </settings>
   <typeAliases>
-	  <package name="co.yedam"/>
+	  <package name="co.yedam.vo"/>
 	</typeAliases>
   <environments default="development">
     <environment id="development">
@@ -17,7 +17,7 @@
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
 
-        <property name="url" value="jdbc:oracle:thin:@(오라클 서버 주소):1521:xe"/>
+        <property name="url" value="jdbc:oracle:thin:@(오라클 주소):1521:xe"/>
 
         <property name="username" value="yogi"/>
         <property name="password" value="yogi"/>

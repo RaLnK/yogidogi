@@ -23,9 +23,9 @@ public class MemberList implements Control {
 		
 		MyPageService svc = new MyPageServiceImpl();
 		
-		String memberNo = (String)session.getAttribute("memberNo");
+		int memberNo = ((Integer)session.getAttribute("memberNo")).intValue();
 		
-		MemberVO vo = svc.memberList(Integer.parseInt(memberNo));
+		MemberVO vo = svc.memberList(memberNo);
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(vo);

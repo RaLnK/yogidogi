@@ -7,9 +7,14 @@
 	<select id="productList" parameterType="co.yedam.vo.ProductVO" resultType ="co.yedam.vo.ProductVO">
 		select *
 		from product
-		order by launch_date desc
+		order by product_no desc
 	</select>
-	
+
+	<select id="getProduct" parameterType="int" resultType="co.yedam.vo.ProductVO">
+		select *
+		from product
+		where product_no = #{pno}
+	</select>
 	
 	<insert id="addProd" parameterType="co.yedam.vo.ProductVO">
 		INSERT INTO product (product_no , 

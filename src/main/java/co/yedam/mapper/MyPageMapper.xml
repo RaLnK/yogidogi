@@ -8,6 +8,19 @@
 	<select id="memberList" resultType="MemberVO" parameterType="int">
 		select *
 		from member
-		where member_no = #{memberNo}
+		where member_no=#{memberNo}
 	</select>
+	
+	<update id="memberUpdate" parameterType="MemberVO">
+		update member
+		set member_pw=#{memberPw}, member_name=#{memberName}, email=#{email}, phone=#{phone}
+		where member_no=#{memberNo}
+	</update>
+	
+	<select id="memberDogList" resultType="MemberDogVO" parameterType="int">
+		select *
+		from member_dog
+		where member_no=#{memberNo}
+	</select>
+	
 </mapper>

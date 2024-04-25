@@ -1,0 +1,64 @@
+/**
+ * 
+ */
+
+const svc = {
+	memberDogList(successCall, errorCall) {
+		fetch('/yogidogi/memberDogList.do')
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	},
+	/*memberDogUpdate(mvo = {}, successCall, errorCall) {
+		fetch('/yogidogi/memberDogUpdate.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'dogName=' + mvo.dogName + '&dogBreed=' + mvo.dogBreed
+		})
+			.then(resolve => resolve.json())
+			.then(successCall)
+			.catch(errorCall);
+	}*/
+}
+
+document.addEventListener('DOMContentLoaded', function(e) {
+	svc.memberDogList(function(result) {
+		result.forEach((dog, idx) => {
+			console.log(typeof dog.dogBirthday);
+			
+			let temp = $('#base-form').clone(true);
+			temp.css('display', 'block');
+			let dogInfo = $('<input/>', { type: 'text', name: 'dogName'+idx }).val(dog.dogName);
+			dogInfo.addClass('form-control').attr('readonly', true).css('border', 'none');
+			temp.find('.name-div').append(dogInfo);
+			temp.find('.breed-div').append(dogInfo.clone(true).attr('name', 'dogBreed'+idx).val(dog.dogBreed));
+			temp.find('.birthday-div').append(dogInfo.clone(true).attr('name', 'dogBirthday'+idx).val(dog.dogBirthday));
+			$('#dogList').append(temp);
+			
+			temp.find('#editBtn').click(function(e){
+				if($(this).text() == '수정'){
+					temp.find('input').attr('readonly', false);
+					$(this).text('완료');
+				}else if($(this).text() == '완료'){
+					
+					$(this).text('수정');
+				}
+			});
+			
+		});
+
+	}, function(err) {
+		console.log(err);
+	});
+
+})
+
+
+
+
+
+
+
+
+
+
