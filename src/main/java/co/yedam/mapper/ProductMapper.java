@@ -9,6 +9,9 @@ public interface ProductMapper {
 	// 상품 리스트
 	public List<ProductVO> productList();
 	
+	// 상품 한개 
+	public ProductVO getProduct(int pno);
+	
 	// 상품 등록
 	public int addProd(ProductVO pvo);
 	
