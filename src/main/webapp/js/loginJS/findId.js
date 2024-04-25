@@ -12,10 +12,21 @@ function findId() {
 	findHtp.send();
 	findHtp.onload = function() {
 		let result = JSON.parse(findHtp.response)
-		if(result.retCode == 'Success') {
-			console.log(result);
+		if(result.retCode != 'Fail') {
+			openModal();
+			$('div.modal-content').append($('<p>해당 이메일에 등록된 ID는 '+ result.retCode +' 입니다.</p>'));
 		}else {
-			alert('error');
+			openModal();
+			$('div.modal-content').append($('<p>등록되지 않은 email입니다.</p>'));
 		}
 	}
 }
+
+function openModal() {
+	$('.modal').css('display', 'block');
+}
+
+$('.close').on('click', function() {
+	$('.modal').css('display', 'none');
+	location.href = 'http://localhost:8080/yogidogi/loginForm.do'
+})

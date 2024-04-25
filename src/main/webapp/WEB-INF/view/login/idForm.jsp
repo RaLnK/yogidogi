@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/login.css">
+  <link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
   <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -37,7 +38,14 @@
                   </div>
                   <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="찾기">
                 </form>
-             
+                <!--모달창-->
+				<div id="myModal" class="modal">
+	  				<div class="modal-content">
+	    				<span class="close">&times;</span>
+	    				<p></p>
+	  				</div>
+				</div>
+             	<!--모달창-->
                 <p class="login-card-footer-text"><a href="#!" class="text-reset"></a></p>
                 <nav class="login-card-footer-nav">
                   <a href="#!"></a>

@@ -36,13 +36,13 @@
 		where member_no = #{memberNo}
 	</delete>
 	
-	<select id="findIdCheck" parameterType="string">
+	<select id="findIdCheck" parameterType="string" resultType="string">
 		select member_id
 		from member
 		where email = #{email}
 	</select>
 	
-	<select id="findPwCheck" parameterType="string">
+	<select id="findPwCheck" parameterType="string" resultType="string">
 		select member_pw
 		from member
 		where member_id = #{memberId}

@@ -40,16 +40,16 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.findId(mvo);
 	}
 	@Override
-	public boolean findIdCheck(String email) {
-		return mapper.findIdCheck(email) == 1;
+	public String findIdCheck(String email) {
+		return mapper.findIdCheck(email);
 	}
 	@Override
 	public MemberVO findPw(MemberVO mvo) {
 		return mapper.findPw(mvo);
 	}
 	@Override
-	public boolean findPwCheck(String memberId) {
-		return mapper.findPwCheck(memberId) ==  1;
+	public String findPwCheck(String memberId) {
+		return mapper.findPwCheck(memberId);
 	}
 	
 	

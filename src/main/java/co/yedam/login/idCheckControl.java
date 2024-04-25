@@ -17,12 +17,14 @@ public class idCheckControl implements Control {
 		String email = req.getParameter("email");
 		
 		MemberService sc = new MemberServiceImpl();
+		String id = sc.findIdCheck(email);
 		
-		if(sc.findIdCheck(email)) {
-			resp.getWriter().print("{\"retCode\": \"Success\"}");
+		if(id != null) {
+			resp.getWriter().print("{\"retCode\":\"" + id + "\"}");
 		}else {
 			resp.getWriter().print("{\"retCode\": \"Fail\"}");
 		}
+		
 	}
 
 }

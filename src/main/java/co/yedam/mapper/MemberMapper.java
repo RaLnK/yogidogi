@@ -17,8 +17,8 @@ public interface MemberMapper {
 	public boolean delMember(int no);
 	//아이디 찾기
 	public MemberVO findId(MemberVO mvo);
-	public int findIdCheck(String email);
+	public String findIdCheck(String email);
 	//비밀번호 찾기
 	public MemberVO findPw(MemberVO mvo);
-	public int findPwCheck(String memberId);
+	public String findPwCheck(String memberId);
 }
