@@ -42,23 +42,7 @@
                   <a href="http://localhost:8080/yogidogi/idCheckForm.do">ID 찾기</a>
                   <br>
                   <a href="http://localhost:8080/yogidogi/pwCheckForm.do">Password 찾기</a>
-                </nav>
-                <div id="myModal" class="modal">
-				     <div class="modal-dialog">
-				          <div class="modal-content">
-				               <div class="modal-header">
-				                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>				                    
-				               </div>
-				               <div class="modal-body">
-				                    <p>회원가입이 완료되었습니다. 메인화면으로 이동하시겠습니까?</p>				                  
-				               </div>
-				               <div class="modal-footer">
-				                    <button type="button" class="btn btn-primary">네</button>
-				                    <button type="button" class="btn btn-default" data-dismiss="modal">아니오</button>
-				               </div>
-				          </div>
-				     </div>
-				</div>
+                </nav>             
             </div>
           </div>
         </div>

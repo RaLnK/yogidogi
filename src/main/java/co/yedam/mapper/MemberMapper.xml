@@ -27,8 +27,8 @@
 	</insert>
 	
 	<delete id="quitMember" parameterType="co.yedam.vo.MemberVO">
-	delete from member
-	where member_id = #{memberId} and member_pw = #{memberPw}
+		delete from member
+		where member_id = #{memberId} and member_pw = #{memberPw}
 	</delete>
 	
 	<delete id="delMember" parameterType="int">

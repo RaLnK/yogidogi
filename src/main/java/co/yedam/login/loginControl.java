@@ -22,16 +22,16 @@ public class loginControl implements Control {
 		MemberVO vo = new MemberVO();
 		vo.setMemberId(id);
 		vo.setMemberPw(pw);
-		System.out.println(vo);
 		
 		MemberService sc = new MemberServiceImpl();
 		vo = sc.login(vo);
 		
 		if(vo != null) {
-			HttpSession session = req.getSession();
+			HttpSession session = req.getSession();			
 			session.setAttribute("memberNo", vo.getMemberNo());
 			session.setAttribute("memberId", vo.getMemberId());
-			session.setAttribute("memberAuthority", vo.getMemberAuthority());
+			session.setAttribute("memberAuthority", vo.getMemberAuthority());			 
+			session.setAttribute("member", vo);
 			if(vo.getMemberAuthority() == 0) {
 				//사용자
 				resp.sendRedirect("mainapp.tiles");

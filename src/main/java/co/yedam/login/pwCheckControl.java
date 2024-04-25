@@ -25,9 +25,9 @@ public class pwCheckControl implements Control {
 		MemberService sc = new MemberServiceImpl();
 		
 		if(sc.findPwCheck(id)) {
-			
+			resp.getWriter().print("{\"retCode\": \"Success\"}");
 		}else {
-			req.setAttribute("msg", "잘못된 정보를 입력하셨습니다");
+			resp.getWriter().print("{\"retCode\": \"Fail\"}");
 		}
 	}
 
