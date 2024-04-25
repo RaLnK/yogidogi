@@ -11,16 +11,15 @@ $(function() {
 
 	svc.productList(function(result) {	// start of productList
 
-		all(result); // 처음 들어 갔을 때 전체 카테고리 보여주기
+		all(result); // 처음 들어 갔을 때 show all category
 		allCnt(result); // 전체 수량 cnt
-		cateCnt(result); // category count
-		cateChoose(result);
+		cateCnt(result); // category cnt
+		cateChoose(result);//choose category 
 
-		//cateChoose(result);	// category 고르기
 		$('#sort a').each((idx, sortMenu) => {
 			$(sortMenu).on('click', e => {
 				e.preventDefault();
-				// give active class when click sorts
+				// give active class when click sorts(카테고리 어떤 게 선택 됐는 지 구분하기 위해)
 				$(sortMenu).siblings().removeClass('active');
 				$(sortMenu).addClass('active');
 				let sort = result;
@@ -39,7 +38,6 @@ $(function() {
 				}
 
 				all(sort);
-				cateChoose(sort);
 			})
 		}) //end of sort
 
@@ -53,7 +51,7 @@ $(function() {
 
 //functions 
 function all(result) { // 전체 상품
-	$('.product').hide();
+	$('.product:gt(0)').remove();
 	let row = $('.container .one');
 	result.forEach(ele => {
 		if (parseInt(ele.deleteChk) == 0) {
@@ -115,18 +113,18 @@ function allCnt(result) { // 전체 count
 }
 
 function cateChoose(result) {
-	let sortCate = [];
+	let sortCate = []; // sort된 카테고리 담아줄 배열
 	let row = $('.container .one');
 	let targetId;
 	$('.side ul li').each((idx, cate) => {
 		$(cate).on('click', function(e) {
 			e.preventDefault();
-			$('.product').hide();
+			$('.product:gt(0)').remove();
 			targetId = e.target.parentElement.id;
 			sortCate = [];
 			result.forEach(ele => {
 				if (parseInt(targetId) == ele.category && parseInt(ele.deleteChk) == 0) {
-					sortCate.push(ele);
+					sortCate.push(ele); // 같은 category 배열에 저장
 					$('.product:eq(0)').hide();
 					let product = $('.product:eq(0)').clone().show();
 					product.find('.title').text(ele.productName);
@@ -149,7 +147,9 @@ function cateChoose(result) {
 					}
 					row.append(product);
 				} else if (targetId == 'all' || targetId == 'yogi') {
-					$('.product').hide();
+				
+					$('.product:gt(0)').remove();
+					sortCate.push(ele);
 					all(result); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
 				}
 			})
@@ -160,7 +160,7 @@ function cateChoose(result) {
 					// give active class when click sorts
 					$(sortMenu).siblings().removeClass('active');
 					$(sortMenu).addClass('active');
-					let sort = sortCate;
+					let sort = sortCate;// sortCate 담은 애들 정렬
 					if ($(sortMenu).prop('id') == 'discount') {
 						sort = sortCate.sort(function(a, b) {
 							return b.discountPct - a.discountPct
@@ -175,7 +175,7 @@ function cateChoose(result) {
 						});
 					}
 					$('.product').hide();
-					sort.forEach(cateSort => {
+					sort.forEach(cateSort => { // sortCate 담은 애들 forEach
 						if (parseInt(targetId) == cateSort.category && parseInt(cateSort.deleteChk) == 0) {
 							$('.product:eq(0)').hide();
 							let product = $('.product:eq(0)').clone().show();
@@ -199,8 +199,8 @@ function cateChoose(result) {
 							}
 							row.append(product);
 						} else if (targetId == 'all' || targetId == 'yogi') {
-							$('.product').hide();
-							all(result); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
+							$('.product:gt(0)').remove(); // gt : greater than. 첫번째 요소 제외 지우기
+							all(sort); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
 						}
 					})
 				})
