@@ -21,16 +21,14 @@ public class CartListJson implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/json;charset=utf-8");
-		String memberNo = req.getParameter("memberNo");
 		
 		HttpSession session = req.getSession();
-		session.getAttribute("logId");
 		
-		String logId = (String)session.getAttribute("logId");
+		int memberNo = ((Integer)session.getAttribute("memberNo")).intValue();
 		
 		CartService svc = new CartServiceImpl();
-		List<CartVO> list = svc.cartList(Integer.parseInt(memberNo));
-		
+		List<CartVO> list = svc.cartList(memberNo);
+
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
 		resp.getWriter().print(json);

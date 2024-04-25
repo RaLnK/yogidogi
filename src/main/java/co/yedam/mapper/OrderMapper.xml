@@ -7,7 +7,6 @@
 	<select id="selectList" resultType="OrderVO" parameterType="int">
 		select
 		* from orders where member_no = #{memberNo}
-		order by 1 desc
 	</select>
 
 	<insert id="insertOrder" parameterType="OrderVO">
