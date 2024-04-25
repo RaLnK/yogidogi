@@ -2,6 +2,9 @@
  * login.js
  */
 console.log('start');
+$('form').on('submit', function(e) {
+	e.preventDefault();
+});
 document.getElementById('login').addEventListener('click', login);
 
 function login() {
@@ -19,6 +22,7 @@ function login() {
 			$('div.modal-content').append($('<p>ID와 비밀번호를 확인하세요</p>'));
 		}else {
 			console.log(result);
+			location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
 		}
 	}
 }
@@ -29,4 +33,9 @@ function openModal() {
 
 $('.close').on('click', function() {
 	$('.modal').css('display', 'none');
+	$('div.modal-content p').remove();
+})
+
+$('.logo').on('click', function() {
+	location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
 })

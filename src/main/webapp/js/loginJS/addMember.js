@@ -70,3 +70,7 @@ function addMember() {
 function openModal() {
 	$('.modal').css('display', 'block');
 }
+
+$('.logo').on('click', function() {
+	location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
+})

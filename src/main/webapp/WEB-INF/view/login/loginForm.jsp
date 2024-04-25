@@ -26,7 +26,7 @@
               <div class="brand-wrapper">
                 <img src="images/logo.PNG" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">정보를 입력하세요</p>
+              <p class="login-card-description">LOGIN</p>
               <form action="login.do">
                   <div class="form-group">
                     <label for="memberId" class="sr-only">Email</label>
