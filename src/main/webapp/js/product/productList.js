@@ -1,6 +1,6 @@
 /**
  * productList.js 
- * 해야 할 것 : 페이징, sort : 들어간 시간이 똑같으면 정렬이 안 됨..
+ * 해야 할 것 : 페이징
  */
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 
@@ -10,12 +10,12 @@ $(function() {
 	$('.shop').addClass('active');
 
 	svc.productList(function(result) {	// start of productList
-
 		all(result); // 처음 들어 갔을 때 show all category
 		allCnt(result); // 전체 수량 cnt
 		cateCnt(result); // category cnt
 		cateChoose(result);//choose category 
-
+		
+		// 전제 상품 sort
 		$('#sort a').each((idx, sortMenu) => {
 			$(sortMenu).on('click', e => {
 				e.preventDefault();
@@ -33,20 +33,18 @@ $(function() {
 					});
 				} else if ($(sortMenu).prop('id') == 'news') {
 					sort = result.sort(function(a, b) {
-						return new Date(b.launchDate) - new Date(a.launchDate)
+						return new Date(b.productNo) - new Date(a.productNo)
 					});
 				}
 
 				all(sort);
 			})
 		}) //end of sort
-
-
+		
 	}, function(err) {
 		console.error(err);
 	})// end of productList
 })
-
 
 
 //functions 
@@ -58,6 +56,7 @@ function all(result) { // 전체 상품
 			$('.product:eq(0)').hide();
 			let product = $('.product:eq(0)').clone().show();
 			product.find('.title').text(ele.productName);
+			product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
 			let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
 			product.find('.discPrice').text(discPrice);
 			product.find('.price').text(ele.productPrice);
@@ -119,6 +118,9 @@ function cateChoose(result) {
 	$('.side ul li').each((idx, cate) => {
 		$(cate).on('click', function(e) {
 			e.preventDefault();
+			$('.showProduct').remove();
+			$('#sort').show();
+			$('.section').show();
 			$('.product:gt(0)').remove();
 			targetId = e.target.parentElement.id;
 			sortCate = [];
@@ -129,6 +131,7 @@ function cateChoose(result) {
 					let product = $('.product:eq(0)').clone().show();
 					product.find('.title').text(ele.productName);
 					product.find('.price').text(ele.productPrice);
+					product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
 					let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
 					product.find('.discPrice').text(discPrice);
 					product.find('.price').text(ele.productPrice);
@@ -171,16 +174,17 @@ function cateChoose(result) {
 						});
 					} else if ($(sortMenu).prop('id') == 'news') {
 						sort = sortCate.sort(function(a, b) {
-							return new Date(b.launchDate) - new Date(a.launchDate)
+							return new Date(b.productNo) - new Date(a.productNo)
 						});
 					}
-					$('.product').hide();
+					$('.product:gt(0)').remove();
 					sort.forEach(cateSort => { // sortCate 담은 애들 forEach
 						if (parseInt(targetId) == cateSort.category && parseInt(cateSort.deleteChk) == 0) {
 							$('.product:eq(0)').hide();
 							let product = $('.product:eq(0)').clone().show();
 							product.find('.title').text(cateSort.productName);
 							product.find('.price').text(cateSort.productPrice);
+							product.find('.item').attr('href', 'product.do?pno=' + cateSort.productNo);
 							let discPrice = Math.round(parseInt(cateSort.productPrice) * (1 - parseInt(cateSort.discountPct) * 0.01) / 100) * 100;
 							product.find('.discPrice').text(discPrice);
 							product.find('.price').text(cateSort.productPrice);

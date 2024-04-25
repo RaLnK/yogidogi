@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="co.yedam.mapper.ReviewMapper">
+	<select id="reviewList" parameterType="int" resultType ="co.yedam.vo.ReviewVO">
+		select *
+		from review
+		order by ${order} desc <!--인기순: 7, 최신순:1 -->
+	</select>
+
+	<select id ="myReview" parameterType ="co.yedam.vo.ReviewVO" resultType ="co.yedam.vo.ReviewVO">
+		select *
+		from review
+		where member_no = ${memberNo}
+		order by 1 desc
+	</select>
+	
+	
+	<insert id="addReview" parameterType="co.yedam.vo.ReviewVO">
+		INSERT INTO product (REVIEW_NO , 
+		                     MEMBER_NO, 
+		                     PRODUCT_NO,
+		                     REVIEW_PHOTO,
+		                     STAR_CNT, 
+		                     REVIEW_CONTENT) 
+					VALUES(review_no.nextval, 
+					       #{memberNo},
+					       #{productNo}, 
+					       #{reviewContent}, 
+					       #{reviewDate}, 
+					       #{reviewPhoto}, 
+					       #{starCnt});
+	</insert>
+	
+	
+	<delete id="delReview" parameterType="int">
+	delete from review
+	where review_no = ${rno}
+	</delete>
+	
+</mapper>
