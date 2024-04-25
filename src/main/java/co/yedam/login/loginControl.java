@@ -40,7 +40,7 @@ public class loginControl implements Control {
 				resp.sendRedirect("mainapp.tiles");
 			}
 		}else {
-			req.getRequestDispatcher("WEB-INF/view/login/loginForm.jsp").forward(req, resp);
+			resp.getWriter().print("{\"retCode\": \"Fail\"}");
 		}
 	}
 

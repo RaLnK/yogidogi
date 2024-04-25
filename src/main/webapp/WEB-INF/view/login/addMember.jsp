@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/login.css">
+	<link rel="stylesheet" href="css/modal.css">
 </head>
 <body>
 	<main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -53,9 +54,14 @@
                   </div>
                   <a id="login" class="btn btn-block login-btn mb-4" type="button" data-toggle="modal">가입</a>	             
                 </form>
-                <!-- modal -->          
-				
-				<!-- modal -->
+               <!--모달창-->
+				<div id="myModal" class="modal">
+	  				<div class="modal-content">
+	    				<span class="close">&times;</span>
+	    				<p></p>
+	  				</div>
+				</div>
+             	<!--모달창-->
                </div>
               </div>
              </div>
