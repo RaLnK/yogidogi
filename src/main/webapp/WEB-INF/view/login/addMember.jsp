@@ -26,7 +26,7 @@
               <div class="brand-wrapper">
                 <img src="images/logo.PNG" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">정보를 입력하세요</p>
+              <p class="login-card-description">회원가입</p>
               <form action="#!">
                   <div class="form-group">
                     <label for="id" class="sr-only">ID</label>
@@ -62,6 +62,17 @@
 	  				</div>
 				</div>
              	<!--모달창-->
+             	<!--강아지등록모달창-->
+             	<div id="dogModal" class="dmodal">
+             		<div class="modal-content">
+             			<span class="close">&times;</span>
+             			<p>새로운 회원이 되신것을 환영합니다</p>
+             			<p>강아지 등록을 진행하시겠습니까?</p>
+             			<button id="yes" class="yon">예</button>
+             			<button id="no" class="yon">아니오(My Page에서 추후에 등록 가능합니다)</button>
+             		</div>
+             	</div>
+             	<!--강아지등록모달창-->
                </div>
               </div>
              </div>
