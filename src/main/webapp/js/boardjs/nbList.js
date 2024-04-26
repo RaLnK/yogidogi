@@ -1,15 +1,14 @@
 /**
- * boardList.js
+ * nbList.js
  */
-
-
 
  console.log('start');
  
  document.addEventListener('DOMContentLoaded',function(e){
 
+
 	 // 게시글 목록 출력
-	 $.get('AjaxBoardList.do',function(result){
+	 $.get('ajaxNoticeBoardList.do',function(result){
 		 console.log(result);
 
 		 result.forEach(board=>{
@@ -24,11 +23,7 @@
 			 temp.find('.imgclick').attr('href','board.do?bno='+board.boardNo);
 			 temp.find('.title').attr('href','board.do?bno='+board.boardNo);
 			 temp.find('.boardImg').attr('src','./images/' + image  );	
-			 if(board.boardCategory == 1){
-				  temp.find('.title').text('※[공지사항]' + board.boardTitle); 
-			 }else{
-				 temp.find('.title').text(board.boardTitle);				 
-			 }					 
+			 temp.find('.title').text('※[공지사항]' + board.boardTitle); 		 
 			 temp.find('.writer').text('작성자 ' + board.memberId);
 			 temp.find('.date').text('작성일시 ' + board.boardDate);
 			 temp.appendTo('.boardList')

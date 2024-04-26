@@ -26,7 +26,7 @@ public class UpdateBoard implements Control {
 		
 		String tit = multi.getParameter("boardTitle");
 		String con = multi.getParameter("boardContent");
-		String img = multi.getParameter("boardImg");
+		String img = multi.getFilesystemName("boardImg");
 		int bno = Integer.parseInt(multi.getParameter("boardNo"));
 		
 		BoardVO vo = new BoardVO();

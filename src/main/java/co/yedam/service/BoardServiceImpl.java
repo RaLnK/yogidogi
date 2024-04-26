@@ -21,6 +21,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public List<BoardVO> nbList() {
+		// TODO Auto-generated method stub
+		return mapper.nbList();
+	}
+	
+	@Override
 	public boolean addBoard(BoardVO bvo) {
 		// TODO Auto-generated method stub
 		return mapper.addBoard(bvo) == 1;
@@ -43,5 +49,7 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return mapper.delBoard(bno) == 1 ;
 	}
+
+
 
 }

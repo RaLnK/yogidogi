@@ -64,5 +64,5 @@
 		</div>		
 	</div>
 </div>
-		
-<script src="js/boardjs/boardList.js"></script>
+
+<script src="js/boardjs/nbList.js"></script>

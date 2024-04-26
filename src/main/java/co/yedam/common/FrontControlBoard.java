@@ -3,6 +3,7 @@ package co.yedam.common;
 import java.util.Map;
 
 import co.yedam.board.AjaxBoardList;
+import co.yedam.board.AjaxnoticeBoardList;
 import co.yedam.board.Board;
 import co.yedam.board.BoardList;
 import co.yedam.board.DelBoard;
@@ -11,6 +12,7 @@ import co.yedam.board.ReplyList;
 import co.yedam.board.UpdateBoard;
 import co.yedam.board.UpdateBoardForm;
 import co.yedam.board.UpdateReply;
+import co.yedam.board.noticeBoardList;
 import co.yedam.board.AddBoard;
 import co.yedam.board.AddBoardForm;
 import co.yedam.board.AddReply;
@@ -21,6 +23,8 @@ public class FrontControlBoard {
 		map.put("/AjaxBoardList.do", new AjaxBoardList()); //게시글 목록
 		map.put("/boardList.do",new BoardList());//게시글 목록 페이지
 		map.put("/board.do", new Board());//게시글 상세 페이지
+		map.put("/ajaxNoticeBoardList.do", new AjaxnoticeBoardList());
+		map.put("/noticeBoardList.do", new noticeBoardList());
 		
 		map.put("/addBoardForm.do", new AddBoardForm());//게시물 등록 화면
 		map.put("/addBoard.do", new AddBoard()); //게시글 등록

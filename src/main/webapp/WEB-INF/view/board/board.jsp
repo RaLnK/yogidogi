@@ -8,8 +8,7 @@
     font-weight: 600;
     font-size: 12px;
     padding: 5px 15px;
-    margin-top:20px;
-    margin-bottom:20px;
+    margin:20px 3px;
     border-radius: 30px;
     color: #ffffff;
     background: #2f2f2f;
@@ -38,10 +37,13 @@ h4{
 	<tr>
 		<td colspan="4">
 			<button type="submit" align="center" class="btn" > <a href="updateBoardForm.do?bno=${bno.boardNo }">글 수정하기</a></button>
-			<button type="button" align="center" class="btn" id="delBtn" action="delBoard.do?bno=${bno.boardNo }" method="post" onclick="deleteBoard()" >삭제</button>
+			<button type="button" align="center" class="btn" id="delBtn" >삭제</button>
+			<button type="button" align="center" class="btn" ><a href="boardList.do">뒤로가기</a></button>
 		</td>
 	</tr>
 
 </table>
-
+<script>
+let bno="${bno.boardNo }";
+</script>
  <script src="js/boardjs/board.js"></script> 
