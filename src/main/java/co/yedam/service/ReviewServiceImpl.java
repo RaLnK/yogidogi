@@ -13,8 +13,8 @@ public class ReviewServiceImpl implements ReviewService{
 	ReviewMapper mapper = session.getMapper(ReviewMapper.class);
 
 	@Override
-	public List<ReviewVO> reviewList(int order) {
-		return mapper.reviewList(order);
+	public List<ReviewVO> reviewList(ReviewVO rvo) {
+		return mapper.reviewList(rvo);
 	}
 	@Override
 	public List<ReviewVO> myReview(ReviewVO rvo) {

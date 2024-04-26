@@ -1,4 +1,4 @@
-package co.yedam.control;
+package co.yedam.review;
 
 import java.io.IOException;
 
@@ -12,8 +12,8 @@ public class delReviewControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+		
+		
 	}
 
 }

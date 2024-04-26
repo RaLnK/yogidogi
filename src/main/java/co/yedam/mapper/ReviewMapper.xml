@@ -3,11 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="co.yedam.mapper.ReviewMapper">
-	<select id="reviewList" parameterType="int" resultType ="co.yedam.vo.ReviewVO">
-		select *
-		from review
-		order by ${order} desc <!--인기순: 7, 최신순:1 -->
+
+<!-- join -->
+	<resultMap type="MemberVO" id="MemberVO">
+		<result column="member_id" property="memberId" />
+		<result column="member_name" property="memberName" />
+	</resultMap>
+	
+	<resultMap type="ReviewVO" id="ReviewVO">
+		<result column="review_no" property="reviewNo" />
+		<result column="product_no" property="productNo" />
+		<result column="review_content" property="reviewContent" />
+		<result column="review_date" property="reviewDate" />
+		<result column="review_photo" property="reviewPhoto" />
+		<result column="star_cnt" property="starCnt" />
+		<collection property="memberVO" resultMap="MemberVO"/>
+	</resultMap>
+	
+	<select id="reviewList" parameterType="co.yedam.vo.ReviewVO" resultMap ="ReviewVO">
+		select a.review_no
+       		 , b.member_name
+        	, a.product_no
+        	, a.review_content
+        	, a.review_date
+        	, a.review_photo
+        	, a.star_cnt
+		from review a
+			join member b
+        	on a.member_no = b.member_no
+		where product_no = ${productNo}
+		order by ${order} desc <!--평점 높은 순: 7, 최신순:1 -->
 	</select>
 
 	<select id ="myReview" parameterType ="co.yedam.vo.ReviewVO" resultType ="co.yedam.vo.ReviewVO">
@@ -22,14 +49,13 @@
 		INSERT INTO product (REVIEW_NO , 
 		                     MEMBER_NO, 
 		                     PRODUCT_NO,
+		                     REVIEW_CONTENT,
 		                     REVIEW_PHOTO,
-		                     STAR_CNT, 
-		                     REVIEW_CONTENT) 
+		                     STAR_CNT) 
 					VALUES(review_no.nextval, 
 					       #{memberNo},
 					       #{productNo}, 
 					       #{reviewContent}, 
-					       #{reviewDate}, 
 					       #{reviewPhoto}, 
 					       #{starCnt});
 	</insert>
