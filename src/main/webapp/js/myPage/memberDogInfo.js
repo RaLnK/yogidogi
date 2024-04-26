@@ -9,7 +9,7 @@ const svc = {
 			.then(successCall)
 			.catch(errorCall);
 	},
-	/*memberDogUpdate(mvo = {}, successCall, errorCall) {
+	memberDogUpdate(mvo = {}, successCall, errorCall) {
 		fetch('/yogidogi/memberDogUpdate.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -18,7 +18,7 @@ const svc = {
 			.then(resolve => resolve.json())
 			.then(successCall)
 			.catch(errorCall);
-	}*/
+	}
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {

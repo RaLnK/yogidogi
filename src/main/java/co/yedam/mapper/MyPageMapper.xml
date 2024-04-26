@@ -30,9 +30,25 @@
 	</update>
 	
 	<select id="wishListAjax" parameterType="int" resultType="ProductVO">
-		select p.product_no, p.product_name, p.product_price, p.product_img
+		select p.product_no, p.product_name, p.product_price, p.product_img, p.category
 		from product p, wishlist w
 		where p.product_no in (select w.product_no from wishlist where member_no=#{member_no})
 	</select>
+	
+	<delete id="wishListDel" parameterType="WishListVO">
+		delete from wishlist
+		where product_no=#{productNo} and member_no=#{memberNo}
+	</delete>
+	
+	<select id="checkCart" parameterType="WishListVO" resultType="int">
+		select count(*)
+		from cart
+		where member_no = #{memberNo} and product_no = #{productNo}
+	</select>
+	
+	<insert id="wishListAdd" parameterType="WishListVO">
+		insert into cart
+		values(cart_no.nextVal, #{memberNo}, #{productNo}, 1)
+	</insert>
 
 </mapper>

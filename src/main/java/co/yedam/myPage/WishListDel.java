@@ -1,36 +1,35 @@
 package co.yedam.myPage;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import co.yedam.common.Control;
 import co.yedam.service.MyPageService;
 import co.yedam.service.MyPageServiceImpl;
-import co.yedam.vo.MemberDogVO;
+import co.yedam.vo.WishListVO;
 
-public class MemberDogList implements Control {
+public class WishListDel implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		
-		int memberNo = ((Integer) session.getAttribute("memberNo")).intValue();
-
-		MyPageService svc = new MyPageServiceImpl();
-		List<MemberDogVO> list = svc.memberDogList(memberNo);
-
-		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(list);
+		WishListVO wvo = new WishListVO();
 		
-		resp.getWriter().print(json);
+		wvo.setMemberNo(((Integer) session.getAttribute("memberNo")).intValue());
+		wvo.setProductNo(Integer.parseInt(req.getParameter("pno")));
+		
+		MyPageService svc = new MyPageServiceImpl();
+		
+		if (svc.wishListDel(wvo)) {
+			resp.getWriter().print("{\"retCode\" : \"Success\"}");
+		} else {
+			resp.getWriter().print("{\"retCode\" : \"Fail\"}");
+		}
 	}
 
 }
