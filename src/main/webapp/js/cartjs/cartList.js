@@ -39,7 +39,28 @@ document.addEventListener('DOMContentLoaded', function(e) {
         console.log(err);
     })
 });
-
+                  /*   <tr>
+                          <td class="product-thumbnail">
+                            <img src="images/product-1.png" alt="Image" class="img-fluid">
+                          </td>
+                          <td class="product-name">
+                            <h2 class="h5 text-black"></h2>
+                          </td>
+                          <td id = "product-price">49,000원</td>
+                          <td>
+                            <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
+                              <div class="input-group-prepend">
+                                <button class="btn btn-outline-black decrease" type="button">&minus;</button>
+                              </div>
+                              <input type="text" class="form-control text-center quantity-amount" id="qty" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                              <div class="input-group-append">
+                                <button class="btn btn-outline-black increase" type="button">&plus;</button>
+                              </div>
+                            </div>
+                           </td>
+                          <td>49,000원</td>
+                          <td><a href="#" class="btn btn-black btn-sm">X</a></td>
+                        </tr>*/
 
 
 

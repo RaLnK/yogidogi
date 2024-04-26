@@ -9,6 +9,19 @@
 		from cart
 		where member_no = #{memberNo}
   	</select>
+  	
+  	<select id="cartList" resultType="CartProductVO">
+  		select c.cart_no
+  				,c.member_no
+  				,c.quantity
+  				,c.product_no
+  				,p.product_name
+  				,p.product_price
+  				,p.product_img
+  		from cart c inner join product p
+  		on c.product_no = p.product_no
+  		where c.member_no = #{memberNo}
+  	</select>
 	
 	<insert id="insertCart" parameterType="CartVO">
   		insert into cart values (cart_seq.nextval, #{quantity}, #{proNo}, #{memberNo})

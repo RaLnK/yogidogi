@@ -38,40 +38,15 @@
                                 <button class="btn btn-outline-black increase" type="button">&plus;</button>
                               </div>
                             </div>
-        
-                          </td>
+                           </td>
                           <td>49,000원</td>
                           <td><a href="#" class="btn btn-black btn-sm">X</a></td>
-                        </tr>
-        
-                        <tr>
-                          <td class="product-thumbnail">
-                            <img src="images/product-2.png" alt="Image" class="img-fluid">
-                          </td>
-                          <td class="product-name">
-                            <h2 class="h5 text-black">Product 2</h2>
-                          </td>
-                          <td>49,000원</td>
-                          <td>
-							<div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-   								<div class="input-group-prepend">
-        							<button class="btn btn-outline-black minusBtn" type="button">&minus;</button>
-   								</div>
-   								<input type="text" class="form-control text-center quantity-amount" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-   								<div class="input-group-append">
-        							<button class="btn btn-outline-black plusBtn" type="button">&plus;</button>
-   								</div>
-							</div>
-                          </td>
-                          <td>49,000원</td>
-                          <td><a href="#" class="btn btn-black btn-sm btn-remove">X</a></td>
                         </tr>
                       </tbody>
                     </table>
                   </div>
                 </form>
               </div>
-        
               <div class="row">
                 <div class="col-md-6">
                   <div class="row mb-5">
@@ -84,14 +59,14 @@
                   </div>
                   <div class="row">
                     <div class="col-md-12">
-                      <label class="text-black h4" for="coupon">Coupon</label>
-                      <p>Enter your coupon code if you have one.</p>
+                      <label class="text-black h4" for="point">포인트</label>
+                      <p>Enter your point if you have one.</p>
                     </div>
                     <div class="col-md-8 mb-3 mb-md-0">
-                      <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+                      <input type="text" class="form-control py-3" id="point">
                     </div>
                     <div class="col-md-4">
-                      <button class="btn btn-black">Apply Coupon</button>
+                      <button class="btn btn-black">사용하기</button>
                     </div>
                   </div> 
                 </div>

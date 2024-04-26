@@ -14,7 +14,7 @@ import com.google.gson.GsonBuilder;
 import co.yedam.common.Control;
 import co.yedam.service.CartService;
 import co.yedam.service.CartServiceImpl;
-import co.yedam.vo.CartVO;
+import co.yedam.vo.CartProductVO;
 
 public class CartListJson implements Control {
 
@@ -27,10 +27,10 @@ public class CartListJson implements Control {
 		int memberNo = ((Integer)session.getAttribute("memberNo")).intValue();
 		
 		CartService svc = new CartServiceImpl();
-		List<CartVO> list = svc.cartList(memberNo);
+		List<CartProductVO> cartList = svc.cartList(memberNo);
 
 		Gson gson = new GsonBuilder().create();
-		String json = gson.toJson(list);
+		String json = gson.toJson(cartList);
 		resp.getWriter().print(json);
 	}
 
