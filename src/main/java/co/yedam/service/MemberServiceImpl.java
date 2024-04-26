@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.mapper.MemberMapper;
+import co.yedam.vo.MemberDogVO;
 import co.yedam.vo.MemberVO;
 
 public class MemberServiceImpl implements MemberService{
@@ -33,7 +34,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	@Override
 	public boolean delMember(int no) {
-		return mapper.delMember(no);
+		return mapper.delMember(no) == 1;
 	}
 	@Override
 	public MemberVO findId(MemberVO mvo) {
@@ -51,6 +52,12 @@ public class MemberServiceImpl implements MemberService{
 	public String findPwCheck(String memberId) {
 		return mapper.findPwCheck(memberId);
 	}
-	
-	
+	@Override
+	public boolean addDog(MemberDogVO dvo) {
+		return mapper.addDog(dvo) == 1;
+	}
+	@Override
+	public boolean delDog(int dogNo) {
+		return mapper.delDog(dogNo) == 1;
+	}
 }

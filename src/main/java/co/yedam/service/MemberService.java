@@ -2,6 +2,7 @@ package co.yedam.service;
 
 import java.util.List;
 
+import co.yedam.vo.MemberDogVO;
 import co.yedam.vo.MemberVO;
 
 public interface MemberService {
@@ -21,4 +22,8 @@ public interface MemberService {
 	//비밀번호 찾기
 	public MemberVO findPw(MemberVO mvo);
 	public String findPwCheck(String memberId);
+	//강아지 등록
+	public boolean addDog(MemberDogVO dvo);
+	//강아지 삭제
+	public boolean delDog(int dogNo);
 }
