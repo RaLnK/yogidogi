@@ -18,9 +18,21 @@
 	</update>
 	
 	<select id="memberDogList" resultType="MemberDogVO" parameterType="int">
-		select *
+		select dog_no, dog_name, dog_breed, to_char(dog_birthday, 'yyyy-MM-dd') as "DOG_BIRTHDAY"
 		from member_dog
 		where member_no=#{memberNo}
 	</select>
 	
+	<update id="memberDogUpdate" parameterType="MemberDogVO">
+		update member_dog
+		set dog_name=#{dogName}, dog_breed=#{dogBreed}, dog_birthday=to_date(#{dogBirthday}, 'yyyy-MM-dd')
+		where dog_no=#{dogNo}
+	</update>
+	
+	<select id="wishListAjax" parameterType="int" resultType="ProductVO">
+		select p.product_no, p.product_name, p.product_price, p.product_img
+		from product p, wishlist w
+		where p.product_no in (select w.product_no from wishlist where member_no=#{member_no})
+	</select>
+
 </mapper>

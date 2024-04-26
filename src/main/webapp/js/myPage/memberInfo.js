@@ -6,13 +6,13 @@ const fields = ['bookCode', 'bookTitle', 'author', 'company', 'price'];
 
 const svc = {
 	memberList(successCall, errorCall) {
-		fetch('../memberList.do')
+		fetch('/yogidogi/memberList.do')
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
 	},
-	cartUpdate(mvo = {}, successCall, errorCall) {
-		fetch('editCart.do', {
+	memberUpdate(mvo = {}, successCall, errorCall) {
+		fetch('/yogidogi/memberUpdate.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'no=' + cvo.no + '&qty=' + cvo.qty
@@ -51,8 +51,28 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		
 	}, function(err) {
 		console.log(err);
-	})
-})
+	});
+	
+	$('#editBtn').on('click', function(e){
+		if($(this).text() == '수정'){
+			$('input').slice(1,5).attr('readonly', false);
+			$(this).text('완료');
+		}else if($(this).text() == '완료'){
+			var mvo = {};
+			mvo.memberPw = $('input').eq(1).val();
+			mvo.memberName = $('input').eq(2).val();
+			mvo.email = $('input').eq(3).val();
+			mvo.phone = $('input').eq(4).val();
+			svc.memberUpdate(mvo, function(result){
+				if(result.retCode == 'Success'){
+					$('input').attr('readonly', true);
+					$('#editBtn').text('수정');
+				}
+			})
+		}
+	});
+	
+});
 
 
 
