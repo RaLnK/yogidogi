@@ -4,7 +4,7 @@
 <nav
 	class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark"
 	arial-label="Furni navigation bar">
-	<script src="./js/nav.js"></script>
+	<script src="/yogidogi/js/nav.js"></script>
 
 	<div class="container">
 		<a class="navbar-brand" href="index.html">YOGIDOGI<span></span></a>
