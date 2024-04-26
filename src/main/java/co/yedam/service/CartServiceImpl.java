@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.mapper.CartMapper;
-import co.yedam.service.CartService;
+import co.yedam.vo.CartProductVO;
 import co.yedam.vo.CartVO;
 
 public class CartServiceImpl implements CartService {
@@ -14,10 +14,10 @@ public class CartServiceImpl implements CartService {
 	SqlSession session = DataSource.getInstance().openSession(true);
 	CartMapper mapper = session.getMapper(CartMapper.class);
 
-	@Override
-	public List<CartVO> cartList(int memberNo) {
-		return mapper.selectList(memberNo);
-	}
+//	@Override
+//	public List<CartVO> cartList(int memberNo) {
+//		return mapper.selectList(memberNo);
+//	}
 
 	@Override
 	public int addCart(CartVO vo) {
@@ -38,5 +38,14 @@ public class CartServiceImpl implements CartService {
 	public boolean modCart(CartVO vo) {
 		return mapper.updateCart(vo) == 1;
 	}
+
+	@Override
+	public List<CartProductVO> cartList(int memberNo) {
+		
+		return mapper.cartList(memberNo);
+	}
+
+
+
 
 }
