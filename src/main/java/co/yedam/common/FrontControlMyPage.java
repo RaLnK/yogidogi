@@ -4,7 +4,6 @@ import java.util.Map;
 
 import co.yedam.myPage.MemberDogInfo;
 import co.yedam.myPage.MemberDogList;
-import co.yedam.myPage.MemberDogUpdate;
 import co.yedam.myPage.MemberInfo;
 import co.yedam.myPage.MemberList;
 import co.yedam.myPage.MemberUpdate;
@@ -16,6 +15,5 @@ public class FrontControlMyPage {
 		map.put("/memberUpdate.do", new MemberUpdate());
 		map.put("/memberDogInfo.do", new MemberDogInfo());
 		map.put("/memberDogList.do", new MemberDogList());
-		map.put("/memberDogUpdate.do", new MemberDogUpdate());
 	}
 }

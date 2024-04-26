@@ -24,10 +24,5 @@ public class MyPageServiceImpl implements MyPageService {
 	public List<MemberDogVO> memberDogList(int memberNo) {
 		return mapper.memberDogList(memberNo);
 	}
-
-	@Override
-	public boolean memberDogUpdate(MemberDogVO mvo) {
-		return mapper.memberDogUpdate(mvo) == 1;
-	}
 	
 }

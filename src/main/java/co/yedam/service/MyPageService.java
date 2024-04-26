@@ -9,5 +9,4 @@ public interface MyPageService {
 	public MemberVO memberList(int memberNo);
 	public boolean memberUpdate(MemberVO mvo);
 	public List<MemberDogVO> memberDogList(int memberNo);
-	public boolean memberDogUpdate(MemberDogVO mvo);
 }

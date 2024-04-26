@@ -7,6 +7,6 @@ public class MemberDogVO {
 	private int dogNo;
 	private int memberNo;
 	private String dogBreed;
-	private String dogBirthday;
+	private String dogBirthDay;
 	private String dogName;
 }
