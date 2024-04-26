@@ -1,6 +1,6 @@
 /**
  * productList.js 
- * 해야 할 것 : 페이징
+ * 해야 할 것 : 페이징, 상품 좋아요
  */
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 

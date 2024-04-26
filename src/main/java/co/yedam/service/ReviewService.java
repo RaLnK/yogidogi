@@ -8,7 +8,7 @@ import co.yedam.vo.ReviewVO;
 
 public interface ReviewService {
 	// 리뷰 리스트
-	public List<ReviewVO> reviewList(int order);
+	public List<ReviewVO> reviewList(ReviewVO rvo);
 
 	// 내 리뷰
 	public List<ReviewVO> myReview(ReviewVO rvo);
