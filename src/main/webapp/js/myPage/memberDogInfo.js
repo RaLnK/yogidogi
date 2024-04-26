@@ -9,7 +9,7 @@ const svc = {
 			.then(successCall)
 			.catch(errorCall);
 	},
-	memberDogUpdate(mvo = {}, successCall, errorCall) {
+	/*memberDogUpdate(mvo = {}, successCall, errorCall) {
 		fetch('/yogidogi/memberDogUpdate.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -18,12 +18,14 @@ const svc = {
 			.then(resolve => resolve.json())
 			.then(successCall)
 			.catch(errorCall);
-	}
+	}*/
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
 	svc.memberDogList(function(result) {
 		result.forEach((dog, idx) => {
+			console.log(typeof dog.dogBirthday);
+			
 			let temp = $('#base-form').clone(true);
 			temp.css('display', 'block');
 			let dogInfo = $('<input/>', { type: 'text', id: 'dogName' + idx }).val(dog.dogName);
@@ -32,9 +34,9 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			temp.find('.breed-div').append(dogInfo.clone(true).attr('id', 'dogBreed' + idx).val(dog.dogBreed));
 			temp.find('.birthday-div').append(dogInfo.clone(true).attr('id', 'dogBirthday' + idx).val(dog.dogBirthday));
 			$('#dogList').append(temp);
-
-			temp.find('#editBtn').click(function(e) {
-				if ($(this).text() == '수정') {
+			
+			temp.find('#editBtn').click(function(e){
+				if($(this).text() == '수정'){
 					temp.find('input').attr('readonly', false);
 					$(this).text('완료');
 				} else if ($(this).text() == '완료') {
@@ -52,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 					});
 				}
 			});
-
+			
 		});
 
 	}, function(err) {

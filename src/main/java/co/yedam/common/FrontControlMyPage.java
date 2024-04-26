@@ -4,7 +4,6 @@ import java.util.Map;
 
 import co.yedam.myPage.MemberDogInfo;
 import co.yedam.myPage.MemberDogList;
-import co.yedam.myPage.MemberDogUpdate;
 import co.yedam.myPage.MemberInfo;
 import co.yedam.myPage.MemberList;
 import co.yedam.myPage.MemberUpdate;

@@ -2,6 +2,8 @@
  * 
  */
 
+const fields = ['bookCode', 'bookTitle', 'author', 'company', 'price'];
+
 const svc = {
 	memberList(successCall, errorCall) {
 		fetch('/yogidogi/memberList.do')
@@ -13,7 +15,7 @@ const svc = {
 		fetch('/yogidogi/memberUpdate.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: 'memberPw='+mvo.memberPw+'&memberName='+mvo.memberName+'&email='+mvo.email+'&phone='+mvo.phone
+			body: 'no=' + cvo.no + '&qty=' + cvo.qty
 		})
 			.then(resolve => resolve.json())
 			.then(successCall)

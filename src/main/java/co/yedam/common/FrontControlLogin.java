@@ -2,6 +2,8 @@ package co.yedam.common;
 
 import java.util.Map;
 
+import co.yedam.login.AddDogControl;
+import co.yedam.login.AddDogFormControl;
 import co.yedam.login.MemberListControl;
 import co.yedam.login.addMemberControl;
 import co.yedam.login.addMemberFormControl;
@@ -26,7 +28,7 @@ public class FrontControlLogin {
 		map.put("/idCheck.do", new idCheckControl());
 		map.put("/pwCheckForm.do", new pwCheckFormControl());
 		map.put("/pwCheck.do", new pwCheckControl());
-		map.put("/addDogForm.do", null);
-		map.put("/addDog.do", null);
+		map.put("/addDogForm.do", new AddDogFormControl());
+		map.put("/addDog.do", new AddDogControl());
 	}
 }

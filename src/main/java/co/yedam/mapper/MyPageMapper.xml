@@ -34,5 +34,5 @@
 		from product p, wishlist w
 		where p.product_no in (select w.product_no from wishlist where member_no=#{member_no})
 	</select>
-	
+
 </mapper>

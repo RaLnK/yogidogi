@@ -47,4 +47,14 @@
 		from member
 		where member_id = #{memberId}
 	</select>
+	
+	<insert id="addDog" parameterType="co.yedam.vo.MemberDogVO">
+		insert into member_dog (dog_no, member_no, dog_breed, dog_birthday, dog_name)
+		values (dog_no.nextval, #{memberNo}, #{dogBreed}, #{dogBirthDay}, #{dogName})
+	</insert>
+	
+	<delete id="delDog" parameterType="int">
+		delete from member_dog
+		where dog_no = #{dogNo}
+	</delete>
 </mapper>
