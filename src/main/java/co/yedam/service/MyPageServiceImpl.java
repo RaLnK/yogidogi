@@ -6,6 +6,7 @@ import co.yedam.common.DataSource;
 import co.yedam.mapper.MyPageMapper;
 import co.yedam.vo.MemberDogVO;
 import co.yedam.vo.MemberVO;
+import co.yedam.vo.ProductVO;
 
 public class MyPageServiceImpl implements MyPageService {
 	MyPageMapper mapper = DataSource.getInstance().openSession(true).getMapper(MyPageMapper.class);
@@ -28,6 +29,11 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public boolean memberDogUpdate(MemberDogVO mvo) {
 		return mapper.memberDogUpdate(mvo) == 1;
+	}
+
+	@Override
+	public List<ProductVO> wishListAjax(int memberNo) {
+		return mapper.wishListAjax(memberNo);
 	}
 	
 }

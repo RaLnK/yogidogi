@@ -49,9 +49,6 @@
 				</div>
 				
 				
-				
-				
-				
 			</div>
 		</div>
 	</div>
@@ -59,10 +56,4 @@
 
 
 
-
-
-
-<script>
-	const logId = '${logId}';
-</script>
 <script src="/yogidogi/js/myPage/memberDogInfo.js"></script>

@@ -4,13 +4,13 @@
 
 const svc = {
 	memberList(successCall, errorCall) {
-		fetch('../memberList.do')
+		fetch('/yogidogi/memberList.do')
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
 	},
 	memberUpdate(mvo = {}, successCall, errorCall) {
-		fetch('../memberUpdate.do', {
+		fetch('/yogidogi/memberUpdate.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'memberPw='+mvo.memberPw+'&memberName='+mvo.memberName+'&email='+mvo.email+'&phone='+mvo.phone
@@ -52,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
 	});
 	
 	$('#editBtn').on('click', function(e){
-		console.log('클릭됨');
 		if($(this).text() == '수정'){
 			$('input').slice(1,5).attr('readonly', false);
 			$(this).text('완료');

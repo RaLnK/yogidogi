@@ -2,18 +2,19 @@
  * 
  */
 
+
 const svc = {
-	memberDogList(successCall, errorCall) {
-		fetch('/yogidogi/memberDogList.do')
+	wishListAjax(successCall, errorCall) {
+		fetch('/yogidogi/wishListAjax.do')
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
 	},
-	memberDogUpdate(mvo = {}, successCall, errorCall) {
-		fetch('/yogidogi/memberDogUpdate.do', {
+	wishListProduct(pno, successCall, errorCall) {
+		fetch('/yogidogi/wishListProduct.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: 'dogNo=' + mvo.dogNo + '&dogName=' + mvo.dogName + '&dogBreed=' + mvo.dogBreed + '&dogBday=' + mvo.dogBday
+			body: 'pno=' + pno
 		})
 			.then(resolve => resolve.json())
 			.then(successCall)
@@ -22,7 +23,15 @@ const svc = {
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
-	svc.memberDogList(function(result) {
+	svc.wishListAjax(function(result) {
+		result.forEach(pno => {
+			svc.wishListProduct(pno, function(result){
+				
+			});
+		});
+		
+		
+		
 		result.forEach((dog, idx) => {
 			let temp = $('#base-form').clone(true);
 			temp.css('display', 'block');
@@ -40,10 +49,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
 				} else if ($(this).text() == '완료') {
 					var mvo = {};
 					mvo.dogNo = dog.dogNo;
-					mvo.dogName = $('#dogName'+idx).val();
-					mvo.dogBreed = $('#dogBreed'+idx).val();
-					mvo.dogBday = $('#dogBirthday'+idx).val();
-					
+					mvo.dogName = $('#dogName' + idx).val();
+					mvo.dogBreed = $('#dogBreed' + idx).val();
+					mvo.dogBday = $('#dogBirthday' + idx).val();
+
 					svc.memberDogUpdate(mvo, function(result) {
 						if (result.retCode == 'Success') {
 							temp.find('input').attr('readonly', true);
@@ -70,3 +79,25 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 
 
+
+
+
+
+
+
+
+
+
+/*
+<tr>
+	<td class="product-thumbnail">
+		<img src="images/product-1.png" alt="Image" class="img-fluid">
+	</td>
+	<td class="product-name">
+		<h4 class="h5 text-black"></h4>
+	</td>
+	<td>$49.00</td>
+	<td><button type="button" style="color:white;background-color:black;" id="addBtn">추가</button></td>
+	<td><button type="button" style="color:white;background-color:black;" id="delBtn">삭제</button></td>
+</tr>
+*/
