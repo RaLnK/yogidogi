@@ -1,7 +1,7 @@
 /**
  * addDog.js
  */
-console.log('start');
+console.log('addDog');
 document.getElementById('login').addEventListener('click', addDog);
 
 function addDog() {

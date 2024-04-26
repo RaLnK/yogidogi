@@ -1,7 +1,7 @@
 /**
  * findId.js
  */
-console.log('start');
+console.log('findId');
 document.getElementById('login').addEventListener('click', findId);
 
 function findId() {
@@ -18,12 +18,14 @@ function findId() {
 			$('.close').on('click', function() {
 				$('.modal').css('display', 'none');
 				location.href = 'http://localhost:8080/yogidogi/loginForm.do'
+				$('div.modal-content p').remove();
 			})
 		}else {
 			openModal();
 			$('div.modal-content').append($('<p>등록되지 않은 email입니다.</p>'));
 			$('.close').on('click', function() {
 				$('.modal').css('display', 'none');
+				$('div.modal-content p').remove();
 			})
 		}
 	}

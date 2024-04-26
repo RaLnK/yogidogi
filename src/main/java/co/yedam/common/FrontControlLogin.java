@@ -12,6 +12,7 @@ import co.yedam.login.idCheckFormControl;
 import co.yedam.login.loginControl;
 import co.yedam.login.loginFormControl;
 import co.yedam.login.logoutControl;
+import co.yedam.login.logoutFormControl;
 import co.yedam.login.pwCheckControl;
 import co.yedam.login.pwCheckFormControl;
 
@@ -21,6 +22,7 @@ public class FrontControlLogin {
 		map.put("/memberList.do", new MemberListControl());
 		map.put("/loginForm.do", new loginFormControl());
 		map.put("/login.do", new loginControl());
+		map.put("/logoutForm.do", new logoutFormControl());
 		map.put("/logout.do", new logoutControl());
 		map.put("/addMemberForm.do", new addMemberFormControl());
 		map.put("/addMember.do", new addMemberControl());
