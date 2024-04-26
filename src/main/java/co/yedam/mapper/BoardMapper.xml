@@ -3,12 +3,41 @@
 <mapper namespace="co.yedam.mapper.BoardMapper">
 
 	<select id="boardList" parameterType="co.yedam.vo.BoardVO" resultType="co.yedam.vo.BoardVO">
-		select b.*,
-       			m.member_id
-		from board  b
-    		join member  m
-        	on b.member_no = m.member_no
-        order by board_no desc
+		select *
+		from (
+		    select *
+		    from(
+		        select '1' gb, b.*
+		                ,m.member_id
+		          from board  b
+		              join member  m
+		              on b.member_no = m.member_no
+		          where board_category = 1
+		        )
+				         
+		    where rownum <![CDATA[  <  ]]> 4     
+			           
+		    union all
+		    
+		    select '2' gb, b.*,
+		            m.member_id
+		    from board  b
+		        join member  m
+		        on b.member_no = m.member_no
+		    where board_category = 0
+		        
+		)
+		order by gb, board_no desc
+
+	</select>
+	
+	<select id="nbList" parameterType="BoardVO" resultType="BoardVO">
+		select b.*
+			   ,m.member_id
+		from board b
+			join member m
+			on b.member_no = m.member_no
+		where board_category = 1
 	</select>
 	
 	<insert id="addBoard" parameterType="co.yedam.vo.BoardVO" >
@@ -37,7 +66,9 @@
    update board
    set board_title = #{boardTitle}
    		,board_content = #{boardContent}
+   		<if test="boardImg != null">
    		,board_img = #{boardImg}
+   		</if>
    where board_no = #{boardNo}
    </update>
    
