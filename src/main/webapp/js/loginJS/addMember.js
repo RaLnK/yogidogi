@@ -1,7 +1,7 @@
 /**
  * addMember.js
  */
-console.log('start');
+console.log('addMember');
 document.getElementById('login').addEventListener('click', addMember);
 
 function addMember() {

@@ -29,9 +29,11 @@ public class loginControl implements Control {
 		if(vo != null) {
 			HttpSession session = req.getSession();			
 			session.setAttribute("memberNo", vo.getMemberNo());
+			session.setAttribute("memberAuthority", vo.getMemberAuthority());
 			session.setAttribute("memberId", vo.getMemberId());
-			session.setAttribute("memberAuthority", vo.getMemberAuthority());			 
-			session.setAttribute("member", vo);
+			session.setAttribute("memberPw", vo.getMemberPw());
+			session.setAttribute("memberName", vo.getMemberName());
+			session.setAttribute("point", vo.getPoint());
 			if(vo.getMemberAuthority() == 0) {
 				//사용자
 				resp.getWriter().print("{\"retCode\": \"Success\"}");

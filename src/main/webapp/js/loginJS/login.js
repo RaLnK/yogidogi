@@ -1,7 +1,7 @@
 /**
  * login.js
  */
-console.log('start');
+console.log('login');
 $('form').on('submit', function(e) {
 	e.preventDefault();
 });
