@@ -18,9 +18,15 @@
 	</update>
 	
 	<select id="memberDogList" resultType="MemberDogVO" parameterType="int">
-		select *
+		select dog_name, dog_breed, to_char(dog_birthday, 'yyyy-MM-dd') as "DOG_BIRTHDAY"
 		from member_dog
 		where member_no=#{memberNo}
 	</select>
+	
+	<update id="memberDogUpdate" parameterType="MemberDogVO">
+		update member_dog
+		set dog_name=#{dogName}, dog_breed=#{dogBreed}, dog_birthday=to_date(#{dogBirthday}, 'yyyy-MM-dd')
+		where dog_no=#{dogNo}
+	</update>
 	
 </mapper>

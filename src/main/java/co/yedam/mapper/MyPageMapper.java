@@ -9,4 +9,5 @@ public interface MyPageMapper {
 	public MemberVO memberList(int memberNo);
 	public int memberUpdate(MemberVO mvo);
 	public List<MemberDogVO> memberDogList(int memberNo);
+	public int memberDogUpdate(MemberDogVO mvo);
 }
