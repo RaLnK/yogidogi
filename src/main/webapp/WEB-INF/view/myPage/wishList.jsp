@@ -17,12 +17,12 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
+						<tr style="display:none">
 							<td class="product-thumbnail">
-								<img src="images/product-1.png" alt="Image" class="img-fluid">
+								
 							</td>
 							<td class="product-name">
-								<h4 class="h5 text-black"></h4>
+								<h4 class="h5 text-black">이름</h4>
 							</td>
 							<td>$49.00</td>
 							<td><button type="button" style="color:white;background-color:black;" id="addBtn">추가</button></td>

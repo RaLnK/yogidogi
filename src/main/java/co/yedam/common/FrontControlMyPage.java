@@ -10,7 +10,8 @@ import co.yedam.myPage.MemberList;
 import co.yedam.myPage.MemberUpdate;
 import co.yedam.myPage.MemberWishList;
 import co.yedam.myPage.MemberWishListAjax;
-import co.yedam.myPage.wishListProduct;
+import co.yedam.myPage.WishListAdd;
+import co.yedam.myPage.WishListDel;
 
 public class FrontControlMyPage {
 	public static void push(Map<String, Control> map) {
@@ -27,6 +28,7 @@ public class FrontControlMyPage {
 		// 찜 목록
 		map.put("/memberWishList.do", new MemberWishList());
 		map.put("/memberWishListAjax.do", new MemberWishListAjax());
-		map.put("/wishListProduct.do", new wishListProduct());
+		map.put("/wishListAdd.do", new WishListAdd());
+		map.put("/wishListDel.do", new WishListDel());
 	}
 }
