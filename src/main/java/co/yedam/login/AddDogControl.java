@@ -1,7 +1,6 @@
 package co.yedam.login;
 
 import java.io.IOException;
-import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ public class AddDogControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int memberNo = Integer.parseInt(req.getParameter("memberNo"));
 		String dogBreed = req.getParameter("dogBreed");
-		Date dogBirthDay = Date.valueOf(req.getParameter("dogBirthDay"));
+		String dogBirthDay = req.getParameter("dogBirthDay");
 		String dogName = req.getParameter("dogName");
 		
 		MemberDogVO vo = new MemberDogVO();
