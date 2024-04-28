@@ -21,6 +21,7 @@
 		select dog_no, dog_name, dog_breed, to_char(dog_birthday, 'yyyy-MM-dd') as "DOG_BIRTHDAY"
 		from member_dog
 		where member_no=#{memberNo}
+		order by dog_leader desc
 	</select>
 	
 	<update id="memberDogUpdate" parameterType="MemberDogVO">

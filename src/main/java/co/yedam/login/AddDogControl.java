@@ -23,7 +23,7 @@ public class AddDogControl implements Control {
 		MemberDogVO vo = new MemberDogVO();
 		vo.setMemberNo(memberNo);
 		vo.setDogBreed(dogBreed);
-		vo.setDogBirthDay(dogBirthDay);
+		vo.setDogBirthday(dogBirthDay);
 		vo.setDogName(dogName);
 		
 		MemberService sc = new MemberServiceImpl();
