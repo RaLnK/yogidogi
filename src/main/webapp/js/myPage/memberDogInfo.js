@@ -24,9 +24,8 @@ const svc = {
 document.addEventListener('DOMContentLoaded', function(e) {
 	svc.memberDogList(function(result) {
 		result.forEach((dog, idx) => {
-			console.log(typeof dog.dogBirthday);
 			
-			let temp = $('#base-form').clone(true);
+			let temp = $('.border').eq(0).clone(true);
 			temp.css('display', 'block');
 			let dogInfo = $('<input/>', { type: 'text', id: 'dogName' + idx }).val(dog.dogName);
 			dogInfo.addClass('form-control').attr('readonly', true).css('border', 'none');
@@ -56,6 +55,12 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			});
 			
 		});
+		
+		let dogIcon = $('<i />').attr('class', 'fa-solid fa-dog');
+		let h = $('<h6 />').attr('class', 'text-black').css('line-height', '50px').text('대표 강아지').prepend(dogIcon);
+		let div = $('<div />').attr('class', 'form-group row').append(h);
+		$('.border div').eq(0).prepend(div);
+		
 
 	}, function(err) {
 		console.log(err);

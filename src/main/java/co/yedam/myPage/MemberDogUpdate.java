@@ -24,7 +24,7 @@ public class MemberDogUpdate implements Control {
 		mvo.setDogNo(Integer.parseInt(req.getParameter("dogNo")));
 		mvo.setDogName(req.getParameter("dogName"));
 		mvo.setDogBreed(req.getParameter("dogBreed"));
-		mvo.setDogBirthDay(req.getParameter("dogBday"));
+		mvo.setDogBirthday(req.getParameter("dogBday"));
 
 		MyPageService svc = new MyPageServiceImpl();
 
