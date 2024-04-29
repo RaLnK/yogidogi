@@ -8,7 +8,7 @@
 
 
 	 // 게시글 목록 출력
-	 $.get('ajaxNoticeBoardList.do',function(result){
+	 $.get('/yogidogi/ajaxNoticeBoardList.do',function(result){
 		 console.log(result);
 
 		 result.forEach(board=>{

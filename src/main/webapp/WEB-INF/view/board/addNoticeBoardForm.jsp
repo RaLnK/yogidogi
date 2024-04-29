@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
     
     
-	<h3>글등록</h3>
+	<h3>공지 등록</h3>
 	
-	<form action = "/yogidogi/addBoard.do" method="post" enctype="multipart/form-data">
+	<form action = "/yogidogi/addNoticeBoard.do" method="post" enctype="multipart/form-data">
 	<table class="table">
 	<tr>
 		<th>글제목</th>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="co.yedam.mapper.BoardMapper">
 
-	<select id="boardList" parameterType="co.yedam.vo.BoardVO" resultType="co.yedam.vo.BoardVO">
+	<select id="boardList" parameterType="co.yedam.vo.PageVO" resultType="co.yedam.vo.BoardVO">
 		select *
 		from (
 		    select *
@@ -12,7 +12,7 @@
 		          from board  b
 		              join member  m
 		              on b.member_no = m.member_no
-		          where board_category = 1
+		          where board_category = 1 
 		        )
 				         
 		    where rownum <![CDATA[  <  ]]> 4     
@@ -50,6 +50,18 @@
 						  )
 		
 		values(board_no.nextval,#{memberNo}, #{boardTitle}, #{boardContent}, 0 ,#{boardImg})
+	</insert>
+	
+	<insert id="addNoticeBoard" parameterType="co.yedam.vo.BoardVO" >
+		insert into board(board_no,
+						  member_no,
+						  board_title, 
+						  board_content,
+						  board_category,
+						  board_img
+						  )
+		
+		values(board_no.nextval,#{memberNo}, #{boardTitle}, #{boardContent}, 1 ,#{boardImg})
 	</insert>
 
 	<select id="getBoard" parameterType="int" resultType="BoardVO">

@@ -50,6 +50,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.delBoard(bno) == 1 ;
 	}
 
+	@Override
+	public boolean addNoticeBoard(BoardVO bvo) {
+		// TODO Auto-generated method stub
+		return mapper.addNoticeBoard(bvo) == 1;
+	}
+
 
 
 }
