@@ -4,10 +4,11 @@
 <nav
 	class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark"
 	arial-label="Furni navigation bar">
-	<script src="/yogidogi/js/nav.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<% String memberId = (String)session.getAttribute("memberId"); %>
 
 	<div class="container">
-		<a class="navbar-brand" href="index.html">YOGIDOGI<span></span></a>
+		<a class="navbar-brand" href="mainapp.tiles">YOGIDOGI<span></span></a>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarsFurni" aria-controls="navbarsFurni"
@@ -18,7 +19,7 @@
 		<div class="collapse navbar-collapse" id="navbarsFurni">
 			<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
 				<li class="nav-item active"><a class="nav-link"
-					href="index.html">Home</a></li>
+					href="mainapp.tiles">Home</a></li>
 				<li class="shop"><a class="nav-link" href="productList.do">Shop</a></li>
 				<li><a class="nav-link" href="about.html">Notice</a></li>
 				<li><a class="nav-link" href="services.html">Ask</a></li>
@@ -27,11 +28,16 @@
 			</ul>
 
 			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-				<li><a class="nav-link" href="loginForm.do"><img src="/yogidogi/images/user.svg"></a></li>
-				<li><a class="nav-link" href="cartList.do"><img
-						src="/yogidogi/images/cart.svg"></a></li>
+				<c:if test="${memberId eq null}">
+				<li><a id="login" class="nav-link" href="loginForm.do"><img src="/yogidogi/images/user.svg"></a></li>
+				</c:if>
+				<c:if test="${memberId ne null}">
+				<li><a id="login" class="nav-link" href="logoutForm.do"><img src="/yogidogi/images/user.svg"></a></li>
+				</c:if>
+				<li><a id="cart" class="nav-link" href="cartList.do"><img src="/yogidogi/images/cart.svg"></a></li>
 			</ul>
 		</div>
 	</div>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="/yogidogi/js/nav.js"></script>
 </nav>
