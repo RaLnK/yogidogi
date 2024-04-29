@@ -26,7 +26,7 @@ public class ModifyCartControl implements Control {
 		
 		CartVO vo = new CartVO();
 		vo.setCartNo(Integer.parseInt(cartNo));
-		vo.setQty(Integer.parseInt(qty));
+		vo.setQuantity(Integer.parseInt(qty));
 		
 		CartService svc = new CartServiceImpl();
 		Map<String, Object> map = new HashMap<>();

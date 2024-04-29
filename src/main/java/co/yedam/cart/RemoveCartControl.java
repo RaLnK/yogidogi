@@ -27,11 +27,11 @@ public class RemoveCartControl implements Control {
 		
 		
 		Map<String, Object> map = new HashMap<>();
-		if(svc.remCart(Integer.parseInt(cartNo))) {
-			map.put("retCode", "OK");
-		} else {
-			map.put("retCode", "NG");
-		}
+//		if(svc.remCart(Integer.parseInt(cartNo))) {
+//			map.put("retCode", "OK");
+//		} else {
+//			map.put("retCode", "NG");
+//		}
 		
 		Gson gson = new GsonBuilder().create();
 		try {
