@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,47 +15,39 @@ import com.google.gson.GsonBuilder;
 import co.yedam.common.Control;
 import co.yedam.service.CartService;
 import co.yedam.service.CartServiceImpl;
+import co.yedam.service.MyPageService;
+import co.yedam.service.MyPageServiceImpl;
 import co.yedam.vo.CartVO;
+import co.yedam.vo.WishListVO;
 
 public class CartListAdd implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-        resp.setContentType("application/json; charset=utf-8");
+		HttpSession session = req.getSession();
         
-        // memberNo와 proNo 요청 파라미터를 받아옴
-        String memberNo = req.getParameter("memberNo");
-        String productNo = req.getParameter("proNo");
-        int qty = 1;
-
+		int memberNo = ((Integer)session.getAttribute("memberNo")).intValue();
+        int quantity = 1;
+        
         // CartVO 객체 생성 및 설정
         CartVO vo = new CartVO();
-        vo.setMemberNo(Integer.parseInt(memberNo));
-        vo.setProductNo(Integer.parseInt(productNo));
+        vo.setMemberNo(memberNo);
+        vo.setQuantity(quantity);
+		vo.setProductNo(Integer.parseInt(req.getParameter("pno")));
         
         // CartService 인스턴스 생성
         CartService svc = new CartServiceImpl();
-        Map<String, Object> map = new HashMap<>();
-        
-        // addCart() 메서드 호출
-        int result = svc.cartListAdd(vo);
-        if (result == 1) {
-            map.put("retCode", "OK");
-        } else if (result == 2) {
-            map.put("retCode", "CK");
-        } else {
-            map.put("retCode", "NG");
-        }
-        
-		
-		Gson gson = new GsonBuilder().create();
-		try {
-			resp.getWriter().print(gson.toJson(map));
-		} catch (IOException e) {
-			e.printStackTrace();
+	
+		if (svc.cartListCheck(vo)) {
+			if(svc.cartListAdd(vo)) {
+				resp.getWriter().print("{\"retCode\" : \"Success\"}");
+			}else {
+				resp.getWriter().print("{\"retCode\" : \"Fail\"}");
+			}
+		} else {
+			resp.getWriter().print("{\"retCode\" : \"Already\"}");
 		}
-		
 	}
 
 }
+

@@ -14,9 +14,8 @@ public interface CartService {
 	public boolean cartListDel(CartVO cvo); 
 	
 	// 카트 등록
-	public int cartListAdd(CartVO vo); 
-	
-	
+	public boolean cartListAdd(CartVO vo); 
+	public boolean cartListCheck(CartVO vo);
 	// 카트 수정
 	public boolean modCart(CartVO vo); 
 	

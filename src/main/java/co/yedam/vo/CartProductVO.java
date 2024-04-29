@@ -13,6 +13,7 @@ public class CartProductVO {
     private String productName; // 제품의 이름
     private int productPrice; // 제품 가격
     private int category;
+    private int discountPct;
     
     
     

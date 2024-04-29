@@ -4,21 +4,22 @@ import java.util.List;
 
 import co.yedam.vo.CartProductVO;
 import co.yedam.vo.CartVO;
+import co.yedam.vo.WishListVO;
 
 public interface CartMapper {
 	// 카트 목록
-	List<CartProductVO> cartList(int memberNo);
+	public List<CartProductVO> cartList(int memberNo);
 	//	List<CartVO> selectList(int memberNo);
 	// 카트 삭제
-	int cartListDel(CartVO cvo);
+	public int cartListDel(CartVO cvo);
 			
 	// 카트 추가 
-	int cartListAdd(CartVO vo);
+	public int cartListAdd(CartVO vo);
 		
 	// 카트 수량 수정
-	int updateCart(CartVO vo);
+	public int updateCart(CartVO vo);
 		
 	// 카트 중복 체크
-	CartVO checkCart(CartVO vo);
-	
+	public CartVO checkCart(CartVO vo);
+	public int cartListCheck(CartVO vo);
 }

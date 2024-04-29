@@ -57,7 +57,6 @@
                           <strong class="text-black">23,000원</strong>
                         </div>
                       </div>
-        
                       <div class="row">
                         <div class="col-md-12">
                           <button class="btn btn-black btn-lg py-3 btn-block" type="submit">결제하기</button>
