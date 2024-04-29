@@ -20,19 +20,16 @@ public class CartServiceImpl implements CartService {
 //	}
 
 	@Override
-	public int addCart(CartVO vo) {
+	public int cartListAdd(CartVO vo) {
 		// 장바구니 데이터 체크
 		CartVO checkCart = mapper.checkCart(vo);
 		if(checkCart != null) {
 			return 2;
 		}
-		return mapper.insertCart(vo);
+		return mapper.cartListAdd(vo);
 	}
 
-	@Override
-	public boolean remCart(int cartNo) {
-		return mapper.deleteCart(cartNo) == 1;
-	}
+
 
 	@Override
 	public boolean modCart(CartVO vo) {
@@ -44,6 +41,12 @@ public class CartServiceImpl implements CartService {
 		
 		return mapper.cartList(memberNo);
 	}
+	@Override
+	public boolean cartListDel(CartVO cvo) {
+		return mapper.cartListDel(cvo) == 1;
+	}
+
+
 
 
 

@@ -16,7 +16,7 @@ import co.yedam.service.CartService;
 import co.yedam.service.CartServiceImpl;
 import co.yedam.vo.CartVO;
 
-public class AddCartControl implements Control {
+public class CartListAdd implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,21 +25,20 @@ public class AddCartControl implements Control {
         
         // memberNo와 proNo 요청 파라미터를 받아옴
         String memberNo = req.getParameter("memberNo");
-        String proNo = req.getParameter("proNo");
+        String productNo = req.getParameter("proNo");
         int qty = 1;
 
         // CartVO 객체 생성 및 설정
         CartVO vo = new CartVO();
         vo.setMemberNo(Integer.parseInt(memberNo));
-        vo.setProNo(Integer.parseInt(proNo));
-        vo.setQty(qty);
+        vo.setProductNo(Integer.parseInt(productNo));
         
         // CartService 인스턴스 생성
         CartService svc = new CartServiceImpl();
         Map<String, Object> map = new HashMap<>();
         
         // addCart() 메서드 호출
-        int result = svc.addCart(vo);
+        int result = svc.cartListAdd(vo);
         if (result == 1) {
             map.put("retCode", "OK");
         } else if (result == 2) {

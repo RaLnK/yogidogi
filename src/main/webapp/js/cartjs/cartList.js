@@ -5,13 +5,17 @@
  */
 const svc = {
     cartListAjax(successCall, errorCall) {
-        fetch("cartListJson.do")
+        fetch('/yogidogi/cartListJson.do')
             .then(result => result.json())
             .then(successCall)
             .catch(errorCall);
     },
-    deleteCart(productId, successCall, errorCall) {
-        fetch("cartListDel.do?productId=" + productId)
+    cartListDel(cno, successCall, errorCall) {
+        fetch('/yogidogi/cartListDel.do',{
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'cno=' + cno
+		})
             .then(result => result.json())
             .then(successCall)
             .catch(errorCall);
@@ -44,18 +48,18 @@ document.addEventListener('DOMContentLoaded', function(e) {
       
       let quantityContainer = $('<div />').addClass('input-group mb-3 d-flex align-items-center quantity-container').css('max-width', '120px');
       let decreaseButton = $('<button />').addClass('btn btn-outline-black btn-minus decrease').attr('type', 'button').text('−');
-      let quantityInput = $('<input />').addClass('form-control text-center quantity-amount').attr({ 'type': 'text', 'id': 'qty', 'placeholder': '', 'aria-label': 'Example text with button addon', 'aria-describedby': 'button-addon1', 'data-min': '1', 'data-max': '100' }).val(product.qty);
+      let quantityInput = $('<input />').addClass('form-control text-center quantity-amount').attr({ 'type': 'text', 'id': 'qty', 'placeholder': '', 'aria-label': 'Example text with button addon', 'aria-describedby': 'button-addon1', 'data-min': '1', 'data-max': '100' }).val(product.quantity);
       let increaseButton = $('<button />').addClass('btn btn-outline-black btn-plus increase').attr('type', 'button').text('+');
       quantityContainer.append($('<div />').addClass('input-group-prepend').append(decreaseButton),
       quantityInput,$('<div />').addClass('input-group-append').append(increaseButton));
       tr.append($('<td />').append(quantityContainer));
-      let productTotalPrice = product.productPrice * product.qty;
+      let productTotalPrice = product.productPrice * product.quantity;
       tr.append($('<td />').attr('class', 'product-totalprice').text((productTotalPrice) + "원"));
-      let delBtn = $('<button />', { type: 'button', id: 'delBtn' + product.productNo }).text('X');
+      let delBtn = $('<button />', { type: 'button', id: 'delBtn' + product.cartNo }).text('X');
       delBtn.on('click', e => {
         svc.cartListDel(product.cartNo, function(result) {
           if (result.retCode == 'Success') {
-            $('#delBtn' + product.productNo).parent().parent().remove();
+            $('#delBtn' + product.cartNo).parent().parent().remove();
             alert('삭제했습니다');
           } else {
             alert('실패했습니다');
@@ -98,11 +102,16 @@ function updateTotalPrice(button) {
 }
 
 
+
+
+
+
+
+
+
+
 //   makeTotal();
 //   removeCartEvent();
-//   btnEvent();
 //   modifyCartEvent();
-//   allCheckboxEvent();
-//   selCheckboxEvent();
 //   orderBtnEvent();
 
