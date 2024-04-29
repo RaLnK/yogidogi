@@ -12,7 +12,7 @@ import co.yedam.service.MemberService;
 import co.yedam.service.MemberServiceImpl;
 import co.yedam.vo.MemberVO;
 
-public class loginControl implements Control {
+public class LoginControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

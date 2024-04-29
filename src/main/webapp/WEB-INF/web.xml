@@ -27,7 +27,7 @@
   </servlet-mapping>
   
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>mainapp.tiles</welcome-file>
   </welcome-file-list>
   
 </web-app>

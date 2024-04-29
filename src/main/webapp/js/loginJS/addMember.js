@@ -70,22 +70,22 @@ function successModal() {
 function successClose() {
 	$('.close').on('click', function() {
 		$('.modal').css('display', 'none');
-		location.href = 'http://localhost:8080/yogidogi/loginForm.do'
+		location.href = '/yogidogi/loginForm.do'
 	})
 }
 
 function addBtn() {
 	$('#yes').on('click', function() {
-		location.href = 'addDogForm.do';
+		location.href = '/yogidogi/addDogForm.do';
 	})
 }
 
 function noAddBtn() {
 	$('#no').on('click', function() {
-		location.href = 'http://localhost:8080/yogidogi/loginForm.do'
+		location.href = '/yogidogi/loginForm.do'
 	})
 }
 
 $('.logo').on('click', function() {
-	location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
+	location.href = '/yogidogi/mainapp.tiles'
 })

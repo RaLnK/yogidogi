@@ -45,6 +45,6 @@ function successClose() {
 	$('.close').on('click', function() {
 		$('.modal').css('display', 'none');
 		$('div.modal-content p').remove();
-		location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
+		location.href = '/yogidogi/mainapp.tiles'
 	})
 }
