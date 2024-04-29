@@ -23,16 +23,15 @@ public class ReplyList implements Control {
 resp.setContentType("text/json;charset=utf-8");
 		
 		String bno = req.getParameter("bno");
-		String page = req.getParameter("page");
-		page = page == null ? "1" : page;
 		
-		PageVO pg = new PageVO();
-		pg.setBno(Integer.parseInt(bno));
-		pg.setRpage(Integer.parseInt(page));
+		
+		ReplyVO pg = new ReplyVO();
+		pg.setBoardNo(Integer.parseInt(bno));
+		
 		
 		
 		ReplyService svc = new ReplyServiceImpl();
-		List<ReplyVO> list = svc.replyList(pg);
+		List<ReplyVO> list = svc.replyList(Integer.parseInt(bno));
 		
 		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		String json = gson.toJson(list);

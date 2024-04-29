@@ -35,8 +35,8 @@ public class AddBoard implements Control {
 			vo.setBoardContent(con);
 			vo.setMemberNo(Integer.parseInt(mno));
 			vo.setBoardImg(img);
-			
 			vo.setBoardDate(new Date());
+			
 			
 			BoardService svc = new BoardServiceImpl();
 			if(svc.addBoard(vo)) {

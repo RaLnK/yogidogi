@@ -13,6 +13,7 @@
 		              join member  m
 		              on b.member_no = m.member_no
 		          where board_category = 1 
+				 order by board_no desc
 		        )
 				         
 		    where rownum <![CDATA[  <  ]]> 4     
@@ -25,6 +26,7 @@
 		        join member  m
 		        on b.member_no = m.member_no
 		    where board_category = 0
+
 		        
 		)
 		order by gb, board_no desc
@@ -38,6 +40,7 @@
 			join member m
 			on b.member_no = m.member_no
 		where board_category = 1
+		order by board_no desc
 	</select>
 	
 	<insert id="addBoard" parameterType="co.yedam.vo.BoardVO" >

@@ -18,6 +18,12 @@ h4{
 	margin:15px;
 	font-weight:600;
 }
+#addReply{
+	margin:10px;
+}
+#deleteBtn{
+	margin:5px;
+}
 
 </style>
 
@@ -36,8 +42,8 @@ h4{
 	</tr>
 	<tr>
 		<td colspan="4">
-			<button type="submit" align="center" class="btn" > <a href="updateBoardForm.do?bno=${bno.boardNo }">글 수정하기</a></button>
-			<button type="button" align="center" class="btn" id="delBtn" >삭제</button>
+			<button type="submit" align="center" class="btn" ${memberNo != bno.memberNo ? 'hidden' : '' } > <a href="updateBoardForm.do?bno=${bno.boardNo }">글 수정하기</a></button>
+			<button type="button" align="center" class="btn" id="delBtn" ${memberNo != bno.memberNo ? 'hidden' : '' } >삭제</button>
 			<button type="button" align="center" class="btn" ><a href="boardList.do">뒤로가기</a></button>
 		</td>
 	</tr>
@@ -54,22 +60,18 @@ h4{
               
             </tr>
         </thead>
-        <tfoot>
-            <tr>
-                <th>댓글번호</th>
-                <th>댓글내용</th>
-                <th>작성자</th>
-                <th>작성일시</th>
-              
-            </tr>
-        </tfoot>
+
     </table>
-    <div class="header" align="center" >
-		<input class="col-sm-9" id="reply">
+    <div class="header" align="left" >
+		<input class="col-sm-5" id="reply">
 		<button class="col-sm-1" id="addReply" on>댓글등록</button>
 	</div>
     <p><button id="deleteBtn">댓글 삭제</button></p>
 <script>
 let bno="${bno.boardNo }";
+let mid="${memberId}";
+
 </script>
+
  <script src="js/boardjs/board.js"></script> 
+  <script src="js/boardjs/replyList.js"></script> 
