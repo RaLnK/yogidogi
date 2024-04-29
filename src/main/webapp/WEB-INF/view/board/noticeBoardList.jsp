@@ -38,7 +38,7 @@
 
 <div class="blog-section p-2">
 	<div class=btnalign>
-		<button type="submit" class="btn"><a href="addBoardForm.do">글쓰기</a></button>
+		<button type="submit" class="btn"><a href="/yogidogi/addNoticeBoardForm.do">글쓰기</a></button>
 	</div>
 <div id="boardclone" style="display:none">
 	

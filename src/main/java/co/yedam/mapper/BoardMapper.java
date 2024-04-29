@@ -17,4 +17,6 @@ public interface BoardMapper {
 	public int delBoard(int bno);
 
 	public List<BoardVO> nbList();
+
+	public int addNoticeBoard(BoardVO bvo);
 }
