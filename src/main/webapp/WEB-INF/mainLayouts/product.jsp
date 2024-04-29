@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="./js/section.js"></script>
 <div class="product-section">
 	<div class="container">
 		<div class="row">
@@ -11,7 +9,7 @@
 				<h2 class="mb-4 section-title">이달의 인기 상품</h2>
 				<p class="mb-4"></p>
 				<p>
-					<a href="shop.html" class="btn">Explore</a>
+					<a href="productList.do" class="btn">=>상품 페이지 이동</a>
 				</p>
 			</div>
 			<!-- End Column 1 -->
