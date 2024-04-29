@@ -10,6 +10,7 @@
 			reply_lever;
 			origin_reply_no;
 	from reply
+	where board_no=#{bno}
 	</select>
 
 </mapper>
