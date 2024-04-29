@@ -5,6 +5,7 @@
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 
 $(function() {
+	
 	// give active class to shop
 	$('.nav-item').removeClass('active');
 	$('.shop').addClass('active');
@@ -49,6 +50,9 @@ $(function() {
 
 //functions 
 function all(result) { // 전체 상품
+	$('.button-like').bind('click', function(event) {
+		$(".button-like").toggleClass("liked");
+	})
 	$('.product:gt(0)').remove();
 	let row = $('.container .one');
 	result.forEach(ele => {
@@ -76,8 +80,16 @@ function all(result) { // 전체 상품
 			row.append(product);
 		}
 	})
+	like();
 }
 
+function like(){
+	// 좋아요 기능
+	$('.button-like').on('click', e=>{
+		e.preventDefault();
+		$(e.target).closest('.button-like').addClass('liked');
+	})
+}
 
 function cateCnt(result) { // 카테고리 count
 	for (let i = 0; i <= 5; i++) {
@@ -149,6 +161,7 @@ function cateChoose(result) {
 						default: '';
 					}
 					row.append(product);
+					like();
 				} else if (targetId == 'all' || targetId == 'yogi') {
 				
 					$('.product:gt(0)').remove();
@@ -202,6 +215,7 @@ function cateChoose(result) {
 								default: '';
 							}
 							row.append(product);
+							like();
 						} else if (targetId == 'all' || targetId == 'yogi') {
 							$('.product:gt(0)').remove(); // gt : greater than. 첫번째 요소 제외 지우기
 							all(sort); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
