@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.yedam.vo.CartProductVO;
 import co.yedam.vo.CartVO;
+import co.yedam.vo.WishListVO;
 
 public interface CartService {
 	// 카트 목록
