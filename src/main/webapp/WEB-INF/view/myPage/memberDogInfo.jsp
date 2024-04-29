@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <div class="untree_co-section" style="padding-top: 2rem;">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 mb-10 mb-md-0" id="dogList">
 				<h2 class="h3 mb-3 text-black">내 강아지</h2>
-				<div class="p-3 p-lg-5 col-md-6 border bg-white" style="float:left;display:none">
+				<div class="p-3 p-lg-5 col-md-12 border bg-white" style="float:left;display:none">
 					<div class="form-group row">
 						
 					</div>

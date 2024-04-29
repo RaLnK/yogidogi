@@ -29,7 +29,6 @@ public class AddOrderControl implements Control {
 		String odAd2 = req.getParameter("odAd2"); // 상세주소
 		String tgPhone = req.getParameter("tgPhone"); // 휴대폰번호
 		String odr = req.getParameter("odr"); // 주문요청사항
-		String odc = req.getParameter("odc"); // 총 주문량
 		String odPrice = req.getParameter("odPrice"); // 구매가격
 		String odPoint = req.getParameter("odpoint"); // 사용한포인트
 		String odt = req.getParameter("odt"); // 주문일자
@@ -38,26 +37,25 @@ public class AddOrderControl implements Control {
 //		String odTotal = req.getParameter("odTotal"); // 총 구매가격
 		
 		OrderVO vo = new OrderVO();	
-        vo.setOdNo(Integer.parseInt(odNo));
+        vo.setOrderNo(Integer.parseInt(odNo));
         vo.setMemberNo(Integer.parseInt(memberNo));
-        vo.setTgName(tgName);
-        vo.setOdAd(odAd);
-        vo.setOdAd2(odAd2);
-        vo.setTgPhone(Integer.parseInt(tgPhone));
-        vo.setOdr(odr);
-        vo.setOdc(Integer.parseInt(odc));
-        vo.setOdPrice(Integer.parseInt(odPrice));
-        vo.setOdPoint(Integer.parseInt(odPoint));
-        vo.setOdt(Date(odt));
-        vo.setOdStatus(odStatus);
+        vo.setTargetName(tgName);
+        vo.setOrderAddr(odAd);
+        vo.setOrderAddr2(odAd2);
+        vo.setTargetPhone(Integer.parseInt(tgPhone));
+        vo.setOrderReq(odr);
+        vo.setOrderPrice(Integer.parseInt(odPrice));
+        vo.setOrderPoint(Integer.parseInt(odPoint));
+        vo.setOrderDate(odt);
+        vo.setOrderStatus(odStatus);
 		
 		OrderService svc = new OrderServiceImpl();
 		Map<String, Object> map = new HashMap<>();
 
 		if (svc.addOrder(vo) == 1) {
 			map.put("retCode", "OK");
-			map.put("odNo", vo.getOdNo());
-			map.put("point", vo.getOdPoint());
+			map.put("odNo", vo.getOrderNo());
+			map.put("point", vo.getOrderPoint());
 		} else {
 			map.put("retCode", "NG");
 		}

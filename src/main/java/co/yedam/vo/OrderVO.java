@@ -6,18 +6,17 @@ import lombok.Data;
 
 @Data
 public class OrderVO {
-		private int odNo;  			// 주문번호
+		private int orderNo;  			// 주문번호
 		private int memberNo;		// 회원번호
-		private String tgName;   	// 받는사람이름
-		private String odAd;  		// 주소
-		private String odAd2;		// 상세주소
-		private int tgPhone;		// 휴대폰번호
-		private String odr;			// 주문요청사항
-		private int odc;			// 총 주문량
-		private int odPrice;		// 구매가격
-		private int odPoint;        // 사용한 포인트
-		private String odStatus;	// 주문상태
-		private Date odt;   		// 주문일자
+		private String targetName;   	// 받는사람이름
+		private String orderAddr;  		// 주소
+		private String orderAddr2;		// 상세주소
+		private int targetPhone;		// 휴대폰번호
+		private String orderReq;		// 주문요청사항
+		private int orderPrice;		// 구매가격
+		private int orderPoint;        // 사용한 포인트
+		private String orderStatus;	// 주문상태
+		private String orderDate;   		// 주문일자
 //		private int odTotal;		// 총 결제금액
 }
 

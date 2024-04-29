@@ -2,6 +2,7 @@ package co.yedam.common;
 
 import java.util.Map;
 
+import co.yedam.myPage.GetFirstProductName;
 import co.yedam.myPage.MemberDogInfo;
 import co.yedam.myPage.MemberDogList;
 import co.yedam.myPage.MemberDogUpdate;
@@ -10,6 +11,9 @@ import co.yedam.myPage.MemberList;
 import co.yedam.myPage.MemberUpdate;
 import co.yedam.myPage.MemberWishList;
 import co.yedam.myPage.MemberWishListAjax;
+import co.yedam.myPage.MyOrder;
+import co.yedam.myPage.MyOrderDetail;
+import co.yedam.myPage.MyOrderList;
 import co.yedam.myPage.WishListAdd;
 import co.yedam.myPage.WishListDel;
 
@@ -30,5 +34,11 @@ public class FrontControlMyPage {
 		map.put("/memberWishListAjax.do", new MemberWishListAjax());
 		map.put("/wishListAdd.do", new WishListAdd());
 		map.put("/wishListDel.do", new WishListDel());
+		
+		// 주문 내역
+		map.put("/myOrder.do", new MyOrder());
+		map.put("/myOrderList.do", new MyOrderList());
+		map.put("/getFirstProductName.do", new GetFirstProductName());
+		map.put("/myOrderDetail.do", new MyOrderDetail());
 	}
 }
