@@ -4,13 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="co.yedam.mapper.CartMapper">
-	<select id="selectList" resultType="CartVO" parameterType="int">
-  		select *
-		from cart
-		where member_no = #{memberNo}
-  	</select>
-  	
-  	<select id="cartList" resultType="CartProductVO">
+	  	<select id="cartList" resultType="CartProductVO">
   		select c.cart_no
   				,c.member_no
   				,c.quantity
@@ -18,19 +12,26 @@
   				,p.product_name
   				,p.product_price
   				,p.product_img
+  				,p.category
   		from cart c inner join product p
   		on c.product_no = p.product_no
   		where c.member_no = #{memberNo}
   	</select>
-	
-	<insert id="insertCart" parameterType="CartVO">
-  		insert into cart values (cart_seq.nextval, #{quantity}, #{proNo}, #{memberNo})
-  	</insert>
   	
-  	<delete id="deleteCart" parameterType="int">
+  	<delete id="cartListDel" parameterType="CartVO">
   		delete from cart 
   		where cart_no = #{cartNo}
   	</delete>
+  	
+  	<select id="cartListAdd" resultType="CartVO" parameterType="int">
+  		select *
+		from cart
+		where member_no = #{memberNo}
+  	</select>
+
+	<insert id="insertCart" parameterType="CartVO">
+  		insert into cart values (cart_seq.nextval, #{quantity}, #{proNo}, #{memberNo})
+  	</insert>
   	
   	<update id="updateCart" parameterType="CartVO">
   		update cart 
