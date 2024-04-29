@@ -208,7 +208,8 @@ a {
   color: #2f2f2f; }
 
 .product-section {
-  padding: 7rem 0; }
+  padding: 7rem 0;
+  font-family: 'TTLaundryGothicB'; }
   .product-section .product-item {
     text-align: center;
     text-decoration: none;
@@ -515,7 +516,7 @@ a {
         background-color: #3b5d50; }
 
 .before-footer-section {
-  padding: 7rem 0 12rem 0 !important; }
+  padding: 7rem 0 12rem 0 !important;}
 
 .blog-section {
   padding: 7rem 0 12rem 0; }
@@ -548,7 +549,8 @@ a {
 
 .footer-section {
   padding: 80px 0;
-  background: #ffffff; }
+  background: #ffffff;
+  font-family: 'TTLaundryGothicB'; }
   .footer-section .relative {
     position: relative; }
   .footer-section a {
