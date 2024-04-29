@@ -7454,3 +7454,43 @@ span img:hover{
     cursor: -webkit-zoom-in;
 }
 /* image modal end */
+
+
+/* 상품상세 더보기*/
+.showstep1 {
+	max-height: 1000px;
+	overflow: hidden;
+}
+
+.hide {
+	display: none;
+}
+
+/*icon*/
+.link-icon {
+	position: relative;
+	display: inline-block;
+	width: auto;
+	font-size: 14px;
+	font-weight: 500;
+	color: #333;
+	margin-right: 10px;
+	padding-top: 50px;
+	
+}
+
+.link-icon.twitter {
+	background-image: url(../images/icon-twitter.png);
+	background-repeat: no-repeat;
+	margin-right: 20px;
+}
+
+.link-icon.facebook {
+	background-image: url(../images/icon-facebook.png);
+	background-repeat: no-repeat;
+}
+
+.link-icon.kakao {
+	background-image: url(../images/icon-kakao.png);
+	background-repeat: no-repeat;
+}
