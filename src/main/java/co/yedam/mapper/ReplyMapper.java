@@ -7,6 +7,6 @@ import co.yedam.vo.ReplyVO;
 
 public interface ReplyMapper {
 
-	List<ReplyVO> replyList(PageVO pg);
+	List<ReplyVO> replyList(int bno);
 
 }

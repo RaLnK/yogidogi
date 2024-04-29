@@ -36,9 +36,11 @@
 </div>
 
 
-<div class="blog-section p-2">
+<div class="blog-section p-5">
 	<div class=btnalign>
-		<button type="submit" class="btn"><a href="/yogidogi/addNoticeBoardForm.do">글쓰기</a></button>
+		<button type="submit" class="btn" ${memberAuthority != 1 ? 'hidden' : '' }>
+		<a href="/yogidogi/addNoticeBoardForm.do">글쓰기</a>
+		</button>
 	</div>
 <div id="boardclone" style="display:none">
 	

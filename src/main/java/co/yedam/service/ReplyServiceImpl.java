@@ -15,9 +15,9 @@ SqlSession session = DataSource.getInstance().openSession(true);
 	ReplyMapper mapper = session.getMapper(ReplyMapper.class);
 	
 	@Override
-	public List<ReplyVO> replyList(PageVO pg) {
+	public List<ReplyVO> replyList(int bno) {
 		// TODO Auto-generated method stub
-		return mapper.replyList(pg);
+		return mapper.replyList(bno);
 	}
 
 }
