@@ -1,29 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="./js/footer.js"></script>
 <footer class="footer-section">
 	<div class="container relative">
-
 		<div class="sofa-img">
-			<img src="/yogidogi/images/sofa.png" alt="Image" class="img-fluid">
+			<img src="/yogidogi/images/footerdog.jpg" alt="Image" class="img-fluid">
 		</div>
 
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="subscription-form">
 					<h3 class="d-flex align-items-center">
-						<span class="me-1"><img src="/yogidogi/images/envelope-outline.svg"
-							alt="Image" class="img-fluid"></span><span>Subscribe to
-							Newsletter</span>
+						<span class="me-1"><img src="/yogidogi/images/돋보기.png"
+							alt="Image" class="img-fluid"></span><span>Search</span>
 					</h3>
 
 					<form action="#" class="row g-3">
-						<div class="col-auto">
-							<input type="text" class="form-control"
-								placeholder="Enter your name">
+						<div>
+							<select name="findType">
+								<option selected>검색조건</option>
+								<option class="prod">상품</option>
+								<option class="notice">공지사항</option>
+								<option class="ask">문의사항</option>
+								<option class="board">게시글</option>
+							</select>
 						</div>
 						<div class="col-auto">
-							<input type="email" class="form-control"
-								placeholder="Enter your email">
+							<input type="text" class="form-control"
+								placeholder="Search...">
 						</div>
 						<div class="col-auto">
 							<button class="btn btn-primary">
@@ -39,18 +44,15 @@
 		<div class="row g-5 mb-5">
 			<div class="col-lg-4">
 				<div class="mb-4 footer-logo-wrap">
-					<a href="#" class="footer-logo">Furni<span>.</span></a>
+					<a href="/yogidogi/mainapp.tiles" class="footer-logo">YOGIDOGI<span></span></a>
 				</div>
-				<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis.
-					Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet
-					velit. Aliquam vulputate velit imperdiet dolor tempor tristique.
-					Pellentesque habitant</p>
+				<p class="mb-4"></p>
 
 				<ul class="list-unstyled custom-social">
-					<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-					<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-					<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-					<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+					<li><a href="https://www.facebook.com/"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+					<li><a href="https://twitter.com/"><span class="fa fa-brands fa-twitter"></span></a></li>
+					<li><a href="https://www.instagram.com/"><span class="fa fa-brands fa-instagram"></span></a></li>
+					<li><a href="https://www.linkedin.com/company/twitter"><span class="fa fa-brands fa-linkedin"></span></a></li>
 				</ul>
 			</div>
 
