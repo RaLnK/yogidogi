@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import co.yedam.common.Control;
 
-public class loginFormControl implements Control {
+public class PwCheckFormControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("WEB-INF/view/login/loginForm.jsp").forward(req, resp);
+		req.getRequestDispatcher("WEB-INF/view/login/pwForm.jsp").forward(req, resp);
+
 	}
 
 }

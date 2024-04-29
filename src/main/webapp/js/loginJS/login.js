@@ -21,7 +21,7 @@ function login() {
 			openModal();
 			$('div.modal-content').append($('<p>ID와 비밀번호를 확인하세요</p>'));
 		}else {
-			location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
+			location.href = '/yogidogi/mainapp.tiles'
 		}
 	}
 }
@@ -36,5 +36,5 @@ $('.close').on('click', function() {
 })
 
 $('.logo').on('click', function() {
-	location.href = 'http://localhost:8080/yogidogi/mainapp.tiles'
+	location.href = '/yogidogi/mainapp.tiles'
 })

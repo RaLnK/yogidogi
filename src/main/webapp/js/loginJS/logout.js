@@ -10,6 +10,11 @@ function logout() {
 		method: 'get'
 	})
 	.done(
-		location.href = 'http://localhost:8080/yogidogi/loginForm.do'
+		location.href = '/yogidogi/loginForm.do'
 	)
 }
+
+$('.logo').on('click', function() {
+	location.href = '/yogidogi/mainapp.tiles'
+})
+

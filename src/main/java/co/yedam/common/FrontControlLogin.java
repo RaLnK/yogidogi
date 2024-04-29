@@ -5,31 +5,31 @@ import java.util.Map;
 import co.yedam.login.AddDogControl;
 import co.yedam.login.AddDogFormControl;
 import co.yedam.login.MemberListControl;
-import co.yedam.login.addMemberControl;
-import co.yedam.login.addMemberFormControl;
-import co.yedam.login.idCheckControl;
-import co.yedam.login.idCheckFormControl;
-import co.yedam.login.loginControl;
-import co.yedam.login.loginFormControl;
-import co.yedam.login.logoutControl;
-import co.yedam.login.logoutFormControl;
-import co.yedam.login.pwCheckControl;
-import co.yedam.login.pwCheckFormControl;
+import co.yedam.login.AddMemberControl;
+import co.yedam.login.AddMemberFormControl;
+import co.yedam.login.IdCheckControl;
+import co.yedam.login.IdCheckFormControl;
+import co.yedam.login.LoginControl;
+import co.yedam.login.LoginFormControl;
+import co.yedam.login.LogoutControl;
+import co.yedam.login.LogoutFormControl;
+import co.yedam.login.PwCheckControl;
+import co.yedam.login.PwCheckFormControl;
 
 public class FrontControlLogin {
 	public static void push(Map<String, Control> map) {
 		// 로그인
 		map.put("/memberList.do", new MemberListControl());
-		map.put("/loginForm.do", new loginFormControl());
-		map.put("/login.do", new loginControl());
-		map.put("/logoutForm.do", new logoutFormControl());
-		map.put("/logout.do", new logoutControl());
-		map.put("/addMemberForm.do", new addMemberFormControl());
-		map.put("/addMember.do", new addMemberControl());
-		map.put("/idCheckForm.do", new idCheckFormControl());
-		map.put("/idCheck.do", new idCheckControl());
-		map.put("/pwCheckForm.do", new pwCheckFormControl());
-		map.put("/pwCheck.do", new pwCheckControl());
+		map.put("/loginForm.do", new LoginFormControl());
+		map.put("/login.do", new LoginControl());
+		map.put("/logoutForm.do", new LogoutFormControl());
+		map.put("/logout.do", new LogoutControl());
+		map.put("/addMemberForm.do", new AddMemberFormControl());
+		map.put("/addMember.do", new AddMemberControl());
+		map.put("/idCheckForm.do", new IdCheckFormControl());
+		map.put("/idCheck.do", new IdCheckControl());
+		map.put("/pwCheckForm.do", new PwCheckFormControl());
+		map.put("/pwCheck.do", new PwCheckControl());
 		map.put("/addDogForm.do", new AddDogFormControl());
 		map.put("/addDog.do", new AddDogControl());
 	}

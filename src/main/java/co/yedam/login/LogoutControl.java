@@ -5,13 +5,18 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import co.yedam.common.Control;
 
-public class logoutFormControl implements Control {
+public class LogoutControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("WEB-INF/view/login/logoutForm.jsp").forward(req, resp);
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		resp.sendRedirect("loginForm.do");
 	}
+
 }

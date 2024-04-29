@@ -10,7 +10,7 @@ import co.yedam.common.Control;
 import co.yedam.service.MemberService;
 import co.yedam.service.MemberServiceImpl;
 
-public class pwCheckControl implements Control {
+public class PwCheckControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
