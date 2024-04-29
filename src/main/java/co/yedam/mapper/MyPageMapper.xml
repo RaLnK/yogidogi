@@ -51,5 +51,17 @@
 		insert into cart
 		values(cart_no.nextVal, #{memberNo}, #{productNo}, 1)
 	</insert>
+	
+	<select id="myOrderList" parameterType="int" resultType="OrderVO">
+		select order_no, member_no, to_char(order_date, 'yyyy-MM-dd') as "order_date", order_price, order_status
+		from orders
+		where member_no = #{memberNo}
+	</select>
+	
+	<select id="getFirstProductName" parameterType="int" resultType="string">
+		select product_name
+		from order_detail
+		where order_no = #{orderNo} and rownum = 1
+	</select>
 
 </mapper>

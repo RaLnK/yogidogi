@@ -6,6 +6,7 @@ import co.yedam.common.DataSource;
 import co.yedam.mapper.MyPageMapper;
 import co.yedam.vo.MemberDogVO;
 import co.yedam.vo.MemberVO;
+import co.yedam.vo.OrderVO;
 import co.yedam.vo.ProductVO;
 import co.yedam.vo.WishListVO;
 
@@ -50,6 +51,16 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public boolean wishListAdd(WishListVO wvo) {
 		return mapper.wishListAdd(wvo) == 1;
+	}
+
+	@Override
+	public List<OrderVO> myOrderList(int memberNo) {
+		return mapper.myOrderList(memberNo);
+	}
+
+	@Override
+	public String getFirstProductName(int orderNo) {
+		return mapper.getFirstProductName(orderNo);
 	}
 	
 }
