@@ -17,7 +17,7 @@
       <dataSource type="POOLED">
         <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
 
-        <property name="url" value="jdbc:oracle:thin:@(오라클 주소):1521:xe"/>
+        <property name="url" value="jdbc:oracle:thin:@43.203.180.128:1521:xe"/>
 
         <property name="username" value="yogi"/>
         <property name="password" value="yogi"/>
@@ -31,5 +31,6 @@
   	<mapper resource="co/yedam/mapper/MyPageMapper.xml"/>
   	<mapper resource="co/yedam/mapper/OrderMapper.xml"/>
   	<mapper resource="co/yedam/mapper/ProductMapper.xml"/>
+  	<mapper resource="co/yedam/mapper/ReplyMapper.xml"/>
   </mappers>
 </configuration>
