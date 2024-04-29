@@ -1,71 +1,101 @@
 /**
+
  * cartList.do
+
  */
 const svc = {
-	cartList(successCall, errorCall) {
-		fetch("cartListJson.do")
-			.then(result => result.json())
-			.then(successCall)
-			.catch(errorCall);
-	},
-	makeTotal(successCall, errorCall){
-			fetch("getTotal.do")
-			.then(result => result.json())
-			.then(successCall)
-			.catch(errorCall);
-	}
+    cartListAjax(successCall, errorCall) {
+        fetch("cartListJson.do")
+            .then(result => result.json())
+            .then(successCall)
+            .catch(errorCall);
+    },
+    deleteCart(productId, successCall, errorCall) {
+        fetch("cartListDel.do?productId=" + productId)
+            .then(result => result.json())
+            .then(successCall)
+            .catch(errorCall);
+    },
+    makeTotal(successCall, errorCall) {
+        fetch("getTotal.do")
+            .then(result => result.json())
+            .then(successCall)
+            .catch(errorCall);
+    }
 }
+// cartList 
 document.addEventListener('DOMContentLoaded', function(e) {
-    svc.cartList(function(cart) {
-        let info = $('<img/>', { type: 'Img', name: 'productimg' }).val(product.productimg);
-        $('#img-fluid').append(info);
-        
-        info = $('<h2>/', {name: 'productNm' }).val(product.productNm);
-        $('#product-name').append(info);
-        
-        info = $('<td/>', {name: 'productprice' }).val(product.productPrice);
-        $('#product-price').append(info);
-        
-        info = $('<input/>', { type: 'email', name: 'email' }).val(product.productimg);
-        $('#qty').val(cart.qty);
-        
-        info = $('<input/>', { type: 'text', name: 'phone' }).val(product.productimg);
-        $('#phone-div').append(info);
-        
-        info = $('<input/>', { type: 'number', name: 'point' }).val(product.productimg);
-        $('#point-div').append(info);
-        
-    }, function(err) {
-        console.log(err);
-    })
+  svc.cartListAjax(function(result) {
+    result.forEach(product => {
+      let tr = $('<tr />');
+      let src = '/yogidogi/images/';
+      switch (product.category) {
+        case 0: src += ('기타잡화/' + product.productImg); break;
+        case 1: src += ('사료간식/' + product.productImg); break;
+        case 2: src += ('위생배변/' + product.productImg); break;
+        case 3: src += ('의류/' + product.productImg); break;
+        case 4: src += ('장난감/' + product.productImg); break;
+        case 5: src += ('집/' + product.productImg); break;
+        default: src = '';
+      }
+      tr.append($('<td />').append($('<img />').attr({ 'src': src, 'class': 'img-fluid', 'alt': 'Image' })));
+      tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text(product.productName)));
+      tr.append($('<td />').attr('class', 'product-price').text((product.productPrice) + "원"));
+      
+      let quantityContainer = $('<div />').addClass('input-group mb-3 d-flex align-items-center quantity-container').css('max-width', '120px');
+      let decreaseButton = $('<button />').addClass('btn btn-outline-black btn-minus decrease').attr('type', 'button').text('−');
+      let quantityInput = $('<input />').addClass('form-control text-center quantity-amount').attr({ 'type': 'text', 'id': 'qty', 'placeholder': '', 'aria-label': 'Example text with button addon', 'aria-describedby': 'button-addon1', 'data-min': '1', 'data-max': '100' }).val(product.qty);
+      let increaseButton = $('<button />').addClass('btn btn-outline-black btn-plus increase').attr('type', 'button').text('+');
+      quantityContainer.append($('<div />').addClass('input-group-prepend').append(decreaseButton),
+      quantityInput,$('<div />').addClass('input-group-append').append(increaseButton));
+      tr.append($('<td />').append(quantityContainer));
+      let productTotalPrice = product.productPrice * product.qty;
+      tr.append($('<td />').attr('class', 'product-totalprice').text((productTotalPrice) + "원"));
+      let delBtn = $('<button />', { type: 'button', id: 'delBtn' + product.productNo }).text('X');
+      delBtn.on('click', e => {
+        svc.cartListDel(product.cartNo, function(result) {
+          if (result.retCode == 'Success') {
+            $('#delBtn' + product.productNo).parent().parent().remove();
+            alert('삭제했습니다');
+          } else {
+            alert('실패했습니다');
+          }
+        }, function(err) {
+          console.log(err);
+        });
+      });
+      tr.append($('<td />').append(delBtn));
+      $('tbody').eq(0).append(tr);
+    });
+  }, function(err) {
+    console.log(err);
+  });
 });
-                  /*   <tr>
-                          <td class="product-thumbnail">
-                            <img src="images/product-1.png" alt="Image" class="img-fluid">
-                          </td>
-                          <td class="product-name">
-                            <h2 class="h5 text-black"></h2>
-                          </td>
-                          <td id = "product-price">49,000원</td>
-                          <td>
-                            <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-                              <div class="input-group-prepend">
-                                <button class="btn btn-outline-black decrease" type="button">&minus;</button>
-                              </div>
-                              <input type="text" class="form-control text-center quantity-amount" id="qty" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                              <div class="input-group-append">
-                                <button class="btn btn-outline-black increase" type="button">&plus;</button>
-                              </div>
-                            </div>
-                           </td>
-                          <td>49,000원</td>
-                          <td><a href="#" class="btn btn-black btn-sm">X</a></td>
-                        </tr>*/
-
-
-
-
-
+$(document).on('click', '.btn-plus', function() {
+  let quantityInput = $(this).parent().parent().find('.quantity-amount');
+  let currentQuantity = parseInt(quantityInput.val());
+  let maxQuantity = parseInt(quantityInput.data('max'));
+  if (currentQuantity < maxQuantity) {
+    quantityInput.val(currentQuantity + 1);
+    updateTotalPrice($(this));
+  }
+});
+$(document).on('click', '.btn-minus', function() {
+  let quantityInput = $(this).parent().parent().find('.quantity-amount');
+  let currentQuantity = parseInt(quantityInput.val());
+  let minQuantity = parseInt(quantityInput.data('min'));
+  if (currentQuantity > minQuantity) {
+    quantityInput.val(currentQuantity - 1);
+    updateTotalPrice($(this));
+  }
+});
+function updateTotalPrice(button) {
+  let quantityInput = button.parent().parent().find('.quantity-amount');
+  let currentQuantity = parseInt(quantityInput.val());
+  let productPrice = parseInt(quantityInput.closest('tr').find('.product-price').text().replace('원', ''));
+  let totalPriceCell = quantityInput.closest('tr').find('.product-totalprice');
+  totalPriceCell.text((productPrice * currentQuantity) + '원');
+}
 
 
 //   makeTotal();
