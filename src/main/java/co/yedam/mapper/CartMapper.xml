@@ -13,6 +13,7 @@
   				,p.product_price
   				,p.product_img
   				,p.category
+  				,p.discount_pct
   		from cart c inner join product p
   		on c.product_no = p.product_no
   		where c.member_no = #{memberNo}
@@ -28,7 +29,13 @@
 		from cart
 		where member_no = #{memberNo}
   	</select>
-
+  	
+ 	<select id="cartListCheck" resultType="CartVO" parameterType="CartVO">
+    	select *
+    	from cart 
+    	where member_no = #{memberNo} and product_no = #{productNo}
+	</select>
+	
 	<insert id="insertCart" parameterType="CartVO">
   		insert into cart values (cart_seq.nextval, #{quantity}, #{proNo}, #{memberNo})
   	</insert>
@@ -38,10 +45,7 @@
   		set quantity = #{quantity} where cart_no = #{cartNo}
  	</update>
  	
- 	<select id="checkCart" resultType="CartVO" parameterType="CartVO">
-    	select *
-    	from cart 
-    	where member_no = #{memberNo} and product_no = #{proNo}
-	</select>
+
+
 	
 </mapper>  
