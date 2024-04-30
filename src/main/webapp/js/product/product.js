@@ -239,7 +239,8 @@ function shareKakao() {
 				webUrl: "http://43.203.180.128:8080/yogidogi/product.do?pno=" + pno
 			}
 		}
-	}
+	})
+}
 	
 	
 	/*===================
@@ -264,10 +265,7 @@ function shareKakao() {
 			alert('장바구니에 이미 담겨있습니다.')
 		}
     })
-  	});
-		
-	});
-}
+})
 
 const svc2 = {
 	reviewList(rvo = {}, successCall, errorCall) {
