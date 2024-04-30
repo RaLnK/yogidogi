@@ -25,15 +25,14 @@ public class CartListAdd implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-        
 		int memberNo = ((Integer)session.getAttribute("memberNo")).intValue();
-        int quantity = 1;
-        
+        int quantity = Integer.parseInt(req.getParameter("qty"));
+        int productNo = Integer.parseInt(req.getParameter("pno"));
         // CartVO 객체 생성 및 설정
         CartVO vo = new CartVO();
         vo.setMemberNo(memberNo);
         vo.setQuantity(quantity);
-		vo.setProductNo(Integer.parseInt(req.getParameter("pno")));
+		vo.setProductNo(productNo);
         
         // CartService 인스턴스 생성
         CartService svc = new CartServiceImpl();

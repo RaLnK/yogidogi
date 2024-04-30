@@ -23,14 +23,13 @@ public class CartServiceImpl implements CartService {
 	public boolean cartListAdd(CartVO vo) {
 		return mapper.cartListAdd(vo) == 1;
 	}
-	@Override
-	public boolean modCart(CartVO vo) {
-		return mapper.updateCart(vo) == 1;
-	}
+	/*
+	 * @Override public boolean cartUpDate(CartProductVO vo) { return
+	 * mapper.updateCart(vo) == 1; }
+	 */
 
 	@Override
 	public List<CartProductVO> cartList(int memberNo) {
-		
 		return mapper.cartList(memberNo);
 	}
 	@Override
@@ -39,8 +38,13 @@ public class CartServiceImpl implements CartService {
 	}
 	@Override
 	public boolean cartListCheck(CartVO vo) {
-		return mapper.cartListCheck(vo) == 0;
+		return mapper.cartListCheck(vo) == null;
 	}
+
+	/*
+	 * @Override public boolean cartUpDate(CartProductVO vo){ return
+	 * mapper.updateCart(vo) == 1; }
+	 */
 
 
 

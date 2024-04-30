@@ -24,21 +24,15 @@
   		where cart_no = #{cartNo}
   	</delete>
   	
-  	<select id="cartListAdd" resultType="CartVO" parameterType="int">
-  		select *
-		from cart
-		where member_no = #{memberNo}
-  	</select>
+  	<insert id="cartListAdd"  parameterType="int">
+insert into cart (cart_no, quantity, product_no, member_no) values (cart_no.nextval, #{quantity}, #{productNo}, #{memberNo})
+  	</insert>
   	
  	<select id="cartListCheck" resultType="CartVO" parameterType="CartVO">
     	select *
     	from cart 
     	where member_no = #{memberNo} and product_no = #{productNo}
 	</select>
-	
-	<insert id="insertCart" parameterType="CartVO">
-  		insert into cart values (cart_seq.nextval, #{quantity}, #{proNo}, #{memberNo})
-  	</insert>
   	
   	<update id="updateCart" parameterType="CartVO">
   		update cart 

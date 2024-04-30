@@ -150,7 +150,7 @@
 									<i class="fa fa-minus"></i>
 								</button>
 							</div>
-							<input type="text" class="form-control bg-secondary text-center"
+							<input type="text" class="form-control bg-secondary text-center" id="txtQty"
 								value="1">
 							<div class="input-group-btn">
 								<button class="btn btn-primary btn-plus">
@@ -159,7 +159,7 @@
 								</button>
 							</div>
 						</div>
-						<button class="btn btn-primary">
+						<button class="btn btn-primary" id= "btnCartAdd">
 							<i class="fa fa-shopping-cart mr-1"></i> Add To Cart
 						</button>
 					</div>

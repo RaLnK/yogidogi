@@ -28,7 +28,17 @@ const svc = {
     }
 }
 
-// cartList 
+Number.prototype.formatNumber = function() {
+    if (this == 0)
+        return 0;
+    let regex = /(^[+-]?\d+)(\d{3})/;
+    let nstr = (this + '');
+    while (regex.test(nstr)) {
+        nstr = nstr.replace(regex, '$1' + ',' + '$2');
+    }
+    return nstr;
+};
+
 document.addEventListener('DOMContentLoaded', function(e) {
     svc.cartListAjax(function(result) {
         result.forEach(product => {
@@ -48,9 +58,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
             tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text(product.productName)));
             
             // 할인율 가격 출력
+            let totalPrice = calculateTotalPrice(product, product.quantity); // 총 가격 계산
             let discPrice = Math.round(parseInt(product.productPrice) * (1 - parseInt(product.discountPct) * 0.01) / 100) * 100;
             let badge = $('<span />').css('color', 'red').addClass('badge').text('(' + product.discountPct + '%)');
-            let priceText = product.discountPct === 0 ? product.productPrice + '원' : `<del>${product.productPrice}원</del> ${discPrice}원`;
+            // let priceText = product.discountPct === 0 ? product.productPrice + '원' : `<del>${product.productPrice}원</del> ${discPrice}원`;
+            let priceText = product.discountPct === 0 ? product.productPrice.formatNumber() + '원' : `<del>${product.productPrice.formatNumber()}원</del> ${totalPrice.formatNumber()}원`;
             let priceCell = $('<td />').addClass('product-price').html(priceText + '<br/>').append(badge);
             tr.append(priceCell);
             if (parseInt(product.discountPct) === 0) {
@@ -66,8 +78,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
             tr.append($('<td />').append(quantityContainer));
             
             // 토탈 가격 출력
-            let totalPrice = calculateTotalPrice(product, product.quantity); // 총 가격 계산
-            tr.append($('<td />').addClass('product-totalprice').text(totalPrice + "원"));
+            tr.append($('<td />').addClass('product-totalprice').text(totalPrice.formatNumber() + "원"));
 
             // 삭제 버튼
             let delBtn = $('<button />', { type: 'button', id: 'delBtn' + product.cartNo }).text('X');
@@ -85,9 +96,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
             });
             tr.append($('<td />').append(delBtn));
             $('tbody').eq(0).append(tr);
+            
         });
     }, function(err) {
-        console.log(err);
+		console.log(err);
     });
 });
 
@@ -122,7 +134,8 @@ function updateTotalPrice(button) {
 
 function calculateTotalPrice(product, quantity) {
     let price = calculateDiscountedPrice(product); // 할인된 가격 계산
-    return price * quantity;
+    let totalPrice = price * quantity; // 총 가격 계산
+    return totalPrice;
 }
 
 function calculateDiscountedPrice(product) {
@@ -130,9 +143,50 @@ function calculateDiscountedPrice(product) {
         let discPrice = Math.round(parseInt(product.productPrice) * (1 - parseInt(product.discountPct) * 0.01));
         return discPrice;
     } else {
-        return product.productPrice;
+        return parseInt(product.productPrice); // 할인이 적용되지 않은 경우 상품 가격 그대로 반환
     }
 }
+           /*   <div class="row">
+                <div class="col-md-6">
+                  <div class="row mb-5">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                      <button class="btn btn-outline-black btn-sm btn-block">계속 쇼핑하기</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 pl-5">
+                  <div class="row justify-content-end">
+                    <div class="col-md-7">
+                      <div class="row">
+                        <div class="col-md-12 text-right border-bottom mb-5">
+                          <h3 class="text-black h4 text-uppercase">결제 내역</h3>
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <div class="col-md-6">
+                          <span class="text-black">주문 가격</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <strong class="text-black">23,000원</strong>
+                        </div>
+                      </div>
+                      <div class="row mb-5">
+                        <div class="col-md-6">
+                          <span class="text-black">결제 가격</span>
+                        </div>
+                        <div class="col-md-6 text-right">
+                          <strong class="text-black">23,000원</strong>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <button class="btn btn-black btn-lg py-3 btn-block" href="orderList.do">결제하기</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>*/
 
 //   makeTotal();
 //   removeCartEvent();
