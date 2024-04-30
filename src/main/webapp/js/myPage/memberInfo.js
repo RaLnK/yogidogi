@@ -24,6 +24,8 @@ const svc = {
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
+	$('.nav-item').removeClass('active');
+	$('.mypage').addClass('active');
 	svc.memberList(function(member) {
 		let info = $('<input/>', { type: 'text', name: 'memberId' }).val(member.memberId);
 		info.addClass('form-control').attr('readonly', true).css('border', 'none');

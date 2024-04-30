@@ -1,18 +1,20 @@
 /**
- * section.js
+ * secFooter.js
  */
 console.log('footer');
-let keyword = document.querySelector('.form-control').value;
 $('.btn-primary').on('click', searchKeyword);
 
 function searchKeyword() {
-	if(document.querySelector('.g-3 option').value == '상품') {
-		
-	}else if(document.querySelector('.g-3 option').value == '공지사항') {
-		
-	}else if(document.querySelector('.g-3 option').value == '문의사항') {
-		
-	}else if(document.querySelector('.g-3 option').value == '게시글') {
-		
+	let search = document.querySelector('.g-3 select').value;
+	let keyword = document.querySelector('.form-control').value;
+	switch(search) {
+		case 'prod' : locatin.href = '/yogidogi/productList.do'
+			break;
+		case 'notice' : locatin.href = '/yogidogi/boardList.do'
+			break;
+		case 'ask' : locatin.href = '/yogidogi/askList.do'
+			break;
+		case 'board' : locatin.href = '/yogidogi/boardList.do'
+			break;
 	}
 };
