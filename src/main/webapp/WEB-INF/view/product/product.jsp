@@ -35,8 +35,7 @@
 	</p>
 </div>
 
-<div
-	class="untree_co-section product-section before-footer-section section"
+<div class="untree_co-section product-section before-footer-section section"
 	style="display: none;">
 	<div class="container">
 		<div class="row one">
@@ -51,7 +50,7 @@
 					<strong class="product-price discPrice">$50.00</strong>
 					<div>
 						<!-- 좋아요 -->
-						<button class="button button-like">
+						<button class="button button-like" >
 							<i class="fa fa-heart"></i>
 						</button>
 					</div>

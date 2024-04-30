@@ -7,10 +7,13 @@ import co.yedam.vo.WishListVO;
 
 public interface ProductService {
 	// 상품 목록
-	public List<ProductVO> productList();
+	public List<ProductVO> productList(int order);
 	
 	// 상품 한개
 	public ProductVO getProduct(int pno);
+	
+	// 카테고리
+	public List<ProductVO> sortProductList(ProductVO pvo);
 
 	//회원가입
 	public boolean addProduct(ProductVO pvo);

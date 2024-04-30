@@ -15,25 +15,28 @@ import co.yedam.service.ProductService;
 import co.yedam.service.ProductServiceImpl;
 import co.yedam.vo.ProductVO;
 
-public class ProductListAjaxControl implements Control {
+public class SortProductListAjaxControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		resp.setContentType("text/json;charset=utf-8");
 		
 		String order = req.getParameter("order");
+		String category = req.getParameter("category");
+		
+		ProductVO pvo = new ProductVO();
+		pvo.setOrder(Integer.parseInt(order));
+		pvo.setProductNo(Integer.parseInt(category));
 		
 		ProductService svc = new ProductServiceImpl();
 		
-		List<ProductVO> list = svc.productList(Integer.parseInt(order));
-		
+		List<ProductVO> list = svc.sortProductList(pvo);
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list); //값을 Json 문자열로 만들어 줌
 		
 		resp.getWriter().print(json); // if 응답 방식에 한글 포함 => 인코딩 정의!
-		
+
 	}
 
 }
