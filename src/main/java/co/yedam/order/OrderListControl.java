@@ -13,6 +13,6 @@ public class OrderListControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("cart/cartList.tiles").forward(req, resp);
+		req.getRequestDispatcher("order/orderList.tiles").forward(req, resp);
 	}
 }

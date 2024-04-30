@@ -239,6 +239,33 @@ function shareKakao() {
 				webUrl: "http://43.203.180.128:8080/yogidogi/product.do?pno=" + pno
 			}
 		}
+	}
+	
+	
+	/*===================
+	 cartAdd
+	====================*/
+    $('#btnCartAdd').on('click', function() {
+    let qty = $('#txtQty').val(); 
+
+    fetch('cartListAdd.do', {
+        method: 'POST', 
+		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+		body: 'pno=' + pno + '&qty=' + qty
+    })
+    .then(response => response.json()) 
+    .then(data => {
+        //console.log(data);
+        if(data.retCode == "Success"){
+        	alert('장바구니에 담겼습니다.')
+        }else if(data.retCode == "Fail"){
+        	alert('장바구니에 담기 실패했습니다.')
+        }else{
+			alert('장바구니에 이미 담겨있습니다.')
+		}
+    })
+  	});
+		
 	});
 }
 

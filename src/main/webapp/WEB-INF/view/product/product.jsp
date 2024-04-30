@@ -134,7 +134,7 @@
 								<i class="fa fa-minus"></i>
 							</button>
 						</div>
-						<input type="text" class="form-control bg-secondary text-center"
+						<input type="text" class="form-control bg-secondary text-center" id="txtQty"
 							value="1">
 						<div class="input-group-btn">
 							<button class="btn btn-outline-secondary btn-plus">
@@ -143,7 +143,7 @@
 							</button>
 						</div>
 					</div>
-					<button class="btn btn-outline-secondary">
+					<button class="btn btn-outline-secondary" id= "btnCartAdd">
 						<i class="fa fa-shopping-cart mr-1"></i> Add To Cart
 					</button>
 					<!-- 좋아요 -->

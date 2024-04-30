@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<form action="order.do">
+<form action="orderList.do">
 		<div class="untree_co-section before-footer-section">
             <div class="container">
               <div class="row mb-5" id="cart">
@@ -59,7 +59,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <button class="btn btn-black btn-lg py-3 btn-block" type="submit">결제하기</button>
+                          <button class="btn btn-black btn-lg py-3 btn-block" href="orderList.do">결제하기</button>
                         </div>
                       </div>
                     </div>
