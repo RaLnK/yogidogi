@@ -7,14 +7,23 @@ function reList(){
 	 $.get('/yogidogi/replyList.do?bno='+bno,function(result){
 		  console.log(result);
 		  $('#example tbody').empty();
+		  let deleteBtn ="";
+		  let replyer = $('#example tbody tr').find("td:eq(2)").text()
+		  console.log($('#example tbody tr').find("td:eq(2)").text())
+		  if(mid == replyer  ){
+			  deleteBtn=$('<input type="button" class="delBtn" value="삭제">')
+		  }
+		  
 		  result.forEach(reply=>{
 			  $('<tr/>').append($('<td/>').text(reply.replyNo),
 			  			$('<td/>').text(reply.replyContent),
 			  			$('<td/>').text(reply.memberId),
-			  			$('<td/>').text(reply.replyDate)
+			  			$('<td/>').text(reply.replyDate),			  		
+				  		$('<td/>').append(deleteBtn)
 			  			).appendTo($('#example tbody'))
 			  			
 		  })
+
 	 })//end of replyList
 }
 
@@ -53,7 +62,26 @@ function reList(){
 			}
 			$('#reply').val(''); 
 		})
-	 })
 	 .catch(err => console.error(err));
+	 })
+	 //end of addReply
 	 
+	 		   //댓글 삭제
+	 $('#example tbody').on("click", ".delBtn" ,function(e){
+		let rno =$(e.target).closest("tr").find("td:eq(0)").text();
+		 fetch('delReply.do?rno=' + rno)
+		 .then(result=>result.json())
+		 .then(result=>{
+			 if(confirm("삭제하시겠습니까?")){
+				 if(result.retCode == 'Success'){
+					 alert("댓글이 정상적으로 삭제되었습니다.")
+					 reList();
+				 }
+			 }else{
+				 alert("댓글이 삭제되지 않았습니다.")
+			 }
+		 })
+		 .catch(err=> console.log(err))
+	 })//end of removeReply
+	
  })

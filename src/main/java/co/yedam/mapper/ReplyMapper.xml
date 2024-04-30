@@ -20,4 +20,9 @@
 		insert into reply(reply_no, board_no, reply_content, member_no, reply_level)
 				values(reply_no.nextval, #{boardNo}, #{replyContent}, #{memberNo}, 0)
 	</insert>
+	
+	<delete id="removeReply" parameterType="int">
+		delete from reply
+		where reply_no = #{rno}
+	</delete>
 </mapper>
