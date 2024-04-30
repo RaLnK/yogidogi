@@ -1,50 +1,46 @@
 /**
  * productList.js 
- * 해야 할 것 : 페이징, 상품 좋아요, 정렬 판매순
+ * 해야 할 것 : 페이징, 상품 좋아요
  */
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 
 $(function() {
-	
-	let order = 1;
-	let category = 1;
-	
-	$('#sort a').each((idx, sortMenu) =>{
-		$(sortMenu).on('click', e => {
-			$(sortMenu).siblings().removeClass('active');
-			$(sortMenu).addClass('active');
-			if($('#news').hasClass('active')){
-				order = 1;
-			}else if($('#news').hasClass('active')){
-				order == 11;
-			}else if($('#news').hasClass('active')){
-				order == 11;
-			}
-		})
-	})
-	
-	$('.side ul li').each((idx, cate) => {
-		$(cate).on('click', function(e) {
-			$(cate).siblings().removeClass('active');
-			$(cate).addClass('active');
-			category = $(cate).attr('id');
-		})
-	})
-	
-	svc.sortProductList(order, category, function(){
-		
-	})
 
 	// give active class to shop
 	$('.nav-item').removeClass('active');
 	$('.shop').addClass('active');
 
-	svc.productList(order, function(result) {	// start of productList
+	svc.productList(function(result) {	// start of productList
 		all(result); // 처음 들어 갔을 때 show all category
 		allCnt(result); // 전체 수량 cnt
 		cateCnt(result); // category cnt
 		cateChoose(result);//choose category 
 
+		// 전제 상품 sort
+		$('#sort a').each((idx, sortMenu) => {
+			$(sortMenu).on('click', e => {
+				e.preventDefault();
+				// give active class when click sorts(카테고리 어떤 게 선택 됐는 지 구분하기 위해)
+				$(sortMenu).siblings().removeClass('active');
+				$(sortMenu).addClass('active');
+				let sort = result;
+				if ($(sortMenu).prop('id') == 'discount') {
+					sort = result.sort(function(a, b) {
+						return b.discountPct - a.discountPct
+					});
+				} else if ($(sortMenu).prop('id') == 'sales') {
+					sort = result.sort(function(a, b) {
+						return b.discountPct - a.discountPct
+					});
+				} else if ($(sortMenu).prop('id') == 'news') {
+					sort = result.sort(function(a, b) {
+						return new Date(b.productNo) - new Date(a.productNo)
+					});
+				}
+
+				all(sort);
+			})
+		}) //end of sort
 		like();
 	}, function(err) {
 		console.error(err);
@@ -234,7 +230,7 @@ function cateChoose(result) {
 const svc = {
 	//상품 리스트
 	productList(successCall, errorCall) {
-		fetch('productListAjax.do?order='+order) /*최신순 : 1, 할인순: 11*/
+		fetch('productListAjax.do?order='+order) /*최신순 : 1, 할인 순*/
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
