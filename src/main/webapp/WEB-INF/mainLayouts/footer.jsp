@@ -4,10 +4,13 @@
 <script src="./js/secFooter.js"></script>
 <footer class="footer-section">
 	<div class="container relative">
-		<div class="sofa-img">
-			<img src="/yogidogi/images/footerdog.jpg" alt="Image" class="img-fluid">
-		</div>
-
+	
+	<div class="sofa-img">
+		<img src="/yogidogi/images/개발바닥.jpg" alt="Image" class="img-fluid">
+	</div>
+	<div class="sofa-img2">
+		<img src="/yogidogi/images/개발바닥2.jpg" alt="Image" class="img-fluid">
+	</div>
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="subscription-form">
