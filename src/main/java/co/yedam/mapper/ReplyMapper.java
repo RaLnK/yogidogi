@@ -9,4 +9,6 @@ public interface ReplyMapper {
 
 	List<ReplyVO> replyList(int bno);
 
+	public int addReply(ReplyVO rvo);
+
 }
