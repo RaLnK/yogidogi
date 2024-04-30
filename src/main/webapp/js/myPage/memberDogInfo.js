@@ -43,10 +43,11 @@ function dogList(result) {
 		temp.find('.breed-div').append(dogInfo.clone(true).attr('id', 'dogBreed' + idx).val(dog.dogBreed));
 		temp.find('.birthday-div').append(dogInfo.clone(true).attr('id', 'dogBirthday' + idx).val(dog.dogBirthday));
 		$('#dogList').append(temp);
+		temp.find('input').css('background-color', 'white');
 
 		temp.find('#editBtn').click(function(e) {
 			if ($(this).text() == '수정') {
-				temp.find('input').attr('readonly', false);
+				temp.find('input').attr('readonly', false).css('background-color', '#eff2f1');
 				$(this).text('완료');
 			} else if ($(this).text() == '완료') {
 				var mvo = {};
@@ -57,7 +58,7 @@ function dogList(result) {
 
 				svc.memberDogUpdate(mvo, function(result) {
 					if (result.retCode == 'Success') {
-						temp.find('input').attr('readonly', true);
+						temp.find('input').attr('readonly', true).css('background-color', 'white');
 						temp.find('#editBtn').text('수정');
 					}
 				});
@@ -69,7 +70,7 @@ function dogList(result) {
 
 	let dogIcon = $('<i />').attr('class', 'fa-solid fa-award fa-2x').css({ 'top': '0.5rem', 'left': '0.5rem' });
 	$('.border').eq(1).find('.form-group').eq(0).append(dogIcon);
-	$('.border').eq(1).attr('class', 'p-3 p-lg-5 col-md-12 border bg-white');
+	$('.border').eq(1).attr('class', 'p-3 p-lg-5 col-md-12 border').css('background-color', 'yellow');
 	//$('.border').eq(1).find('.row').last().
 }
 
