@@ -10,7 +10,7 @@ $(function() {
 		category: 0
 	}
 	
-	let order = pvc.order
+	let order = pvc.order;
 
 	
 	$('#sort a').each((idx, sortMenu) =>{
