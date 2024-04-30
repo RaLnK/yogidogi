@@ -214,3 +214,7 @@ body {
 .liked:hover span {
   color: #fefefe;
 }
+
+.product .fa-heart {
+  vertical-align: middle;
+}

@@ -3,19 +3,11 @@
 <%@page import="co.yedam.vo.ReviewVO"%>
 <%@page import="co.yedam.vo.ProductVO"%>
 <link href="/yogidogi/css/product.css" rel="stylesheet" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-
-
-<!-- Font Awesome -->
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-	rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <!-- Customized Bootstrap Stylesheet -->
 <link href="css/product.css" rel="stylesheet">
+<link href="css/productList.css" rel="stylesheet">
 
 <style>
 #sortReview a {
@@ -49,23 +41,19 @@
 	<div class="container">
 		<div class="row one">
 			<!-- Start Column 1 -->
-			<div class="col-12 col-md-4 col-lg-3 mb-5 product"
-				style="display: none;">
+			<div class="col-12 col-md-4 col-lg-3 mb-5 product" style="display: none;">
 				<a class="product-item item" href="#"> <img
 					src="images/product-3.png" class="img-fluid product-thumbnail img">
 					<h3 class="product-title title">Nordic Chair</h3>
 					<div class="badge bg-dark text-white position-absolute"
 						style="top: 0.5rem; right: 0.5rem">Sale</div> <span
 					class="text-muted text-decoration-line-through price">$20.00</span>
-					<strong class="product-price discPrice">$50.00</strong> <span
-					class="icon-cross span"> <img src="images/cross.svg"
-						class="img-fluid">
-				</span>
+					<strong class="product-price discPrice">$50.00</strong>
 					<div>
-					<!-- 좋아요 -->
-					<button class="button button-like">
-						<i class="fa fa-heart"></i> 
-					</button>
+						<!-- 좋아요 -->
+						<button class="button button-like">
+							<i class="fa fa-heart"></i>
+						</button>
 					</div>
 				</a>
 			</div>
@@ -135,42 +123,44 @@
 				<span class=discPercent></span> <span>%&#129047;</span> <span
 					class="text-muted text-decoration-line-through price">$20.00</span>
 				<h3 class="product-price discPrice">$50.00</h3>
-				<!-- 좋아요 -->
-					<button class="button button-like">
-						<i class="fa fa-heart"></i> 
-					</button>
-				<span class="icon-cross span">
-					<p class="mb-4 proddesc">상품설명</p>
 
-					<div class="d-flex align-items-center mb-4 pt-2">
-						<div class="input-group quantity mr-3" style="width: 130px;">
-							<div class="input-group-btn">
-								<button class="btn btn-primary btn-minus">
-									<!-- 마이너스 btn  -->
-									<i class="fa fa-minus"></i>
-								</button>
-							</div>
-							<input type="text" class="form-control bg-secondary text-center"
-								value="1">
-							<div class="input-group-btn">
-								<button class="btn btn-primary btn-plus">
-									<!-- 플러스 btn  -->
-									<i class="fa fa-plus"></i>
-								</button>
-							</div>
+				<p class="mb-4 proddesc">상품설명</p>
+
+				<div class="d-flex align-items-center mb-4 pt-2">
+					<div class="input-group quantity mr-3" style="width: 130px;">
+						<div class="input-group-btn">
+							<button class="btn btn-outline-secondary btn-minus">
+								<!-- 마이너스 btn  -->
+								<i class="fa fa-minus"></i>
+							</button>
 						</div>
-						<button class="btn btn-primary">
-							<i class="fa fa-shopping-cart mr-1"></i> Add To Cart
-						</button>
-					</div>
-					<div class="d-flex pt-2">
-						<p class="text-dark font-weight-medium mb-0 mr-2"></p>
-						<div class="d-inline-flex">
-							<a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();">카카오톡</a>
-							<a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();">트위터 </a>
-							<a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();">페이스북</a> 
+						<input type="text" class="form-control bg-secondary text-center"
+							value="1">
+						<div class="input-group-btn">
+							<button class="btn btn-outline-secondary btn-plus">
+								<!-- 플러스 btn  -->
+								<i class="fa fa-plus"></i>
+							</button>
 						</div>
 					</div>
+					<button class="btn btn-outline-secondary">
+						<i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+					</button>
+					<!-- 좋아요 -->
+					<button class="button button-like">
+						<i class="fa fa-heart"></i>
+					</button>
+				</div>
+				<div class="d-flex pt-2">
+					<p class="text-dark font-weight-medium mb-0 mr-2"></p>
+					<div class="d-inline-flex">
+						<a id="btnKakao" class="link-icon kakao"
+							href="javascript:shareKakao();">카카오톡</a> <a id="btnTwitter"
+							class="link-icon twitter" href="javascript:shareTwitter();">트위터
+						</a> <a id="btnFacebook" class="link-icon facebook"
+							href="javascript:shareFacebook();">페이스북</a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row px-xl-5">
@@ -183,7 +173,7 @@
 				</div>
 				<div class="tab-content">
 					<!-- 상품 상세 이미지 -->
-					<div id="detailContent" >
+					<div id="detailContent">
 						<div class="detailinfo showstep1">
 							<div class="tab-pane fade show active descDetail" id="tab-pane-1">
 								<img class="w-100 h-100 img"
@@ -192,8 +182,9 @@
 							</div>
 						</div>
 						<div class="d-grid gap-3">
-							<a href="#" class="btn_open btn btn-outline-dark ">상세설명 더보기</a> 
-							<a href="#" class="btn_close hide btn btn-outline-dark">상세설명 감추기</a>
+							<a href="#" class="btn_open btn btn-outline-dark ">상세설명 더보기</a> <a
+								href="#" class="btn_close hide btn btn-outline-dark">상세설명
+								감추기</a>
 						</div>
 					</div>
 
@@ -207,7 +198,8 @@
 							</p>
 						</div>
 						<div class="media mb-4 oneReview">
-							<img src="https://cdn-icons-png.flaticon.com/512/8054/8054593.png"
+							<img
+								src="https://cdn-icons-png.flaticon.com/512/8054/8054593.png"
 								alt="https://cdn-icons-png.flaticon.com/512/8054/8054593.png"
 								class="img-fluid mr-3 mt-1 reviewImg">
 							<div class="modal">
@@ -261,14 +253,14 @@
 
 	<!-- Shop Detail End -->
 
-
 	<script>
 		let logId = "${memberId}"
 		let pno = "${param.pno}" // parameter 값 가져오기
 		let order = 1;
 	</script>
+	
 	<!-- JavaScript Libraries -->
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 	<script src="js/product/product.js"></script>
 	<script src="js/product/productList.js"></script>
