@@ -24,7 +24,7 @@ const svc = {
 document.addEventListener('DOMContentLoaded', function(e) {
 	svc.memberDogList(function(result) {
 		dogList(result);
-		
+
 	}, function(err) {
 		console.log(err);
 	});
@@ -63,23 +63,15 @@ function dogList(result) {
 				});
 			}
 		});
-
 	});
 
-	let dogIcon = $('<i />').attr('class', 'fa-solid fa-award');
-	let h = $('<h6 />').attr('class', 'text-black').css('line-height', '50px').text('대표 강아지').prepend(dogIcon);
-	let div = $('<div />').attr('class', 'form-group row').append(h);
-	$('.border').eq(1).find('div').eq(0).prepend(div);
 	$('h6').css('text-align', 'center');
 
+	let dogIcon = $('<i />').attr('class', 'fa-solid fa-award fa-2x').css({ 'top': '0.5rem', 'left': '0.5rem' });
+	$('.border').eq(1).find('.form-group').eq(0).append(dogIcon);
+	$('.border').eq(1).attr('class', 'p-3 p-lg-5 col-md-12 border bg-white');
+	//$('.border').eq(1).find('.row').last().
 }
-
-
-
-
-
-
-
 
 
 
