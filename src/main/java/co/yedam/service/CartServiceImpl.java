@@ -32,23 +32,20 @@ public class CartServiceImpl implements CartService {
 	public List<CartProductVO> cartList(int memberNo) {
 		return mapper.cartList(memberNo);
 	}
+
 	@Override
 	public boolean cartListDel(CartVO cvo) {
 		return mapper.cartListDel(cvo) == 1;
 	}
+
 	@Override
 	public boolean cartListCheck(CartVO vo) {
 		return mapper.cartListCheck(vo) == null;
 	}
 
-	/*
-	 * @Override public boolean cartUpDate(CartProductVO vo){ return
-	 * mapper.updateCart(vo) == 1; }
-	 */
-
-
-
-
-
+	@Override
+	public boolean cartUpDate(CartVO vo) {
+		return mapper.cartUpDate(vo) == 1;
+	}
 
 }
