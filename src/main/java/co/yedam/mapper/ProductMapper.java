@@ -8,7 +8,9 @@ import co.yedam.vo.WishListVO;
 public interface ProductMapper {
 
 	// 상품 리스트
-	public List<ProductVO> productList();
+	public List<ProductVO> productList(int order);
+	
+	public List<ProductVO> sortProductList(ProductVO pvo);
 	
 	// 상품 한개 
 	public ProductVO getProduct(int pno);

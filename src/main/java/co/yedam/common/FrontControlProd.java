@@ -8,6 +8,7 @@ import co.yedam.product.ProductAjaxControl;
 import co.yedam.product.ProductControl;
 import co.yedam.product.ProductListAjaxControl;
 import co.yedam.product.ProductListControl;
+import co.yedam.product.SortProductListAjaxControl;
 import co.yedam.product.AddProductControl;
 import co.yedam.product.DelProductControl;
 
@@ -18,6 +19,7 @@ public class FrontControlProd {
 		// 상품
 		map.put("/productList.do", new ProductListControl()); // 상품 목록 화면
 		map.put("/productListAjax.do", new ProductListAjaxControl()); // 상품 목록
+		map.put("/sortProductListAjax.do", new SortProductListAjaxControl()); // 상품 목록
 		
 		map.put("/product.do", new ProductControl()); // 상품 1개 화면
 		map.put("/productAjax.do", new ProductAjaxControl()); // 상품 1개

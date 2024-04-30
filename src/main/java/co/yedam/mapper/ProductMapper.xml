@@ -18,7 +18,25 @@
 		         discount_pct,
 		         delete_chk
 		from product
-		order by product_no desc
+		order by ${order} desc <!-- 최신순 : 1, 할인 순: 11 -->
+	</select>
+	
+	<select id="sortProductList" parameterType="co.yedam.vo.ProductVO" resultType ="co.yedam.vo.ProductVO">
+		select  product_no , 
+		         product_name, 
+		         product_price,
+		         desc_text,
+		         desc_img, 
+		         left_cnt,
+		         category, 
+		         product_img, 
+		         company, 
+		         launch_date,
+		         discount_pct,
+		         delete_chk
+		from product
+		where category =${category}
+		order by ${order} desc <!-- 최신순 : 1, 할인 순: 11 -->
 	</select>
 
 	<select id="getProduct" parameterType="int" resultType="co.yedam.vo.ProductVO">

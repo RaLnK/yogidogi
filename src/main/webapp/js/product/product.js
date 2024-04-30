@@ -29,9 +29,9 @@ $(function() {
 		})
 		/* 상품 1개*/
 		svc2.oneProduct(pno, function(product) {
-			like(pno);
 			console.log(pno);
 			console.log(product);
+			
 			$('.productDetail h3:eq(0)').text(product.productName);
 			$('.productDetail input[name = rating][value =' + parseInt(starCnt / reviewCnt) + ']').prop('checked', true); // 리뷰 개슈
 			$('.productDetail .pt-1').text('(리뷰 ' + reviewCnt + '개)');
@@ -148,7 +148,7 @@ function allReview(result) { // 리뷰
 	let row = $('#tab-pane-3');
 	result.forEach((ele, idx) => {
 		$('.oneReview:eq(0)').hide();
-		let review = $('.oneReview:eq(0)').clone().show()
+		let review = $('.oneReview:eq(0)').clone().show();
 		//review.find('.rinfo img').text(ele.memberVO.memberName); 이미지 넣어야 됨!!!
 		review.find('.rinfo h6').text(ele.memberVO.memberName);
 		review.find('.rinfo h6').append('<small> - </small>');
@@ -243,28 +243,28 @@ function shareKakao() {
 }
 	
 	
-	/*===================
-	 cartAdd
-	====================*/
-    $('#btnCartAdd').on('click', function() {
-    let qty = $('#txtQty').val(); 
+/*===================
+ cartAdd
+====================*/
+$('#btnCartAdd').on('click', function() {
+	let qty = $('#txtQty').val();
 
-    fetch('cartListAdd.do', {
-        method: 'POST', 
+	fetch('cartListAdd.do', {
+		method: 'POST',
 		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		body: 'pno=' + pno + '&qty=' + qty
-    })
-    .then(response => response.json()) 
-    .then(data => {
-        //console.log(data);
-        if(data.retCode == "Success"){
-        	alert('장바구니에 담겼습니다.')
-        }else if(data.retCode == "Fail"){
-        	alert('장바구니에 담기 실패했습니다.')
-        }else{
-			alert('장바구니에 이미 담겨있습니다.')
-		}
-    })
+	})
+		.then(response => response.json())
+		.then(data => {
+			//console.log(data);
+			if (data.retCode == "Success") {
+				alert('장바구니에 담겼습니다.')
+			} else if (data.retCode == "Fail") {
+				alert('장바구니에 담기 실패했습니다.')
+			} else {
+				alert('장바구니에 이미 담겨있습니다.')
+			}
+		})
 })
 
 const svc2 = {

@@ -13,9 +13,15 @@ public class ProductServiceImpl implements ProductService{
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 	@Override
-	public List<ProductVO> productList() { // 상품 list
-		return mapper.productList();
+	public List<ProductVO> productList(int order) { // 상품 list
+		return mapper.productList(order);
 	}
+	
+	@Override
+	public List<ProductVO> sortProductList(ProductVO pvo) {
+		return mapper.sortProductList(pvo);
+	}
+	
 	@Override
 	public boolean addProduct(ProductVO pvo) { // 상품 추가
 		return mapper.addProd(pvo) == 1;
@@ -40,6 +46,7 @@ public class ProductServiceImpl implements ProductService{
 	public boolean checkWishList(WishListVO wvo) {
 		return mapper.checkWishList(wvo) == 0;
 	}
+	
 
 	
 }
