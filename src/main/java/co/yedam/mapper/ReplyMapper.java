@@ -11,4 +11,6 @@ public interface ReplyMapper {
 
 	public int addReply(ReplyVO rvo);
 
+	public int removeReply(int rno);
+
 }

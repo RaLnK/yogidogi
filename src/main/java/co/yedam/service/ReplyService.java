@@ -9,4 +9,5 @@ public interface ReplyService {
 
 	List<ReplyVO> replyList(int bno);
 	public boolean addReply(ReplyVO rvo);
+	public boolean removeReply(int rno);
 }
