@@ -7,9 +7,15 @@
 		<div class="row">
 			<div class="col-md-10 mb-10 mb-md-0" id="dogList">
 				<h2 class="h3 mb-3 text-black">내 강아지</h2>
+				<div class="row justify-content-end">
+					<div class="col-md-6" style="text-align:right;">
+						<button class="btn" style="color: blue; background-color: red;" id="setLeaderBtn">대표 강아지 설정</button>
+						<button class="btn" style="color: blue; background-color: red;" id="addDogBtn">강아지 등록</button>
+					</div>
+				</div>
 				<div class="p-3 p-lg-5 col-md-6 border bg-white" style="float:left;display:none">
 					<div class="form-group row">
-												
+						
 					</div> 
 					<div class="form-group row" style="padding: 1rem;">
 						<div class="col-md-4">

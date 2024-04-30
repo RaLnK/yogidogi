@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import co.yedam.common.Control;
 import co.yedam.service.MyPageService;
 import co.yedam.service.MyPageServiceImpl;
+import co.yedam.vo.OrderVO;
 
 public class MyOrderDetail implements Control {
 
@@ -17,7 +18,9 @@ public class MyOrderDetail implements Control {
 		int orderNo = Integer.parseInt(req.getParameter("ono"));
 		
 		MyPageService svc = new MyPageServiceImpl();
+		OrderVO ovo = svc.orderInfo(orderNo);
 		
+		req.setAttribute("orderVO", ovo);
 		
 		req.getRequestDispatcher("myPage/myOrderDetail.tiles").forward(req, resp);
 	}
