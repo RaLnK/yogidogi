@@ -1137,7 +1137,6 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-secondary {
-  color: #EDF1FF;
   border-color: #EDF1FF;
 }
 
@@ -7453,8 +7452,6 @@ input[type=checkbox] + label, input[type=radio] + label {
 span img:hover{
     cursor: -webkit-zoom-in;
 }
-/* image modal end */
-
 
 /* 상품상세 더보기*/
 .showstep1 {
@@ -7466,23 +7463,23 @@ span img:hover{
 	display: none;
 }
 
-/*icon*/
+/*product detail's link icon*/
 .link-icon {
 	position: relative;
 	display: inline-block;
-	width: auto;
+	width: 50px;
+	text-align: center;
 	font-size: 14px;
 	font-weight: 500;
 	color: #333;
-	margin-right: 10px;
 	padding-top: 50px;
-	
 }
+
 
 .link-icon.twitter {
 	background-image: url(../images/icon-twitter.png);
 	background-repeat: no-repeat;
-	margin-right: 20px;
+	margin-right: 18px;
 }
 
 .link-icon.facebook {
@@ -7493,4 +7490,10 @@ span img:hover{
 .link-icon.kakao {
 	background-image: url(../images/icon-kakao.png);
 	background-repeat: no-repeat;
+	margin-right: 20px;
+}
+
+/* like button */
+.pt-2 .button-like {
+	margin: 13px;
 }

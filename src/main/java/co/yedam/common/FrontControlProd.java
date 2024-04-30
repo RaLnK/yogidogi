@@ -2,12 +2,14 @@ package co.yedam.common;
 
 import java.util.Map;
 
+import co.yedam.product.AddToWishList;
+import co.yedam.product.DelFromWishList;
 import co.yedam.product.ProductAjaxControl;
 import co.yedam.product.ProductControl;
 import co.yedam.product.ProductListAjaxControl;
 import co.yedam.product.ProductListControl;
-import co.yedam.product.addProductControl;
-import co.yedam.product.delProductControl;
+import co.yedam.product.AddProductControl;
+import co.yedam.product.DelProductControl;
 
 public class FrontControlProd {
 	
@@ -20,9 +22,12 @@ public class FrontControlProd {
 		map.put("/product.do", new ProductControl()); // 상품 1개 화면
 		map.put("/productAjax.do", new ProductAjaxControl()); // 상품 1개
 		
-		map.put("/addProduct.do", new addProductControl()); // 상품 추가
+		map.put("/addProduct.do", new AddProductControl()); // 상품 추가
 
-		map.put("/delProduct.do", new delProductControl()); // 상품 삭제
+		map.put("/delProduct.do", new DelProductControl()); // 상품 삭제
+		
+		map.put("/addToWishList", new AddToWishList()); // wishList 추가
+		map.put("/delFromWishList", new DelFromWishList()); // wishList 삭제
 
 		
 	}

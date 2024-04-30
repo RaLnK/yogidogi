@@ -2,8 +2,8 @@ package co.yedam.service;
 
 import java.util.List;
 
-import co.yedam.vo.MemberVO;
 import co.yedam.vo.ProductVO;
+import co.yedam.vo.WishListVO;
 
 public interface ProductService {
 	// 상품 목록
@@ -17,5 +17,12 @@ public interface ProductService {
 	
 	//회원삭제
 	public boolean delProduct(ProductVO pvo);
+	
+	//wishList
+	public boolean addToWishList(WishListVO wvo);
+	
+	public boolean delFromWishList(WishListVO wvo);
+	
+	public boolean checkWishList(WishListVO wvo);
 	
 }
