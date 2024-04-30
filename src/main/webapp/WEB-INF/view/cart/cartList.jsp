@@ -59,7 +59,7 @@
                       </div>
                       <div class="row">
                         <div class="col-md-12">
-                          <button class="btn btn-black btn-lg py-3 btn-block" href="orderList.do">결제하기</button>
+                          <button class="btn btn-black btn-lg py-3 btn-block">결제하기</button>
                         </div>
                       </div>
                     </div>
@@ -69,4 +69,6 @@
             </div>
           </div>
 </form>
+<script>
+</script>
 <script src ="/yogidogi/js/cartjs/cartList.js"></script>
