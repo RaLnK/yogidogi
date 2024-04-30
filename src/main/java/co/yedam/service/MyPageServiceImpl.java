@@ -62,5 +62,10 @@ public class MyPageServiceImpl implements MyPageService {
 	public String getFirstProductName(int orderNo) {
 		return mapper.getFirstProductName(orderNo);
 	}
+
+	@Override
+	public OrderVO orderInfo(int orderNo) {
+		return mapper.orderInfo(orderNo);
+	}
 	
 }

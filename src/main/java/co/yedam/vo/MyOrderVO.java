@@ -9,7 +9,7 @@ public class MyOrderVO {
 	private String targetName;
 	private String orderAddr;
 	private String orderAddr2;
-	private int targetPhone;
+	private String targetPhone;
 	private String orderReq;
 	private int orderPrice;
 	private int orderPoint;

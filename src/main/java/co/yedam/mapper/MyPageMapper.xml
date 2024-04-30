@@ -63,5 +63,11 @@
 		from order_detail
 		where order_no = #{orderNo} and rownum = 1
 	</select>
+	
+	<select id="orderInfo" parameterType="int" resultType="OrderVO">
+		select target_name, order_addr, order_addr2, target_phone, order_req, order_price, order_point
+		from orders
+		where order_no = #{orderNo}
+	</select>
 
 </mapper>

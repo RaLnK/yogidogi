@@ -25,6 +25,7 @@
 
 	
 document.addEventListener('DOMContentLoaded',function(e){ 
+	
 	//삭제버튼 이벤트
 	$('#delBtn').click(function(e){
 		if(confirm("삭제하시겠습니까?")){

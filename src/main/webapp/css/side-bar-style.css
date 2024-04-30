@@ -1,4 +1,10 @@
 @charset "UTF-8";
+@font-face {
+    font-family: 'TTLaundryGothicB';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
 /* 노멀라이즈 시작 */
 body, ul, li {
   margin: 0;
@@ -7,6 +13,7 @@ body, ul, li {
 }
 
 a {
+  font-family: 'TTLaundryGothicB';
   color: inherit;   /* 부모 엘리먼트의 값을 물려받는다 */
   text-decoration: none;    /* 해당 태그의 text-decoration 속성을 none 값으로 하는 것으로 밑줄을 제거한다 */
 }

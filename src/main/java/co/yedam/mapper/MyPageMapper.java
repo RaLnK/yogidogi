@@ -21,4 +21,5 @@ public interface MyPageMapper {
 	
 	public List<OrderVO> myOrderList(int memberNo);
 	public String getFirstProductName(int orderNo);
+	public OrderVO orderInfo(int orderNo);
 }

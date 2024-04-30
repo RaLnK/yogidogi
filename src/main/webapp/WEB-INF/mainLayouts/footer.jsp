@@ -4,10 +4,13 @@
 <script src="./js/secFooter.js"></script>
 <footer class="footer-section">
 	<div class="container relative">
-		<div class="sofa-img">
-			<img src="/yogidogi/images/footerdog.jpg" alt="Image" class="img-fluid">
-		</div>
-
+	
+	<div class="sofa-img">
+		<img src="/yogidogi/images/개발바닥.jpg" alt="Image" class="img-fluid">
+	</div>
+	<div class="sofa-img2">
+		<img src="/yogidogi/images/개발바닥2.jpg" alt="Image" class="img-fluid">
+	</div>
 		<div class="row">
 			<div class="col-lg-8">
 				<div class="subscription-form">
@@ -19,11 +22,11 @@
 					<form action="#" class="row g-3">
 						<div>
 							<select name="findType">
-								<option selected>검색조건</option>
-								<option class="prod">상품</option>
-								<option class="notice">공지사항</option>
-								<option class="ask">문의사항</option>
-								<option class="board">게시글</option>
+								<option>검색조건</option>
+								<option value="prod">상품</option>
+								<option value="notice">공지사항</option>
+								<option value="ask">문의사항</option>
+								<option value="board">게시글</option>
 							</select>
 						</div>
 						<div class="col-auto">

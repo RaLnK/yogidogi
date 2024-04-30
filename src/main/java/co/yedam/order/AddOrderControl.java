@@ -42,7 +42,7 @@ public class AddOrderControl implements Control {
         vo.setTargetName(tgName);
         vo.setOrderAddr(odAd);
         vo.setOrderAddr2(odAd2);
-        vo.setTargetPhone(Integer.parseInt(tgPhone));
+        vo.setTargetPhone(tgPhone);
         vo.setOrderReq(odr);
         vo.setOrderPrice(Integer.parseInt(odPrice));
         vo.setOrderPoint(Integer.parseInt(odPoint));

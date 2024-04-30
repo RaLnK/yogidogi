@@ -39,6 +39,8 @@ public class FrontControlMyPage {
 		map.put("/myOrder.do", new MyOrder());
 		map.put("/myOrderList.do", new MyOrderList());
 		map.put("/getFirstProductName.do", new GetFirstProductName());
+		
+		//주문 상세 내역
 		map.put("/myOrderDetail.do", new MyOrderDetail());
 	}
 }

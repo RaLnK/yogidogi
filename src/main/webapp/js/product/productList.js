@@ -15,7 +15,8 @@ $(function() {
 		allCnt(result); // 전체 수량 cnt
 		cateCnt(result); // category cnt
 		cateChoose(result);//choose category 
-		
+		like();
+
 		// 전제 상품 sort
 		$('#sort a').each((idx, sortMenu) => {
 			$(sortMenu).on('click', e => {
@@ -50,9 +51,6 @@ $(function() {
 
 //functions 
 function all(result) { // 전체 상품
-	$('.button-like').bind('click', function(event) {
-		$(".button-like").toggleClass("liked");
-	})
 	$('.product:gt(0)').remove();
 	let row = $('.container .one');
 	result.forEach(ele => {
@@ -60,6 +58,7 @@ function all(result) { // 전체 상품
 			$('.product:eq(0)').hide();
 			let product = $('.product:eq(0)').clone().show();
 			product.find('.title').text(ele.productName);
+			product.find('.title').attr('id', ele.productNo);
 			product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
 			let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
 			product.find('.discPrice').text(discPrice);
@@ -80,14 +79,18 @@ function all(result) { // 전체 상품
 			row.append(product);
 		}
 	})
-	like();
 }
 
-function like(){
-	// 좋아요 기능
-	$('.button-like').on('click', e=>{
+function like() { // 좋아요 기능
+	$('.button-like').on('click', e => {
 		e.preventDefault();
-		$(e.target).closest('.button-like').addClass('liked');
+		let id = $(e.target).closest('.item').find('.title').attr('id');
+		console.log(e);
+		if ($(e.target).closest('.button-like').hasClass('liked')) {
+			$(e.target).closest('.button-like').removeClass('liked');
+		} else {
+			$(e.target).closest('.button-like').addClass('liked');
+		}
 	})
 }
 
@@ -142,6 +145,7 @@ function cateChoose(result) {
 					$('.product:eq(0)').hide();
 					let product = $('.product:eq(0)').clone().show();
 					product.find('.title').text(ele.productName);
+					product.find('.title').attr('id', ele.productNo);
 					product.find('.price').text(ele.productPrice);
 					product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
 					let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
@@ -196,6 +200,7 @@ function cateChoose(result) {
 							$('.product:eq(0)').hide();
 							let product = $('.product:eq(0)').clone().show();
 							product.find('.title').text(cateSort.productName);
+							product.find('.title').attr('id', ele.productNo);
 							product.find('.price').text(cateSort.productPrice);
 							product.find('.item').attr('href', 'product.do?pno=' + cateSort.productNo);
 							let discPrice = Math.round(parseInt(cateSort.productPrice) * (1 - parseInt(cateSort.discountPct) * 0.01) / 100) * 100;
@@ -231,6 +236,24 @@ const svc = {
 	//상품 리스트
 	productList(successCall, errorCall) {
 		fetch('productListAjax.do')
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	}, wishListAdd(pno = 0, successCall, errorCall) {
+		fetch('/yogidogi/wishListAdd.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno
+		})
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	}, wishListDel(pno = 0, successCall, errorCall) {
+		fetch('/yogidogi/delFromWishList.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno
+		})
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);

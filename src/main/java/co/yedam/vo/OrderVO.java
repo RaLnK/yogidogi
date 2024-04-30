@@ -11,7 +11,7 @@ public class OrderVO {
 		private String targetName;   	// 받는사람이름
 		private String orderAddr;  		// 주소
 		private String orderAddr2;		// 상세주소
-		private int targetPhone;		// 휴대폰번호
+		private String targetPhone;		// 휴대폰번호
 		private String orderReq;		// 주문요청사항
 		private int orderPrice;		// 구매가격
 		private int orderPoint;        // 사용한 포인트

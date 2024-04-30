@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import co.yedam.common.DataSource;
 import co.yedam.mapper.ProductMapper;
 import co.yedam.vo.ProductVO;
+import co.yedam.vo.WishListVO;
 
 public class ProductServiceImpl implements ProductService{
 	SqlSession session = DataSource.getInstance().openSession(true);
@@ -26,6 +27,18 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public ProductVO getProduct(int pno) {
 		return mapper.getProduct(pno);
+	}
+	@Override
+	public boolean addToWishList(WishListVO wvo) {
+		return mapper.addToWishList(wvo)==1;
+	}
+	@Override
+	public boolean delFromWishList(WishListVO wvo) {
+		return mapper.delFromWishList(wvo)==1;
+	}
+	@Override
+	public boolean checkWishList(WishListVO wvo) {
+		return mapper.checkWishList(wvo) == 0;
 	}
 
 	

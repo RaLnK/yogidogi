@@ -21,10 +21,9 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="mainapp.tiles">Home</a></li>
 				<li class="shop"><a class="nav-link" href="productList.do">Shop</a></li>
-				<li><a class="nav-link" href="about.html">Notice</a></li>
-				<li><a class="nav-link" href="services.html">Ask</a></li>
-				<li><a class="nav-link" href="boardList.do">Board</a></li>
-				<li><a class="nav-link" href="memberInfo.do">My Page</a></li>
+				<li class="ask"><a class="nav-link" href="services.html">Ask</a></li>
+				<li class="board"><a class="nav-link" href="boardList.do">Board</a></li>
+				<li class="mypage"><a class="nav-link" href="memberInfo.do">My Page</a></li>
 			</ul>
 
 			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">

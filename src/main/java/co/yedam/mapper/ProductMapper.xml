@@ -50,11 +50,25 @@
 					       #{discountPct});
 	</insert>
 	
-	
 	<update id="delProd" parameterType="co.yedam.vo.ProductVO">
 	update product
 	set delete_chk = ${deleteChk}
 	where product_no = ${productNo}
 	</update>
 	
+	<insert id = "addToWishList" parameterType="WishListVO">
+		insert into wishlist
+		values(#{memberNo}, #{productNo})
+	</insert>
+	
+	<delete id="delFromWishList" parameterType="WishListVO">
+		delete from wishlist
+		where product_no=#{productNo} and member_no=#{memberNo}
+	</delete>
+	
+	<select id="checkWishList" parameterType="WishListVO" resultType="int">
+		select count(*)
+		from wishlist
+		where member_no = #{memberNo} and product_no = #{productNo}
+	</select>
 </mapper>

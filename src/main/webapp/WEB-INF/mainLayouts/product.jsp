@@ -6,11 +6,14 @@
 		
 			<!-- Start Column 1 -->
 			<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-				<h2 class="mb-4 section-title">이달의 인기 상품</h2>
+				<h2 class="mb-4 section-title">🐾이달의 인기상품🐾</h2>
 				<p class="mb-4"></p>
-				<p>
+				<div class="sofa-img">
+				<img src="/yogidogi/images/footerdog.jpg" alt="Image" class="img-fluid">
+				</div>
+				<!-- <p>
 					<a href="productList.do" class="btn">=>상품 페이지 이동</a>
-				</p>
+				</p> -->
 			</div>
 			<!-- End Column 1 -->
 
