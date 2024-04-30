@@ -20,4 +20,10 @@ SqlSession session = DataSource.getInstance().openSession(true);
 		return mapper.replyList(bno);
 	}
 
+	@Override
+	public boolean addReply(ReplyVO rvo) {
+		// TODO Auto-generated method stub
+		return mapper.addReply(rvo) == 1;
+	}
+
 }

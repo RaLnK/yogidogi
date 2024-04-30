@@ -60,16 +60,19 @@ h4{
               
             </tr>
         </thead>
-
+		<tbody>
+		</tbody>
     </table>
     <div class="header" align="left" >
 		<input class="col-sm-5" id="reply">
-		<button class="col-sm-1" id="addReply" on>댓글등록</button>
+		<button class="col-sm-1" id="addReply" >댓글등록</button>
 	</div>
-    <p><button id="deleteBtn">댓글 삭제</button></p>
+  
 <script>
 let bno="${bno.boardNo }";
 let mid="${memberId}";
+let mno="${memberNo}";
+
 
 </script>
 

@@ -16,4 +16,8 @@
 	order by reply_no desc
 	</select>
 
+	<insert id="addReply" parameterType="ReplyVO">
+		insert into reply(reply_no, board_no, reply_content, member_no, reply_level)
+				values(reply_no.nextval, #{boardNo}, #{replyContent}, #{memberNo}, 0)
+	</insert>
 </mapper>
