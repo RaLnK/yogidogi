@@ -10,11 +10,6 @@ $(function() {
 		order: 1,
 		pno: pno
 	}, function(result) {
-		$('.side ul li').hide();
-		let temp = $('.side ul li:eq(0)').clone().show();
-		temp.appendTo($('.side ul'));
-		temp.html('<a href ="productList.do">쇼핑 계속하기</a>');
-		
 		$('.navRe').on('click', e => {
 			$('#detailContent').hide();
 			$('#tab-pane-3').show();
@@ -34,6 +29,8 @@ $(function() {
 		})
 		/* 상품 1개*/
 		svc2.oneProduct(pno, function(product) {
+			console.log(pno);
+			console.log(product);
 			
 			$('.productDetail h3:eq(0)').text(product.productName);
 			$('.productDetail input[name = rating][value =' + parseInt(starCnt / reviewCnt) + ']').prop('checked', true); // 리뷰 개슈
@@ -54,18 +51,18 @@ $(function() {
 				$('.showProduct .badge').hide();
 			}
 			switch (product.category) {
-				case 0: $('.showProduct').find('.img').attr('src', '/yogidogi/images/기타잡화/' + product.productImg);
-					$('.descDetail').find('.img').attr('src', '/yogidogi/images/기타잡화/' + product.descImg); break;
-				case 1: $('.showProduct').find('.img').attr('src', '/yogidogi/images/사료간식/' + product.productImg);
-					$('.descDetail').find('.img').attr('src', '/yogidogi/images/사료간식/' + product.descImg); break;
-				case 2: $('.showProduct').find('.img').attr('src', '/yogidogi/images/위생배변/' + product.productImg);
-					$('.descDetail').find('.img').attr('src', '/yogidogi/images/위생배변/' + product.descImg); break;
-				case 3: $('.showProduct').find('.img').attr('src', '/yogidogi/images/의류/' + product.productImg);
-					$('.descDetail').find('.img').attr('src', '/yogidogi/images/의류/' + product.descImg); break;
-				case 4: $('.showProduct').find('.img').attr('src', '/yogidogi/images/장난감/' + product.productImg);
-					$('.descDetail').find('.img').attr('src', '/yogidogi/images/장난감/' + product.descImg); break;
-				case 5: $('.showProduct').find('.img').attr('src', '/yogidogi/images/집/' + product.productImg);
-					$('.descDetail').find('.img').attr('src', '/yogidogi/images/집/' + product.descImg); break;
+				case 0: $('.showProduct').find('.img').attr('src', 'images/기타잡화/' + product.productImg);
+					$('.descDetail').find('.img').attr('src', 'images/기타잡화/' + product.descImg); break;
+				case 1: $('.showProduct').find('.img').attr('src', 'images/사료간식/' + product.productImg);
+					$('.descDetail').find('.img').attr('src', 'images/사료간식/' + product.descImg); break;
+				case 2: $('.showProduct').find('.img').attr('src', 'images/위생배변/' + product.productImg);
+					$('.descDetail').find('.img').attr('src', 'images/위생배변/' + product.descImg); break;
+				case 3: $('.showProduct').find('.img').attr('src', 'images/의류/' + product.productImg);
+					$('.descDetail').find('.img').attr('src', 'images/의류/' + product.descImg); break;
+				case 4: $('.showProduct').find('.img').attr('src', 'images/장난감/' + product.productImg);
+					$('.descDetail').find('.img').attr('src', 'images/장난감/' + product.descImg); break;
+				case 5: $('.showProduct').find('.img').attr('src', 'images/집/' + product.productImg);
+					$('.descDetail').find('.img').attr('src', 'images/집/' + product.descImg); break;
 				default: '';
 			}
 			
@@ -73,6 +70,8 @@ $(function() {
 			$('.btn_open').on('click', e => {
 				e.preventDefault();
 				let classList = $('.detailinfo');
+				console.log(classList);
+				let contentHeight = $('.detailinfo .descDetail').outerHeight(); // 컨텐츠 높이 얻기
 				
 				if (classList.hasClass('showstep1')) {
 					classList.removeClass('showstep1');
@@ -171,6 +170,29 @@ function allReview(result) { // 리뷰
 	modal();
 }
 
+function like(pno) { // 좋아요 기능
+	$('.button-like').on('click', e => {
+		e.preventDefault();
+		console.log(pno);
+		console.log(e);
+		if ($(e.target).closest('.button-like').hasClass('liked')) {
+			svc2.wishListAdd(pno, function(result) {
+				alert('위시리스트에 담았습니다.')
+				$(e.target).closest('.button-like').removeClass('liked');
+			}, function(err) {
+				console.log(err);
+			})
+		} else {
+			svc2.wishListDel(pno, function(result) {
+				alert('위시리스트에서 제거되었습니다.')
+				$(e.target).closest('.button-like').addClass('liked');
+			}, function(err) {
+				console.log(err);
+			})
+		}
+	})
+}
+
 function modal() {
 	// Image Modal
 	$(".reviewImg").on('click', function() {
@@ -253,6 +275,24 @@ const svc2 = {
 			.catch(errorCall);
 	}, oneProduct(pno = 0, successCall, errorCall) {
 		fetch('/yogidogi/productAjax.do?pno=' + pno)
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	}, wishListAdd(pno = 0, successCall, errorCall) {
+		fetch('/yogidogi/wishListAdd.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno
+		})
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	}, wishListDel(pno =0, successCall, errorCall) {
+		fetch('/yogidogi/delFromWishList.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno
+		})
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);

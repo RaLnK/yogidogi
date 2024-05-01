@@ -9,6 +9,7 @@ import co.yedam.product.ProductControl;
 import co.yedam.product.ProductListAjaxControl;
 import co.yedam.product.ProductListControl;
 import co.yedam.product.SortProductListAjaxControl;
+import co.yedam.product.WishListAjax;
 import co.yedam.product.AddProductControl;
 import co.yedam.product.DelProductControl;
 
@@ -28,8 +29,9 @@ public class FrontControlProd {
 
 		map.put("/delProduct.do", new DelProductControl()); // 상품 삭제
 		
-		map.put("/addToWishList", new AddToWishList()); // wishList 추가
-		map.put("/delFromWishList", new DelFromWishList()); // wishList 삭제
+		map.put("/wishListAjax.do", new WishListAjax()); // wishList 삭제
+		map.put("/addToWishList.do", new AddToWishList()); // wishList 추가
+		map.put("/delFromWishList.do", new DelFromWishList()); // wishList 삭제
 
 		
 	}

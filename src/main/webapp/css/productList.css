@@ -218,3 +218,7 @@ body {
 .product .fa-heart {
   vertical-align: middle;
 }
+
+.pt-2 .button-like {
+	margin: 13px;
+}

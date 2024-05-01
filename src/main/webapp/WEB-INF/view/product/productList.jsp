@@ -26,20 +26,22 @@
 	<div class="container">
 		<div class="row one">
 			<!-- Start Column 1 -->
-			<div class="col-12 col-md-4 col-lg-3 mb-5 product" style="display: none;">
+			<div class="col-12 col-md-4 col-lg-3 mb-5 product"
+				style="display: none;">
 				<a class="product-item item" href="#"> <img
 					src="images/product-3.png" class="img-fluid product-thumbnail img">
 					<h3 class="product-title title">Nordic Chair</h3>
-					<div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div> 
-					<span class="text-muted text-decoration-line-through price">$20.00</span>
+					<div class="badge bg-dark text-white position-absolute"
+						style="top: 0.5rem; right: 0.5rem">Sale</div> <span
+					class="text-muted text-decoration-line-through price">$20.00</span>
 					<strong class="product-price discPrice">$50.00</strong>
-					<div>
-						<!-- 좋아요 -->
-						<button class="button button-like">
-							<i class="fa fa-heart"></i>
-						</button>
-					</div>
 				</a>
+				<div>
+					<!-- 좋아요 -->
+					<button class="button button-like" id='productListLike'>
+						<i class="fa fa-heart"></i>
+					</button>
+				</div>
 			</div>
 			<!-- End Column 1 -->
 		</div>
@@ -48,6 +50,7 @@
 
 <script>
 let logId = "${memberId}"
+let memberNo ="${memberNo}"
 </script>
 
 <script src="js/product/productList.js"></script>

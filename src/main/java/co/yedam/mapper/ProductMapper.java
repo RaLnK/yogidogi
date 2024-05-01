@@ -23,9 +23,7 @@ public interface ProductMapper {
 	
 	//wishList
 	public int addToWishList(WishListVO wvo);
-	
 	public int delFromWishList(WishListVO wvo);
+	public List<WishListVO> wishList(int memberNo);
 	
-	public int checkWishList(WishListVO wvo);
-
 }

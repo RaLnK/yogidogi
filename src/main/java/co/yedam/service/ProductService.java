@@ -23,9 +23,8 @@ public interface ProductService {
 	
 	//wishList
 	public boolean addToWishList(WishListVO wvo);
-	
 	public boolean delFromWishList(WishListVO wvo);
+	public List<WishListVO> wishList(int memberNo);
 	
-	public boolean checkWishList(WishListVO wvo);
 	
 }

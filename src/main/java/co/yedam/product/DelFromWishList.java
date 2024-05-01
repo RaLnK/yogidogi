@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 import co.yedam.common.Control;
 import co.yedam.service.MyPageService;
 import co.yedam.service.MyPageServiceImpl;
+import co.yedam.service.ProductService;
+import co.yedam.service.ProductServiceImpl;
 import co.yedam.vo.WishListVO;
 
 public class DelFromWishList implements Control {
@@ -23,9 +25,9 @@ public class DelFromWishList implements Control {
 		wvo.setMemberNo(((Integer) session.getAttribute("memberNo")).intValue());
 		wvo.setProductNo(Integer.parseInt(req.getParameter("pno")));
 		
-		MyPageService svc = new MyPageServiceImpl();
+		ProductService pvc = new ProductServiceImpl();
 		
-		if (svc.wishListDel(wvo)) {
+		if (pvc.delFromWishList(wvo)) {
 			resp.getWriter().print("{\"retCode\" : \"Success\"}");
 		} else {
 			resp.getWriter().print("{\"retCode\" : \"Fail\"}");
