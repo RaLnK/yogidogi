@@ -14,6 +14,6 @@ public class FrontControlCart {
 		map.put("/cartListJson.do", new CartListJson()); // 카트리스트
 		map.put("/cartListDel.do", new CartListDel()); // 카트삭제
 		map.put("/cartListAdd.do", new CartListAdd()); // 카트등록
-		map.put("cartUpDate.do", new CartUpDate());
+		map.put("/cartUpDate.do", new CartUpDate());
 	}
 }

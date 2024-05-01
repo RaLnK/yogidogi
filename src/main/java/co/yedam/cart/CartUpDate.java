@@ -19,10 +19,12 @@ public class CartUpDate implements Control{
 		resp.setContentType("text/json;charset=utf-8");
 		int memberNo = ((Integer)session.getAttribute("memberNo")).intValue();
         int quantity = Integer.parseInt(req.getParameter("qty"));
+        int cartNo = Integer.parseInt(req.getParameter("cno"));
         
 		CartVO vo = new CartVO();
         vo.setMemberNo(memberNo);
         vo.setQuantity(quantity);
+        vo.setCartNo(cartNo);
         
 		CartService svc = new CartServiceImpl();
     	
