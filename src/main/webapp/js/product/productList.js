@@ -5,54 +5,90 @@
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 
 $(function() {
-	let pvc ={
-		order: 1,
-		category: 0
-	}
-	
-	let order = pvc.order
-
-	
-	$('#sort a').each((idx, sortMenu) =>{
-		$(sortMenu).on('click', e => {
-			$(sortMenu).siblings().removeClass('active');
-			$(sortMenu).addClass('active');
-			if($('#news').hasClass('active')){
-				pvc.order = 1;
-			}else if($('#news').hasClass('active')){
-				pvc.order = 11;
-			}else if($('#news').hasClass('active')){
-				pvc.order = 11;
-			}
-		})
-	})
-
-	$('.side ul li').each((idx, cate) => {
-		$(cate).on('click', function(e) {
-			$(cate).siblings().removeClass('active');
-			$(cate).addClass('active');
-			pvc.category = $(cate).attr('id');
-		})
-	})
-	
-	//오류있음
-	svc.sortProductList(pvc, function(){
-		all(result);
-	})
 	// give active class to shop
 	$('.nav-item').removeClass('active');
 	$('.shop').addClass('active');
 
-	console.log(order);
+	let pvc = {
+		order: 1,
+		category: 1
+	}
+	let order = pvc.order;
+
+	// 첫화면
 	svc.productList(order, function(result) {	// start of productList
 		all(result); // 처음 들어 갔을 때 show all category
 		allCnt(result); // 전체 수량 cnt
 		cateCnt(result); // category cnt
 
-		like();
 	}, function(err) {
 		console.error(err);
 	})// end of productList
+
+
+	//최신순, 판매순, 할인율순
+	$('#sort a').on('click', e => {
+		e.preventDefault();
+		$(e.target).siblings().removeClass('active');
+		$(e.target).addClass('active');
+		
+		let findCate = $('.side ul').find('.active').prop('id');
+
+		if(findCate == 'all' || findCate == 'yogi'){
+			if ($('#news').hasClass('active')) {
+				pvc.order = 1;
+			} else if ($('#sales').hasClass('active')) {
+				pvc.order = 11;
+			} else if ($('#discount').hasClass('active')) {
+				pvc.order = 11;
+			}
+			order = pvc.order;
+			svc.productList(order, function(result) {
+				all(result);
+			}, function(err) {
+				console.error(err);
+			})
+			
+		}else{
+			pvc.category = findCate;
+			if ($('#news').hasClass('active')) {
+				pvc.order = 1;
+			} else if ($('#sales').hasClass('active')) {
+				pvc.order = 11;
+			} else if ($('#discount').hasClass('active')) {
+				pvc.order = 11;
+			}
+			console.log(pvc);
+			svc.sortProductList(pvc, function(result) {
+				all(result);
+			}, function(err) {
+				console.error(err);
+			})
+		}
+	})
+
+	//start show each category
+	$('.side ul li').on('click', function(e) {
+		e.preventDefault();
+		$(e.target).closest('ul').find('.active').removeClass('active'); // 선택 시 li tag에 active 줌ㄴ
+		$(e.target).parent().addClass('active');
+		let targetId = $(e.target).parent().prop('id');
+		if (targetId == 'all' || targetId == 'yogi') {
+			svc.productList(order, function(result) {
+				all(result);
+			}, function(err) {
+				console.log(err);
+			})
+		} else {
+			pvc.category = parseInt(targetId);
+			svc.sortProductList(pvc, function(sortResult) {
+				all(sortResult);
+			}, function(err) {
+				console.log(err);
+			})
+		}
+	})//end show each category
+	
 })
 
 
@@ -86,17 +122,62 @@ function all(result) { // 전체 상품
 			row.append(product);
 		}
 	})
+	like();
 }
 
 function like() { // 좋아요 기능
+	if(memberNo != ''){
+		svc.wishList(memberNo, function(result){ // 이미 좋아요한 상품에 좋아요 표시하기
+			console.log(result);
+			result.forEach(liked => {
+				$('.title').each((idx, item)=>{
+					if(parseInt($(item).attr('id')) == liked.productNo){
+						$(item).closest('.product').find('.button-like').addClass('liked');
+					}
+				})
+			})
+		}) 
+	}
+	
 	$('.button-like').on('click', e => {
-		e.preventDefault();
-		let id = $(e.target).closest('.item').find('.title').attr('id');
-		console.log(e);
-		if ($(e.target).closest('.button-like').hasClass('liked')) {
-			$(e.target).closest('.button-like').removeClass('liked');
+		if (memberNo == '') {
+			alert('로그인을 해주세요');
+			location.href = '/yogidogi/loginForm.do'
 		} else {
-			$(e.target).closest('.button-like').addClass('liked');
+			let pno = 0;
+			console.log($(e.target).parent().attr('id'));
+			if ($(e.target).parent().attr('id') == 'productListLike') {
+				pno = $(e.target).closest('.product').find('.title').attr('id');
+			} else if ($(e.target).parent().attr('id') == 'productLike') {
+				const urlParams = new URL(location.href).searchParams; // url pno 값 가져오기
+				pno = urlParams.get('pno');
+			}
+			if ($(e.target).closest('.button-like').hasClass('liked')) {
+				svc.delFromWishList(parseInt(pno), function(result) {
+					if (result.retCode == 'Success') {
+						alert('위시리스트에서 제거되었습니다.');
+						$(e.target).closest('.button-like').removeClass('liked');
+					} else {
+						alert('실패했습니다');
+					}
+
+				}, function(err) {
+					console.log(err);
+				})
+			} else {
+				svc.addToWishList(parseInt(pno), function(result) {
+					if (result.retCode == 'Success') {
+						alert('위시리스트에 담았습니다.')
+						$(e.target).closest('.button-like').addClass('liked');
+					} else {
+						alert('실패했습니다');
+					}
+				}, function(err) {
+					console.log(err);
+				})
+			}
+
+
 		}
 	})
 }
@@ -132,123 +213,21 @@ function allCnt(result) { // 전체 count
 	$('#all a').text(allMenu + '(' + allCnt.length + ')');
 }
 
-function cateChoose(result) {
-	let sortCate = []; // sort된 카테고리 담아줄 배열
-	let row = $('.container .one');
-	let targetId;
-	$('.side ul li').each((idx, cate) => {
-		$(cate).on('click', function(e) {
-			e.preventDefault();
-			$('.showProduct').remove();
-			$('#sort').show();
-			$('.section').show();
-			$('.product:gt(0)').remove();
-			targetId = e.target.parentElement.id;
-			sortCate = [];
-			result.forEach(ele => {
-				if (parseInt(targetId) == ele.category && parseInt(ele.deleteChk) == 0) {
-					sortCate.push(ele); // 같은 category 배열에 저장
-					$('.product:eq(0)').hide();
-					let product = $('.product:eq(0)').clone().show();
-					product.find('.title').text(ele.productName);
-					product.find('.title').attr('id', ele.productNo);
-					product.find('.price').text(ele.productPrice);
-					product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
-					let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
-					product.find('.discPrice').text(discPrice);
-					product.find('.price').text(ele.productPrice);
-					if (parseInt(ele.discountPct) == 0) {
-						product.find('.price').hide();
-						product.find('.badge').hide();
-					}
-					switch (ele.category) {
-						case 0: product.find('.img').attr('src', 'images/기타잡화/' + ele.productImg); break;
-						case 1: product.find('.img').attr('src', 'images/사료간식/' + ele.productImg); break;
-						case 2: product.find('.img').attr('src', 'images/위생배변/' + ele.productImg); break;
-						case 3: product.find('.img').attr('src', 'images/의류/' + ele.productImg); break;
-						case 4: product.find('.img').attr('src', 'images/장난감/' + ele.productImg); break;
-						case 5: product.find('.img').attr('src', 'images/집/' + ele.productImg); break;
-						default: '';
-					}
-					row.append(product);
-				} else if (targetId == 'all' || targetId == 'yogi') {
-					$('.product:gt(0)').remove();
-					sortCate.push(ele);
-					all(result); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
-				}
-			})
-			
-			$('#sort a').each((idx, sortMenu) => { // 정렬을 위해
-				$(sortMenu).on('click', e => {
-					e.preventDefault();
-					// give active class when click sorts
-					$(sortMenu).siblings().removeClass('active');
-					$(sortMenu).addClass('active');
-					let sort = sortCate;// sortCate 담은 애들 정렬
-					if ($(sortMenu).prop('id') == 'discount') {
-						sort = sortCate.sort(function(a, b) {
-							return b.discountPct - a.discountPct
-						});
-					} else if ($(sortMenu).prop('id') == 'sales') {
-						sort = sortCate.sort(function(a, b) {
-							return b.discountPct - a.discountPct
-						});
-					} else if ($(sortMenu).prop('id') == 'news') {
-						sort = sortCate.sort(function(a, b) {
-							return new Date(b.productNo) - new Date(a.productNo)
-						});
-					}
-					$('.product:gt(0)').remove();
-					sort.forEach(cateSort => { // sortCate 담은 애들 forEach
-						if (parseInt(targetId) == cateSort.category && parseInt(cateSort.deleteChk) == 0) {
-							$('.product:eq(0)').hide();
-							let product = $('.product:eq(0)').clone().show();
-							product.find('.title').text(cateSort.productName);
-							product.find('.title').attr('id', cateSort.productNo);
-							product.find('.price').text(cateSort.productPrice);
-							product.find('.item').attr('href', 'product.do?pno=' + cateSort.productNo);
-							let discPrice = Math.round(parseInt(cateSort.productPrice) * (1 - parseInt(cateSort.discountPct) * 0.01) / 100) * 100;
-							product.find('.discPrice').text(discPrice);
-							product.find('.price').text(cateSort.productPrice);
-							if (parseInt(cateSort.discountPct) == 0) {
-								product.find('.price').hide();
-								product.find('.badge').hide();
-							}
-							switch (cateSort.category) {
-								case 0: product.find('.img').attr('src', 'images/기타잡화/' + cateSort.productImg); break;
-								case 1: product.find('.img').attr('src', 'images/사료간식/' + cateSort.productImg); break;
-								case 2: product.find('.img').attr('src', 'images/위생배변/' + cateSort.productImg); break;
-								case 3: product.find('.img').attr('src', 'images/의류/' + cateSort.productImg); break;
-								case 4: product.find('.img').attr('src', 'images/장난감/' + cateSort.productImg); break;
-								case 5: product.find('.img').attr('src', 'images/집/' + cateSort.productImg); break;
-								default: '';
-							}
-							row.append(product);
-						} else if (targetId == 'all' || targetId == 'yogi') {
-							$('.product:gt(0)').remove(); // gt : greater than. 첫번째 요소 제외 지우기
-							all(sort); // 전체 보기 or 요기도기 클릭 시 전체 항목 보여주기
-						}
-					})
-				})
-			}) //end of sort
-		})
-	})
-}// end of choose category
 
 const svc = {
 	//상품 리스트
-	productList(order= 1, successCall, errorCall) {
-		fetch('productListAjax.do?order='+order) /*최신순 : 1, 할인순: 11*/
+	productList(order = 1, successCall, errorCall) {
+		fetch('/yogidogi/productListAjax.do?order=' + order) /*최신순 : 1, 할인순: 11*/
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, sortProductList(pvc ={order: 1, category: 1}, successCall, errorCall) {
-		fetch('sortProductListAjax.do?order='+order+'&category='+category)
+	}, sortProductList(pvc = { order: 1, category: 1 }, successCall, errorCall) {
+		fetch('/yogidogi/sortProductListAjax.do?order=' + pvc.order + '&category=' + pvc.category)
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, wishListAdd(pno = 0, successCall, errorCall) {
-		fetch('/yogidogi/wishListAdd.do', {
+	}, addToWishList(pno = 0, successCall, errorCall) {
+		fetch('/yogidogi/addToWishList.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'pno=' + pno
@@ -256,12 +235,17 @@ const svc = {
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, wishListDel(pno = 0, successCall, errorCall) {
+	}, delFromWishList(pno = 0, successCall, errorCall) {
 		fetch('/yogidogi/delFromWishList.do', {
 			method: 'post',
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 			body: 'pno=' + pno
 		})
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	}, wishList(memberNo = 0, successCall, errorCall ){
+		fetch('/yogidogi/wishListAjax.do?memberNo=' + memberNo) /*최신순 : 1, 할인순: 11*/
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);

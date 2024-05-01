@@ -5,63 +5,6 @@
 <link href="/yogidogi/css/product.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<!-- Customized Bootstrap Stylesheet -->
-<link href="css/product.css" rel="stylesheet">
-<link href="css/productList.css" rel="stylesheet">
-
-<style>
-#sortReview a {
-	color: black;
-}
-
-#sort {
-	margin: 20px;
-}
-
-#sort a {
-	margin: 5px;
-}
-
-.top {
-	background-color: y
-}
-</style>
-<!--menu, 전체 product  -->
-<div id="sort" style="display: none;">
-	<p>
-		<a href="#" class="btn btn-outline-success active" id="news">신상품</a> <a
-			href="#" class="btn btn-outline-success" id="sales">판매순</a> <a
-			href="#" class="btn btn-outline-success" id="discount">할인률순</a>
-	</p>
-</div>
-
-<div class="untree_co-section product-section before-footer-section section"
-	style="display: none;">
-	<div class="container">
-		<div class="row one">
-			<!-- Start Column 1 -->
-			<div class="col-12 col-md-4 col-lg-3 mb-5 product" style="display: none;">
-				<a class="product-item item" href="#"> <img
-					src="images/product-3.png" class="img-fluid product-thumbnail img">
-					<h3 class="product-title title">Nordic Chair</h3>
-					<div class="badge bg-dark text-white position-absolute"
-						style="top: 0.5rem; right: 0.5rem">Sale</div> <span
-					class="text-muted text-decoration-line-through price">$20.00</span>
-					<strong class="product-price discPrice">$50.00</strong>
-					<div>
-						<!-- 좋아요 -->
-						<button class="button button-like" >
-							<i class="fa fa-heart"></i>
-						</button>
-					</div>
-				</a>
-			</div>
-			<!-- End Column 1 -->
-		</div>
-	</div>
-</div>
-
-
 
 <!------------------------------------------- Show One product ------------------------------------------->
 <body>
@@ -125,7 +68,7 @@
 
 				<p class="mb-4 proddesc">상품설명</p>
 
-				<div class="d-flex align-items-center mb-4 pt-2">
+				<div class="d-flex align-items-center mb-4 pt-2" >
 					<div class="input-group quantity mr-3" style="width: 130px;">
 						<div class="input-group-btn">
 							<button class="btn btn-outline-secondary btn-minus">
@@ -146,7 +89,7 @@
 						<i class="fa fa-shopping-cart mr-1"></i> Add To Cart
 					</button>
 					<!-- 좋아요 -->
-					<button class="button button-like">
+					<button class="button button-like" id = "productLike">
 						<i class="fa fa-heart"></i>
 					</button>
 				</div>
@@ -254,10 +197,11 @@
 
 	<script>
 		let logId = "${memberId}"
+		let memberNo = "${memberNo}"
 		let pno = "${param.pno}" // parameter 값 가져오기
 		let order = 1;
 	</script>
-	
+
 	<!-- JavaScript Libraries -->
 	<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>

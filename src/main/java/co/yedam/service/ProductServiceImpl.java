@@ -42,11 +42,10 @@ public class ProductServiceImpl implements ProductService{
 	public boolean delFromWishList(WishListVO wvo) {
 		return mapper.delFromWishList(wvo)==1;
 	}
-	@Override
-	public boolean checkWishList(WishListVO wvo) {
-		return mapper.checkWishList(wvo) == 0;
-	}
-	
 
+	@Override
+	public List<WishListVO> wishList(int memberNo) {
+		return mapper.wishList(memberNo);
+	}
 	
 }
