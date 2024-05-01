@@ -25,7 +25,7 @@ public class AddToWishList implements Control {
 
 		ProductService pvc = new ProductServiceImpl();
 		
-		if (pvc.delFromWishList(wvo)) {
+		if (pvc.addToWishList(wvo)) {
 			resp.getWriter().print("{\"retCode\" : \"Success\"}");
 		} else {
 			resp.getWriter().print("{\"retCode\" : \"Fail\"}");

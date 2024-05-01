@@ -44,6 +44,7 @@ $(function() {
 				$('.productDetail .proddesc').text(product.descText);
 			}
 			let discPrice = Math.round(parseInt(product.productPrice) * (1 - parseInt(product.discountPct) * 0.01) / 100) * 100;
+			$('.productDetail').attr('id', product.productNo);
 			$('.productDetail .discPercent').text(product.discountPct);
 			$('.productDetail .price').text(product.productPrice + '원');
 			$('.productDetail .discPrice').text(discPrice + '원');
