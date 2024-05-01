@@ -20,8 +20,8 @@ const svc = {
             .then(successCall)
             .catch(errorCall);
     },
-    makeTotal(successCall, errorCall) {
-        fetch("getTotal.do")
+    cartUpDate(successCall, errorCall) {
+        fetch("cartUpDate.do")
             .then(result => result.json())
             .then(successCall)
             .catch(errorCall);
@@ -96,11 +96,19 @@ document.addEventListener('DOMContentLoaded', function(e) {
             });
             tr.append($('<td />').append(delBtn));
             $('tbody').eq(0).append(tr);
-            
-        });
-    }, function(err) {
+
+		});
+
+		let totalPrice = 0;
+		// 각 상품의 가격을 합산
+		$('.product-totalprice').each(function() {
+			totalPrice += parseInt($(this).text().replace('원', '').replace(',', ''));
+		});
+		$('#productprice').text(totalPrice.toLocaleString() + '원');
+		$('#totalprice').text(totalPrice.toLocaleString() + '원');
+	}, function(err) {
 		console.log(err);
-    });
+	});
 });
 
 $(document).on('click', '.btn-plus', function() {
@@ -109,7 +117,8 @@ $(document).on('click', '.btn-plus', function() {
     let maxQuantity = parseInt(quantityInput.data('max'));
     if (currentQuantity < maxQuantity) {
         quantityInput.val(currentQuantity + 1);
-        updateTotalPrice($(this));
+        updateTotalPrice($(this)); // 수량 변경에 따라 총 가격 업데이트
+        sendQuantityUpdateToServer($(this)); // 서버로 변경된 수량 전송
     }
 });
 
@@ -119,9 +128,29 @@ $(document).on('click', '.btn-minus', function() {
     let minQuantity = parseInt(quantityInput.data('min'));
     if (currentQuantity > minQuantity) {
         quantityInput.val(currentQuantity - 1);
-        updateTotalPrice($(this));
+        updateTotalPrice($(this)); // 수량 변경에 따라 총 가격 업데이트
+        sendQuantityUpdateToServer($(this)); // 서버로 변경된 수량 전송
     }
 });
+
+function sendQuantityUpdateToServer(button) {
+    let quantity = button.closest('tr').find('.quantity-amount').val();
+    let cartNo = button.closest('tr').data('product').cartNo;
+
+    fetch('cartUpDate.do', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'cno=' + cartNo + '&qty=' + quantity
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.retCode == "Success") {
+            alert('수량 변경 성공')
+        } else if (data.retCode == "Fail") {
+            alert('수량 변경 실패.')
+        }
+    });
+}
 
 function updateTotalPrice(button) {
     let quantityInput = button.parent().parent().find('.quantity-amount');
@@ -146,47 +175,38 @@ function calculateDiscountedPrice(product) {
         return parseInt(product.productPrice); // 할인이 적용되지 않은 경우 상품 가격 그대로 반환
     }
 }
-           /*   <div class="row">
-                <div class="col-md-6">
-                  <div class="row mb-5">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                      <button class="btn btn-outline-black btn-sm btn-block">계속 쇼핑하기</button>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 pl-5">
-                  <div class="row justify-content-end">
-                    <div class="col-md-7">
-                      <div class="row">
-                        <div class="col-md-12 text-right border-bottom mb-5">
-                          <h3 class="text-black h4 text-uppercase">결제 내역</h3>
-                        </div>
-                      </div>
-                      <div class="row mb-3">
-                        <div class="col-md-6">
-                          <span class="text-black">주문 가격</span>
-                        </div>
-                        <div class="col-md-6 text-right">
-                          <strong class="text-black">23,000원</strong>
-                        </div>
-                      </div>
-                      <div class="row mb-5">
-                        <div class="col-md-6">
-                          <span class="text-black">결제 가격</span>
-                        </div>
-                        <div class="col-md-6 text-right">
-                          <strong class="text-black">23,000원</strong>
-                        </div>
-                      </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <button class="btn btn-black btn-lg py-3 btn-block" href="orderList.do">결제하기</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>*/
+
+// 장바구니에 담긴 상품들의 결제금액 총합을 계산하는 함수
+function calculateTotalPriceInCart() {
+    let totalPrice1 = 0;
+
+    // 각 상품의 결제금액을 계산하여 총합에 더합니다
+    $('.product').each(function() {
+        let price = parseInt($(this).find('.product-price').text().replace(/[^\d]/g, '')); // 가격에서 콤마 제거 후 정수로 변환
+        let quantity = parseInt($(this).find('.quantity-amount').val()); // 수량
+        totalPrice1 += product.price * product.quantity;
+    });
+
+    return totalPrice1;
+}
+
+// 장바구니 총 결제금액을 화면에 표시하는 함수
+function displayTotalPriceInCart() {
+    let totalPrice1 = calculateTotalPriceInCart();
+    $('#total-price').text(totalPrice1.toLocaleString() + '원'); // 콤마 추가하여 표시
+}
+
+// 페이지 로드 시 장바구니 총 결제금액 표시
+$(document).ready(function() {
+    displayTotalPriceInCart();
+});
+
+// 수량이 변경될 때마다 장바구니 총 결제금액 업데이트
+$(document).on('change', '.quantity-amount', function() {
+    displayTotalPriceInCart();
+});
+
+
 
 //   makeTotal();
 //   removeCartEvent();

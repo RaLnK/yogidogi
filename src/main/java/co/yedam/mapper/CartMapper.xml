@@ -34,7 +34,7 @@ insert into cart (cart_no, quantity, product_no, member_no) values (cart_no.next
     	where member_no = #{memberNo} and product_no = #{productNo}
 	</select>
   	
-  	<update id="updateCart" parameterType="CartVO">
+  	<update id="cartUpDate" parameterType="CartVO">
   		update cart 
   		set quantity = #{quantity} where cart_no = #{cartNo}
  	</update>
