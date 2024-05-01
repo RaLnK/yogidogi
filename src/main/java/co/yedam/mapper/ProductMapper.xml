@@ -85,7 +85,7 @@
 	</delete>
 	
 	<select id="wishList" parameterType="int" resultType ="WishListVO">
-		select from wishlist
+		select * from wishlist
 		where member_no=#{memberNo}
 	</select>
 

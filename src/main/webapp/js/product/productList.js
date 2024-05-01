@@ -126,17 +126,19 @@ function all(result) { // 전체 상품
 }
 
 function like() { // 좋아요 기능
-	if(memberNo != ''){
-		svc.wishList(memberNo, function(result){ // 이미 좋아요한 상품에 좋아요 표시하기
-			console.log(result);
+	if (memberNo != '') {
+		svc.wishList(memberNo, function(result) { // 이미 좋아요한 상품에 좋아요 표시하기
 			result.forEach(liked => {
-				$('.title').each((idx, item)=>{
-					if(parseInt($(item).attr('id')) == liked.productNo){
+				$('.title').each((idx, item) => {
+					if (parseInt($(item).attr('id')) == liked.productNo) { // productList에 like 표시
 						$(item).closest('.product').find('.button-like').addClass('liked');
 					}
 				})
+				if (parseInt($('.productDetail').attr('id')) == liked.productNo) {// product에 like 표시
+					$('#' + liked.productNo).find('.button-like').addClass('liked');
+				}
 			})
-		}) 
+		})
 	}
 	
 	$('.button-like').on('click', e => {
