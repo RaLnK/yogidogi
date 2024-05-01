@@ -69,5 +69,11 @@
 		from orders
 		where order_no = #{orderNo}
 	</select>
+	
+	<select id="orderDetailList" parameterType="int" resultType="">
+		select p.product_img, p.product_name, p.product_price, p.discount_pct, o.order_qty
+		from product p, order_detail o
+		where p.product_no = o.product_no and order_no = 3;
+	</select>
 
 </mapper>

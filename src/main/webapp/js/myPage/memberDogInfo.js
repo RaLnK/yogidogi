@@ -70,7 +70,7 @@ function dogList(result) {
 
 	let dogIcon = $('<i />').attr('class', 'fa-solid fa-award fa-2x').css({ 'top': '0.5rem', 'left': '0.5rem' });
 	$('.border').eq(1).find('.form-group').eq(0).append(dogIcon);
-	$('.border').eq(1).attr('class', 'p-3 p-lg-5 col-md-12 border').css('background-color', 'yellow');
+	$('.border').eq(1).attr('class', 'p-3 p-lg-5 col-md-12 border').css('background-color', '#f0d881');
 	//$('.border').eq(1).find('.row').last().
 }
 

@@ -51,39 +51,30 @@
 				
 				<h4 class="h5 text-black">상품 및 결제 정보</h2>
 				<div class="p-3 p-lg-5 col-md-12 border bg-white">
-					<div class="form-group row" style="padding: 1rem;">
-						<div class="col-md-4" style="text-align:center;">
-							<strong class="text-black" style="line-height: 50px;">수신자 이름 :</strong>
-						</div>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					
-					<div class="form-group row" style="padding: 1rem;">
-						<div class="col-md-4" style="text-align:center;">
-							<strong class="text-black" style="line-height: 50px;">수신지 주소 :</strong>
-						</div>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					
-					<div class="form-group row" style="padding: 1rem;">
-						<div class="col-md-4" style="text-align:center;">
-							<strong class="text-black" style="line-height: 50px;">전화번호 :</strong>
-						</div>
-						<div class="col-md-8">
-							
-						</div>
-					</div>
-					
-					<div class="form-group row" style="padding: 1rem;">
-						<div class="col-md-4" style="text-align:center;">
-							<strong class="text-black" style="line-height: 50px;">수신자 이름 :</strong>
-						</div>
-						<div class="col-md-8">
-							
+					<div class="row col-md-12">
+						<div class="site-blocks-table">
+							<table class="table">
+								<thead>
+									<tr>
+										<th class="product-thumbnail" colspan="2">상품</th>
+										<th class="product-quantity">수량</th>
+										<th class="product-price">가격</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr style="display:none">
+										<td class="product-thumbnail">
+											
+										</td>
+										<td class="product-name">
+											<h4 class="h5 text-black">이름</h4>
+										</td>
+										<td>$49.00</td>
+										<td><button type="button" style="color:white;background-color:black;" id="addBtn">추가</button></td>
+										<td><button type="button" style="color:white;background-color:black;" id="delBtn">삭제</button></td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
 					

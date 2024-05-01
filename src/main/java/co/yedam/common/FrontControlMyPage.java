@@ -16,6 +16,7 @@ import co.yedam.myPage.MyOrderDetail;
 import co.yedam.myPage.MyOrderList;
 import co.yedam.myPage.WishListAdd;
 import co.yedam.myPage.WishListDel;
+import co.yedam.myPage.myOrderDetailAjax;
 
 public class FrontControlMyPage {
 	public static void push(Map<String, Control> map) {
@@ -42,5 +43,6 @@ public class FrontControlMyPage {
 		
 		//주문 상세 내역
 		map.put("/myOrderDetail.do", new MyOrderDetail());
+		map.put("/myOrderDetailAjax.do", new myOrderDetailAjax());
 	}
 }
