@@ -151,7 +151,7 @@ function allReview(result) { // 리뷰
 	result.forEach((ele, idx) => {
 		$('.oneReview:eq(0)').hide();
 		let review = $('.oneReview:eq(0)').clone().show();
-		//review.find('.rinfo img').text(ele.memberVO.memberName); 이미지 넣어야 됨!!!
+		//review.find('.rinfo img').attr('src', 'images/기타잡화/' + ele.productImg);  이미지 넣기
 		review.find('.rinfo h6').text(ele.memberVO.memberName);
 		review.find('.rinfo h6').append('<small> - </small>');
 		review.find('.rinfo h6 small').append('<i/>');

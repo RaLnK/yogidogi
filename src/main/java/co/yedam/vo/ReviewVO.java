@@ -17,6 +17,7 @@ public class ReviewVO {
 	    private int order;// 정렬
 	    
 	    private MemberVO memberVO; // join 할 vo
+	    
 }	
 
 

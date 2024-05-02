@@ -4,6 +4,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
+
 <style>
 #sort {
 	margin: 20px;
@@ -15,14 +16,15 @@
 </style>
 <div id="sort">
 	<p>
-		<a href="#" class="btn btn-outline-success active" id="news">신상품</a> <a
-			href="#" class="btn btn-outline-success" id="sales">판매순</a> <a
-			href="#" class="btn btn-outline-success" id="discount">할인률순</a>
+		<a href="#" class="btn btn-outline-success active" id="news" data-order='1'>신상품</a> 
+		<a href="#" class="btn btn-outline-success" id="sales" data-order='1'>판매순</a> 
+		<a href="#" class="btn btn-outline-success" id="discount" data-order='12'>할인률순</a>
 	</p>
 </div>
 
 
-<div class="untree_co-section product-section before-footer-section section">
+<div
+	class="untree_co-section product-section before-footer-section section">
 	<div class="container">
 		<div class="row one">
 			<!-- Start Column 1 -->
@@ -48,9 +50,16 @@
 	</div>
 </div>
 
+<div class="center">
+	<div class="pagination">
+		<a href="#">1</a>
+		<a href="#">2</a>
+	</div>
+</div>
+
 <script>
-let logId = "${memberId}"
-let memberNo ="${memberNo}"
+	let logId = "${memberId}"
+	let memberNo = "${memberNo}"
 </script>
 
 <script src="js/product/productList.js"></script>
