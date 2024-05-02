@@ -16,12 +16,12 @@ public class MyOrderDetail implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int orderNo = Integer.parseInt(req.getParameter("ono"));
-		
+
 		MyPageService svc = new MyPageServiceImpl();
 		OrderVO ovo = svc.orderInfo(orderNo);
-		
+
 		req.setAttribute("orderVO", ovo);
-		
+
 		req.getRequestDispatcher("myPage/myOrderDetail.tiles").forward(req, resp);
 	}
 

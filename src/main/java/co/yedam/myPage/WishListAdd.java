@@ -24,7 +24,7 @@ public class WishListAdd implements Control {
 		wvo.setProductNo(Integer.parseInt(req.getParameter("pno")));
 
 		MyPageService svc = new MyPageServiceImpl();
-		
+
 		if (svc.checkCart(wvo)) {
 			if(svc.wishListAdd(wvo)) {
 				resp.getWriter().print("{\"retCode\" : \"Success\"}");

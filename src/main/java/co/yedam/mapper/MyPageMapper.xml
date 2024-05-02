@@ -31,9 +31,9 @@
 	</update>
 	
 	<select id="wishListAjax" parameterType="int" resultType="ProductVO">
-		select p.product_no, p.product_name, p.product_price, p.product_img, p.category
-		from product p, wishlist w
-		where p.product_no in (select w.product_no from wishlist where member_no=#{member_no})
+		select product_no, product_name, product_price, product_img, category
+		from product
+		where product_no in (select product_no from wishlist where member_no=#{member_no})
 	</select>
 	
 	<delete id="wishListDel" parameterType="WishListVO">
@@ -65,15 +65,21 @@
 	</select>
 	
 	<select id="orderInfo" parameterType="int" resultType="OrderVO">
-		select target_name, order_addr, order_addr2, target_phone, order_req, order_price, order_point
+		select order_no, target_name, order_addr, order_addr2, target_phone, order_req, order_price, order_point
 		from orders
 		where order_no = #{orderNo}
 	</select>
 	
-	<select id="orderDetailList" parameterType="int" resultType="OrderProductVO">
+	<select id="myOrderProduct" parameterType="int" resultType="OrderProductVO">
 		select p.product_img, p.product_name, p.product_price, p.discount_pct, o.order_qty
 		from product p, order_detail o
 		where p.product_no = o.product_no and order_no = #{orderNo}
+	</select>
+	
+	<select id="myBoardList" parameterType="Board" resultType="Board">
+		select board_no, board_title, board_content, to_char(board_date, 'yyyy-MM-dd') as "board_date"
+		from board
+		where member_no = #{memberNo} and board_category = #{boardCategory}
 	</select>
 
 </mapper>

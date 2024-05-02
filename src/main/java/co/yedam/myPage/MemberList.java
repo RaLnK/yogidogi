@@ -20,16 +20,16 @@ public class MemberList implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		
+
 		MyPageService svc = new MyPageServiceImpl();
-		
+
 		int memberNo = ((Integer)session.getAttribute("memberNo")).intValue();
-		
+
 		MemberVO vo = svc.memberList(memberNo);
-		
+
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(vo);
-		
+
 		resp.getWriter().print(json);
 	}
 

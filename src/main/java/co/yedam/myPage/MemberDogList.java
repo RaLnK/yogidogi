@@ -21,7 +21,7 @@ public class MemberDogList implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		
+
 		int memberNo = ((Integer) session.getAttribute("memberNo")).intValue();
 
 		MyPageService svc = new MyPageServiceImpl();
@@ -29,7 +29,7 @@ public class MemberDogList implements Control {
 
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
-		
+
 		resp.getWriter().print(json);
 	}
 

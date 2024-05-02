@@ -24,9 +24,9 @@ public class MyOrderList implements Control {
 		int memberNo = ((Integer) session.getAttribute("memberNo")).intValue();
 
 		MyPageService svc = new MyPageServiceImpl();
-		
+
 		List<OrderVO> list = svc.myOrderList(memberNo);
-		
+
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
 
