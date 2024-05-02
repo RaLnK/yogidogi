@@ -8,7 +8,7 @@
 		
 		<h5 class="h5 text-black" style="font-weight:500;padding-left:8rem;padding-top:2rem;">자유 게시판</h5>
 		<div class="p-3 p-lg-5 col-md-12 border bg-white" style="border:2px;">
-			<div class="row col-md-10" style="text-align:center;">
+			<div class="row col-md-12" style="text-align:center;">
 				<div class="site-blocks-table">
 					<table class="table">
 						<thead>
@@ -29,7 +29,7 @@
 		
 		<h5 class="h5 text-black" style="font-weight:500;padding-left:8rem;padding-top:2rem;">문의 내역</h5>
 		<div class="p-3 p-lg-5 col-md-12 border bg-white" style="border:2px;">
-			<div class="row col-md-10" style="text-align:center;">
+			<div class="row col-md-12" style="text-align:center;">
 				<div class="site-blocks-table">
 					<table class="table">
 						<thead>
@@ -50,7 +50,7 @@
 		
 		<h5 class="h5 text-black" style="font-weight:500;padding-left:8rem;padding-top:2rem;">댓글 기록</h5>
 		<div class="p-3 p-lg-5 col-md-12 border bg-white" style="border:2px;">
-			<div class="row col-md-10" style="text-align:center;">
+			<div class="row col-md-12" style="text-align:center;">
 				<div class="site-blocks-table">
 					<table class="table">
 						<thead>

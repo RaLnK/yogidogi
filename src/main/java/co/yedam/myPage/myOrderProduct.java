@@ -20,9 +20,9 @@ public class myOrderProduct implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int orderNo = Integer.parseInt(req.getParameter("ono"));
-
+		
 		MyPageService svc = new MyPageServiceImpl();
-
+		
 		List<OrderProductVO> list = svc.myOrderProduct(orderNo);
 
 		Gson gson = new GsonBuilder().create();

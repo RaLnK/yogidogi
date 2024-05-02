@@ -76,8 +76,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	@Override
-	public List<Board> myBoardList(int category) {
-		return mapper.myBoardList(category);
+	public List<Board> myBoardList(Board bvo) {
+		return mapper.myBoardList(bvo);
 	}
 
 }
