@@ -4,21 +4,83 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.yedam.mapper.ProductMapper">
-	<select id="productList" parameterType="co.yedam.vo.ProductVO" resultType ="co.yedam.vo.ProductVO">
-		select  product_no , 
-		         product_name, 
-		         product_price,
-		         desc_text,
-		         desc_img, 
-		         left_cnt,
-		         category, 
-		         product_img, 
-		         company, 
-		         launch_date,
-		         discount_pct,
-		         delete_chk
+
+	<sql id="searchCond">
+		<where>
+			<choose>
+				<when test="searchCondition == 'P'.toString()"> <!--상품명, category별 -->
+					product_name like '%' || #{keyword} || '%' and delete_chk = 0
+				</when>
+				<when test="searchCondition == 'PC'.toString()">
+					(product_name like '%' || #{keyword} ||'%' or category like #{keyword} and delete_chk = 0)
+				</when>
+			</choose>
+		</where>
+	</sql>
+
+	<sql id="sortCond">
+		<choose>
+			<when test="sortCondition == 'N'.toString()"> <!--정렬-->
+				order by product_no desc) a
+			</when>
+			<when test="sortCondition =='S'.toString()">
+				order by product_no desc) a
+			</when>
+			<when test="sortCondition == 'D'.toString()">
+				order by discount_pct desc) a
+			</when>
+		</choose>
+	</sql>
+
+
+	<select id="plist" parameterType="co.yedam.vo.PageVO" resultType="co.yedam.vo.ProductVO">
+		SELECT a.*
+		FROM(SELECT ROWNUM rn
+		, b.*
+		FROM product b
+		<include refid="searchCond" />
+		<include refid="sortCond" />
+		WHERE rn > (#{page} -1) *16
+		<![CDATA[
+		AND rn <= (#{page} *16)  
+		]]>
+	</select>
+
+	<select id="selectCount" parameterType ="co.yedam.vo.ProductVO" resultType="int">
+		select count(case when 
+            category = ${category} and delete_chk = 0 
+            then category end) as category
 		from product
-		order by ${order} desc <!-- 최신순 : 1, 할인 순: 11 -->
+	</select>
+
+    <select id="getProdCount" resultType="int">
+		select count(1)
+		from product
+		where delete_chk = 0
+	</select>
+	
+	<select id="productList" parameterType="co.yedam.vo.PageVO" resultType ="co.yedam.vo.ProductVO">
+	select a.*
+	from(select ROWNUM rn, 
+				b.product_no , 
+		         b.product_name, 
+		         b.product_price,
+		         b.desc_text,
+		         b.desc_img, 
+		         b.left_cnt,
+		         b.category, 
+		         b.product_img, 
+		         b.company, 
+		         b.launch_date,
+		         b.discount_pct,
+		         b.delete_chk
+		from product b
+		where delete_chk = 0
+		order by ${order} desc) a <!-- 최신순 : 1, 할인 순: 11 -->
+	WHERE rn > (#{page} -1) *16
+		<![CDATA[
+		AND rn <= (#{page} *16)
+		]]>
 	</select>
 	
 	<select id="sortProductList" parameterType="co.yedam.vo.ProductVO" resultType ="co.yedam.vo.ProductVO">
@@ -35,7 +97,7 @@
 		         discount_pct,
 		         delete_chk
 		from product
-		where category =${category}
+		where category =${category} and delete_chk = 0
 		order by ${order} desc <!-- 최신순 : 1, 할인 순: 11 -->
 	</select>
 
@@ -65,12 +127,12 @@
 					       #{category}, 
 					       #{productImg}, 
 					       #{company},  
-					       #{discountPct});
+					       #{discountPct})
 	</insert>
 	
 	<update id="delProd" parameterType="co.yedam.vo.ProductVO">
 	update product
-	set delete_chk = ${deleteChk}
+	   set delete_chk = ${deleteChk}
 	where product_no = ${productNo}
 	</update>
 	
@@ -81,12 +143,14 @@
 	
 	<delete id="delFromWishList" parameterType="WishListVO">
 		delete from wishlist
-		where product_no=#{productNo} and member_no=#{memberNo}
+		where product_no=#{productNo} 
+		  and member_no=#{memberNo}
 	</delete>
 	
 	<select id="wishList" parameterType="int" resultType ="WishListVO">
-		select * from wishlist
-		where member_no=#{memberNo}
+		select * 
+		 from wishlist
+		where member_no= #{memberNo}
 	</select>
 
 </mapper>

@@ -19,7 +19,8 @@ public class ProductVO {
 	    private int discountPct; // 할인률
 	    private int deleteChk; // 제품 삭제 여부
 	    
-	    private int order; // 
+	    private int order;
+
 }	
 
 

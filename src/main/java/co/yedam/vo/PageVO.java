@@ -4,10 +4,13 @@ import lombok.Data;
 
 @Data
 public class PageVO {
-	//게시글
+	// page, searchCondition, keyword 
 	private int page;
-
-	//댓글
+	private String keyword;
+	
+	// 댓글 관련
 	private int rpage;
 	private int bno;
+	
+	private int order;
 }

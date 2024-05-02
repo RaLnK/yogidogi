@@ -19,7 +19,7 @@
 		<result column="review_date" property="reviewDate" />
 		<result column="review_photo" property="reviewPhoto" />
 		<result column="star_cnt" property="starCnt" />
-		<collection property="memberVO" resultMap="MemberVO"/>
+		<association property="memberVO" resultMap="MemberVO"/>
 	</resultMap>
 	
 	<select id="reviewList" parameterType="co.yedam.vo.ReviewVO" resultMap ="ReviewVO">

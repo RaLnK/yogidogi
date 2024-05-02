@@ -3,23 +3,38 @@
  * 해야 할 것 : 페이징, 상품 좋아요, 정렬 판매순
  */
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
-
+let param;
+let pvc;
 $(function() {
 	// give active class to shop
 	$('.nav-item').removeClass('active');
 	$('.shop').addClass('active');
+	
+	param = {
+		order: 2,
+		page:1
+	}
 
-	let pvc = {
+	pvc = {
 		order: 1,
 		category: 1
 	}
-	let order = pvc.order;
+	
+	let cate = pvc.category;
+	let order = param.order;
 
 	// 첫화면
-	svc.productList(order, function(result) {	// start of productList
-		all(result); // 처음 들어 갔을 때 show all category
-		allCnt(result); // 전체 수량 cnt
-		cateCnt(result); // category cnt
+	svc.productList(param, function(result) {	// start of productList
+		//all(result); // 처음 들어 갔을 때 show all category
+		let cateId = sessionStorage.getItem('category');
+		if (cateId == null) {
+			cateId = 'all';
+		} else {
+			cateId = sessionStorage.getItem('category');
+		}
+		category(".side-bar #" + cateId + ' a');
+		allCnt(); // 전체 수량 cnt
+		cateCnt(); // category cnt
 
 	}, function(err) {
 		console.error(err);
@@ -31,33 +46,19 @@ $(function() {
 		e.preventDefault();
 		$(e.target).siblings().removeClass('active');
 		$(e.target).addClass('active');
-		
 		let findCate = $('.side ul').find('.active').prop('id');
+		param.order = $(e.target).data('order');
 
-		if(findCate == 'all' || findCate == 'yogi'){
-			if ($('#news').hasClass('active')) {
-				pvc.order = 1;
-			} else if ($('#sales').hasClass('active')) {
-				pvc.order = 11;
-			} else if ($('#discount').hasClass('active')) {
-				pvc.order = 11;
-			}
-			order = pvc.order;
-			svc.productList(order, function(result) {
+		if (findCate == 'all' || findCate == 'yogi') {
+			order = param.order;
+			svc.productList(param, function(result) {
 				all(result);
 			}, function(err) {
 				console.error(err);
 			})
-			
-		}else{
+
+		} else {
 			pvc.category = findCate;
-			if ($('#news').hasClass('active')) {
-				pvc.order = 1;
-			} else if ($('#sales').hasClass('active')) {
-				pvc.order = 11;
-			} else if ($('#discount').hasClass('active')) {
-				pvc.order = 11;
-			}
 			console.log(pvc);
 			svc.sortProductList(pvc, function(result) {
 				all(result);
@@ -70,11 +71,18 @@ $(function() {
 	//start show each category
 	$('.side ul li').on('click', function(e) {
 		e.preventDefault();
-		$(e.target).closest('ul').find('.active').removeClass('active'); // 선택 시 li tag에 active 줌ㄴ
-		$(e.target).parent().addClass('active');
 		let targetId = $(e.target).parent().prop('id');
+		sessionStorage.setItem('category', targetId);
+		category(e.target);
+	})//end show each category
+
+	function category(obj) {
+		$(obj).closest('ul').find('.active').removeClass('active'); // 선택 시 li tag에 active 줌
+		$(obj).parent().addClass('active');
+
+		let targetId = $(obj).parent().prop('id');
 		if (targetId == 'all' || targetId == 'yogi') {
-			svc.productList(order, function(result) {
+			svc.productList(param, function(result) {
 				all(result);
 			}, function(err) {
 				console.log(err);
@@ -87,42 +95,41 @@ $(function() {
 				console.log(err);
 			})
 		}
-	})//end show each category
-	
+	}
+
 })
-
-
 //functions 
 function all(result) { // 전체 상품
 	$('.product:gt(0)').remove();
 	let row = $('.container .one');
+	$('.product:eq(0)').hide();
 	result.forEach(ele => {
-		if (parseInt(ele.deleteChk) == 0) {
-			$('.product:eq(0)').hide();
-			let product = $('.product:eq(0)').clone().show();
-			product.find('.title').text(ele.productName);
-			product.find('.title').attr('id', ele.productNo);
-			product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
-			let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
-			product.find('.discPrice').text(discPrice);
-			product.find('.price').text(ele.productPrice);
-			if (parseInt(ele.discountPct) == 0) {
-				product.find('.price').hide();
-				product.find('.badge').hide();
-			}
-			switch (ele.category) {
-				case 0: product.find('.img').attr('src', 'images/기타잡화/' + ele.productImg); break;
-				case 1: product.find('.img').attr('src', 'images/사료간식/' + ele.productImg); break;
-				case 2: product.find('.img').attr('src', 'images/위생배변/' + ele.productImg); break;
-				case 3: product.find('.img').attr('src', 'images/의류/' + ele.productImg); break;
-				case 4: product.find('.img').attr('src', 'images/장난감/' + ele.productImg); break;
-				case 5: product.find('.img').attr('src', 'images/집/' + ele.productImg); break;
-				default: '';
-			}
-			row.append(product);
+
+		let product = $('.product:eq(0)').clone().show();
+		product.find('.title').text(ele.productName);
+		product.find('.title').attr('id', ele.productNo);
+		product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
+		let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
+		product.find('.discPrice').text(discPrice+'원');
+		product.find('.price').text(ele.productPrice+'원');
+		if (parseInt(ele.discountPct) == 0) {
+			product.find('.price').hide();
+			product.find('.badge').hide();
 		}
+		switch (ele.category) {
+			case 0: product.find('.img').attr('src', 'images/기타잡화/' + ele.productImg); break;
+			case 1: product.find('.img').attr('src', 'images/사료간식/' + ele.productImg); break;
+			case 2: product.find('.img').attr('src', 'images/위생배변/' + ele.productImg); break;
+			case 3: product.find('.img').attr('src', 'images/의류/' + ele.productImg); break;
+			case 4: product.find('.img').attr('src', 'images/장난감/' + ele.productImg); break;
+			case 5: product.find('.img').attr('src', 'images/집/' + ele.productImg); break;
+			default: '';
+		}
+		row.append(product);
+
 	})
 	like();
+	svc.allCnt(createPageList, function(err) {console.error(err);});
 }
 
 function like() { // 좋아요 기능
@@ -140,7 +147,7 @@ function like() { // 좋아요 기능
 			})
 		})
 	}
-	
+
 	$('.button-like').on('click', e => {
 		if (memberNo == '') {
 			alert('로그인을 해주세요');
@@ -182,48 +189,128 @@ function like() { // 좋아요 기능
 
 		}
 	})
+
+	$('.nav-item').on('click', e => { // nav의 메뉴가 바뀔때만 category를 all로 설정 => cart page 에선 유지
+		$(window).on('unload', function() {
+			sessionStorage.setItem('category', 'all');
+		});
+
+	})
+
 }
 
-function cateCnt(result) { // 카테고리 count
+
+
+function cateCnt() { // 카테고리 count
 	for (let i = 0; i <= 5; i++) {
-		let cateCnt = [];
-		let cateMenu;
-		result.forEach(ele => {
-			if (parseInt(ele.category) == i && parseInt(ele.deleteChk) == 0) { // 카테고리 찾기
-				cateCnt.push(ele.category);
-				let li = $('.side li');
-				li.each((idx, findLi) => { // id 찾기
-					if (parseInt(findLi.id) == i) {
-						cateMenu = $('#' + i).children().text();
-					}
-				})
-			}
+		svc.selectCnt(i, function(result) {
+			menu = $('.side #' + i).text();
+			$('.side #' + i + ' a').text(menu + '(' + result.totalCount + ')');
+
+		}, function(err) {
+			console.log(err);
 		})
-		$('#' + i).children().text(cateMenu + '(' + cateCnt.length + ')')
 	}
 }
 
-function allCnt(result) { // 전체 count
-	let allCnt = [];
-	let allMenu;
-	result.forEach(ele => {
-		if (parseInt(ele.deleteChk) == 0) {
-			allCnt.push(ele.deleteChk);
-			allMenu = $('#all a').text();
-		}
+function allCnt() { // 전체 count
+	svc.allCnt(function(result) {
+		allMenu = $('#all a').text();
+		$('#all a').text(allMenu + '(' + result.totalCount + ')');
+	}, function(err) {
+		console.log(err);
 	})
-	$('#all a').text(allMenu + '(' + allCnt.length + ')');
+
 }
 
 
+//paging 생성
+let page =1; // page 초기값
+let pageTarget = document.querySelector('div.pagination');
+
+function createPageList(result) {
+	//기존 태그가 존재하면 초기화
+	pageTarget.innerHTML = '';
+
+	//console.log(result); // {"totalCount": 64}
+	let totalCnt = result.totalCount;
+	let startPage, endPage; // 시작 페이지, 마지막 페이지
+	let next, prev; // 이전, 이후
+	let realEnd = Math.ceil(totalCnt / 5); // 실제 페이지
+
+	endPage = Math.ceil(page / 5) * 5; // 계산 상의 페이지. 실제 페이지는 다름
+	startPage = endPage - 4;
+	endPage = endPage > realEnd ? realEnd : endPage;
+
+	next = endPage < realEnd ? true : false;
+	prev = startPage > 1;
+	
+	console.log(realEnd);
+
+	
+	if (prev) {
+		let aTag = document.createElement('a');
+		aTag.innerHTML = "&laquo;";
+		aTag.href = "#"; //링크 모양을 주려고
+		aTag.setAttribute('data-page', (startPage - 1));
+		pageTarget.appendChild(aTag);
+	}
+
+	// a 태그 생성
+	for (let pg = startPage; pg <= endPage; pg++) {
+		let aTag = document.createElement('a');
+		aTag.innerHTML = pg;
+		aTag.href = "#"; //링크 모양을 주려고
+		aTag.setAttribute('data-page', pg); // 값 담을 때
+		pageTarget.appendChild(aTag);
+		if (pg == page) {
+			aTag.className = 'active';
+		}
+
+	}
+
+	if (next) {
+		let aTag = document.createElement('a');
+		aTag.innerHTML = "&raquo;";
+		aTag.href = "#"; //링크 모양을 주려고
+		aTag.setAttribute('data-page', (endPage + 1));
+		pageTarget.appendChild(aTag);
+	}
+
+	//pagination 이동
+	document.querySelectorAll('.pagination>a').forEach(item => {
+		item.addEventListener('click', function(e) {
+			e.preventDefault(); // 페이지 이동 차단 : a 태그는 원래 클릭하면 다른 페이지로 넘어가기 때문
+			console.log(item.dataset.page); // 값 가져올 때
+			page = item.dataset.page;
+			svc.productList(param, function(result) {	// start of productList
+				//all(result); // 처음 들어 갔을 때 show all category
+				let cateId = sessionStorage.getItem('category');
+				if (cateId == null) {
+					cateId = 'all';
+				} else {
+					cateId = sessionStorage.getItem('category');
+				}
+				category(".side-bar #" + cateId + ' a');
+				allCnt(); // 전체 수량 cnt
+				cateCnt(); // category cnt
+
+			}, function(err) {
+				console.error(err);
+			})// end of productList;
+		})
+	})
+
+}//end of createPageList;
+
 const svc = {
 	//상품 리스트
-	productList(order = 1, successCall, errorCall) {
-		fetch('/yogidogi/productListAjax.do?order=' + order) /*최신순 : 1, 할인순: 11*/
+	productList(param={order:2, page:1}, successCall, errorCall) {
+		fetch('/yogidogi/productListAjax.do?order=' + param.order +'&page='+ param.page) /*최신순 : 1, 할인순: 11*/
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, sortProductList(pvc = { order: 1, category: 1 }, successCall, errorCall) {
+	}, sortProductList(pvc = { order: 2, category: 1 }, successCall, errorCall) {
 		fetch('/yogidogi/sortProductListAjax.do?order=' + pvc.order + '&category=' + pvc.category)
 			.then(result => result.json())
 			.then(successCall)
@@ -251,5 +338,17 @@ const svc = {
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
+	}, allCnt(successCall, errorCall){
+		fetch('/yogidogi/getProdCount.do')
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	}, selectCnt(category =0, successCall, errorCall){
+		fetch('/yogidogi/selectProdCount.do?category='+ category)
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
 	}
 }
+
+

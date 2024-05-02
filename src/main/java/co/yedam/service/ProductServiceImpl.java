@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 
 import co.yedam.common.DataSource;
 import co.yedam.mapper.ProductMapper;
+import co.yedam.vo.PageVO;
 import co.yedam.vo.ProductVO;
 import co.yedam.vo.WishListVO;
 
@@ -13,8 +14,8 @@ public class ProductServiceImpl implements ProductService{
 	SqlSession session = DataSource.getInstance().openSession(true);
 	ProductMapper mapper = session.getMapper(ProductMapper.class);
 	@Override
-	public List<ProductVO> productList(int order) { // 상품 list
-		return mapper.productList(order);
+	public List<ProductVO> productList(PageVO pageVO) { // 상품 list
+		return mapper.productList(pageVO);
 	}
 	
 	@Override
@@ -46,6 +47,17 @@ public class ProductServiceImpl implements ProductService{
 	@Override
 	public List<WishListVO> wishList(int memberNo) {
 		return mapper.wishList(memberNo);
+	}
+
+
+	@Override
+	public int selectCount(ProductVO pvo) {
+		return mapper.selectCount(pvo);
+	}
+
+	@Override
+	public int getProdCount() {
+		return mapper.getProdCount();
 	}
 	
 }
