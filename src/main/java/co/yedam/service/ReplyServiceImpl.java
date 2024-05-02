@@ -32,4 +32,10 @@ SqlSession session = DataSource.getInstance().openSession(true);
 		return mapper.removeReply(rno) == 1;
 	}
 
+	@Override
+	public boolean updateReply(ReplyVO rvo) {
+		// TODO Auto-generated method stub
+		return mapper.updateReply(rvo) == 1;
+	}
+
 }

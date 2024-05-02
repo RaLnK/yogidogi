@@ -15,5 +15,6 @@ public interface BoardService {
 	BoardVO getBoard(int bno);
 	boolean updateBoard(BoardVO vo);
 	boolean removeBoard(int bno);
+	List<BoardVO> qnaList();
 
 }

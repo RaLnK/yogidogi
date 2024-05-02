@@ -43,6 +43,16 @@
 		order by board_no desc
 	</select>
 	
+	<select id="qnaList" parameterType="BoardVO" resultType="BoardVO">
+		select b.*
+			   ,m.member_id
+		from board b
+			join member m
+			on b.member_no = m.member_no
+		where board_category = 2
+		order by board_no desc
+	</select>
+	
 	<insert id="addBoard" parameterType="co.yedam.vo.BoardVO" >
 		insert into board(board_no,
 						  member_no,

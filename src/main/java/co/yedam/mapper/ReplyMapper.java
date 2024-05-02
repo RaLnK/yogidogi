@@ -13,4 +13,6 @@ public interface ReplyMapper {
 
 	public int removeReply(int rno);
 
+	public int updateReply(ReplyVO rvo);
+
 }
