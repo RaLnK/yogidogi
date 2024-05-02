@@ -40,7 +40,7 @@
                     <div class="col-md-7">
                       <div class="row">
                         <div class="col-md-12 text-right border-bottom mb-5">
-                          <h3 class="text-black h4 text-uppercase">결제 내역</h3>
+                          <h3 class="text-black h4 text-uppercase" style="text-align:center">총 상품 금액</h3>
                         </div>
                       </div>
                       <div class="row mb-3">
@@ -51,17 +51,9 @@
                           <strong class="text-black" id="productprice">23,000원</strong>
                         </div>
                       </div>
-                      <div class="row mb-5">
-                        <div class="col-md-6">
-                          <span class="text-black">결제 금액</span>
-                        </div>
-                        <div class="col-md-6 text-right">
-                          <strong class="text-black" id="totalprice">23,000원</strong>
-                        </div>
-                      </div>
                      <form action="orderList.do">
                       <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12"style="text-align:right">
                           <button class="btn btn-black btn-lg py-3 btn-block">결제하기</button>
                         </div>
                       </div>
