@@ -29,9 +29,7 @@
 
 <div class="blog-section p-5">
 	<div class=btnalign>
-		<button type="submit" class="btn">
-		<a href="/yogidogi/addQnABoardForm.do">글쓰기</a>
-		</button>
+		
 	</div>
 <div id="boardclone" style="display:none">
 	

@@ -6,8 +6,8 @@
 		SELECT *  
 		FROM    (
 
-	        SELECT * , rownum rn
-	        FROM    (
+	        SELECT a.*, rownum rn 
+	        FROM    (   
 	                SELECT
 	                    '1' gb,
 	                    b.*,
@@ -19,7 +19,7 @@
 	                    board_category = 1
 	                ORDER BY
 	                    board_no DESC
-	            )
+	            )a
 	        WHERE
 	            ROWNUM <![CDATA[  < ]]> 4
 	          
