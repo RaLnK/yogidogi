@@ -32,7 +32,6 @@ Number.prototype.formatNumber = function() {
 	}
 	return nstr;
 };
-
 document.addEventListener('DOMContentLoaded', function(e) {
 	svc.cartListAjax(function(result) {
 		result.forEach(product => {
@@ -90,16 +89,14 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			});
 			tr.append($('<td />').append(delBtn));
 			$('tbody').eq(0).append(tr);
-
 		});
-
 		let totalPrice = 0;
 		// 각 상품의 가격을 합산
 		$('.product-totalprice').each(function() {
-			totalPrice += parseInt($(this).text().replace('원', '').replace(',', ''));
+			totalPrice += parseInt($(this).text().replace('원', '').replaceAll(',', ''));
 		});
-		$('#productprice').text(totalPrice.toLocaleString() + '원');
-		$('#totalprice').text(totalPrice.toLocaleString() + '원');
+		$('#productprice').text(totalPrice.formatNumber() + '원');
+		$('#totalprice').text(totalPrice.formatNumber() + '원');
 	}, function(err) {
 		console.log(err);
 	});
@@ -155,10 +152,10 @@ function updateProductPrice() {
     let totalPrice = 0;
     // 각 상품의 가격을 합산
     $('.product-totalprice').each(function() {
-        totalPrice += parseInt($(this).text().replace('원', '').replace(',', ''));
+        totalPrice += parseInt($(this).text().replace('원', '').replaceAll(',', ''));
     });
-    $('#productprice').text(totalPrice.toLocaleString() + '원');
-    $('#totalprice').text(totalPrice.toLocaleString() + '원');
+    $('#productprice').text(totalPrice.formatNumber() + '원');
+    $('#totalprice').text(totalPrice.formatNumber() + '원');
 }
 
 function totalPriceCalculate(product, quantity) {
