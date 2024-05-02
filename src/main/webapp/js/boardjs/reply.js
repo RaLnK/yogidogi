@@ -70,7 +70,7 @@ function reList(){
 	 
 	 
 	 
-	 		   //댓글 삭제
+	  //댓글 삭제
 	 $('#example tbody').on("click", ".delBtn" ,function(e){
 		 
 		  if(confirm("삭제하시겠습니까?")){
@@ -90,8 +90,20 @@ function reList(){
 			}
 	 })//end of removeReply
 	 
+	 //댓글 수정
 	 $('#example tbody').on("click", ".upBtn",function(e){
 		 
+		 let rno =$(e.target).closest("tr").find("td:eq(0)").text(); 
+		 let rContent =$(e.target).closest("tr").find("td:eq(1)").text(); 
+		 console.log(rContent)
+		 fetch('updateReply.do?rno='+rno + '&replyContent='+ rContent)
+		 .then(result=>result.json())
+		 .then(result=>{
+		 	$(e.target).closest("tr").attr('display','hidden').append
+		 	$('<tr/>').append($('<td/>').append($('<input type="text" value="rContent">'))
+		 			  .append($($('<input type="button" class="upBtn btn" value="수정완료">'))))
+		 
+		 })
 		 
 	 })
 	

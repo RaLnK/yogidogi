@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-    
-	<h3>글등록</h3>
+<h3>문의하기</h3>
 	
-	<form action = "/yogidogi/addBoard.do" method="post" enctype="multipart/form-data">
+	<form action = "/yogidogi/addQnABoard.do" method="post" enctype="multipart/form-data">
 	<table class="table">
 	<tr>
 		<th>글제목</th>

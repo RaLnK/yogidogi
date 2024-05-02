@@ -20,7 +20,8 @@
 	</tr>	
 	<tr>
 		<th>작성자</th>
-		<td><input class="form-control" type="text" name="mno" ></td>
+		<td><input class="form-control" type="text" value="${memberId }" readonly >
+		<input class="form-control" type="hidden" name="mno" value="${memberNo }" readonly ></td>
 	</tr>
 	<tr>
 		<td colspan="2" align = "center"><input class="btn-primary" type = "submit" value="글등록"></td>

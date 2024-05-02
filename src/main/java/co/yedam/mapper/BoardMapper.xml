@@ -3,38 +3,54 @@
 <mapper namespace="co.yedam.mapper.BoardMapper">
 
 	<select id="boardList" parameterType="co.yedam.vo.PageVO" resultType="co.yedam.vo.BoardVO">
-		select *
-		from (
-		    select *
-		    from(
-		        select '1' gb, b.*
-		                ,m.member_id
-		          from board  b
-		              join member  m
-		              on b.member_no = m.member_no
-		          where board_category = 1 
-				 order by board_no desc
-		        )
-				         
-		    where rownum <![CDATA[  <  ]]> 4     
-			           
-		    union all
-	select a.*
-	from (    
-		    select '2' gb, b.*,
-		            m.member_id
-		    from board  b
-		        join member  m
-		        on b.member_no = m.member_no
-		    where board_category = 0 ) a
-	where rownum > (#{page} -1) * 15
-	<![CDATA[ 
-		and rownum <= (#{page} *15)
-	]]>	
+		SELECT *  
+		FROM    (
 
-		        
-		)
-		order by gb, board_no desc
+	        SELECT * , rownum rn
+	        FROM    (
+	                SELECT
+	                    '1' gb,
+	                    b.*,
+	                    m.member_id
+	                FROM
+	                         board b
+	                    JOIN member m ON b.member_no = m.member_no
+	                WHERE
+	                    board_category = 1
+	                ORDER BY
+	                    board_no DESC
+	            )
+	        WHERE
+	            ROWNUM <![CDATA[  < ]]> 4
+	          
+            
+        UNION ALL
+        
+   
+		select * 
+		from (
+		
+		            SELECT
+		                a.*, rownum rn
+		            FROM
+		                (
+		                    SELECT
+		                        '2' gb,
+		                        b.*,
+		                        m.member_id
+		                    FROM
+		                             board b
+		                        JOIN member m ON b.member_no = m.member_no
+		                    WHERE
+		                        board_category = 0
+		                    order by board_no desc
+		                ) a
+		            WHERE  ROWNUM <![CDATA[  <= ]]>	 ( #{page} * 15 )
+		      )b 
+		      where  rn > ( #{page} - 1 ) * 15
+		            
+		)               
+		ORDER BY    gb,    board_no DESC
 
 	</select>
 	
@@ -81,7 +97,17 @@
 		
 		values(board_no.nextval,#{memberNo}, #{boardTitle}, #{boardContent}, 1 ,#{boardImg})
 	</insert>
-
+	<insert id="addQnABoard" parameterType="co.yedam.vo.BoardVO" >
+		insert into board(board_no,
+						  member_no,
+						  board_title, 
+						  board_content,
+						  board_category,
+						  board_img
+						  )
+		
+		values(board_no.nextval,#{memberNo}, #{boardTitle}, #{boardContent}, 2 ,#{boardImg})
+	</insert>
 	<select id="getBoard" parameterType="int" resultType="BoardVO">
 		select b.*,
        			m.member_id

@@ -2,7 +2,6 @@
  * board.js
  */
 
- console.log('start');
 
 	const svc = {
 		//게시글 삭제

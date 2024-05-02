@@ -16,9 +16,9 @@ public class BoardServiceImpl implements BoardService {
 	BoardMapper mapper = session.getMapper(BoardMapper.class);
 	
 	@Override
-	public List<BoardVO> boardList() {
+	public List<BoardVO> boardList(PageVO pg) {
 		// TODO Auto-generated method stub
-		return mapper.boardList();
+		return mapper.boardList(pg);
 	}
 
 	@Override
@@ -67,6 +67,12 @@ public class BoardServiceImpl implements BoardService {
 	public int getCount() {
 		// TODO Auto-generated method stub
 		return mapper.getCount();
+	}
+
+	@Override
+	public boolean addQnABoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		return  mapper.addQnABoard(vo) == 1;
 	}
 
 
