@@ -19,13 +19,18 @@
 		    where rownum <![CDATA[  <  ]]> 4     
 			           
 		    union all
-		    
+	select a.*
+	from (    
 		    select '2' gb, b.*,
 		            m.member_id
 		    from board  b
 		        join member  m
 		        on b.member_no = m.member_no
-		    where board_category = 0
+		    where board_category = 0 ) a
+	where rownum > (#{page} -1) * 15
+	<![CDATA[ 
+		and rownum <= (#{page} *15)
+	]]>	
 
 		        
 		)
@@ -101,4 +106,9 @@
    	delete from board
    	where board_no = #{bno}
    </delete>
+   
+   <select id="getCount" parameterType = "int" resultType="int">
+		select count(1)
+		from board
+	</select>
 </mapper>

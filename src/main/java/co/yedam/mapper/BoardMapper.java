@@ -21,4 +21,6 @@ public interface BoardMapper {
 	public int addNoticeBoard(BoardVO bvo);
 
 	public List<BoardVO> qnaList();
+
+	public int getCount();
 }

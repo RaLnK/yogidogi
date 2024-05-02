@@ -13,7 +13,7 @@ public class AddQnABoardForm implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-
+		req.getRequestDispatcher("board/addQnABoardForm.tiles").forward(req, resp);
 	}
 
 }
