@@ -5,7 +5,7 @@ import java.util.List;
 import co.yedam.vo.OrderVO;
 
 public class OrderMapper {
-//	// 주문 목록
+	// 주문 목록
 //	List<OrderVO> selectList(int memberNo);
 //	
 //	// 주문 추가
