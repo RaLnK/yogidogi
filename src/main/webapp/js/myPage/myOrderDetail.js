@@ -2,38 +2,33 @@
  * 
  */
 
+Number.prototype.formatNumber = function() {
+    if (this == 0)
+        return 0;
+    let regex = /(^[+-]?\d+)(\d{3})/;
+    let nstr = (this + '');
+    while (regex.test(nstr)) {
+        nstr = nstr.replace(regex, '$1' + ',' + '$2');
+    }
+    return nstr;
+}
+
 const svc = {
-	wishListAjax(successCall, errorCall) {
-		fetch('/yogidogi/memberWishListAjax.do')
+	myOrderProduct(ono, successCall, errorCall) {
+		fetch('/yogidogi/myOrderProduct.do?ono='+ono)
 			.then(result => result.json())
-			.then(successCall)
-			.catch(errorCall);
-	},
-	wishListAdd(pno, successCall, errorCall) {
-		fetch('/yogidogi/wishListAdd.do', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: 'pno=' + pno
-		})
-			.then(resolve => resolve.json())
-			.then(successCall)
-			.catch(errorCall);
-	},
-	wishListDel(pno, successCall, errorCall) {
-		fetch('/yogidogi/wishListDel.do', {
-			method: 'post',
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-			body: 'pno=' + pno
-		})
-			.then(resolve => resolve.json())
 			.then(successCall)
 			.catch(errorCall);
 	}
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
-	svc.wishListAjax(function(result) {
+	svc.myOrderProduct(ono, function(result) {
 		result.forEach(product => {
+			let orderQty = parseInt(product.orderQty);
+			let productPrice = parseInt(product.productPrice);
+			let discountPct = parseInt(product.discountPct);
+			
 			let tr = $('<tr />');
 			
 			let src = '/yogidogi/images/';
@@ -47,42 +42,21 @@ document.addEventListener('DOMContentLoaded', function(e) {
 				default: src='';
 			}
 			
-			tr.append($('<td />').append($('<img />').attr({'src': src, 'class': 'img-fluid', 'alt': 'Image'}).css({'width':'200', 'height':'200'})));
+			tr.append($('<td />').append($('<img />').attr({'src': src, 'class': 'img-fluid', 'alt': 'Image'}).css({'width':'150', 'height':'150'})));
 			tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text(product.productName)));
-			tr.append($('<td />').attr('class', 'product-name').text(product.productPrice));
+			tr.append($('<td />').attr('class', 'product-quantity').text(orderQty));
+			if(discountPct == 0){
+				tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text((productPrice * orderQty).formatNumber() + '원')));
+			}else{
+				tr.append($('<td />').append($('<span />').attr('class', 'text-muted text-decoration-line-through price').text(productPrice * orderQty)));
+				let newPrice = Math.floor((productPrice * (1 - discountPct*0.01))/100)*100;
+				tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text('<br>'+newPrice.formatNumber() + '원')));
+			}
 			
-			let addBtn = $('<button />', {type:'button', id:'addBtn'+product.productNo}).css({'color':'white','background-color':'black'}).text('추가');
-			addBtn.on('click', e=>{
-				svc.wishListAdd(product.productNo, function(result){
-					if(result.retCode == 'Success'){
-						alert('장바구니에 추가했습니다');
-					}else if(result.retCode == 'Already'){
-						alert('이미 장바구니에 담긴 상품입니다');
-					}else{
-						alert('실패했습니다');
-					}
-				}, function(err){
-					console.log(err);
-				});
+			$('#backToList').on('click', e=>{
+				location.href='/yogidogi/myOrder.do';
 			});
 			
-			let delBtn = $('<button />', {type:'button', id:'delBtn'+product.productNo}).css({'color':'white','background-color':'black'}).text('삭제');
-			delBtn.on('click', e=>{
-				svc.wishListDel(product.productNo, function(result){
-					if(result.retCode == 'Success'){
-						$('#delBtn'+product.productNo).parent().parent().remove();
-						alert('삭제했습니다');
-					}else{
-						alert('실패했습니다');
-					}
-					
-				}, function(err) {
-					console.log(err);
-				});
-			});
-			
-			tr.append($('<td />').append(addBtn));
-			tr.append($('<td />').append(delBtn));
 			$('tbody').eq(0).append(tr);
 		});
 	}, function(err) {

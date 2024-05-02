@@ -62,17 +62,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr style="display:none">
-										<td class="product-thumbnail">
-											
-										</td>
-										<td class="product-name">
-											<h4 class="h5 text-black">이름</h4>
-										</td>
-										<td>$49.00</td>
-										<td><button type="button" style="color:white;background-color:black;" id="addBtn">추가</button></td>
-										<td><button type="button" style="color:white;background-color:black;" id="delBtn">삭제</button></td>
-									</tr>
+									
 								</tbody>
 							</table>
 						</div>
@@ -84,7 +74,7 @@
 					<div class="col-md-4">
 						<div class="row">
 							<div class="col-md-12" style="text-align:right">
-								<button class="btn" style="color: white; background-color: black;" id="editBtn">주문 목록</button>
+								<button class="btn" style="color: white; background-color: black;" id="backToList">주문 목록</button>
 							</div>
 						</div>
 					</div>
@@ -101,9 +91,6 @@
 
 
 
-
-
-
-
-
+<script> let ono = '${requestScope.orderVO.orderNo}'</script>
+<script src="/yogidogi/js/myPage/myOrderDetail.js"></script>
 

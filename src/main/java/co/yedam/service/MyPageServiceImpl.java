@@ -4,8 +4,10 @@ import java.util.List;
 
 import co.yedam.common.DataSource;
 import co.yedam.mapper.MyPageMapper;
+import co.yedam.vo.Board;
 import co.yedam.vo.MemberDogVO;
 import co.yedam.vo.MemberVO;
+import co.yedam.vo.OrderProductVO;
 import co.yedam.vo.OrderVO;
 import co.yedam.vo.ProductVO;
 import co.yedam.vo.WishListVO;
@@ -67,5 +69,15 @@ public class MyPageServiceImpl implements MyPageService {
 	public OrderVO orderInfo(int orderNo) {
 		return mapper.orderInfo(orderNo);
 	}
-	
+
+	@Override
+	public List<OrderProductVO> myOrderProduct(int orderNo) {
+		return mapper.myOrderProduct(orderNo);
+	}
+
+	@Override
+	public List<Board> myBoardList(int category) {
+		return mapper.myBoardList(category);
+	}
+
 }

@@ -15,11 +15,11 @@ public class GetFirstProductName implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int orderNo = Integer.parseInt(req.getParameter("ono"));
-		
+
 		MyPageService svc = new MyPageServiceImpl();
-		
+
 		String productName = svc.getFirstProductName(orderNo);
-		
+
 		resp.getWriter().print("{\"productName\" :\"" + productName + "\"}");
 	}
 

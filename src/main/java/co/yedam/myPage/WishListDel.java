@@ -17,14 +17,14 @@ public class WishListDel implements Control {
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
-		
+
 		WishListVO wvo = new WishListVO();
-		
+
 		wvo.setMemberNo(((Integer) session.getAttribute("memberNo")).intValue());
 		wvo.setProductNo(Integer.parseInt(req.getParameter("pno")));
-		
+
 		MyPageService svc = new MyPageServiceImpl();
-		
+
 		if (svc.wishListDel(wvo)) {
 			resp.getWriter().print("{\"retCode\" : \"Success\"}");
 		} else {

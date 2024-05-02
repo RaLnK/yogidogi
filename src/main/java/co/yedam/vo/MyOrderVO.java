@@ -15,7 +15,7 @@ public class MyOrderVO {
 	private int orderPoint;
 	private String orderStatus;
 	private String orderDate;
-	
+
 	private int orderDetailNo;
 	private int productNo;
 	private String productName;
