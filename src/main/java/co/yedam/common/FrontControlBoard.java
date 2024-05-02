@@ -15,12 +15,14 @@ import co.yedam.board.UpdateBoardForm;
 import co.yedam.board.UpdateReply;
 import co.yedam.board.NoticeBoardList;
 import co.yedam.board.QnABoardList;
+import co.yedam.board.ReReplyList;
 import co.yedam.board.AddBoard;
 import co.yedam.board.AddBoardForm;
 import co.yedam.board.AddNoticeBoard;
 import co.yedam.board.AddNoticeBoardForm;
 import co.yedam.board.AddQnABoard;
 import co.yedam.board.AddQnABoardForm;
+import co.yedam.board.AddReReply;
 import co.yedam.board.AddReply;
 
 public class FrontControlBoard {
@@ -54,5 +56,9 @@ public class FrontControlBoard {
 		map.put("/addReply.do", new AddReply());//댓글 등록
 		map.put("/updateReply.do", new UpdateReply());//댓글 수정
 		map.put("/delReply.do", new DelReply());//댓글 삭제
+		
+		map.put("/reReplyList.do", new ReReplyList());//대댓글 목록
+		map.put("/addReReply.do", new AddReReply());//대댓글 등록
+		
 	}
 }
