@@ -26,17 +26,19 @@ import co.yedam.board.AddReply;
 public class FrontControlBoard {
 
 	public static void push(Map<String, Control> map) {
+		
 		map.put("/AjaxBoardList.do", new AjaxBoardList()); //게시글 목록
 		map.put("/boardList.do",new BoardList());//게시글 목록 페이지
 		map.put("/board.do", new Board());//게시글 상세 페이지
+		map.put("/addBoardForm.do", new AddBoardForm());//게시물 등록 화면
+		map.put("/addBoard.do", new AddBoard()); //게시글 등록		
+		
 		map.put("/ajaxNoticeBoardList.do", new AjaxnoticeBoardList());//공지글 목록
 		map.put("/noticeBoardList.do", new NoticeBoardList());//공지글 목록 페이지
 		map.put("/ajaxQnABoardList.do", new AjaxQnABoardList());//문의 목록
 		map.put("/qnaBoardList.do", new QnABoardList());//문의 목록 페이지
 		
 		
-		map.put("/addBoardForm.do", new AddBoardForm());//게시물 등록 화면
-		map.put("/addBoard.do", new AddBoard()); //게시글 등록
 		map.put("/addNoticeBoardForm.do", new AddNoticeBoardForm());//공지등록화면
 		map.put("/addNoticeBoard.do", new AddNoticeBoard());//공지 등록
 		map.put("/addQnABoardForm.do", new AddQnABoardForm());//문의등록화면
@@ -44,8 +46,7 @@ public class FrontControlBoard {
 		
 		
 		map.put("/updateBoard.do", new UpdateBoard());///게시글 수정
-		map.put("/updateBoardForm.do", new UpdateBoardForm()); //게시글 수정 화면
-		
+		map.put("/updateBoardForm.do", new UpdateBoardForm()); //게시글 수정 화면		
 		map.put("/delBoard.do", new DelBoard());//게시글 삭제
 		
 		

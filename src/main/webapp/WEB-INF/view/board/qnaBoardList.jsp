@@ -27,19 +27,10 @@
 </style>
 
 
-<div class="offcanvas-body justify-content-between">
-            <select class="filter-categories border-0 mb-0 me-5 menu" onchange="if(this.value) location.href=(this.value)">
-              <option>🐕‍🦺개시판🐕‍🦺</option>
-              <option id="free" value="boardList.do">자유 🐶시판</option>
-              <option id="notice" value="noticeBoardList.do">공지 🐶시판</option>
-            </select>
-</div>
-
-
 <div class="blog-section p-5">
 	<div class=btnalign>
-		<button type="submit" class="btn" ${memberAuthority != 1 ? 'hidden' : '' }>
-		<a href="/yogidogi/addNoticeBoardForm.do">글쓰기</a>
+		<button type="submit" class="btn">
+		<a href="/yogidogi/addQnABoardForm.do">글쓰기</a>
 		</button>
 	</div>
 <div id="boardclone" style="display:none">

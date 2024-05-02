@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import co.yedam.common.DataSource;
 import co.yedam.mapper.BoardMapper;
 import co.yedam.vo.BoardVO;
+import co.yedam.vo.PageVO;
 
 public class BoardServiceImpl implements BoardService {
 
@@ -60,6 +61,12 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> qnaList() {
 		// TODO Auto-generated method stub
 		return mapper.qnaList();
+	}
+
+	@Override
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return mapper.getCount();
 	}
 
 

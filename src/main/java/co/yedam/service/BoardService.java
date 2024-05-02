@@ -2,10 +2,7 @@ package co.yedam.service;
 
 import java.util.List;
 
-import co.yedam.board.Board;
 import co.yedam.vo.BoardVO;
-import co.yedam.vo.PageVO;
-import co.yedam.vo.ReplyVO;
 
 public interface BoardService {
 	List<BoardVO> nbList();
@@ -16,5 +13,5 @@ public interface BoardService {
 	boolean updateBoard(BoardVO vo);
 	boolean removeBoard(int bno);
 	List<BoardVO> qnaList();
-
+	int getCount();
 }

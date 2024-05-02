@@ -5,10 +5,11 @@
   console.log('start');
  
  document.addEventListener('DOMContentLoaded',function(e){
-
+ $('.nav-item').removeClass('active');
+ $('.ask').addClass('active');
 
 	 // 게시글 목록 출력
-	 $.get('/yogidogi/ajaxNoticeBoardList.do',function(result){
+	 $.get('/yogidogi/ajaxQnABoardList.do',function(result){
 		 console.log(result);
 
 		 result.forEach(board=>{

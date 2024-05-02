@@ -14,7 +14,8 @@
 	 $.get('/yogidogi/AjaxBoardList.do',function(result){
 		 console.log(result);
 
-		 result.forEach(board=>{
+		//목록출력
+		 result.list.forEach(board=>{
 	
 				 
 			 let temp = $('#boardclone').find(".board").clone()
@@ -38,6 +39,16 @@
 			 
 		 })
 		 
+		 //페이지 번호 출력
+		 let paging = result.page;
+		if( result.page.prev){
+			`<a href="boardList.do?page=${paging.startPage-1 }">&laquo;</a>`
+		}
+		
+		result.page.forEach(page=>{
+			console.log(page);
+		})
+		
 	 })
 	 
 	 
