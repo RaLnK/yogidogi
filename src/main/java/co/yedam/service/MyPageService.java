@@ -25,5 +25,5 @@ public interface MyPageService {
 	public String getFirstProductName(int orderNo);
 	public OrderVO orderInfo(int orderNo);
 	public List<OrderProductVO> myOrderProduct(int orderNo);
-	public List<Board> myBoardList(int category);
+	public List<Board> myBoardList(Board bvo);
 }
