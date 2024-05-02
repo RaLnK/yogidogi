@@ -3,17 +3,23 @@
  */
 
 
-
- console.log('start');
- 
  document.addEventListener('DOMContentLoaded',function(e){
 	 $('.nav-item').removeClass('active');
 	 $('.board').addClass('active');
 
-	 // 게시글 목록 출력
-	 $.get('/yogidogi/AjaxBoardList.do',function(result){
+	boardList(1) 
+ })
+ 
+ function movepage(page){
+	 event.preventDefault();
+	 boardList(page);
+ }
+ 
+ function boardList(page){
+	 	 // 게시글 목록 출력
+	 $.get('/yogidogi/AjaxBoardList.do?page='+page,function(result){
 		 console.log(result);
-
+			$('.boardList').empty();
 		//목록출력
 		 result.list.forEach(board=>{
 	
@@ -35,22 +41,30 @@
 			 temp.find('.writer').text('작성자 ' + board.memberId);
 			 temp.find('.date').text('작성일시 ' + board.boardDate);
 			 temp.appendTo('.boardList')
-			 
-			 
-		 })
 		 
-		 //페이지 번호 출력
-		 let paging = result.page;
-		if( result.page.prev){
-			`<a href="boardList.do?page=${paging.startPage-1 }">&laquo;</a>`
+		 
+	 })
+		 
+	 //페이지 번호 출력
+	 let paging = result.page;
+	 let pagetag ="";
+	if( paging.prev){
+		pagetag = `<a href="#" onclick="movepage(${paging.startPage-1 })">&laquo;</a>`
+	}
+		
+		for(let p=paging.startPage; p<=paging.endPage; p++){
+			if(p == paging.page ){
+				pagetag += `<a href="/yogidogi/AjaxBoardList.do?page='+page" onclick="movepage(${p })" class="active">${p }</a>`
+				
+			}else{
+				pagetag += `<a href="#" onclick="movepage(${p })">${p }</a>`
+			}
 		}
 		
-		result.page.forEach(page=>{
-			console.log(page);
-		})
+		if(paging.next){
+			pagetag += `<a href="#" onclick="movepage(${paging.endPage+1 })">&raquo;</a>`
+		}
 		
+		$('.paging').attr('class','pagination').html(pagetag)
 	 })
-	 
-	 
-	 
- })
+ }

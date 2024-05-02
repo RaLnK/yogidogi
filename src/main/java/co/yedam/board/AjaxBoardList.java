@@ -30,13 +30,13 @@ public class AjaxBoardList implements Control {
 		page = page == null ? "1" : page;
 		
 		//검색VO
-		//PageVO pg = new PageVO();
-		//pg.setPage(Integer.parseInt(page));
+		PageVO pg = new PageVO();
+		pg.setPage(Integer.parseInt(page));
 		
 		//페이징
 		PageDTO dto = new PageDTO(Integer.parseInt(page), svc.getCount());
 		
-		List<BoardVO> list = svc.boardList();
+		List<BoardVO> list = svc.boardList(pg);
 		
 		
 		HashMap<String, Object> map = new HashMap<>();

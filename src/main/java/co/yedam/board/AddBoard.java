@@ -30,23 +30,28 @@ public class AddBoard implements Control {
 		String mno = multi.getParameter("mno");
 		String img = multi.getFilesystemName("myImg");
 			
-			BoardVO vo = new BoardVO();
-			vo.setBoardTitle(tit);
-			vo.setBoardContent(con);
-			vo.setMemberNo(Integer.parseInt(mno));
-			vo.setBoardImg(img);
-			vo.setBoardDate(new Date());
-			
-			
-			BoardService svc = new BoardServiceImpl();
+		BoardVO vo = new BoardVO();
+		vo.setBoardTitle(tit);
+		vo.setBoardContent(con);
+		vo.setMemberNo(Integer.parseInt(mno));
+		vo.setBoardImg(img);
+		vo.setBoardDate(new Date());
+		
+		
+		BoardService svc = new BoardServiceImpl();
+		try {
+		
 			if(svc.addBoard(vo)) {
 				resp.sendRedirect("boardList.do");
 				
-			}else {
-				req.setAttribute("msg", "등록중 에러가 발생.");
-				req.getRequestDispatcher("WEB-INF/view/error.jsp").forward(req, resp);
-				
 			}
+		}catch(Exception e) {
+			resp.getWriter().append("<script>")
+			.append("alert('등록에 실패하였습니다.');")
+			.append("history.back();")
+			.append("</script>");
+			
+		}
 	}
 
 }

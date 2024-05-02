@@ -35,13 +35,12 @@ public class FrontControlBoard {
 		
 		map.put("/ajaxNoticeBoardList.do", new AjaxnoticeBoardList());//공지글 목록
 		map.put("/noticeBoardList.do", new NoticeBoardList());//공지글 목록 페이지
-		map.put("/ajaxQnABoardList.do", new AjaxQnABoardList());//문의 목록
-		map.put("/qnaBoardList.do", new QnABoardList());//문의 목록 페이지
-		
-		
 		map.put("/addNoticeBoardForm.do", new AddNoticeBoardForm());//공지등록화면
 		map.put("/addNoticeBoard.do", new AddNoticeBoard());//공지 등록
-		map.put("/addQnABoardForm.do", new AddQnABoardForm());//문의등록화면
+		
+		map.put("/ajaxQnABoardList.do", new AjaxQnABoardList());//문의 목록
+		map.put("/qnaBoardList.do", new QnABoardList());//문의 목록 페이지
+		map.put("/addQnABoardForm.do", new AddQnABoardForm());//문의 등록화면
 		map.put("/addQnABoard.do", new AddQnABoard());//문의 등록
 		
 		

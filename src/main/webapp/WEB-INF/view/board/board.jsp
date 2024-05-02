@@ -38,13 +38,13 @@ h4{
 
 	<tr>
 		<td colspan="6"><img src="images/${bno.boardImg }" onerror="this.style.display='none'" style="width:500px" />
-		<br/><span><c:out value="${bno.boardContent }"/></span></td>
+		<br/><p id="boardContent"><c:out value="${bno.boardContent }"/></p></td>
 	</tr>
 	<tr>
 		<td colspan="4">
-			<button type="submit" align="center" class="btn" ${memberNo != bno.memberNo ? 'hidden' : '' } > <a href="updateBoardForm.do?bno=${bno.boardNo }">글 수정하기</a></button>
+			<button type="button" align="center" class="btn" ${memberNo != bno.memberNo ? 'hidden' : '' } > <a href="updateBoardForm.do?bno=${bno.boardNo }">글 수정하기</a></button>
 			<button type="button" align="center" class="btn" id="delBtn" ${memberNo != bno.memberNo ? 'hidden' : '' } >삭제</button>
-			<button type="button" align="center" class="btn" ><a href="boardList.do">뒤로가기</a></button>
+			<a href="boardList.do"  align="center" class="btn" >뒤로가기</a>
 		</td>
 	</tr>
 
@@ -73,7 +73,9 @@ let bno="${bno.boardNo }";
 let mid="${memberId}";
 let mno="${memberNo}";
 
-
+var text = document.querySelector('#boardContent');
+var result = text.innerHTML.replace(/(\n|\r\n)/g, '<br>');
+text.innerHTML = result;
 </script>
 
  <script src="js/boardjs/board.js"></script> 

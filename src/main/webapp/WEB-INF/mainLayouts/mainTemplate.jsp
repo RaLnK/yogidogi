@@ -22,9 +22,7 @@
 
 <!-- Bootstrap CSS -->
 <link href="/yogidogi/css/bootstrap.min.css" rel="stylesheet">
-<link
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-	rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"	rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <link href="/yogidogi/css/tiny-slider.css" rel="stylesheet">
 <link href="/yogidogi/css/style.css" rel="stylesheet">
