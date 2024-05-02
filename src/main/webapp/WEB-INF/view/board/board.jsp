@@ -65,7 +65,7 @@ h4{
     </table>
     <div class="header" align="left" >
 		<input class="col-sm-5" id="reply">
-		<button class="col-sm-1" id="addReply" >댓글등록</button>
+		<button class="col-sm-1 btn" id="addReply" >댓글등록</button>
 	</div>
   
 <script>
@@ -77,4 +77,4 @@ let mno="${memberNo}";
 </script>
 
  <script src="js/boardjs/board.js"></script> 
-  <script src="js/boardjs/replyList.js"></script> 
+  <script src="js/boardjs/reply.js"></script> 

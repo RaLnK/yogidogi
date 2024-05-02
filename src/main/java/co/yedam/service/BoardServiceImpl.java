@@ -56,6 +56,12 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.addNoticeBoard(bvo) == 1;
 	}
 
+	@Override
+	public List<BoardVO> qnaList() {
+		// TODO Auto-generated method stub
+		return mapper.qnaList();
+	}
+
 
 
 }

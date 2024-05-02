@@ -3,7 +3,7 @@
  */
 
  console.log('start');
- 
+
 	const svc = {
 		//게시글 삭제
 		removeBoard(bno=1, successCall, errorCall){
@@ -25,7 +25,8 @@
 
 	
 document.addEventListener('DOMContentLoaded',function(e){ 
-	
+	 $('.nav-item').removeClass('active');
+	 $('.board').addClass('active');
 	//삭제버튼 이벤트
 	$('#delBtn').click(function(e){
 		if(confirm("삭제하시겠습니까?")){

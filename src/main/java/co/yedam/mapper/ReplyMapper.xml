@@ -25,4 +25,10 @@
 		delete from reply
 		where reply_no = #{rno}
 	</delete>
+	
+	<update id="updateReply" parameterType="ReplyVO">
+		update reply
+			set reply_content = #{replyContent}
+		where reply_no = #{replyNo}
+	</update>
 </mapper>
