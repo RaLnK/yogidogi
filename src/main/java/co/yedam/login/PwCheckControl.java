@@ -17,10 +17,11 @@ public class PwCheckControl implements Control {
 		String id = req.getParameter("memberId");
 		
 		MemberService sc = new MemberServiceImpl();
-		String pw = sc.findPwCheck(id);
+		sc.resetPw(id);
+		String email = sc.findPwCheck(id);
 		
-		if(pw != null) {
-			resp.getWriter().print("{\"retCode\":\"" + pw + "\"}");
+		if(email != null) {
+			resp.getWriter().print("{\"retCode\":\"" + email + "\"}");
 		}else {
 			resp.getWriter().print("{\"retCode\": \"Fail\"}");
 		}

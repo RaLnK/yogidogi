@@ -15,37 +15,31 @@ function addMember() {
 	const addHtp = new XMLHttpRequest();
 	addHtp.open('POST', '/yogidogi/addMember.do');
 	addHtp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	if(password != passwordCheck) {
+		$('.pwc-no').text('비밀번호와 일치하지 않습니다')
+		return;
+	}
 	addHtp.send('memberId=' + id + '&memberName=' + nm + '&memberPw=' + password
 				+ '&email=' + email + '&phone=' + phone);
 	addHtp.onload = function() {
 		const result = JSON.parse(addHtp.response);
-		if(result.retCode == 'Success' && password.length < 8 || password.length > 20) {
+		if(result.cnt == 0) {
+			$('.id-no').text('');
+			$('.pw-no').text('');
+			$('.pwc-no').text('');
+			$('.email-no').text('');
+			$('.phone-no').text('');
 			openModal();
-			$('div.modal-content').append($('<p>비밀번호를 확인해주세요</p>'));
-			closeModal();
-		}else if(result.retCode == 'fail') {
-			openModal();
-			$('div.modal-content').append($('<p>모든 정보를 입력해주세요</p>'));
-			closeModal();
-		}else if(result.retCode == 'Success' && password != passwordCheck) {
-			openModal();
-			$('div.modal-content').append($('<p>비밀번호와 비밀번호확인이 동일하지 않습니다</p>'));
-			closeModal();
-		}else if(result.retCode == 'Success' && email.search("@") < 0) {
-			openModal();
-			$('div.modal-content').append($('<p>이메일 주소를 올바른 형식으로 입력해주세요</p>'));
-			closeModal();
-		}else if(result.retCode == 'Success' && id.length < 5 || id.length >12) {
-			openModal();
-			$('div.modal-content').append($('<p>아이디를 확인해주세요</p>'));
-			closeModal();
-		}else if(result.retCode == 'Success') {
-			successModal();
+			$('div.modal-content').append($('<p>새로운 회원이 되신 것을 환영합니다</p>'));
 			successClose();
 		}else{
-			openModal();
-			$('div.modal-content').append($('<p>모든 정보를 입력해주세요</p>'));
-			closeModal();
+			$('.id-no').text(result.id);
+			$('.pw-no').text(result.pw);
+			$('.email-no').text(result.email);
+			$('.phone-no').text(result.phone);
+			$('.id-no').text(result.idDup);
+			$('.email-no').text(result.emailDup);
+			$('.phone-no').text(result.phoneDup);
 		}
 	}
 }
@@ -61,27 +55,9 @@ function closeModal() {
 	})
 }
 
-function successModal() {
-	$('.dmodal').css('display', 'block');
-	addBtn();
-	noAddBtn();
-}
-
 function successClose() {
 	$('.close').on('click', function() {
 		$('.modal').css('display', 'none');
-		location.href = '/yogidogi/loginForm.do'
-	})
-}
-
-function addBtn() {
-	$('#yes').on('click', function() {
-		location.href = '/yogidogi/addDogForm.do';
-	})
-}
-
-function noAddBtn() {
-	$('#no').on('click', function() {
 		location.href = '/yogidogi/loginForm.do'
 	})
 }

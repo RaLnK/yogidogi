@@ -5,16 +5,17 @@ console.log('findPw');
 document.getElementById('login').addEventListener('click', findPw);
 
 function findPw() {
-	let id = document.querySelector('#id').value;
+	let id = document.querySelector('#memberId').value;
 	
 	const findHtp = new XMLHttpRequest();
 	findHtp.open('get', '/yogidogi/pwCheck.do?memberId=' + id);
 	findHtp.send();
 	findHtp.onload = function() {
-		let result = JSON.parse(findHtp.response)
+		let result = JSON.parse(findHtp.response);
 		if(result.retCode != 'Fail') {
 			openModal();
-			$('div.modal-content').append($('<p>해당 ID에 등록된 비밀번호는 '+ result.retCode +' 입니다.</p>'));
+			$('div.modal-content').append($('<p>해당 ID에 등록된 비밀번호가 '+ result.retCode +
+			' 로(회원가입 시 등록된 이메일) 변경되었습니다. 로그인 후 비밀번호를 변경해주세요.</p>'));
 			$('.close').on('click', function() {
 				$('.modal').css('display', 'none');
 				location.href = '/yogidogi/loginForm.do'

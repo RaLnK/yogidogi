@@ -29,11 +29,11 @@
               <p class="login-card-description">LOGIN</p>
               <form action="login.do">
                   <div class="form-group">
-                    <label for="memberId" class="sr-only">Email</label>
-                    <input type="text" name="memberId" id="memberId" class="form-control" placeholder="ID">
+                    <label for="memberId" class="sr-only">아이디</label>
+                    <input type="text" name="memberId" id="memberId" class="form-control" placeholder="아이디">
                   </div>
                   <div class="form-group mb-4">
-                    <label for="memberPw" class="sr-only">Password</label>
+                    <label for="memberPw" class="sr-only">비밀번호</label>
                     <input type="password" name="memberPw" id="memberPw" class="form-control" placeholder="***********">
                   </div>
                   <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
@@ -48,9 +48,9 @@
              	<!--모달창-->
                 <p class="login-card-footer-text"><a href="http://localhost:8080/yogidogi/addMemberForm.do" class="text-reset">회원가입</a></p>
                 <nav class="login-card-footer-nav">
-                  <a href="http://localhost:8080/yogidogi/idCheckForm.do">ID 찾기</a>
+                  <a href="http://localhost:8080/yogidogi/idCheckForm.do">아이디 찾기</a>
                   <br>
-                  <a href="http://localhost:8080/yogidogi/pwCheckForm.do">Password 찾기</a>
+                  <a href="http://localhost:8080/yogidogi/pwCheckForm.do">비밀번호 찾기</a>
                 </nav>             
             </div>
           </div>

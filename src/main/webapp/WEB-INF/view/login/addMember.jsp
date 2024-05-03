@@ -30,7 +30,8 @@
               <form action="#!">
                   <div class="form-group">
                     <label for="id" class="sr-only">ID</label>
-                    <input type="text" name="id" id="id" class="form-control" placeholder="ID(숫자, 영문자 조합 5자리 이상)">
+                    <input type="text" name="id" id="id" class="form-control" placeholder="아이디(숫자, 영문자 조합 5자리 이상)">
+                    <span class="id-no" style="color:red;"></span>
                   </div>
                   <div class="form-group mb-4">
                     <label for="name" class="sr-only">Name</label>
@@ -38,19 +39,23 @@
                   </div>
                   <div class="form-group mb-4">
                     <label for="password" class="sr-only">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="password(숫자, 영문자 조합 8자리 이상)">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호(숫자, 영문자 조합 8자리 이상)">
+                    <span class="pw-no" style="color:red;"></span>
                   </div>
                   <div class="form-group mb-4">
                     <label for="passwordCheck" class="sr-only">PasswordCheck</label>
-                    <input type="password" name="passwordCheck" id="passwordCheck" class="form-control" placeholder="password와 동일해야 합니다">
+                    <input type="password" name="passwordCheck" id="passwordCheck" class="form-control" placeholder="비밀번호 확인(비밀번호와 동일해야 합니다)">
+                    <span class="pwc-no" style="color:red;"></span>
                   </div>
                   <div class="form-group mb-4">
                     <label for="email" class="sr-only">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="email">
+                    <input type="email" name="email" id="email" class="form-control" placeholder="이메일">
+                    <span class="email-no" style="color:red;"></span>
                   </div>
                   <div class="form-group mb-4">
                     <label for="phone" class="sr-only">Phone</label>
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="연락처">
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="연락처(***-****-****)">
+                    <span class="phone-no" style="color:red;"></span>
                   </div>
                   <a id="login" class="btn btn-block login-btn mb-4" type="button" data-toggle="modal">가입</a>	             
                 </form>
@@ -61,18 +66,7 @@
 	    				<p></p>
 	  				</div>
 				</div>
-             	<!--모달창-->
-             	<!--강아지등록모달창-->
-             	<div id="dogModal" class="dmodal">
-             		<div class="modal-content">
-             			<span class="close">&times;</span>
-             			<p>새로운 회원이 되신것을 환영합니다</p>
-             			<p>강아지 등록을 진행하시겠습니까?</p>
-             			<button id="yes" class="yon">예</button>
-             			<button id="no" class="yon">아니오(My Page에서 추후에 등록 가능합니다)</button>
-             		</div>
-             	</div>
-             	<!--강아지등록모달창-->
+             	<!--모달창-->          
                </div>
               </div>
              </div>

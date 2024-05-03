@@ -49,16 +49,16 @@
 		where member_id = #{memberId} and member_pw = #{memberPw}
 	</delete>
 	
-	<update id="quitDate" parameterType="co.yedam.vo.MemberVO">
+	<update id="quitDate" parameterType="string">
 		update member
 		set quit_date = sysdate
-		where member_no = #{memberNo}
+		where member_id = #{memberId}
 	</update>
 	
-	<update id="resetPw" parameterType="co.yedam.vo.MemberVO">
+	<update id="resetPw" parameterType="string">
 		update member
 		set member_pw = email
-		where meber_no = #{memberNo}
+		where member_id = #{memberId}
 	</update>
 	
 	<delete id="delMember" parameterType="int">
@@ -73,7 +73,7 @@
 	</select>
 	
 	<select id="findPwCheck" parameterType="string" resultType="string">
-		select member_pw
+		select email
 		from member
 		where member_id = #{memberId}
 	</select>
