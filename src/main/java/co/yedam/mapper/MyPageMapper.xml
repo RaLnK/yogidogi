@@ -65,7 +65,8 @@
 	</select>
 	
 	<select id="orderInfo" parameterType="int" resultType="OrderVO">
-		select order_no, target_name, order_addr, order_addr2, target_phone, order_req, order_price, order_point
+		select order_no, target_name, order_addr, order_addr2, target_phone, order_req, order_price,
+			order_point, order_status, to_char(order_date, 'yyyy-MM-dd') as "order_date"
 		from orders
 		where order_no = #{orderNo}
 	</select>

@@ -24,6 +24,7 @@ const svc = {
 
 document.addEventListener('DOMContentLoaded', function(e) {
 	svc.myOrderProduct(ono, function(result) {
+		let sumPrice = 0;
 		result.forEach(product => {
 			let orderQty = parseInt(product.orderQty);
 			let productPrice = parseInt(product.productPrice);
@@ -47,15 +48,23 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			tr.append($('<td />').attr('class', 'product-quantity').text(orderQty));
 			if(discountPct == 0){
 				tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text((productPrice * orderQty).formatNumber() + '원')));
+				sumPrice += (productPrice * orderQty);
 			}else{
 				tr.append($('<td />').append($('<span />').attr('class', 'text-muted text-decoration-line-through price').text(productPrice * orderQty)));
 				let newPrice = Math.floor((productPrice * (1 - discountPct*0.01))/100)*100;
 				tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text('<br>'+newPrice.formatNumber() + '원')));
+				sumPrice += newPrice;
 			}
 			
 			$('#backToList').on('click', e=>{
 				location.href='/yogidogi/myOrder.do';
 			});
+			
+			$('#backToShop').on('click', e=>{
+				location.href='/yogidogi/productList.do';
+			});
+			
+			$('#sumPrice').text(sumPrice);
 			
 			$('tbody').eq(0).append(tr);
 		});
