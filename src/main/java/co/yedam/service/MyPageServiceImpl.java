@@ -80,4 +80,10 @@ public class MyPageServiceImpl implements MyPageService {
 		return mapper.myBoardList(bvo);
 	}
 
+	@Override
+	public int checkDog(int memberNo) {
+		if(mapper.checkDog(memberNo) > 0) return 0;
+		else return 1;
+	}
+
 }

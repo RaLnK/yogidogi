@@ -49,6 +49,7 @@
 							<div class="row">
 								<div class="col-md-12" style="text-align:right">
 									<button class="btn" style="color: white; background-color: black;" id="editBtn">수정</button>
+									<button class="btn" style="color: white; background-color: black;" id="delBtn">삭제</button>
 								</div>
 							</div>
 						</div>

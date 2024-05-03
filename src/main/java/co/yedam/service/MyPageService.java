@@ -13,8 +13,10 @@ import co.yedam.vo.WishListVO;
 public interface MyPageService {
 	public MemberVO memberList(int memberNo);
 	public boolean memberUpdate(MemberVO mvo);
+	
 	public List<MemberDogVO> memberDogList(int memberNo);
 	public boolean memberDogUpdate(MemberDogVO mvo);
+	public int checkDog(int memberNo);
 
 	public List<ProductVO> wishListAjax(int memberNo);
 	public boolean wishListDel(WishListVO wvo);
