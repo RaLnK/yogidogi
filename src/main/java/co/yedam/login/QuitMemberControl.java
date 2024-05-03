@@ -11,7 +11,7 @@ import co.yedam.service.MemberService;
 import co.yedam.service.MemberServiceImpl;
 import co.yedam.vo.MemberVO;
 
-public class NewPwControl implements Control {
+public class QuitMemberControl implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -21,10 +21,10 @@ public class NewPwControl implements Control {
 		MemberVO vo = new MemberVO();
 		vo.setMemberId(id);
 		vo.setMemberPw(pw);
-		
 		MemberService sc = new MemberServiceImpl();
-		if(sc.resetPw(vo)) {
+		if(sc.quitMember(vo)) {
 			resp.getWriter().print("{\"retCode\": \"Success\"}");
+			sc.quitDate(id);
 		}else {
 			resp.getWriter().print("{\"retCode\": \"Fail\"}");
 		}
