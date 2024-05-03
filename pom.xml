@@ -57,6 +57,19 @@
       <artifactId>taglibs-standard-impl</artifactId>
       <version>1.2.5</version>
     </dependency>
+	<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
 	
 	  <!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 	<dependency>
@@ -89,6 +102,7 @@
         <configuration>
           <source>11</source>
           <target>11</target>
+		<encoding>UTF-8</encoding>
         </configuration>
       </plugin>
       <plugin>
