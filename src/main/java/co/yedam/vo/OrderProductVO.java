@@ -10,5 +10,5 @@ public class OrderProductVO {
 	private int category;
 	private int discountPct;
 	private int orderQty;
-	
+	private int productNo;
 }

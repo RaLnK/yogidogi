@@ -17,6 +17,6 @@ public interface ReviewMapper {
 	public int addReview(ReviewVO rvo);
 	
 	// 리뷰 삭제
-	public int delReview(int rno);
+	public int delReview(ReviewVO rvo);
 
 }
