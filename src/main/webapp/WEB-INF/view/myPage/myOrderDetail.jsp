@@ -12,6 +12,15 @@
 				<div class="p-3 p-lg-5 col-md-12 border bg-white">
 					<div class="form-group row" style="padding: 1rem;">
 						<div class="col-md-4" style="text-align:center;">
+							<strong class="text-black" style="line-height: 50px;">주문 번호 :</strong>
+						</div>
+						<div class="col-md-8">
+							<h6 class="text-black" style="line-height: 50px;">${orderVO.orderNo }</h6>
+						</div>
+					</div>
+					
+					<div class="form-group row" style="padding: 1rem;">
+						<div class="col-md-4" style="text-align:center;">
 							<strong class="text-black" style="line-height: 50px;">이름 :</strong>
 						</div>
 						<div class="col-md-8">
@@ -46,6 +55,15 @@
 						</div>
 					</div>
 					
+					<div class="form-group row" style="padding: 1rem;">
+						<div class="col-md-4" style="text-align:center;">
+							<strong class="text-black" style="line-height: 50px;">주문 진행 상황 :</strong>
+						</div>
+						<div class="col-md-8">
+							<h6 class="text-black" style="line-height: 50px;">${orderVO.orderStatus }</h6>
+						</div>
+					</div>
+					
 				</div>
 				
 				
@@ -68,12 +86,49 @@
 						</div>
 					</div>
 					
+					<div class="row justify-content-end">
+	                    <div class="col-md-6">
+	                      <div class="row">
+		                      <div class="col-md-12 text-right border-bottom">
+		                      	<h3 class="text-black h5" style="text-align:center">결제 정보</h3>
+		                      </div>
+	                      </div>
+	                      <div class="row mb-3">
+	                        <div class="col-md-6">
+	                          <span class="text-black">총 상품 금액</span>
+	                        </div>
+	                        <div class="col-md-6 text-right">
+	                          <strong class="text-black" id="sumPrice"></strong>
+	                        </div>
+	                      </div>
+	                      <div class="row mb-3">
+	                        <div class="col-md-6">
+	                          <span class="text-black">사용한 포인트</span>
+	                        </div>
+	                        <div class="col-md-6 text-right">
+	                          <strong class="text-black">${orderVO.orderPoint }</strong>
+	                        </div>
+	                      </div>
+	                      
+	                      <div class="row text-right border-top">
+		                      	<div class="col-md-6">
+		                          <span class="text-black">최종 결제 금액</span>
+		                        </div>
+		                        <div class="col-md-6 text-right">
+		                          <strong class="text-black">${orderVO.orderPrice}</strong>
+		                        </div>
+	                      </div>
+	                    </div>
+	                </div>
+					
+					
 				</div>
 				
 				<div class="row justify-content-end" style="padding: 1rem;">
 					<div class="col-md-4">
 						<div class="row">
 							<div class="col-md-12" style="text-align:right">
+								<button class="btn" style="color: white; background-color: black;" id="backToShop">Shop</button>
 								<button class="btn" style="color: white; background-color: black;" id="backToList">주문 목록</button>
 							</div>
 						</div>
