@@ -13,11 +13,11 @@ public interface MemberMapper {
 	//회원가입
 	public int addMember(MemberVO mvo);
 	//회원탈퇴
-	public MemberVO quitMember(MemberVO mvo);
+	public int quitMember(MemberVO mvo);
 	//탈퇴일자
-	public MemberVO quitDate(MemberVO mvo);
+	public String quitDate(String memberId);
 	//비밀번호 초기화
-	public int resetPw(String memberId);
+	public int resetPw(MemberVO mvo);
 	//회원삭제
 	public int delMember(int no);
 	//아이디 찾기

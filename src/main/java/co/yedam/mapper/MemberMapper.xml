@@ -67,7 +67,7 @@
 	</delete>
 	
 	<select id="findIdCheck" parameterType="string" resultType="string">
-		select member_name
+		select member_Id
 		from member
 		where email = #{email}
 	</select>
