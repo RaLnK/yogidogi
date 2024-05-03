@@ -29,16 +29,16 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.addMember(mvo) == 1;
 	}
 	@Override
-	public MemberVO quitMember(MemberVO mvo) {
-		return mapper.quitMember(mvo);
+	public boolean quitMember(MemberVO mvo) {
+		return mapper.quitMember(mvo) == 1;
 	}
 	@Override
-	public MemberVO quitDate(MemberVO mvo) {
-		return mapper.quitDate(mvo);
+	public String quitDate(String memberId) {
+		return mapper.quitDate(memberId);
 	}
 	@Override
-	public boolean resetPw(String memberId) {
-		return mapper.resetPw(memberId) == 1;
+	public boolean resetPw(MemberVO mvo) {
+		return mapper.resetPw(mvo) == 1;
 	}
 	@Override
 	public boolean memberId(MemberVO mvo) {

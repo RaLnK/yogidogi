@@ -13,11 +13,11 @@ public interface MemberService {
 	//회원가입
 	public boolean addMember(MemberVO mvo);
 	//회원탈퇴
-	public MemberVO quitMember(MemberVO mvo);
+	public boolean quitMember(MemberVO mvo);
 	//탈퇴일자
-	public MemberVO quitDate(MemberVO mvo);
+	public String quitDate(String memberId);
 	//비밀번호 초기화
-	public boolean resetPw(String memberId);
+	public boolean resetPw(MemberVO mvo);
 	//회원삭제
 	public boolean delMember(int no);
 	//아이디 찾기

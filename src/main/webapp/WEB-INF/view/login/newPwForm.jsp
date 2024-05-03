@@ -40,7 +40,7 @@
                     <label for="memberPwCheck" class="sr-only">memberPwCheck</label>
                     <input type="password" name="memberPwCheck" id="memberPwCheck" class="form-control" placeholder="새로운 비밀번호 확인">
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="찾기">
+                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="변경">
                 </form>
                 <!--모달창-->
 				<div id="myModal" class="modal">

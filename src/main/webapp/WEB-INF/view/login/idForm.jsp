@@ -27,11 +27,7 @@
                 <img src="images/logo.PNG" alt="logo" class="logo">
               </div>
               <p class="login-card-description">아이디 찾기</p>
-              <form action="#!">
-                  <div class="form-group mb-4">
-                    <label for="memberName" class="sr-only">성함</label>
-                    <input type="text" name="memberName" id="memberName" class="form-control" placeholder="성함">
-                  </div>
+              <form action="#!">          
                   <div class="form-group">
                     <label for="email" class="sr-only">이메일</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="이메일">
