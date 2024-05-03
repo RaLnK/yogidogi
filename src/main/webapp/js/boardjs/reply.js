@@ -7,11 +7,11 @@ function reList(){
 	 $.get('/yogidogi/replyList.do?bno='+bno,function(result){
 		  console.log(result);
 		  $('#example tbody').empty();
-		  let deleteBtn ="";
-		  let updateBtn ="";
 		  
 		  
 		  result.forEach(reply=>{
+			  let deleteBtn ="";
+			  let updateBtn ="";
 			 console.log(mid)
 			  if(mid == reply.memberId  ){
 				 console.log(reply.memberId )
@@ -25,8 +25,8 @@ function reList(){
 			  			$('<td/>').text(reply.replyContent),
 			  			$('<td/>').attr('class','replyer').text(reply.memberId),
 			  			$('<td/>').text(reply.replyDate),			  		
-				  		$('<td/>').attr('class','btnn').append(deleteBtn),
-				  		$('<td/>').attr('class','btnn').append(updateBtn)
+				  		$('<td/>').attr('class','btnn').append(updateBtn),
+				  		$('<td/>').attr('class','btnn').append(deleteBtn)
 			  			).appendTo($('#example tbody'))
 			  			
 		  })
@@ -105,8 +105,9 @@ function reList(){
 		
 		//upForm.hide();
 		tr.hide();
-		tr.after($('<tr/>').attr('class','openUpForm').append($('<td/>').text('-')
-									,$('<td/>').append($('<input type="text class="upContent">').val(rContent))
+		tr.after($('<tr/>').attr('class','openUpForm').append($('<td/>').text(tr.find("td:eq(0)").text()).css('display','none')
+									,$('<td/>').text('-')
+									,$('<td/>').append($('<input type="text" class="upContent">').val(rContent))
 									,$('<td/>').text('')
 									,$('<td/>').text('')
 		  							,$('<td/>').append($('<input type="button" class="upFinishBtn btnnn" value="수정완료">'))
@@ -115,29 +116,28 @@ function reList(){
 	 })//end of updateReplyForm
 	 
 	 //수정완료 버튼 클릭
-	 $('.upFinishBtn').click(function(e){
-		 let rno=$(e.target).parent(".parentReply").find('td:eq(0)').text();
-		 console.log(rno)
-		 
-		 let con=$(e.target).closest('.upContent').val();
-		 console.log(con)
-		 
-		 let tr=$(e.target).closest(".parentReply");
-		 
-		 fetch('updateReply.do?rno='+rno+'&con='+con)
-		 .then(result=>result.json())
-		 .then(result=>{
-			 //tr.show();
-			 $(e.target).closest(".upcontent").hide();
-		 })
-	 }) //end of updateReply
+	 $('#example tbody').on('click', '.upFinishBtn', function(e) {
+	    let rno = $(e.target).closest('.openUpForm').find('td:eq(0)').text();
+	    let con = $(e.target).closest('.openUpForm').find('.upContent').val();
+	
+	    fetch('updateReply.do?rno=' + rno + '&con=' + con)
+	        .then(result => result.json())
+	        .then(result => {
+	            // 처리 완료 후 동작
+	            $(e.target).closest('.openUpForm').prev('.parentReply').show();
+	            $(e.target).closest('.openUpForm').remove();
+	            reList()
+	        })
+	        .catch(err => console.error(err));
+	});
+	  //end of updateReply
 	 
 	 //수정취소 버튼 클릭
-	 $('.backBtn').click(function(e){
-		 let tr=$(e.target).parent(".parentReply");
-		 tr.show();
-		 $(e.target).closest(".upcontent").hide();
-	 })
+	 $('#example tbody').on('click', '.backBtn', function(e) {
+	    let tr = $(e.target).closest('.openUpForm');
+	    tr.prev('.parentReply').show();
+	    tr.remove();
+	});
 	 //end of updateBack
 	 
 	 
