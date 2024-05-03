@@ -29,12 +29,12 @@
               <p class="login-card-description">비밀번호 찾기</p>
               <form action="#!">
                   <div class="form-group">
-                    <label for="id" class="sr-only">ID</label>
-                    <input type="text" name="id" id="id" class="form-control" placeholder="ID">
+                    <label for="memberName" class="sr-only">성함</label>
+                    <input type="text" name="memberName" id="memberName" class="form-control" placeholder="성함">
                   </div>
                   <div class="form-group mb-4">
-                    <label for="email" class="sr-only">email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email(yedam1@yedam1.ync)">
+                    <label for="memberId" class="sr-only">memberId</label>
+                    <input type="text" name="memberId" id="memberId" class="form-control" placeholder="아이디">
                   </div>
                   <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="찾기">
                 </form>
