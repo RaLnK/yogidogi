@@ -2,26 +2,13 @@ package co.yedam.service;
 
 import java.util.List;
 
+import co.yedam.vo.CartProductVO;
 import co.yedam.vo.OrderVO;
 
 public interface OrderService {
 	// 주문 목록
 	public List<OrderVO> orderList(int memberNo);
 	
-	// 주문번호 중복체크
-	public String checkOdNo(int memberNo);
+	public List<CartProductVO> orderView(int memberNo);
 	
-	// 주문 추가
-	public int addOrder(OrderVO vo);
-	
-	// 회원 포인트 수정
-	public boolean modPoint(OrderVO vo);
-	
-	// 주문 삭제
-	public boolean remOrder(int odNo);
-	
-	// 주문상세 삭제
-	public boolean remOrderItem(int odNo);
-	
-	public List<OrderVO> producteInfo(int odNo);
 }

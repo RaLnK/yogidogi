@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<form action="orderList.do">
 		<div class="untree_co-section before-footer-section">
             <div class="container">
               <div class="row mb-5" id="cart">
@@ -34,7 +33,8 @@
                     </div>
                   </div>
                 </div>
-               </form>
+                </div>
+              </form>
                 <div class="col-md-6 pl-5">
                   <div class="row justify-content-end">
                     <div class="col-md-7">
@@ -63,8 +63,6 @@
                 </div>
               </div>
             </div>
-          </div>
-</form>
 <script>
 </script>
 <script src ="/yogidogi/js/cartjs/cartList.js"></script>
