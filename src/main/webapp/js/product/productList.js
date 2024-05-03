@@ -11,28 +11,25 @@ $(function() {
 	$('.shop').addClass('active');
 	
 	param = {
-		order: 2,
+		order: 'product_no',
 		page:1
 	}
 
 	pvc = {
-		order: 1,
+		order: 'product_no',
 		category: 1
 	}
 	
-	let cate = pvc.category;
-	let order = param.order;
 
 	// 첫화면
 	svc.productList(param, function(result) {	// start of productList
-		//all(result); // 처음 들어 갔을 때 show all category
-		let cateId = sessionStorage.getItem('category');
+		let cateId = sessionStorage.getItem('eachCategory');
 		if (cateId == null) {
 			cateId = 'all';
 		} else {
-			cateId = sessionStorage.getItem('category');
+			cateId = sessionStorage.getItem('eachCategory');
 		}
-		category(".side-bar #" + cateId + ' a');
+		eachCategory(".side-bar #" + cateId + ' a');
 		allCnt(); // 전체 수량 cnt
 		cateCnt(); // category cnt
 
@@ -48,6 +45,7 @@ $(function() {
 		$(e.target).addClass('active');
 		let findCate = $('.side ul').find('.active').prop('id');
 		param.order = $(e.target).data('order');
+		pvc.order = $(e.target).data('order');
 
 		if (findCate == 'all' || findCate == 'yogi') {
 			order = param.order;
@@ -72,11 +70,11 @@ $(function() {
 	$('.side ul li').on('click', function(e) {
 		e.preventDefault();
 		let targetId = $(e.target).parent().prop('id');
-		sessionStorage.setItem('category', targetId);
-		category(e.target);
+		sessionStorage.setItem('eachCategory', targetId);
+		eachCategory(e.target);
 	})//end show each category
 
-	function category(obj) {
+	function eachCategory(obj) {
 		$(obj).closest('ul').find('.active').removeClass('active'); // 선택 시 li tag에 active 줌
 		$(obj).parent().addClass('active');
 
@@ -89,6 +87,7 @@ $(function() {
 			})
 		} else {
 			pvc.category = parseInt(targetId);
+			console.log(pvc);
 			svc.sortProductList(pvc, function(sortResult) {
 				all(sortResult);
 			}, function(err) {
@@ -129,7 +128,14 @@ function all(result) { // 전체 상품
 
 	})
 	like();
-	svc.allCnt(createPageList, function(err) {console.error(err);});
+//문제있음!!! allCnt 에 매개변수 받아서 해야 될 듯
+	svc.allCnt(function(result){ // 페이징
+		createPageList(result);
+	}, function(err){
+		console.log(err);
+	})
+	//svc.allCnt(createPageList(result), function(err) {console.error(err);});
+	
 }
 
 function like() { // 좋아요 기능
@@ -192,7 +198,7 @@ function like() { // 좋아요 기능
 
 	$('.nav-item').on('click', e => { // nav의 메뉴가 바뀔때만 category를 all로 설정 => cart page 에선 유지
 		$(window).on('unload', function() {
-			sessionStorage.setItem('category', 'all');
+			sessionStorage.setItem('eachCategory', 'all');
 		});
 
 	})
@@ -236,16 +242,21 @@ function createPageList(result) {
 	let totalCnt = result.totalCount;
 	let startPage, endPage; // 시작 페이지, 마지막 페이지
 	let next, prev; // 이전, 이후
-	let realEnd = Math.ceil(totalCnt / 5); // 실제 페이지
+	let realEnd = Math.ceil(totalCnt / 16); // 실제 페이지 -> 37/16 =>  3페이지
 
-	endPage = Math.ceil(page / 5) * 5; // 계산 상의 페이지. 실제 페이지는 다름
+	endPage = Math.ceil(page / 5) * 5; // 계산 상의 페이지. 실제 페이지는 다름 ->
 	startPage = endPage - 4;
 	endPage = endPage > realEnd ? realEnd : endPage;
 
 	next = endPage < realEnd ? true : false;
 	prev = startPage > 1;
-	
-	console.log(realEnd);
+/*	
+	console.log(result);
+	console.log(totalCnt);
+	console.log('page:'+ page);
+	console.log('startpage:'+startPage);
+	console.log('endpage:'+endPage);
+	console.log('realend:'+realEnd);*/
 
 	
 	if (prev) {
@@ -263,7 +274,7 @@ function createPageList(result) {
 		aTag.href = "#"; //링크 모양을 주려고
 		aTag.setAttribute('data-page', pg); // 값 담을 때
 		pageTarget.appendChild(aTag);
-		if (pg == page) {
+		if (pg == param.page) {
 			aTag.className = 'active';
 		}
 
@@ -281,20 +292,10 @@ function createPageList(result) {
 	document.querySelectorAll('.pagination>a').forEach(item => {
 		item.addEventListener('click', function(e) {
 			e.preventDefault(); // 페이지 이동 차단 : a 태그는 원래 클릭하면 다른 페이지로 넘어가기 때문
-			console.log(item.dataset.page); // 값 가져올 때
-			page = item.dataset.page;
+			$(item).addClass('active');
+			param.page = item.dataset.page;
 			svc.productList(param, function(result) {	// start of productList
-				//all(result); // 처음 들어 갔을 때 show all category
-				let cateId = sessionStorage.getItem('category');
-				if (cateId == null) {
-					cateId = 'all';
-				} else {
-					cateId = sessionStorage.getItem('category');
-				}
-				category(".side-bar #" + cateId + ' a');
-				allCnt(); // 전체 수량 cnt
-				cateCnt(); // category cnt
-
+				all(result); // 처음 들어 갔을 때 show all category
 			}, function(err) {
 				console.error(err);
 			})// end of productList;
@@ -305,12 +306,12 @@ function createPageList(result) {
 
 const svc = {
 	//상품 리스트
-	productList(param={order:2, page:1}, successCall, errorCall) {
+	productList(param={order:'product_no', page:1}, successCall, errorCall) {
 		fetch('/yogidogi/productListAjax.do?order=' + param.order +'&page='+ param.page) /*최신순 : 1, 할인순: 11*/
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, sortProductList(pvc = { order: 2, category: 1 }, successCall, errorCall) {
+	}, sortProductList(pvc = { order: 'product_no', category: 1 }, successCall, errorCall) {
 		fetch('/yogidogi/sortProductListAjax.do?order=' + pvc.order + '&category=' + pvc.category)
 			.then(result => result.json())
 			.then(successCall)
@@ -350,5 +351,3 @@ const svc = {
 			.catch(errorCall);
 	}
 }
-
-

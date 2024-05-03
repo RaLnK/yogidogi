@@ -19,6 +19,26 @@ const svc = {
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
+	}, myReview(successCall, errorCall){
+		fetch('/yogidogi/myreviewListAjax.do')
+		.then(successCall)
+		.catch(errorCall);
+	}, addReview(rvo ={}, successCall, errorCall){
+		fetch('/yogidogi/addReview.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'pno=' + pno +'rcontent' + rcontent + 'rphoto' + rphoto + 'rstar'+rstar
+		})
+		.then(successCall)
+		.catch(errorCall);
+	}, delReview(rvo ={}, successCall, errorCall){
+		fetch('/yogidogi/delReview.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'rno=' + rno
+		})
+		.then(successCall)
+		.catch(errorCall);
 	}
 }
 
@@ -50,11 +70,18 @@ document.addEventListener('DOMContentLoaded', function(e) {
 				tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text((productPrice * orderQty).formatNumber() + '원')));
 				sumPrice += (productPrice * orderQty);
 			}else{
-				tr.append($('<td />').append($('<span />').attr('class', 'text-muted text-decoration-line-through price').text(productPrice * orderQty)));
+				let disc = $('<td />').append($('<span />').attr('class', 'text-muted text-decoration-line-through price'));
+				disc.find('span').text(productPrice * orderQty);
+				console.log(disc)
 				let newPrice = Math.floor((productPrice * (1 - discountPct*0.01))/100)*100;
-				tr.append($('<td />').append($('<h2 />').attr('class', 'h5 text-black').text('<br>'+newPrice.formatNumber() + '원')));
+				disc.append($('<h2 />').attr('class', 'h5 text-black').html('<br>'+newPrice.formatNumber() + '원'));
+				tr.append(disc);
 				sumPrice += newPrice;
 			}
+			$('#reviewBtn').hide();
+			console.log($('#reviewBtn:eq(-1)'));
+			let reviewBtn = $('<td></td>').append($('#reviewBtn').clone().show());
+			tr.append(reviewBtn);
 			
 			$('#backToList').on('click', e=>{
 				location.href='/yogidogi/myOrder.do';
@@ -67,16 +94,44 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			$('#sumPrice').text(sumPrice);
 			
 			$('tbody').eq(0).append(tr);
+			$('.product-review:eq(1) button').css('color' , 'white');
+			$('.product-review:eq(1) button').css('background-color' , 'black');
+			console.log(result);
+			$('.rmodal').on('click', function(){
+				$('.modal').modal('show');
+				
+				
+				
+				rvo = {
+					pno: product.productNo,
+					rcontent:reContent,
+					rphoto: rePhoto,
+					rstar: reStar
+				}
+				
+				$('.send').on('click', function(e) {
+					svc.addReview(rvo, function(result) {
+
+					}, console.error(err));
+
+				})
+			})
+
+			$('.exit').on('click', function(){
+				$('.modal').modal('hide');
+				let reContent = $('.reviewContent').val();
+				let rePhoto = $('.myImg input[name=myImg]');
+				let reStar =$('.rating input[name = rating]:checked').val() ;
+				console.log(reContent);
+				console.log(rePhoto);
+				console.log(reStar);
+			})
 		});
 	}, function(err) {
 		console.log(err);
 	});
 
 });
-
-
-
-
 
 
 

@@ -25,7 +25,7 @@ public class SortProductListAjaxControl implements Control {
 		String category = req.getParameter("category");
 		
 		ProductVO pvo = new ProductVO();
-		pvo.setOrder(Integer.parseInt(order));
+		pvo.setOrder(order);
 		pvo.setCategory(Integer.parseInt(category));
 		
 		ProductService svc = new ProductServiceImpl();

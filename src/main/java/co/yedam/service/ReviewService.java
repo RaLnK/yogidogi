@@ -17,5 +17,5 @@ public interface ReviewService {
 	public boolean addReview(ReviewVO rvo);
 
 	// 리뷰 삭제
-	public boolean delReview(int rno);
+	public boolean delReview(ReviewVO rvo);
 }

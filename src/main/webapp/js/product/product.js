@@ -190,6 +190,8 @@ function modal() {
 	});
 }
 
+
+
 //공유하기
 function shareTwitter() {
 	let sendUrl = "http:/43.203.180.128:8080/yogidogi/product.do?pno=" + pno; // 전달할 URL

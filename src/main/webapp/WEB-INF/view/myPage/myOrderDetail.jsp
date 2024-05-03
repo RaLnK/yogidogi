@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link href="/yogidogi/css/orderDetail.css" rel="stylesheet" />
 
 <div class="untree_co-section" style="padding-top: 2rem;">
 	<div class="container">
@@ -77,6 +78,7 @@
 										<th class="product-thumbnail" colspan="2">상품</th>
 										<th class="product-quantity">수량</th>
 										<th class="product-price">가격</th>
+										<th class="product-review">리뷰</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -141,7 +143,26 @@
 	</div>
 </div>
 
-
+<!-- 리뷰 버튼 -->
+<div id = 'reviewBtn'>
+	<button type="button" class="rmodal" data-toggle="modal"  data-target="#form"> 리뷰쓰기 </button> 
+	<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    	<div class="modal-dialog modal-dialog-centered" role="document">
+        	<div class="modal-content">
+            	<div class="text-right cross"> <i class="fa fa-times mr-2 exit"></i> </div>
+                <h4>리뷰를 작성해주세요!</h4>
+            	<div class="card-body text-center"> <img src="https://cdn-icons-png.flaticon.com/512/5783/5783307.png" height="100" width="100">
+                	<div class="comment-box text-center">
+                	<div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label> </div>
+                   <input class ="form-control myImg" type = "file" name ="myImg">
+                	<div class="comment-area"> <textarea class="form-control reviewContent" placeholder="해당 상품은 어떠셨나요?" rows="4"></textarea> </div>
+                    	<div class="text-center mt-4"> <button class="btn btn-success send px-5 send">리뷰 등록<i class="fa fa-long-arrow-right ml-1"></i></button></div>
+            		</div>
+        		</div>
+    		</div>
+		</div>
+	</div>
+</div>
 
 
 

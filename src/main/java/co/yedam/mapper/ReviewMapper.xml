@@ -37,7 +37,8 @@
 		order by ${order} desc <!--평점 높은 순: 7, 최신순:1 -->
 	</select>
 
-	<select id ="myReview" parameterType ="co.yedam.vo.ReviewVO" resultType ="co.yedam.vo.ReviewVO">
+	
+	<select id ="myReview" parameterType ="int" resultType ="co.yedam.vo.ReviewVO">
 		select *
 		from review
 		where member_no = ${memberNo}
@@ -61,9 +62,9 @@
 	</insert>
 	
 	
-	<delete id="delReview" parameterType="int">
+	<delete id="delReview" parameterType="co.yedam.vo.ReviewVO">
 	delete from review
-	where review_no = ${rno}
+	where review_no = ${reviewNo} and member_no = ${memberNo}
 	</delete>
 	
 </mapper>

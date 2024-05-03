@@ -25,8 +25,8 @@ public class ReviewServiceImpl implements ReviewService{
 		return mapper.addReview(rvo) == 1;
 	}
 	@Override
-	public boolean delReview(int rno) {
-		return mapper.delReview(rno) == 1;
+	public boolean delReview(ReviewVO rvo) {
+		return mapper.delReview(rvo) == 1;
 	}
 
 	
