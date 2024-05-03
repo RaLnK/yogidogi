@@ -17,8 +17,8 @@ public class UpdateReply implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ReplyVO rvo = new ReplyVO();
 		
-		String con = req.getParameter("replyContent");
-		int rno = Integer.parseInt(req.getParameter("replyNo"));
+		String con = req.getParameter("con");
+		int rno = Integer.parseInt(req.getParameter("rno"));
 		
 		
 		rvo.setReplyContent(con);

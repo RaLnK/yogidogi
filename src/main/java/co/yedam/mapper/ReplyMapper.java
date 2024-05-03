@@ -9,10 +9,13 @@ public interface ReplyMapper {
 
 	List<ReplyVO> replyList(int bno);
 
+	List<ReplyVO> reReplyList(int bno);
+	
 	public int addReply(ReplyVO rvo);
 
 	public int removeReply(int rno);
 
 	public int updateReply(ReplyVO rvo);
+	
 
 }

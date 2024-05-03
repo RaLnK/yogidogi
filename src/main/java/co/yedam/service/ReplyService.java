@@ -9,6 +9,7 @@ import co.yedam.vo.ReplyVO;
 public interface ReplyService {
 
 	List<ReplyVO> replyList(int bno);
+	List<ReplyVO> reReplyList(int bno);
 	public boolean addReply(ReplyVO rvo);
 	public boolean removeReply(int rno);
 	boolean updateReply(ReplyVO rvo);

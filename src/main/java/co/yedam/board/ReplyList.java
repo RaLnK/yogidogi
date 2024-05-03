@@ -25,8 +25,8 @@ public class ReplyList implements Control {
 		String bno = req.getParameter("bno");
 		
 		
-		ReplyVO pg = new ReplyVO();
-		pg.setBoardNo(Integer.parseInt(bno));
+		ReplyVO rvo = new ReplyVO();
+		rvo.setBoardNo(Integer.parseInt(bno));
 		
 		
 		

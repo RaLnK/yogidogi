@@ -22,11 +22,9 @@
 	            )a
 	        WHERE
 	            ROWNUM <![CDATA[  < ]]> 4
-	          
-            
+	                   
         UNION ALL
         
-   
 		select * 
 		from (
 		
@@ -47,8 +45,7 @@
 		                ) a
 		            WHERE  ROWNUM <![CDATA[  <= ]]>	 ( #{page} * 15 )
 		      )b 
-		      where  rn > ( #{page} - 1 ) * 15
-		            
+		      where  rn > ( #{page} - 1 ) * 15            
 		)               
 		ORDER BY    gb,    board_no DESC
 
