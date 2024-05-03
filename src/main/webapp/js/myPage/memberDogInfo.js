@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', function(e) {
 	}, function(err) {
 		console.log(err);
 	});
+	
+	$('#addDogBtn').on('click', e=>{
+		location.href = '/yogidogi/addDogForm.do';
+	});
 
 });
 
@@ -64,6 +68,11 @@ function dogList(result) {
 				});
 			}
 		});
+		
+		temp.find('#delBtn').on('click', e=>{
+			
+		});
+		
 	});
 
 	$('h6').css('text-align', 'center');

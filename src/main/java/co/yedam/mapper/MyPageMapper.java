@@ -13,8 +13,10 @@ import co.yedam.vo.WishListVO;
 public interface MyPageMapper {
 	public MemberVO memberList(int memberNo);
 	public int memberUpdate(MemberVO mvo);
+	
 	public List<MemberDogVO> memberDogList(int memberNo);
 	public int memberDogUpdate(MemberDogVO mvo);
+	public int checkDog(int memberNo);
 
 	public List<ProductVO> wishListAjax(int memberNo);
 	public int wishListDel(WishListVO wvo);
@@ -26,4 +28,5 @@ public interface MyPageMapper {
 	public OrderVO orderInfo(int orderNo);
 	public List<OrderProductVO> myOrderProduct(int orderNo);
 	public List<Board> myBoardList(Board bvo);
+	
 }
