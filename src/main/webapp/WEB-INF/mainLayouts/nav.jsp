@@ -26,7 +26,13 @@
 				<li class="ask"><a class="nav-link" href="qnaBoardList.do">Ask</a></li>
 				</c:if>
 				<li class="board"><a class="nav-link" href="boardList.do">Board</a></li>
+				
+				<c:if test="${memberId ne null }">
 				<li class="mypage"><a class="nav-link" href="memberInfo.do">My Page</a></li>
+				</c:if>
+				<c:if test="${memberId eq null }">
+				<li class="mypage"><a class="nav-link" href="loginForm.do">My Page</a></li>
+				</c:if>
 			</ul>
 
 			<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
@@ -36,7 +42,13 @@
 				<c:if test="${memberId ne null}">
 				<li><a id="login" class="nav-link" href="logoutForm.do"><img src="/yogidogi/images/user.svg"></a></li>
 				</c:if>
+				
+				<c:if test="${memberId ne null }">
 				<li><a id="cart" class="nav-link" href="cartList.do"><img src="/yogidogi/images/cart.svg"></a></li>
+				</c:if>
+				<c:if test="${memberId eq null }">
+				<li><a id="cart" class="nav-link" href="loginForm.do"><img src="/yogidogi/images/cart.svg"></a></li>
+				</c:if>
 			</ul>
 		</div>
 	</div>
