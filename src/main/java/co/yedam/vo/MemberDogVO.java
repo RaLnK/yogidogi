@@ -9,4 +9,5 @@ public class MemberDogVO {
 	private String dogBreed;
 	private String dogBirthday;
 	private String dogName;
+	private int dogLeader;
 }

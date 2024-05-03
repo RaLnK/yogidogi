@@ -28,10 +28,6 @@
               </div>
               <p class="login-card-description">강아지 등록</p>
               <form action="#!">
-                  <div class="form-group">
-                    <label for="memberNo" class="sr-only">memberNo</label>
-                    <input type="text" name="memberNo" id="memberNo" class="form-control" placeholder="회원번호">
-                  </div>
                    <div class="form-group mb-4">
                     <label for="dogName" class="sr-only">dogName</label>
                     <input type="text" name="dogName" id="dogName" class="form-control" placeholder="강아지 이름">
