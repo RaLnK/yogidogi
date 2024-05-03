@@ -79,8 +79,8 @@
 	</select>
 	
 	<insert id="addDog" parameterType="co.yedam.vo.MemberDogVO">
-		insert into member_dog (dog_no, member_no, dog_breed, dog_birthday, dog_name)
-		values (dog_no.nextval, #{memberNo}, #{dogBreed}, #{dogBirthDay}, #{dogName})
+		insert into member_dog (dog_no, member_no, dog_breed, dog_birthday, dog_name, dog_leader)
+		values (dog_no.nextval, #{memberNo}, #{dogBreed}, #{dogBirthDay}, #{dogName}, #{dogLeader})
 	</insert>
 	
 	<delete id="delDog" parameterType="int">
