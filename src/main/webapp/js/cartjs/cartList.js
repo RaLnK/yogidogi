@@ -20,6 +20,16 @@ const svc = {
 			.then(successCall)
 			.catch(errorCall);
 	},
+	cartUpDate(cartNo, quantity, successCall, errorCall) {
+        fetch('cartUpDate.do', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'cno=' + cartNo + '&qty=' + quantity
+        })
+            .then(response => response.json())
+            .then(successCall)
+            .catch(errorCall);
+    }
 }
 
 Number.prototype.formatNumber = function() {
@@ -69,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			qtyDiv.append($('<div />').addClass('input-group-prepend').append(minusBtn),
 				qtyInput, $('<div />').addClass('input-group-append').append(plusBtn));
 			tr.append($('<td />').append(qtyDiv));
-
+			
 			// 토탈 가격 출력
 			tr.append($('<td />').addClass('product-totalprice').text(totalProduct.formatNumber() + "원"));
 
@@ -90,18 +100,11 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			tr.append($('<td />').append(delBtn));
 			$('tbody').eq(0).append(tr);
 		});
-		let totalPrice = 0;
-		// 각 상품의 가격을 합산
-		$('.product-totalprice').each(function() {
-			totalPrice += parseInt($(this).text().replace('원', '').replaceAll(',', ''));
-		});
-		$('#productprice').text(totalPrice.formatNumber() + '원');
-		$('#totalprice').text(totalPrice.formatNumber() + '원');
+		updateProductPrice();
 	}, function(err) {
 		console.log(err);
 	});
 });
-
 $(document).on('click', '.btn-plus', function() {
 	let qtyInput = $(this).parent().parent().find('.quantity-amount');
 	let currentQty = parseInt(qtyInput.val());
@@ -113,7 +116,6 @@ $(document).on('click', '.btn-plus', function() {
 		updateProductPrice();
 	}
 });
-
 $(document).on('click', '.btn-minus', function() {
 	let qtyInput = $(this).parent().parent().find('.quantity-amount');
 	let currentQty = parseInt(qtyInput.val());
@@ -125,20 +127,15 @@ $(document).on('click', '.btn-minus', function() {
 		updateProductPrice();
 	}
 });
-
 function qtyUpdate(button) {
 	let quantity = button.closest('tr').find('.quantity-amount').val();
 	let cartNo = button.closest('tr').data('product').cartNo;
-
-	fetch('cartUpDate.do', {
-		method: 'POST',
-		headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-		body: 'cno=' + cartNo + '&qty=' + quantity
-	})
-		.then(response => response.json())
-		.then(data => { });
+	svc.cartUpDate(cartNo, quantity, function(result) {
+		console.log('수량 변경 성공')
+	}, function(err) {
+		console.log('수량 변경 실패.')
+	});
 }
-
 function updateTotalPrice(button) {
 	let qtyInput = button.parent().parent().find('.quantity-amount');
 	let currentQty = parseInt(qtyInput.val());
@@ -147,7 +144,6 @@ function updateTotalPrice(button) {
 	let totalPrice = totalPriceCalculate(product, currentQty); // 총 가격 계산
 	totalPriceCell.text(totalPrice.formatNumber() + '원'); // totalProduct를 totalPrice로 수정
 }
-
 function updateProductPrice() {
     let totalPrice = 0;
     // 각 상품의 가격을 합산
@@ -157,13 +153,11 @@ function updateProductPrice() {
     $('#productprice').text(totalPrice.formatNumber() + '원');
     $('#totalprice').text(totalPrice.formatNumber() + '원');
 }
-
 function totalPriceCalculate(product, quantity) {
 	let price = disPrice(product); // 할인된 가격 계산
 	let totalPrice = price * quantity; // 총 가격 계산
 	return totalPrice;
 }
-
 function disPrice(product) {
 	if (parseInt(product.discountPct) > 0) {
 		let discPrice = Math.round(parseInt(product.productPrice) * (1 - parseInt(product.discountPct) * 0.01));
@@ -172,7 +166,6 @@ function disPrice(product) {
 		return parseInt(product.productPrice); // 할인이 적용되지 않은 경우 상품 가격 그대로 반환
 	}
 }
-
 
 
 
