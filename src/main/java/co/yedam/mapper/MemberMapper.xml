@@ -57,7 +57,7 @@
 	
 	<update id="resetPw" parameterType="string">
 		update member
-		set member_pw = email
+		set member_pw = #{memberPw}
 		where member_id = #{memberId}
 	</update>
 	
@@ -67,13 +67,13 @@
 	</delete>
 	
 	<select id="findIdCheck" parameterType="string" resultType="string">
-		select member_id
+		select member_name
 		from member
 		where email = #{email}
 	</select>
 	
 	<select id="findPwCheck" parameterType="string" resultType="string">
-		select email
+		select member_name
 		from member
 		where member_id = #{memberId}
 	</select>
