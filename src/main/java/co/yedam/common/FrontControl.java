@@ -24,7 +24,7 @@ public class FrontControl extends HttpServlet {
 		FrontControlLogin.push(map);
 		
 		//게시판
-		//FrontControlBoard.push(map);
+		FrontControlBoard.push(map);
 		
 		//마이페이지
 		FrontControlMyPage.push(map);

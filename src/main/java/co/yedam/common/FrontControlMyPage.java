@@ -19,6 +19,7 @@ import co.yedam.myPage.MyOrderList;
 import co.yedam.myPage.WishListAdd;
 import co.yedam.myPage.WishListDel;
 import co.yedam.myPage.myOrderProduct;
+import co.yedam.myPage.myReplyList;
 
 public class FrontControlMyPage {
 	public static void push(Map<String, Control> map) {
@@ -50,5 +51,6 @@ public class FrontControlMyPage {
 		// 활동 관리
 		map.put("/myActive.do", new MyActive());
 		map.put("/myBoardList.do", new MyBoardList());
+		map.put("/myReplyList.do", new myReplyList());
 	}
 }

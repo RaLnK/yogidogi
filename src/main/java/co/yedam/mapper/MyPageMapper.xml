@@ -88,5 +88,11 @@
 		from board
 		where member_no = #{memberNo} and board_category = #{boardCategory}
 	</select>
+	
+	<select id="myReplyList" parameterType="int" resultType="Reply">
+		select r.reply_no, r.board_no, r.reply_content, to_char(reply_date, 'yyyy-MM-dd') as "reply_date", b.board_title
+		from board b, reply r
+		where b.board_no = r.board_no and r.member_no = #{memberNo}
+	</select>
 
 </mapper>
