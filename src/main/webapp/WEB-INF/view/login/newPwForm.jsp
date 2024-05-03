@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login</title>
+  <title>비밀번호 찾기</title>
   <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -26,17 +26,21 @@
               <div class="brand-wrapper">
                 <img src="images/logo.PNG" alt="logo" class="logo">
               </div>
-              <p class="login-card-description">LOGIN</p>
-              <form action="login.do">
+              <p class="login-card-description">비밀번호 재설정</p>
+              <form action="#!">
+              	  <div class="form-group">
+                    <label for="memberId" class="sr-only">memberId</label>
+                    <input type="text" name="memberId" id="memberId" class="form-control" value=${memberId } readonly>  
+                  </div>
                   <div class="form-group">
-                    <label for="memberId" class="sr-only">아이디</label>
-                    <input type="text" name="memberId" id="memberId" class="form-control" placeholder="아이디">
+                    <label for="memberPw" class="sr-only">memberPw</label>
+                    <input type="password" name="memberPw" id="memberPw" class="form-control" placeholder="새로운 비밀번호">
                   </div>
                   <div class="form-group mb-4">
-                    <label for="memberPw" class="sr-only">비밀번호</label>
-                    <input type="password" name="memberPw" id="memberPw" class="form-control" placeholder="***********">
+                    <label for="memberPwCheck" class="sr-only">memberPwCheck</label>
+                    <input type="password" name="memberPwCheck" id="memberPwCheck" class="form-control" placeholder="새로운 비밀번호 확인">
                   </div>
-                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Login">
+                  <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="찾기">
                 </form>
                 <!--모달창-->
 				<div id="myModal" class="modal">
@@ -46,12 +50,12 @@
 	  				</div>
 				</div>
              	<!--모달창-->
-                <p class="login-card-footer-text"><a href="http://localhost:8080/yogidogi/addMemberForm.do" class="text-reset">회원가입</a></p>
+                <p class="login-card-footer-text"><a href="#!" class="text-reset"></a></p>
                 <nav class="login-card-footer-nav">
-                  <a href="http://localhost:8080/yogidogi/idCheckForm.do">아이디 찾기</a>
+                  <a href="#!"></a>
                   <br>
-                  <a href="http://localhost:8080/yogidogi/pwCheckForm.do">비밀번호 찾기</a>
-                </nav>             
+                  <a href="#!"></a>
+                </nav>
             </div>
           </div>
         </div>
@@ -87,6 +91,6 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="./js/loginJS/login.js"></script>
+  <script src="./js/loginJS/newPw.js"></script>
 </body>
 </html>

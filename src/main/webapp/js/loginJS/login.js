@@ -5,6 +5,8 @@ console.log('login');
 $('form').on('submit', function(e) {
 	e.preventDefault();
 });
+let ref = document.referrer;
+console.log(ref);
 document.getElementById('login').addEventListener('click', login);
 
 function login() {
@@ -21,7 +23,11 @@ function login() {
 			openModal();
 			$('div.modal-content').append($('<p>ID와 비밀번호를 확인하세요</p>'));
 		}else {
-			location.href = '/yogidogi/mainapp.tiles'
+			if(ref == '') {
+				location.href = '/yogidogi/mainapp.tiles'
+			}else {
+				location.href = ref;
+			}
 		}
 	}
 }

@@ -4,9 +4,27 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="co.yedam.mapper.MemberMapper">
-	<select id="memberList" parameterType="co.yedam.vo.MemberVO">
+	<select id="memberList" parameterType="co.yedam.vo.MemberVO" resultType="co.yedam.vo.MemberVO">
 		select *
 		from member
+	</select>
+	
+	<select id="memberId" resultType="co.yedam.vo.MemberVO">
+		select *
+		from member
+		where member_id = #{memberId}
+	</select>
+	
+	<select id="memberEmail" resultType="co.yedam.vo.MemberVO">
+		select *
+		from member
+		where email = #{email}
+	</select>
+	
+	<select id="memberPhone" resultType="co.yedam.vo.MemberVO">
+		select *
+		from member
+		where phone = #{phone}
 	</select>
 	
 	<select id="login" parameterType="co.yedam.vo.MemberVO" resultType="co.yedam.vo.MemberVO">
@@ -31,26 +49,38 @@
 		where member_id = #{memberId} and member_pw = #{memberPw}
 	</delete>
 	
+	<update id="quitDate" parameterType="string">
+		update member
+		set quit_date = sysdate
+		where member_id = #{memberId}
+	</update>
+	
+	<update id="resetPw" parameterType="string">
+		update member
+		set member_pw = #{memberPw}
+		where member_id = #{memberId}
+	</update>
+	
 	<delete id="delMember" parameterType="int">
 		delete from member
 		where member_no = #{memberNo}
 	</delete>
 	
 	<select id="findIdCheck" parameterType="string" resultType="string">
-		select member_id
+		select member_name
 		from member
 		where email = #{email}
 	</select>
 	
 	<select id="findPwCheck" parameterType="string" resultType="string">
-		select member_pw
+		select member_name
 		from member
 		where member_id = #{memberId}
 	</select>
 	
 	<insert id="addDog" parameterType="co.yedam.vo.MemberDogVO">
-		insert into member_dog (dog_no, member_no, dog_breed, dog_birthday, dog_name)
-		values (dog_no.nextval, #{memberNo}, #{dogBreed}, #{dogBirthDay}, #{dogName})
+		insert into member_dog (dog_no, member_no, dog_breed, dog_birthday, dog_name, dog_leader)
+		values (dog_no.nextval, #{memberNo}, #{dogBreed}, to_date(#{dogBirthday}, 'yyyy-MM-dd'), #{dogName}, #{dogLeader})
 	</insert>
 	
 	<delete id="delDog" parameterType="int">

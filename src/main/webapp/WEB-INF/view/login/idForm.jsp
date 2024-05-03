@@ -33,8 +33,8 @@
                     <input type="text" name="memberName" id="memberName" class="form-control" placeholder="성함">
                   </div>
                   <div class="form-group">
-                    <label for="email" class="sr-only">Email</label>
-                    <input type="email" name="email" id="email" class="form-control" placeholder="Email(yedam1@yedam1.ync)">
+                    <label for="email" class="sr-only">이메일</label>
+                    <input type="email" name="email" id="email" class="form-control" placeholder="이메일">
                   </div>
                   <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="찾기">
                 </form>

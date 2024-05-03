@@ -60,9 +60,10 @@
 	</select>
 	
 	<select id="productList" parameterType="co.yedam.vo.PageVO" resultType ="co.yedam.vo.ProductVO">
-	select a.*
-	from(select ROWNUM rn, 
-				b.product_no , 
+	select *
+	from(
+	select ROWNUM rn, a.*
+	from(select  b.product_no , 
 		         b.product_name, 
 		         b.product_price,
 		         b.desc_text,
@@ -77,7 +78,7 @@
 		from product b
 		where delete_chk = 0
 		order by ${order} desc) a <!-- 최신순 : 1, 할인 순: 11 -->
-	WHERE rn > (#{page} -1) *16
+	)WHERE rn > (#{page} -1) *16
 		<![CDATA[
 		AND rn <= (#{page} *16)
 		]]>

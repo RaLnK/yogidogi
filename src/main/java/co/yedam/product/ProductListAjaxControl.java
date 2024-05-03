@@ -28,7 +28,7 @@ public class ProductListAjaxControl implements Control {
 		page = page == null ? "1" : page;
 		
 		PageVO pvo = new PageVO();
-		pvo.setOrder(Integer.parseInt(order));
+		pvo.setOrder(order);
 		pvo.setPage(Integer.parseInt(page));
 		
 		ProductService svc = new ProductServiceImpl();

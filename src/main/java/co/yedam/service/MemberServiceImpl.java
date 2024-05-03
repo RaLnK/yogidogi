@@ -33,6 +33,26 @@ public class MemberServiceImpl implements MemberService{
 		return mapper.quitMember(mvo);
 	}
 	@Override
+	public MemberVO quitDate(MemberVO mvo) {
+		return mapper.quitDate(mvo);
+	}
+	@Override
+	public boolean resetPw(String memberId) {
+		return mapper.resetPw(memberId) == 1;
+	}
+	@Override
+	public boolean memberId(MemberVO mvo) {
+		return mapper.memberId(mvo) != null;
+	}
+	@Override
+	public boolean memberEmail(MemberVO mvo) {
+		return mapper.memberEmail(mvo) != null;
+	}
+	@Override
+	public boolean memberPhone(MemberVO mvo) {
+		return mapper.memberPhone(mvo) != null;
+	}
+	@Override
 	public boolean delMember(int no) {
 		return mapper.delMember(no) == 1;
 	}

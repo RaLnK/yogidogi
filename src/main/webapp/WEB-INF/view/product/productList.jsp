@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
 <style>
+.pagination{
+	margin: 0 auto;
+}
 #sort {
 	margin: 20px;
 }
@@ -16,9 +18,9 @@
 </style>
 <div id="sort">
 	<p>
-		<a href="#" class="btn btn-outline-success active" id="news" data-order='1'>신상품</a> 
+		<a href="#" class="btn btn-outline-success active" id="news" data-order='product_no'>신상품</a> 
 		<a href="#" class="btn btn-outline-success" id="sales" data-order='1'>판매순</a> 
-		<a href="#" class="btn btn-outline-success" id="discount" data-order='12'>할인률순</a>
+		<a href="#" class="btn btn-outline-success" id="discount" data-order='discount_pct'>할인률순</a>
 	</p>
 </div>
 
@@ -48,14 +50,11 @@
 			<!-- End Column 1 -->
 		</div>
 	</div>
-</div>
-
-<div class="center">
 	<div class="pagination">
-		<a href="#">1</a>
-		<a href="#">2</a>
+		<a href="#">1</a> <a href="#">2</a>
 	</div>
 </div>
+
 
 <script>
 	let logId = "${memberId}"

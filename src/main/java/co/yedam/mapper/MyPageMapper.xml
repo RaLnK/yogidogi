@@ -21,7 +21,7 @@
 		select dog_no, dog_name, dog_breed, to_char(dog_birthday, 'yyyy-MM-dd') as "DOG_BIRTHDAY"
 		from member_dog
 		where member_no=#{memberNo}
-		order by dog_leader desc
+		order by dog_leader desc, dog_birthday asc
 	</select>
 	
 	<update id="memberDogUpdate" parameterType="MemberDogVO">
@@ -29,6 +29,12 @@
 		set dog_name=#{dogName}, dog_breed=#{dogBreed}, dog_birthday=to_date(#{dogBirthday}, 'yyyy-MM-dd')
 		where dog_no=#{dogNo}
 	</update>
+	
+	<select id="checkDog" parameterType="int" resultType="int">
+		select count(*)
+		from member_dog
+		where member_no = #{memberNo}
+	</select>
 	
 	<select id="wishListAjax" parameterType="int" resultType="ProductVO">
 		select product_no, product_name, product_price, product_img, category
@@ -65,13 +71,14 @@
 	</select>
 	
 	<select id="orderInfo" parameterType="int" resultType="OrderVO">
-		select order_no, target_name, order_addr, order_addr2, target_phone, order_req, order_price, order_point
+		select order_no, target_name, order_addr, order_addr2, target_phone, order_req, order_price,
+			order_point, order_status, to_char(order_date, 'yyyy-MM-dd') as "order_date"
 		from orders
 		where order_no = #{orderNo}
 	</select>
 	
 	<select id="myOrderProduct" parameterType="int" resultType="OrderProductVO">
-		select p.product_img, p.product_name, p.product_price, p.discount_pct, o.order_qty, p.category
+		select p.product_img, p.product_name, p.product_price, p.discount_pct, p.product_no, o.order_qty, p.category
 		from product p, order_detail o
 		where p.product_no = o.product_no and order_no = #{orderNo}
 	</select>
@@ -80,6 +87,12 @@
 		select board_no, board_title, board_content, to_char(board_date, 'yyyy-MM-dd') as "board_date"
 		from board
 		where member_no = #{memberNo} and board_category = #{boardCategory}
+	</select>
+	
+	<select id="myReplyList" parameterType="int" resultType="Reply">
+		select r.reply_no, r.board_no, r.reply_content, to_char(reply_date, 'yyyy-MM-dd') as "reply_date", b.board_title
+		from board b, reply r
+		where b.board_no = r.board_no and r.member_no = #{memberNo}
 	</select>
 
 </mapper>

@@ -10,6 +10,7 @@ import co.yedam.vo.MemberVO;
 import co.yedam.vo.OrderProductVO;
 import co.yedam.vo.OrderVO;
 import co.yedam.vo.ProductVO;
+import co.yedam.vo.Reply;
 import co.yedam.vo.WishListVO;
 
 public class MyPageServiceImpl implements MyPageService {
@@ -78,6 +79,17 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public List<Board> myBoardList(Board bvo) {
 		return mapper.myBoardList(bvo);
+	}
+
+	@Override
+	public int checkDog(int memberNo) {
+		if(mapper.checkDog(memberNo) > 0) return 0;
+		else return 1;
+	}
+
+	@Override
+	public List<Reply> myReplyList(int memberNo) {
+		return mapper.myReplyList(memberNo);
 	}
 
 }

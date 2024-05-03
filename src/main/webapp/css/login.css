@@ -14,7 +14,8 @@ body {
 .brand-wrapper {
   margin-bottom: 19px; }
   .brand-wrapper .logo {
-    height: 37px; }
+  	margin-top: 0;
+    height: 70px; }
 
 .login-card {
   border: 0;

@@ -2,24 +2,26 @@ package co.yedam.common;
 
 import java.util.Map;
 
+import co.yedam.review.AddReviewControl;
+import co.yedam.review.DelReviewControl;
+import co.yedam.review.MyReviewAjaxControl;
 import co.yedam.review.ReviewListAjaxControl;
-import co.yedam.review.addReviewControl;
-import co.yedam.review.addReviewPageControl;
-import co.yedam.review.delReviewControl;
 
 public class FrontControlReview {
 	
 	public static void push(Map<String, Control> map){
 		
-		// 리뷰
+		// 상품별 리뷰리스트
 		map.put("/reviewListAjax.do", new ReviewListAjaxControl());
 		
+		// 멤버별 리뷰리스트
+		map.put("/myreviewListAjax.do", new MyReviewAjaxControl());
+		
 		// 리뷰 추가
-		map.put("/addReviewControl.do", new addReviewControl());
-		map.put("/addReview.do", new addReviewPageControl());
+		map.put("/addReview.do", new AddReviewControl());
 		
 		// 리뷰 삭제
-		map.put("/delReview.do", new delReviewControl());
+		map.put("/delReview.do", new DelReviewControl());
 		
 		
 	}

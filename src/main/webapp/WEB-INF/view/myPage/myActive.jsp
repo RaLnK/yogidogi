@@ -5,8 +5,14 @@
 <div class="untree_co-section" style="padding-top: 2rem;">
 	<div class="container">
 		<h2 class="h3 mb-5 text-black" style="text-align:center;">내 활동</h2>
-		
-		<h5 class="h5 text-black" style="font-weight:500;padding-left:8rem;padding-top:2rem;">자유 게시판</h5>
+		<div class="row col-md-12">
+			<div class="col-md-6">
+				<span class="h5 text-black" style="font-weight:500;padding-left:5rem;padding-top:2rem;">자유 게시판</span>
+			</div>
+			<div class="col-md-6">
+				<button class="btn" style="color: white; background-color: black;float:right" id="writeBtn">글 쓰기</button>
+			</div>
+		</div>
 		<div class="p-3 p-lg-5 col-md-12 border bg-white" style="border:2px;">
 			<div class="row col-md-12" style="text-align:center;">
 				<div class="site-blocks-table">
@@ -27,7 +33,14 @@
 			</div>
 		</div>
 		
-		<h5 class="h5 text-black" style="font-weight:500;padding-left:8rem;padding-top:2rem;">문의 내역</h5>
+		<div class="row col-md-12" style="padding-top:2rem;">
+			<div class="col-md-6">
+				<span class="h5 text-black" style="font-weight:500;padding-left:5rem;padding-top:2rem;">문의 내역</span>
+			</div>
+			<div class="col-md-6">
+				<button class="btn" style="color: white; background-color: black;float:right" id="askBtn">문의하기</button>
+			</div>
+		</div>
 		<div class="p-3 p-lg-5 col-md-12 border bg-white" style="border:2px;">
 			<div class="row col-md-12" style="text-align:center;">
 				<div class="site-blocks-table">
@@ -48,7 +61,7 @@
 			</div>
 		</div>
 		
-		<h5 class="h5 text-black" style="font-weight:500;padding-left:8rem;padding-top:2rem;">댓글 기록</h5>
+		<h5 class="h5 text-black" style="font-weight:500;padding-left:5rem;padding-top:2rem;">댓글 기록</h5>
 		<div class="p-3 p-lg-5 col-md-12 border bg-white" style="border:2px;">
 			<div class="row col-md-12" style="text-align:center;">
 				<div class="site-blocks-table">
