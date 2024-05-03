@@ -19,7 +19,13 @@ SqlSession session = DataSource.getInstance().openSession(true);
 		// TODO Auto-generated method stub
 		return mapper.replyList(bno);
 	}
-
+	
+	@Override
+	public List<ReplyVO> reReplyList(int bno) {
+		// TODO Auto-generated method stub
+		return mapper.reReplyList(bno);
+	}
+	
 	@Override
 	public boolean addReply(ReplyVO rvo) {
 		// TODO Auto-generated method stub
@@ -37,5 +43,7 @@ SqlSession session = DataSource.getInstance().openSession(true);
 		// TODO Auto-generated method stub
 		return mapper.updateReply(rvo) == 1;
 	}
+
+
 
 }

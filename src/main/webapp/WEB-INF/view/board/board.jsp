@@ -4,6 +4,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> 
 
 <style>
+.parentReply{
+	height:50px;
+
+}
 .btn {
     font-weight: 600;
     font-size: 12px;
@@ -13,6 +17,20 @@
     color: #ffffff;
     background: #2f2f2f;
     border-color: #2f2f2f;
+   
+}
+.btnn{
+    background: transparent;
+	border:none;
+    font-size:10px;
+    margin:3px;
+    width:40px;
+}
+.btnnn{
+    background: transparent;
+	border:none;
+    font-size:10px;
+    width:60px;
 }
 h4{
 	margin:15px;
@@ -23,6 +41,9 @@ h4{
 }
 #deleteBtn{
 	margin:5px;
+}
+.backBtn{
+	width:52px;
 }
 
 </style>
@@ -53,7 +74,7 @@ h4{
 <table id="example" class="display" style="width:100%">
         <thead>
             <tr>
-                <th>댓글번호</th>
+            	<th> </th>
                 <th>댓글내용</th>
                 <th>작성자</th>
                 <th>작성일시</th>

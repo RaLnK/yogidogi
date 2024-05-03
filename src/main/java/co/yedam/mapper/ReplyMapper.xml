@@ -15,6 +15,24 @@
 	where board_no=#{boardNo} And reply_level=0
 	order by reply_no desc
 	</select>
+	
+	<select id="reReplyList" parameterType="PageVO" resultType="ReplyVO">
+	select  r.reply_no,
+			r.board_no,
+			r.reply_content,
+			r.reply_date,
+			r.member_no,
+			r.reply_level,
+			r.origin_reply_no,
+			m.member_id
+	from reply r
+		join member m
+		on r.member_no = m.member_no
+	where board_no=#{boardNo} And origin_reply_no=#{originReplyNo} And reply_level=1
+	order by reply_no
+	</select>
+
+
 
 	<insert id="addReply" parameterType="ReplyVO">
 		insert into reply(reply_no, board_no, reply_content, member_no, reply_level)

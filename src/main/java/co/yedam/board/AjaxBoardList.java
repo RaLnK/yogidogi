@@ -43,7 +43,7 @@ public class AjaxBoardList implements Control {
 		map.put("list", list);
 		map.put("page", dto);
 		
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		String json = gson.toJson(map);
 		
 		resp.getWriter().print(json);

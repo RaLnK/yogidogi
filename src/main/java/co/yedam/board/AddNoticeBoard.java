@@ -28,14 +28,14 @@ public class AddNoticeBoard implements Control {
 		String con = multi.getParameter("content");
 		String mno = multi.getParameter("mno");
 		String img = multi.getFilesystemName("myImg");
-
+		String date = multi.getParameter("date");
 		BoardVO vo = new BoardVO();
 		vo.setBoardTitle(tit);
 		vo.setBoardContent(con);
 		vo.setMemberNo(Integer.parseInt(mno));
 		vo.setBoardImg(img);
 
-		vo.setBoardDate(new Date());
+		vo.setBoardDate(date);
 
 		BoardService svc = new BoardServiceImpl();
 		if (svc.addNoticeBoard(vo)) {

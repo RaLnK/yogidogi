@@ -26,7 +26,7 @@ public class AjaxnoticeBoardList implements Control {
 		
 		List<BoardVO> list = svc.nbList();
 		
-		Gson gson = new GsonBuilder().create();
+		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 		String json = gson.toJson(list);
 		
 		resp.getWriter().print(json);

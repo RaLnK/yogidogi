@@ -38,7 +38,7 @@
 
 <div class="blog-section p-2">
 	<div class=btnalign>
-		<button type="submit" class="btn"><a href="/yogidogi/addBoardForm.do">글쓰기</a></button>
+		<button type="submit" id="addBtn" class="btn">글쓰기</button>
 	</div>
 <div id="boardclone" style="display:none">
 	
@@ -67,5 +67,7 @@
 		</div>		
 	</div>
 </div>
-		
+<script>
+	let mid="${memberId}"
+</script>
 <script src="js/boardjs/boardList.js"></script>

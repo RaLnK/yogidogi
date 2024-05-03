@@ -29,6 +29,7 @@ public class Board implements Control {
 		req.getRequestDispatcher("board/board.tiles")
 		.forward(req, resp);
 		
+		
 	
 	}
 

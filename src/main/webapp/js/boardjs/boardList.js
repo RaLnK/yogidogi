@@ -44,6 +44,16 @@
 		 
 		 
 	 })
+	 
+		 console.log(mid)
+	 $('#addBtn').click(function(e){
+		 if(!mid){
+			 alert("로그인하세요");
+			 location.href="loginForm.do"
+		 }else{
+			 location.href="addBoardForm.do"
+		 }
+	 })
 		 
 	 //페이지 번호 출력
 	 let paging = result.page;

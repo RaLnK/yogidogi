@@ -28,18 +28,18 @@ public class AddQnABoard implements Control {
 				String con = multi.getParameter("content");
 				String mno = multi.getParameter("mno");
 				String img = multi.getFilesystemName("myImg");
-
+				String date = multi.getParameter("date");
 				BoardVO vo = new BoardVO();
 				vo.setBoardTitle(tit);
 				vo.setBoardContent(con);
 				vo.setMemberNo(Integer.parseInt(mno));
 				vo.setBoardImg(img);
 
-				vo.setBoardDate(new Date());
+				vo.setBoardDate(date);
 
 				BoardService svc = new BoardServiceImpl();
 				if (svc.addQnABoard(vo)) {
-					resp.sendRedirect("/yogidogi/noticeBoardList.do");
+					resp.sendRedirect("/yogidogi/myActive.do");
 
 				} else {
 					req.setAttribute("msg", "등록중 에러가 발생.");
