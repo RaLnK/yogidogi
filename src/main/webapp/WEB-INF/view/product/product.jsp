@@ -62,7 +62,7 @@
 
 					<small class="pt-1">(0 Reviews)</small>
 				</div>
-				<span class=discPercent></span> <span>%&#129047;</span> <span
+				<span class=discPercent></span> <span>% &#129047;</span> <span
 					class="text-muted text-decoration-line-through price">$20.00</span>
 				<h3 class="product-price discPrice">$50.00</h3>
 

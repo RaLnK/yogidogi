@@ -19,7 +19,7 @@
 <div id="sort">
 	<p>
 		<a href="#" class="btn btn-outline-success active" id="news" data-order='product_no'>신상품</a> 
-		<a href="#" class="btn btn-outline-success" id="sales" data-order='1'>판매순</a> 
+		<a href="#" class="btn btn-outline-success" id="sales" data-order='order_qty'>판매순</a> 
 		<a href="#" class="btn btn-outline-success" id="discount" data-order='discount_pct'>할인률순</a>
 	</p>
 </div>
@@ -36,11 +36,12 @@
 					src="images/product-3.png" class="img-fluid product-thumbnail img">
 					<h3 class="product-title title">Nordic Chair</h3>
 					<div class="badge bg-dark text-white position-absolute"
-						style="top: 0.5rem; right: 0.5rem">Sale</div> <span
-					class="text-muted text-decoration-line-through price">$20.00</span>
-					<strong class="product-price discPrice">$50.00</strong>
+						style="top: 0.5rem; right: 0.5rem">Sale</div> 
+						<span class=discPercent></span> <span>% &#129047;</span>
+						<span class="text-muted text-decoration-line-through price">$20.00</span>
+					<p><strong class="product-price discPrice">$50.00</strong></p>
 				</a>
-				<div>
+				<div id = likey>
 					<!-- 좋아요 -->
 					<button class="button button-like" id='productListLike'>
 						<i class="fa fa-heart"></i>
