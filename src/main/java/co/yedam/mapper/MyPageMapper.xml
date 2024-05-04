@@ -78,7 +78,7 @@
 	</select>
 	
 	<select id="myOrderProduct" parameterType="int" resultType="OrderProductVO">
-		select p.product_img, p.product_name, p.product_price, p.discount_pct, p.product_no, o.order_qty, p.category
+		select p.product_img, p.product_name, p.product_price, p.discount_pct, p.product_no, o.order_detail_no, o.order_qty, o.review_chk, p.category
 		from product p, order_detail o
 		where p.product_no = o.product_no and order_no = #{orderNo}
 	</select>

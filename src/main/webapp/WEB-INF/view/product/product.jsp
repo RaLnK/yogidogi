@@ -32,9 +32,9 @@
 				<div class="d-flex mb-3">
 
 					<fieldset class="block_rating__stars">
-						<input type="radio" id="star5" name="rating" value="5"
-							onclick="return(false);"> <label class="full" for="star5"
-							title="Awesome - 5 stars"></label> <input type="radio"
+						<input type="radio" id="star5" name="rating" value="5" onclick="return(false);"> 
+						<label class="full" for="star5" title="Awesome - 5 stars"></label> 
+						<input type="radio"
 							id="star4half" name="rating" value="4.5" onclick="return(false);" />
 						<label class="half" for="star4half"
 							title="Pretty good - 4.5 stars"></label> <input type="radio"

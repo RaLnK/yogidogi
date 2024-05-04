@@ -77,29 +77,36 @@
 		         b.delete_chk
 		from product b
 		where delete_chk = 0
-		order by ${order} desc) a <!-- 최신순 : 1, 할인 순: 11 -->
+		order by ${order} desc) a 
 	)WHERE rn > (#{page} -1) *16
 		<![CDATA[
 		AND rn <= (#{page} *16)
 		]]>
 	</select>
 	
-	<select id="sortProductList" parameterType="co.yedam.vo.ProductVO" resultType ="co.yedam.vo.ProductVO">
-		select  product_no , 
-		         product_name, 
-		         product_price,
-		         desc_text,
-		         desc_img, 
-		         left_cnt,
-		         category, 
-		         product_img, 
-		         company, 
-		         launch_date,
-		         discount_pct,
-		         delete_chk
-		from product
-		where category =${category} and delete_chk = 0
-		order by ${order} desc <!-- 최신순 : 1, 할인 순: 11 -->
+	<select id="sortProductList" parameterType="co.yedam.vo.PageVO" resultType ="co.yedam.vo.ProductVO">
+	select *
+	from(
+	select ROWNUM rn, a.*
+	from(select  b.product_no , 
+		         b.product_name, 
+		         b.product_price,
+		         b.desc_text,
+		         b.desc_img, 
+		         b.left_cnt,
+		         b.category, 
+		         b.product_img, 
+		         b.company, 
+		         b.launch_date,
+		         b.discount_pct,
+		         b.delete_chk
+		from product b
+		where b.category =${category} and b.delete_chk = 0
+		order by ${order} desc) a 
+	)WHERE rn > (#{page} -1) *16
+		<![CDATA[
+		AND rn <= (#{page} *16)
+		]]>
 	</select>
 
 	<select id="getProduct" parameterType="int" resultType="co.yedam.vo.ProductVO">

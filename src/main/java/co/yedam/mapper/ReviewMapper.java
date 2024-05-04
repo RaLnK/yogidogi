@@ -18,5 +18,8 @@ public interface ReviewMapper {
 	
 	// 리뷰 삭제
 	public int delReview(ReviewVO rvo);
+	
+	//리뷰 등록 시 체크
+	public int chkReview(int orderDetailNo);
 
 }

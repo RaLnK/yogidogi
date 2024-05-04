@@ -12,4 +12,5 @@ public class PageVO {
 	private int bno;
 	
 	private String order;
+	private int category;
 }
