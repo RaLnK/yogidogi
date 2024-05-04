@@ -11,4 +11,6 @@ public class OrderProductVO {
 	private int discountPct;
 	private int orderQty;
 	private int productNo;
+	private int reviewChk;
+	private int orderDetailNo;
 }

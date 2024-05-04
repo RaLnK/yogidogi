@@ -47,7 +47,7 @@
 	
 	
 	<insert id="addReview" parameterType="co.yedam.vo.ReviewVO">
-		INSERT INTO product (REVIEW_NO , 
+		INSERT INTO review (REVIEW_NO , 
 		                     MEMBER_NO, 
 		                     PRODUCT_NO,
 		                     REVIEW_CONTENT,
@@ -58,7 +58,7 @@
 					       #{productNo}, 
 					       #{reviewContent}, 
 					       #{reviewPhoto}, 
-					       #{starCnt});
+					       #{starCnt})
 	</insert>
 	
 	
@@ -66,5 +66,10 @@
 	delete from review
 	where review_no = ${reviewNo} and member_no = ${memberNo}
 	</delete>
-	
+
+	<update id="chkReview" parameterType="int">
+		update order_detail
+		set review_chk = 1 <!-- default : 0, 리뷰 작성시 : 1 -->
+		where order_detail_no = ${orderDetailNo}
+	</update>
 </mapper>

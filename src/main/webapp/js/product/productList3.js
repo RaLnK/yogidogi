@@ -48,10 +48,16 @@ $(function() {
 		param.order = $(e.target).data('order');
 		pvc.order = $(e.target).data('order');
 
+		let cnt;
 		if (findCate == 'all' || findCate == 'yogi') {
 			order = param.order;
+			svc.allCnt(function(cntResult) {
+				cnt = cntResult.totalCnt;
+			}, function(err) {
+				console.log(err);
+			})
 			svc.productList(param, function(result) {
-				all(result);
+				all(cnt, result);
 			}, function(err) {
 				console.error(err);
 			})
@@ -59,8 +65,13 @@ $(function() {
 		} else {
 			pvc.category = findCate;
 			console.log(pvc);
+			svc.selectCnt(function(selectCntResult){
+				cnt = selectCntResult.totalCnt;
+			}, function(err) {
+				console.log(err);
+			})
 			svc.sortProductList(pvc, function(result) {
-				all(result);
+				all(cnt, result);
 			}, function(err) {
 				console.error(err);
 			})
@@ -80,9 +91,15 @@ $(function() {
 		$(obj).parent().addClass('active');
 
 		let targetId = $(obj).parent().prop('id');
+		let cnt;
 		if (targetId == 'all' || targetId == 'yogi') {
 			svc.productList(param, function(result) {
-				all(result);
+				svc.allCnt(function(cntResult){
+					cnt = cntResult.totalCnt;
+				},function(err){
+					console.log(err);
+				})
+				all(cnt, result);
 			}, function(err) {
 				console.log(err);
 			})
@@ -90,7 +107,7 @@ $(function() {
 			pvc.category = parseInt(targetId);
 			console.log(pvc);
 			svc.sortProductList(pvc, function(sortResult) {
-				all(sortResult);
+				all(cnt, sortResult);
 			}, function(err) {
 				console.log(err);
 			})
@@ -99,7 +116,7 @@ $(function() {
 
 })
 //functions 
-function all(result) { // 전체 상품
+function all(cnt, result) { // 전체 상품
 	$('.product:gt(0)').remove();
 	let row = $('.container .one');
 	$('.product:eq(0)').hide();
@@ -129,14 +146,8 @@ function all(result) { // 전체 상품
 
 	})
 	like();
-//문제있음!!! allCnt 에 매개변수 받아서 해야 될 듯
-	svc.allCnt(function(result){ // 페이징
-		createPageList(result);
-	}, function(err){
-		console.log(err);
-	})
-	//svc.allCnt(createPageList(result), function(err) {console.error(err);});
-	
+
+	createPageList(cnt);
 }
 
 function like() { // 좋아요 기능
@@ -240,7 +251,7 @@ function createPageList(result) {
 	pageTarget.innerHTML = '';
 
 	//console.log(result); // {"totalCount": 64}
-	let totalCnt = result.totalCount;
+	let totalCnt = result;
 	let startPage, endPage; // 시작 페이지, 마지막 페이지
 	let next, prev; // 이전, 이후
 	let realEnd = Math.ceil(totalCnt / 16); // 실제 페이지 -> 37/16 =>  3페이지
@@ -296,7 +307,7 @@ function createPageList(result) {
 			$(item).addClass('active');
 			param.page = item.dataset.page;
 			svc.productList(param, function(result) {	// start of productList
-				all(result); // 처음 들어 갔을 때 show all category
+				all(totalCnt,result); // 처음 들어 갔을 때 show all category
 			}, function(err) {
 				console.error(err);
 			})// end of productList;

@@ -19,8 +19,8 @@ public class ProductServiceImpl implements ProductService{
 	}
 	
 	@Override
-	public List<ProductVO> sortProductList(ProductVO pvo) {
-		return mapper.sortProductList(pvo);
+	public List<ProductVO> sortProductList(PageVO pageVO) {
+		return mapper.sortProductList(pageVO);
 	}
 	
 	@Override

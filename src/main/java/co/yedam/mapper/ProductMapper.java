@@ -10,7 +10,7 @@ public interface ProductMapper {
 
 	// 상품 리스트
 	public List<ProductVO> productList(PageVO pageVO);
-	public List<ProductVO> sortProductList(ProductVO pvo);
+	public List<ProductVO> sortProductList(PageVO pageVO);
 	
 	public int selectCount(ProductVO productVO);
 	public int getProdCount();

@@ -18,4 +18,7 @@ public interface ReviewService {
 
 	// 리뷰 삭제
 	public boolean delReview(ReviewVO rvo);
+	
+	// 리뷰 등록 시 확인
+	public boolean chkReview(int orderDetailNo);
 }
