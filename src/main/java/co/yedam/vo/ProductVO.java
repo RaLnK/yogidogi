@@ -18,9 +18,10 @@ public class ProductVO {
 	    private Date launchDate; // 등록일
 	    private int discountPct; // 할인률
 	    private int deleteChk; // 제품 삭제 여부
+	    private int orderQty;
 	    
 	    private String order;
-
+	    
 }	
 
 

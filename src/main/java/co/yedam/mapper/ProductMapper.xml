@@ -74,9 +74,10 @@
 		         b.company, 
 		         b.launch_date,
 		         b.discount_pct,
-		         b.delete_chk
-		from product b
-		where delete_chk = 0
+		         b.delete_chk,
+		         NVL(o.order_qty, 0) as "ORDER_QTY"
+		from product b, order_detail o
+		where b.product_no = o.product_no(+) and delete_chk = 0
 		order by ${order} desc) a 
 	)WHERE rn > (#{page} -1) *16
 		<![CDATA[
@@ -99,9 +100,10 @@
 		         b.company, 
 		         b.launch_date,
 		         b.discount_pct,
-		         b.delete_chk
-		from product b
-		where b.category =${category} and b.delete_chk = 0
+		         b.delete_chk,
+		         NVL(o.order_qty, 0) as "ORDER_QTY"
+		from product b, order_detail o
+		where b.category =${category} and b.product_no = o.product_no(+) and delete_chk = 0
 		order by ${order} desc) a 
 	)WHERE rn > (#{page} -1) *16
 		<![CDATA[

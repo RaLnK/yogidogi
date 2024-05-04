@@ -27,7 +27,7 @@
        		 , b.member_name
         	, a.product_no
         	, a.review_content
-        	, a.review_date
+        	, to_char(a.review_date, 'yyyy-MM-dd') as "review_date"
         	, a.review_photo
         	, a.star_cnt
 		from review a
