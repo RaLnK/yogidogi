@@ -9,6 +9,7 @@ import co.yedam.vo.OrderProductVO;
 import co.yedam.vo.OrderVO;
 import co.yedam.vo.ProductVO;
 import co.yedam.vo.Reply;
+import co.yedam.vo.ReviewVO;
 import co.yedam.vo.WishListVO;
 
 public interface MyPageService {
@@ -18,6 +19,9 @@ public interface MyPageService {
 	public List<MemberDogVO> memberDogList(int memberNo);
 	public boolean memberDogUpdate(MemberDogVO mvo);
 	public int checkDog(int memberNo);
+	public boolean memberDogDelete(int dogNo);
+	public boolean initializeDogLeader(int memberNo);
+	public boolean changeDogLeader(int dogNo);
 
 	public List<ProductVO> wishListAjax(int memberNo);
 	public boolean wishListDel(WishListVO wvo);
@@ -31,4 +35,8 @@ public interface MyPageService {
 	
 	public List<Board> myBoardList(Board bvo);
 	public List<Reply> myReplyList(int memberNo);
+	public List<ReviewVO> myReviewList(int memberNo);
+	
+	public String quitPwCheck(int memberNo);
+	public boolean quit(int memberNo);
 }

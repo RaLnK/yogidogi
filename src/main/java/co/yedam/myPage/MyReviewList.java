@@ -14,9 +14,9 @@ import com.google.gson.GsonBuilder;
 import co.yedam.common.Control;
 import co.yedam.service.MyPageService;
 import co.yedam.service.MyPageServiceImpl;
-import co.yedam.vo.Reply;
+import co.yedam.vo.ReviewVO;
 
-public class myReplyList implements Control {
+public class MyReviewList implements Control {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class myReplyList implements Control {
 		
 		MyPageService svc = new MyPageServiceImpl();
 		
-		List<Reply> list = svc.myReplyList(memberNo);
+		List<ReviewVO> list = svc.myReviewList(memberNo);
 		
 		Gson gson = new GsonBuilder().create();
 		String json = gson.toJson(list);
