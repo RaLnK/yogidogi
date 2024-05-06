@@ -10,4 +10,6 @@ public interface OrderMapper {
 	public List<OrderVO> orderList(int memberNo);
 
 	public List<CartProductVO> orderView(int memberNo);
+	
+	public void orderInfo(OrderVO orderVO);
 }

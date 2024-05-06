@@ -21,4 +21,6 @@ public interface CartMapper {
 		
 	// 카트 중복 체크
 	public CartVO cartListCheck(CartVO vo);
+	
+	public int clearCart(CartVO cvo);
 }

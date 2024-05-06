@@ -23,6 +23,10 @@ public class OrderServiceImpl implements OrderService {
 	public List<CartProductVO> orderView(int memberNo) {
 		 return mapper.orderView(memberNo);
 	}
-	
+
+    @Override
+    public void orderInfo(OrderVO orderVO) {
+        mapper.orderInfo(orderVO);
+    }
 
 }

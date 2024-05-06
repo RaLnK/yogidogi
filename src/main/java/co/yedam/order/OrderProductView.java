@@ -30,7 +30,15 @@ public class OrderProductView implements Control {
 
         OrderService svc = new OrderServiceImpl();
         List<CartProductVO> cartList = svc.orderView(memberNo);
-        
+
+        // 총 주문 가격 계산
+        int totalPrice = 0;
+        for (CartProductVO product : cartList) {
+            int price = product.getProductPrice() * product.getQuantity();
+            totalPrice += price;
+        }
+
+        // JSON 형태로 응답 전송
         Gson gson = new GsonBuilder().create();
         String json = gson.toJson(cartList);
         resp.getWriter().print(json);
