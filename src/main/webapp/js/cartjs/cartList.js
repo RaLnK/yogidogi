@@ -23,13 +23,23 @@ const svc = {
 	cartUpDate(cartNo, quantity, successCall, errorCall) {
         fetch('cartUpDate.do', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: 'cno=' + cartNo + '&qty=' + quantity
-        })
-            .then(response => response.json())
-            .then(successCall)
-            .catch(errorCall);
-    }
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'cno=' + cartNo + '&qty=' + quantity
+		})
+			.then(response => response.json())
+			.then(successCall)
+			.catch(errorCall);
+	},
+	clearCart(cno, successCall, errorCall) {
+		fetch('/yogidogi/cartListDel.do', {
+			method: 'post',
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+			body: 'cno=' + cno
+		})
+			.then(result => result.json())
+			.then(successCall)
+			.catch(errorCall);
+	}
 }
 
 Number.prototype.formatNumber = function() {
@@ -166,8 +176,23 @@ function disPrice(product) {
 		return parseInt(product.productPrice); // 할인이 적용되지 않은 경우 상품 가격 그대로 반환
 	}
 }
-
-
+function delAllItem(cartNo, memberNo) {
+    svc.clearCart(
+        { 'cno': cartNo, 'memberNo': memberNo },
+        function(re) {
+            if (re.retCode == 'Success') {
+                swal('장바구니 비우기 완료.', '', 'success');
+                setTimeout(() => window.location.reload(), 1000);
+            } else {
+                swal('장바구니가 비어 있습니다.'); // 장바구니가 비어 있다는 메시지로 수정
+            }
+        },
+        function(error) {
+            console.log('에러 발생:', error);
+        }
+    );
+}
+totalPrice = `${orderPrice}`;
 
 
 

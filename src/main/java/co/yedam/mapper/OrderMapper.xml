@@ -18,8 +18,35 @@
 	</select>
 
 	<select id="orderList" resultType="OrderVO">
-		select
-		* from orders where member_no = #{memberNo}
+		select * 
+		from orders 
+		where member_no = #{memberNo}
 	</select>
 	
+<insert id="orderInfo">
+    insert into orders (
+        order_no,
+        target_name,
+        order_addr,
+        order_addr2,
+        target_phone,
+        order_req,
+        order_price,
+        order_point,
+        order_status,
+        to_char(order_date, 'yyyy-MM-dd') as "order_date",
+        member_no
+    ) values (
+        #{order_no.nextval},
+        #{target_name},
+        #{order_addr},
+        #{order_addr2},
+        #{target_phone},
+        #{order_req},
+        #{order_price},
+        #{order_point},
+        #{order_status},
+        #{order_date},
+    )
+</insert>
 </mapper> 
