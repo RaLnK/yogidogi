@@ -6,23 +6,11 @@
  document.addEventListener('DOMContentLoaded',function(e){
 	 $('.nav-item').removeClass('active');
 	 $('.board').addClass('active');
-	 selectOption()
 	 boardList(1) 
  })
- 
- $('select').click(function(){
-	 selectOption()
- })
 
- function selectOption(){
-	let selectOption = $('select option:selected')
-	
-	$('select option.active').removeClass('active');
-	
-	selectOption.addClass('active');	 
- }
- 
  function movepage(page){
+	 console.log('페이지:', page);
 	event.preventDefault(); // 기본 동작인 페이지 이동 방지
 	boardList(page);
 }
@@ -69,6 +57,7 @@
 		 
 	 //페이지 번호 출력
 	 let paging = result.page;
+	 console.log(paging)
 	 let pagetag ="";
 		if( paging.prev){
 			pagetag = `<a href="#" onclick="movepage(${paging.startPage-1 })">&laquo;</a>`
@@ -76,7 +65,7 @@
 			
 			for(let p=paging.startPage; p<=paging.endPage; p++){
 				if(p == paging.page ){
-					pagetag += `<a href="#"  class="active">${p }</a>`
+					pagetag += `<a href="#"  class="active" >${p }</a>`
 					
 				}else{
 					pagetag += `<a href="#" onclick="movepage(${p })">${p }</a>`
