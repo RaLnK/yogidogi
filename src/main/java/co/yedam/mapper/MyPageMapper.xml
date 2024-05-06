@@ -126,7 +126,7 @@
 	
 	<update id="quit" parameterType="int">
 		update member
-		set existence = 0
+		set existence = 0, quit_date = sysdate
 		where member_no = #{memberNo}
 	</update>
 
