@@ -18,7 +18,7 @@
 	</update>
 	
 	<select id="memberDogList" resultType="MemberDogVO" parameterType="int">
-		select dog_no, dog_name, dog_breed, to_char(dog_birthday, 'yyyy-MM-dd') as "DOG_BIRTHDAY"
+		select dog_no, dog_name, dog_breed, to_char(dog_birthday, 'yyyy-MM-dd') as "DOG_BIRTHDAY", dog_leader
 		from member_dog
 		where member_no=#{memberNo}
 		order by dog_leader desc, dog_birthday asc
@@ -35,6 +35,23 @@
 		from member_dog
 		where member_no = #{memberNo}
 	</select>
+	
+	<delete id="memberDogDelete" parameterType="int">
+		delete from member_dog
+		where dog_no = #{dogNo}
+	</delete>
+	
+	<update id="initializeDogLeader" parameterType="int">
+		update member_dog
+		set dog_leader = 0
+		where member_no = #{memberNo}
+	</update>
+	
+	<update id="changeDogLeader" parameterType="int">
+		update member_dog
+		set dog_leader = 1
+		where dog_no = #{dogNo}
+	</update>
 	
 	<select id="wishListAjax" parameterType="int" resultType="ProductVO">
 		select product_no, product_name, product_price, product_img, category
@@ -94,5 +111,23 @@
 		from board b, reply r
 		where b.board_no = r.board_no and r.member_no = #{memberNo}
 	</select>
+	
+	<select id="myReviewList" parameterType="int" resultType="ReviewVO">
+		select r.review_no, r.product_no, p.product_name as "review_photo", r.review_content, to_char(r.review_date, 'yyyy-MM-dd') AS "review_date"
+		from review r, product p
+		where r.product_no = p.product_no and member_no = #{memberNo}
+	</select>
+	
+	<select id="quitPwCheck" parameterType="int" resultType="string">
+		select member_pw
+		from member
+		where member_no = #{memberNo}
+	</select>
+	
+	<update id="quit" parameterType="int">
+		update member
+		set existence = 0
+		where member_no = #{memberNo}
+	</update>
 
 </mapper>

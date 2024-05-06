@@ -82,6 +82,27 @@
 			</div>
 		</div>
 		
+		<h5 class="h5 text-black" style="font-weight:500;padding-left:5rem;padding-top:2rem;">리뷰 기록</h5>
+		<div class="p-3 p-lg-5 col-md-12 border bg-white" style="border:2px;">
+			<div class="row col-md-12" style="text-align:center;">
+				<div class="site-blocks-table">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="review-number"></th>
+								<th class="product-name">상품 이름</th>
+								<th class="review-content">리뷰 내용</th>
+								<th class="review-date">작성일자</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		
 		
 	</div>
 </div>
