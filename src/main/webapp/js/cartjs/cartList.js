@@ -100,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 					if (result.retCode == 'Success') {
 						$('#delBtn' + product.cartNo).parent().parent().remove();
 						alert('장바구니에서 삭제했습니다.');
+						updateProductPrice();
 					} else {
 						alert('장바구니에서 삭제 실패했습니다.');
 					}
