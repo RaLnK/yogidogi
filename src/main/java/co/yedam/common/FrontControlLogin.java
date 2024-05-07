@@ -32,5 +32,8 @@ public class FrontControlLogin {
 		map.put("/pwCheck.do", new PwCheckControl());
 		map.put("/addDogForm.do", new AddDogFormControl());
 		map.put("/addDog.do", new AddDogControl());
+		map.put("/newPwForm.do", new NewPwFormControl());
+		map.put("/newPw.do", new NewPwControl());
+		map.put("/quitMember.do", new QuitMemberControl());
 	}
 }
