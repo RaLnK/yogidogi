@@ -1,6 +1,11 @@
 /**
  * product.js image, kakao 공유
  */
+let image;
+let pName;
+let rPrice;
+let dRate;
+let dPrice;
 $(function() {
 
 	let reviewCnt = 0; // 리뷰 개수
@@ -34,6 +39,9 @@ $(function() {
 		})
 		/* 상품 1개*/
 		svc2.oneProduct(pno, function(product) {
+			pName = product.productName;
+			rPrice = product.productPrice;
+			dRate =product.discountPct;
 			
 			$('.productDetail h3:eq(0)').text(product.productName);
 			$('.productDetail input[name = rating][value =' + parseInt(starCnt / reviewCnt) + ']').prop('checked', true); // 리뷰 개슈
@@ -44,6 +52,7 @@ $(function() {
 				$('.productDetail .proddesc').text(product.descText);
 			}
 			let discPrice = Math.round(parseInt(product.productPrice) * (1 - parseInt(product.discountPct) * 0.01) / 100) * 100;
+			dPrice =discPrice;
 			discPrice = discPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			let price = product.productPrice;
 			price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -62,17 +71,23 @@ $(function() {
 				$('#btnCartAdd').attr('disabled', ture);
 			}
 			switch (product.category) {
-				case 0: $('.showProduct').find('.img').attr('src', '/yogidogi/images/기타잡화/' + product.productImg);
+				case 0: image = '/yogidogi/images/기타잡화/' + product.productImg;
+					$('.showProduct').find('.img').attr('src', '/yogidogi/images/기타잡화/' + product.productImg);
 					$('.descDetail').find('.img').attr('src', '/yogidogi/images/기타잡화/' + product.descImg); break;
-				case 1: $('.showProduct').find('.img').attr('src', '/yogidogi/images/사료간식/' + product.productImg);
+				case 1: image = '/yogidogi/images/사료간식/' + product.productImg;
+					$('.showProduct').find('.img').attr('src', '/yogidogi/images/사료간식/' + product.productImg);
 					$('.descDetail').find('.img').attr('src', '/yogidogi/images/사료간식/' + product.descImg); break;
-				case 2: $('.showProduct').find('.img').attr('src', '/yogidogi/images/위생배변/' + product.productImg);
+				case 2: image = '/yogidogi/images/위생배변/' + product.productImg;
+					$('.showProduct').find('.img').attr('src', '/yogidogi/images/위생배변/' + product.productImg);
 					$('.descDetail').find('.img').attr('src', '/yogidogi/images/위생배변/' + product.descImg); break;
-				case 3: $('.showProduct').find('.img').attr('src', '/yogidogi/images/의류/' + product.productImg);
+				case 3: image = '/yogidogi/images/의류/' + product.productImg;
+					$('.showProduct').find('.img').attr('src', '/yogidogi/images/의류/' + product.productImg);
 					$('.descDetail').find('.img').attr('src', '/yogidogi/images/의류/' + product.descImg); break;
-				case 4: $('.showProduct').find('.img').attr('src', '/yogidogi/images/장난감/' + product.productImg);
+				case 4: image = '/yogidogi/images/장난감/' + product.productImg;
+					$('.showProduct').find('.img').attr('src', '/yogidogi/images/장난감/' + product.productImg);
 					$('.descDetail').find('.img').attr('src', '/yogidogi/images/장난감/' + product.descImg); break;
-				case 5: $('.showProduct').find('.img').attr('src', '/yogidogi/images/집/' + product.productImg);
+				case 5: image = '/yogidogi/images/집/' + product.productImg;
+					$('.showProduct').find('.img').attr('src', '/yogidogi/images/집/' + product.productImg);
 					$('.descDetail').find('.img').attr('src', '/yogidogi/images/집/' + product.descImg); break;
 				default: '';
 			}
@@ -202,32 +217,59 @@ function modal() {
 
 //공유하기
 function shareTwitter() {
-	let sendUrl = "http:/43.203.180.128:8080/yogidogi/product.do?pno=" + pno; // 전달할 URL
+	let sendUrl = "http:localhost:8080/yogidogi/product.do?pno=" + pno; // 전달할 URL
+	let sendText = "전국구 1위! 요기도기 사이트입니다~";
 	window.open("https://twitter.com/intent/tweet?&url=" + sendUrl);
 }
 
 function shareFacebook() {
-	let sendUrl = "http://43.203.180.128:8080/yogidogi/product.do?pno=" + pno; // 전달할 URL
+	let sendUrl = "http://localhost:8080/yogidogi/product.do?pno=" + pno; // 전달할 URL
 	window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
 }
 
 function shareKakao() {
+	let pUrl = "http://localhost:8080/yogidogi/product.do?pno=" + pno;
+	console.log(pUrl);
+	console.log(image);
 	// 사용할 앱의 JavaScript 키 설정
-	Kakao.init('576fd4e419e207001968763ebc345c79');
-
+	window.Kakao.init('576fd4e419e207001968763ebc345c79');
+	window.Kakao.isInitialized();
+	
 	// 카카오링크 버튼 생성
-	Kakao.Link.createDefaultButton({
+	window.Kakao.Link.createDefaultButton({
 		container: '#btnKakao', // 카카오공유버튼ID
-		objectType: 'feed',
+		objectType: 'commerce',
 		content: {
 			title: "애견용품 추천!", // 보여질 제목
     		description: "전국구 1위! 요기도기 사이트입니다~", // 보여질 설명
-			imageUrl: "http://43.203.180.128:8080/yogidogi/product.do?pno=" + pno, // 콘텐츠 URL
+			imageUrl: "http://localhost:8080" + image, // 콘텐츠 URL
 			link: {
-				mobileWebUrl: "http://43.203.180.128:8080/yogidogi/product.do?pno=" + pno,
-				webUrl: "http://43.203.180.128:8080/yogidogi/product.do?pno=" + pno
+				mobileWebUrl: pUrl,
+				webUrl: pUrl
+			},
+		},
+		commerce: {
+			productName:pName,
+			regularPrice: rPrice,
+			discountRate:dRate,
+			discountPrice:dPrice
+		},
+		buttons: [
+			{
+				title : '구매하기',
+				link : {
+					mobileWebUrl: pUrl,
+					webUrl:pUrl,
+				},
+			},
+			{
+				title : '공유하기',
+				link: {
+					mobileWebUrl: pUrl,
+					webUrl: pUrl, 
+				}
 			}
-		}
+		]
 	})
 }
 	

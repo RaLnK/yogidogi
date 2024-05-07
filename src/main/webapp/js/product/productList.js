@@ -332,7 +332,6 @@ function createPageList(cnt) {
 			}
 		})
 	})
-
 }//end of createPageList;
 
 const svc = {
