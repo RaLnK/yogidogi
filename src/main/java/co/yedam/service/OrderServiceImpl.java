@@ -38,6 +38,7 @@ public class OrderServiceImpl implements OrderService {
         	CartVO cartVO = new CartVO();
         	cartVO.setMemberNo(orderVO.getMemberNo());
         	cartVO.setProductNo(odt.get(i).getProductNo());
+        	cartmapper.clearCart(cartVO);
         }
     }
 

@@ -193,7 +193,7 @@ function delAllItem(cartNo, memberNo) {
         }
     );
 }
-totalPrice = `${orderPrice}`;
+
 
 
 
