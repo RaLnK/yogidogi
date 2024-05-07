@@ -62,7 +62,7 @@
 		<div class="row boardList">
 		
 		</div>
-		<div class="row paging">
+		<div class="pagination">
 		
 		</div>		
 	</div>
