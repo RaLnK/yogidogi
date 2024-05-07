@@ -57,7 +57,7 @@ function submitOrder() {
 			productNo: product.productNo,
 			productName: product.productName,
 			productPrice: product.productPrice,
-			productQuantity: product.quantity
+			orderQty: product.quantity
 		})
 	})
 	// 서버로 주문 정보를 전송
@@ -176,7 +176,7 @@ function initiatePayment(totalPrice, productNames, targetName, targetPhone, orde
 				svc.orderInfo(data,  (result)=>{		
 					if (result.retCode == 'Success') {
 						console.log('주문 정보가 성공적으로 전송되었습니다.');
-						location.href = 'myOrder.do';
+						//location.href = 'myOrder.do';
 					} else {
 						console.error('주문 정보 전송에 실패했습니다.');
 					}			
