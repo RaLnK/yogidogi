@@ -12,4 +12,6 @@ public interface OrderService {
 	public List<CartProductVO> orderView(int memberNo);
 	
 	public void orderInfo(OrderVO orderVO);
+	
+	
 }

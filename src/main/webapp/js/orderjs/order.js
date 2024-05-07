@@ -21,9 +21,10 @@ const svc = {
 			.catch(errorCall);
 
 	},
-	orderInfo(successCall, errorCall) {
+	orderInfo(data, successCall, errorCall) {
 		fetch('/yogidogi/orderInfo.do',{
 			method: 'post',
+			body: 'param=' + JSON.stringify(data),
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
 		})
 			.then(result => result.json())
@@ -41,30 +42,28 @@ function submitOrder() {
 
     // 주문 정보 객체 생성
         let orderInfo = {
-            targetName: '${targetName}',
-            targetPhone: '${targetPhone}',
-            orderAddr: '${orderAddr}',
-            orderAddr2: '${orderAddr2}',
-            orderReq: '${orderReq}'
-        };
+            targetName: targetName,
+            targetPhone: targetPhone,
+            orderAddr: orderAddr,
+            orderAddr2: orderAddr2,
+            orderReq: orderReq,
+        	products: []
+    };
 
-    // 서버로 주문 정보를 전송
-    fetch('/yogidogi/orderInfo.do', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(orderInfo)
-    })
-    .then(response => {
-        if (response.ok) {
-            console.log('주문 정보가 성공적으로 전송되었습니다.');
-        } else {
-            console.error('주문 정보 전송에 실패했습니다.');
-        }
-    })
-    .catch(error => {
-        console.error('주문 정보 전송 중 오류가 발생했습니다.', error);
-    });
-}
+    // 장바구니에 담긴 각 상품의 정보 가져오기
+    $('#orderDetailsBody tr.product').each(function() {
+        let product = $(this).data('product');
+		orderInfo.products.push({
+			productNo: product.productNo,
+			productName: product.productName,
+			productPrice: product.productPrice,
+			productQuantity: product.quantity
+		})
+	})
+	// 서버로 주문 정보를 전송
+	return orderInfo;
+};
+
 document.addEventListener('DOMContentLoaded', function(e) {
     svc.orderView(function(result) {
         let totalPrice = 0; // 총 주문 가격 초기화
@@ -75,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 
 		result.forEach(product => {
 			// 데이터를 담을 tr 생성
-			let tr = $('<tr></tr>').data('product', product);
+			let tr = $('<tr class="product"></tr>').data('product', product);
 
 			// 상품 정보 채우기
 			tr.append($('<td>').text(product.productName).append($('<strong/>').text('x').addClass('mx-2')).append(product.quantity));
@@ -172,10 +171,20 @@ function initiatePayment(totalPrice, productNames, targetName, targetPhone, orde
                 confirmButtonColor: "#ff3368",
                 confirmButtonText: "확인",
             }).then((result) => {
-                if (result.isConfirmed) {
-                    location.href = 'orderListJson.do';
-                }
-            })
+				let data = submitOrder();
+				data.orderPrice = rsp.paid_amount;
+				svc.orderInfo(data,  (result)=>{		
+					if (result.retCode == 'Success') {
+						console.log('주문 정보가 성공적으로 전송되었습니다.');
+						location.href = 'myOrder.do';
+					} else {
+						console.error('주문 정보 전송에 실패했습니다.');
+					}			
+				},(err)=>{
+					 console.error('주문 정보 전송 중 오류가 발생했습니다.', err);
+				})
+				
+				           })
         } else {
             Swal.fire({
                 title: "결제실패",
@@ -189,7 +198,7 @@ function initiatePayment(totalPrice, productNames, targetName, targetPhone, orde
 }
 
 // '다음' 주소찾기
-window.execution_daum_address = execution_daum_address;
+
 function execution_daum_address(){
  		console.log("동작");
 	   new daum.Postcode({
@@ -224,59 +233,7 @@ function execution_daum_address(){
 	        }
 	    }).open();  	
 }
-// 주문번호 만들기
-$('#orderButton').click(function() {
-    // 사용자로부터 입력된 주문 정보 가져오기
-    let orderData = {
-        // 폼에서 사용자로부터 입력된 주문 정보를 가져와서 객체에 저장
-        targetName: $('#c_fname').val(),
-        targetPhone: $('#c_phone').val(),
-        orderAddr: $('#c_address').val(),
-        orderAddr2: $('#c_address2').val(),
-        orderReq: $('#c_order_notes').val(),
-        // 상품 정보를 저장할 배열
-        products: []
-    };
 
-    // 장바구니에 담긴 각 상품의 정보 가져오기
-    $('tbody tr').each(function() {
-        let product = $(this).data('product');
-        orderData.products.push({
-            productName: product.productName,
-            productPrice: product.productPrice,
-            quantity: product.quantity
-            // 필요한 경우 추가적인 상품 정보도 여기에 추가
-        });
-    });
-
-    // 서버에 주문 정보를 전송
-    fetch('/yogidogi/orderInfo.do', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(orderData)
-    }).then(response => {
-        if (response.ok) {
-            // 주문 성공 시 처리할 내용을 여기에 추가
-            console.log('주문이 성공적으로 접수되었습니다.');
-            // 주문이 성공했으므로, 주문이 완료되었다는 메시지를 사용자에게 표시
-            alert('주문이 성공적으로 완료되었습니다.');
-            // 주문이 성공했으므로, 카트를 비워줌
-            $('tbody').empty();
-            // 필요한 경우, 사용자를 다른 페이지로 리다이렉트하거나 추가 작업을 수행
-        } else {
-            // 주문 실패 시 처리할 내용을 여기에 추가
-            console.error('주문에 실패했습니다.');
-            // 주문이 실패했으므로, 실패 메시지를 사용자에게 표시
-            alert('주문에 실패했습니다. 다시 시도해주세요.');
-        }
-    }).catch(error => {
-        console.error('주문 처리 중 오류가 발생했습니다.', error);
-        // 오류 발생 시 사용자에게 오류 메시지를 표시
-        alert('주문 처리 중 오류가 발생했습니다. 다시 시도해주세요.');
-    });
-});
 // 숫자 , 표시
 Number.prototype.formatNumber = function() {
 	if (this == 0)

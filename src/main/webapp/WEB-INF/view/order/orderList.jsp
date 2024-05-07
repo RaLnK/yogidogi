@@ -99,8 +99,7 @@
 									<tbody id="orderDetailsBody"></tbody>
 								</table>
 								<div class="form-group">
-									<button id="orderButton" class="btn btn-black btn-lg py-3 btn-block" onclick="requestPay()">주문하기</button>
-									 <img src="./images/kakaopay.svg" onclick="requestPay()" style="margin: auto; background-image: url('./images/kakaopay.svg'); background-size: contain; background-repeat: no-repeat; width: 100px; height: 50px;" alt="카카오페이">
+									 <img src="./images/kakaopay.svg" id="orderButton" onclick="requestPay()" style="margin: auto; background-image: url('./images/kakaopay.svg'); background-size: contain; background-repeat: no-repeat; width: 100px; height: 50px;" alt="카카오페이">
 								</div>
 							</div>
 						</div>

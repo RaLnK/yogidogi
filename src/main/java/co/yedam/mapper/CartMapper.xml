@@ -44,8 +44,8 @@
 
 	<delete id="clearCart" parameterType="CartVO">
 		delete from Cart
-		where cart_no = #{cartNo}
-		and member_No = #{memberNO}
+		where product_no = #{productNo}
+		and member_no = #{memberNO}
 	</delete>
  	
 
