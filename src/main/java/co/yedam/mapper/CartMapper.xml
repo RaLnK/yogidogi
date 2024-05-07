@@ -18,6 +18,7 @@
 		on
 		c.product_no = p.product_no
 		where c.member_no = #{memberNo}
+		order by cart_no desc
 	</select>
 
 	<delete id="cartListDel" parameterType="CartVO">
@@ -45,7 +46,7 @@
 	<delete id="clearCart" parameterType="CartVO">
 		delete from Cart
 		where product_no = #{productNo}
-		and member_no = #{memberNO}
+		and member_no = #{memberNo}
 	</delete>
  	
 

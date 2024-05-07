@@ -4,7 +4,6 @@ import java.util.Map;
 
 import co.yedam.login.AddDogControl;
 import co.yedam.login.AddDogFormControl;
-import co.yedam.login.MemberListControl;
 import co.yedam.login.AddMemberControl;
 import co.yedam.login.AddMemberFormControl;
 import co.yedam.login.IdCheckControl;
@@ -13,8 +12,12 @@ import co.yedam.login.LoginControl;
 import co.yedam.login.LoginFormControl;
 import co.yedam.login.LogoutControl;
 import co.yedam.login.LogoutFormControl;
+import co.yedam.login.MemberListControl;
+import co.yedam.login.NewPwControl;
+import co.yedam.login.NewPwFormControl;
 import co.yedam.login.PwCheckControl;
 import co.yedam.login.PwCheckFormControl;
+import co.yedam.login.QuitMemberControl;
 
 public class FrontControlLogin {
 	public static void push(Map<String, Control> map) {

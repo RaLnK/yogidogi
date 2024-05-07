@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			
 			svc.getFirstProductName(order.orderNo, function(result){
 				$('tbody tr').eq(idx).find('td').eq(1).text(result.productName);
-				console.log(productName, result.productName);
 			}, function(err){
 				console.log(err);
 			});
