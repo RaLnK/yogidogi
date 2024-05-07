@@ -5,6 +5,7 @@ import java.util.Map;
 import co.yedam.myPage.BackToHome;
 import co.yedam.myPage.ChooseDogLeader;
 import co.yedam.myPage.GetFirstProductName;
+import co.yedam.myPage.MemberDogDelete;
 import co.yedam.myPage.MemberDogInfo;
 import co.yedam.myPage.MemberDogList;
 import co.yedam.myPage.MemberDogUpdate;
@@ -18,15 +19,14 @@ import co.yedam.myPage.MyBoardList;
 import co.yedam.myPage.MyOrder;
 import co.yedam.myPage.MyOrderDetail;
 import co.yedam.myPage.MyOrderList;
-import co.yedam.myPage.QuitMember;
-import co.yedam.myPage.QuitPwCheck;
-import co.yedam.myPage.WishListAdd;
-import co.yedam.myPage.WishListDel;
-import co.yedam.myPage.MemberDogDelete;
 import co.yedam.myPage.MyOrderProduct;
 import co.yedam.myPage.MyReplyList;
 import co.yedam.myPage.MyReviewList;
 import co.yedam.myPage.Quit;
+import co.yedam.myPage.QuitMember;
+import co.yedam.myPage.QuitPwCheck;
+import co.yedam.myPage.WishListAdd;
+import co.yedam.myPage.WishListDel;
 
 public class FrontControlMyPage {
 	public static void push(Map<String, Control> map) {
