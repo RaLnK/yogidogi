@@ -18,56 +18,62 @@ const svc = {
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
+	},
+	myReviewList(SuccessCall, errorCall){
+		fetch('/yogidogi/myReviewList.do')
+			.then(result => result.json())
+			.then(SuccessCall)
+			.catch(errorCall);
 	}
 }
 
 document.addEventListener('DOMContentLoaded', function(e) {
 	svc.myBoardList(0, function(result) {
-		result.forEach(board => {
-			let tr = $('<tr />');
-			
-			let number = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(board.boardNo));
-			tr.append($('<td />').attr('class', 'board-number').append(number));
-			let boardTitle = board.boardTitle;
-			if(boardTitle.length > 10){
-				boardTitle = boardTitle.substr(0, 10) + '...';
-			}
-			let title = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(boardTitle));
-			tr.append($('<td />').attr('class', 'board-title').append(title));
-			let boardContent = board.boardContent; 
-			if(boardContent.length > 10){
-				boardContent = boardContent.substr(0, 10) + '...';
-			}
-			tr.append($('<td />').attr('class', 'board-content').append($('<h2 />').attr('class', 'h5 text-black').text(boardContent)));
-			tr.append($('<td />').attr('class', 'board-date').append($('<h2 />').attr('class', 'h5 text-black').text(board.boardDate)));
-			
-			$('tbody').eq(0).append(tr);
-		});
+			result.forEach(board => {
+				let tr = $('<tr />');
+				
+				let number = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(board.boardNo));
+				tr.append($('<td />').attr('class', 'board-number').append(number));
+				let boardTitle = board.boardTitle;
+				if(boardTitle.length > 10){
+					boardTitle = boardTitle.substr(0, 10) + '...';
+				}
+				let title = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(boardTitle));
+				tr.append($('<td />').attr('class', 'board-title').append(title));
+				let boardContent = board.boardContent; 
+				if(boardContent.length > 10){
+					boardContent = boardContent.substr(0, 10) + '...';
+				}
+				tr.append($('<td />').attr('class', 'board-content').append($('<h2 />').attr('class', 'h5 text-black').text(boardContent)));
+				tr.append($('<td />').attr('class', 'board-date').append($('<h2 />').attr('class', 'h5 text-black').text(board.boardDate)));
+				
+				$('tbody').eq(0).append(tr);
+			});
 	}, function(err) {
 		console.log(err);
 	});
 	
 	svc.myBoardList(2, function(result) {
-		result.forEach(board => {
-			let tr = $('<tr />');
-			
-			let number = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(board.boardNo));
-			tr.append($('<td />').attr('class', 'board-number').append(number));
-			let boardTitle = board.boardTitle;
-			if(boardTitle.length > 10){
-				boardTitle = boardTitle.substr(0, 10) + '...';
-			}
-			let title = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(board.boardTitle));
-			tr.append($('<td />').attr('class', 'board-title').append(title));
-			let boardContent = board.boardContent; 
-			if(boardContent.length > 10){
-				boardContent = boardContent.substr(0, 10) + '...';
-			}
-			tr.append($('<td />').attr('class', 'board-content').append($('<h2 />').attr('class', 'h5 text-black').text(boardContent)));
-			tr.append($('<td />').attr('class', 'board-date').append($('<h2 />').attr('class', 'h5 text-black').text(board.boardDate)));
-			
-			$('tbody').eq(1).append(tr);
-		});
+			result.forEach(board => {
+				let tr = $('<tr />');
+				
+				let number = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(board.boardNo));
+				tr.append($('<td />').attr('class', 'board-number').append(number));
+				let boardTitle = board.boardTitle;
+				if(boardTitle.length > 10){
+					boardTitle = boardTitle.substr(0, 10) + '...';
+				}
+				let title = $('<a />').attr('href', '/yogidogi/board.do?bno='+board.boardNo).append($('<h2 />').attr('class', 'h5 text-black').text(board.boardTitle));
+				tr.append($('<td />').attr('class', 'board-title').append(title));
+				let boardContent = board.boardContent; 
+				if(boardContent.length > 10){
+					boardContent = boardContent.substr(0, 10) + '...';
+				}
+				tr.append($('<td />').attr('class', 'board-content').append($('<h2 />').attr('class', 'h5 text-black').text(boardContent)));
+				tr.append($('<td />').attr('class', 'board-date').append($('<h2 />').attr('class', 'h5 text-black').text(board.boardDate)));
+				
+				$('tbody').eq(1).append(tr);
+			});
 	}, function(err) {
 		console.log(err);
 	});
@@ -92,6 +98,25 @@ document.addEventListener('DOMContentLoaded', function(e) {
 			tr.append($('<td />').attr('class', 'reply-date').append($('<h2 />').attr('class', 'h5 text-black').text(reply.replyDate)));
 			
 			$('tbody').eq(2).append(tr);
+		});
+	});
+	
+	svc.myReviewList(function(result){
+		result.forEach(review =>{
+			let tr = $('<tr />');
+			
+			let number = $('<a />').attr('href', '/yogidogi/product.do?pno='+review.productNo).append($('<h2 />').attr('class', 'h5 text-black').text(review.reviewNo));
+			tr.append($('<td />').attr('class', 'review-number').append(number));
+			let name = $('<a />').attr('href', '/yogidogi/product.do?pno='+review.productNo).append($('<h4 />').attr('class', 'h5 text-black').text(review.reviewPhoto));
+			tr.append($('<td />').attr('class', 'product-name').append(name));
+			let reviewContent = review.reviewContent; 
+			if(reviewContent.length > 10){
+				reviewContent = reviewContent.substr(0, 10) + '...';
+			}
+			tr.append($('<td />').attr('class', 'review-content').append($('<h2 />').attr('class', 'h5 text-black').text(reviewContent)));
+			tr.append($('<td />').attr('class', 'review-date').append($('<h2 />').attr('class', 'h5 text-black').text(review.reviewDate)));
+			
+			$('tbody').eq(3).append(tr);
 		});
 	});
 	

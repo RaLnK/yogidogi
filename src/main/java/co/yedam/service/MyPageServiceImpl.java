@@ -11,6 +11,7 @@ import co.yedam.vo.OrderProductVO;
 import co.yedam.vo.OrderVO;
 import co.yedam.vo.ProductVO;
 import co.yedam.vo.Reply;
+import co.yedam.vo.ReviewVO;
 import co.yedam.vo.WishListVO;
 
 public class MyPageServiceImpl implements MyPageService {
@@ -34,6 +35,21 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public boolean memberDogUpdate(MemberDogVO mvo) {
 		return mapper.memberDogUpdate(mvo) == 1;
+	}
+	
+	@Override
+	public boolean memberDogDelete(int dogNo) {
+		return mapper.memberDogDelete(dogNo) == 1;
+	}
+	
+	@Override
+	public boolean initializeDogLeader(int memberNo) {
+		return mapper.initializeDogLeader(memberNo) > 0;
+	}
+	
+	@Override
+	public boolean changeDogLeader(int dogNo) {
+		return mapper.changeDogLeader(dogNo) == 1;
 	}
 
 	@Override
@@ -90,6 +106,21 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public List<Reply> myReplyList(int memberNo) {
 		return mapper.myReplyList(memberNo);
+	}
+
+	@Override
+	public List<ReviewVO> myReviewList(int memberNo) {
+		return mapper.myReviewList(memberNo);
+	}
+
+	@Override
+	public String quitPwCheck(int memberNo) {
+		return mapper.quitPwCheck(memberNo);
+	}
+
+	@Override
+	public boolean quit(int memberNo) {
+		return mapper.quit(memberNo) == 1;
 	}
 
 }

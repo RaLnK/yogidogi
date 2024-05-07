@@ -5,7 +5,8 @@
  console.log('start');
  
  document.addEventListener('DOMContentLoaded',function(e){
-
+	 $('.nav-item').removeClass('active');
+	 $('.board').addClass('active');
 
 	 // 게시글 목록 출력
 	 $.get('/yogidogi/ajaxNoticeBoardList.do',function(result){

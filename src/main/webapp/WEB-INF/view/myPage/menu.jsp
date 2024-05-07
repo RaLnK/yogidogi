@@ -7,6 +7,6 @@
 	  <li><a href="/yogidogi/myOrder.do">주문내역</a></li>
 	  <li><a href="/yogidogi/memberDogInfo.do">강아지 목록</a></li>
 	  <li><a href="/yogidogi/myActive.do">활동 관리</a></li>
-	  <li><a href="#">회원 탈퇴</a></li>
+	  <li><a href="/yogidogi/quitMember.do">회원 탈퇴</a></li>
 	</ul>
 </aside>

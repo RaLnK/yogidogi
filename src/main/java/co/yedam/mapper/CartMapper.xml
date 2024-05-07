@@ -15,29 +15,38 @@
 		,p.category
 		,p.discount_pct
 		from cart c inner join product p
-		on c.product_no = p.product_no
+		on
+		c.product_no = p.product_no
 		where c.member_no = #{memberNo}
 	</select>
-  	
-  	<delete id="cartListDel" parameterType="CartVO">
-  		delete from cart 
-  		where cart_no = #{cartNo}
-  	</delete>
-  	
-  	<insert id="cartListAdd"  parameterType="int">
-insert into cart (cart_no, quantity, product_no, member_no) values (cart_no.nextval, #{quantity}, #{productNo}, #{memberNo})
-  	</insert>
-  	
- 	<select id="cartListCheck" resultType="CartVO" parameterType="CartVO">
-    	select *
-    	from cart 
-    	where member_no = #{memberNo} and product_no = #{productNo}
+
+	<delete id="cartListDel" parameterType="CartVO">
+		delete from cart
+		where cart_no = #{cartNo}
+	</delete>
+
+	<insert id="cartListAdd" parameterType="int">
+		insert into cart (cart_no, quantity, product_no, member_no) values
+		(cart_no.nextval, #{quantity}, #{productNo}, #{memberNo})
+	</insert>
+
+	<select id="cartListCheck" resultType="CartVO"
+		parameterType="CartVO">
+		select *
+		from cart
+		where member_no = #{memberNo} and product_no = #{productNo}
 	</select>
-  	
-  	<update id="cartUpDate" parameterType="CartVO">
-  		update cart 
-  		set quantity = #{quantity} where cart_no = #{cartNo}
- 	</update>
+
+	<update id="cartUpDate" parameterType="CartVO">
+		update cart
+		set quantity = #{quantity} where cart_no = #{cartNo}
+	</update>
+
+	<delete id="clearCart" parameterType="CartVO">
+		delete from Cart
+		where cart_no = #{cartNo}
+		and member_No = #{memberNO}
+	</delete>
  	
 
 

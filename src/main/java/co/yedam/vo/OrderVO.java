@@ -17,6 +17,5 @@ public class OrderVO {
 		private int orderPoint;        // 사용한 포인트
 		private String orderStatus;	// 주문상태
 		private String orderDate;   		// 주문일자
-		
 }
 

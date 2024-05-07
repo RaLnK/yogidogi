@@ -63,6 +63,34 @@
 	</div>
 </div>
 
+<div id="delModal" class="modal"
+		style="text-align:center;position:fixed;display:none;justify-content:center;width:400px;height:400px;top:50%;left:40%;">
+	<div class="modal-content">
+		<p>등록을 취소하시겠습니까?</p>
+		<div class="col-md-12" style="text-align:center">
+			<button class="btn" style="color: white; background-color: black;" id="delYes">네</button>
+			<button class="btn" style="color: white; background-color: black;" id="delNo">아뇨</button>
+		</div>
+		<input type="hidden" id="delDogNo">
+	</div>
+</div>
+
+
+
+<div id="chooseModal" class="modal"
+		style="text-align:center;position:fixed;display:none;justify-content:center;width:500px;height:700px;top:50%;left:40%;">
+	<div class="modal-content">
+		<p>대표로 설정할 강아지를 선택하세요</p>
+		<form id="leaderForm">
+			
+		</form>
+		<div class="col-md-12" style="text-align:center">
+			<button class="btn" style="color: white; background-color: black;" id="setBtn">변경</button>
+			<button class="btn close" style="color: white; background-color: black;" id="cancel">취소</button>
+		</div>
+	</div>
+	
+</div>
 
 
 <script src="/yogidogi/js/myPage/memberDogInfo.js"></script>

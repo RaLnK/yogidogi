@@ -5,22 +5,23 @@
 //const fields =['productNo','productName', 'productPrice', 'productImg', 'leftCnt', 'launchDate', 'discountPct', 'descImg', 'deleteChk', 'company', 'category'];
 let param;
 let pvc;
+
 $(function() {
 	// give active class to shop
 	$('.nav-item').removeClass('active');
 	$('.shop').addClass('active');
-	
+
 	param = {
 		order: 'product_no',
-		page:1
+		page: 1
 	}
 
 	pvc = {
 		order: 'product_no',
-		category: 1
+		category: 1,
+		page: 1
 	}
 	
-
 	// 첫화면
 	svc.productList(param, function(result) {	// start of productList
 		let cateId = sessionStorage.getItem('eachCategory');
@@ -37,7 +38,8 @@ $(function() {
 		console.error(err);
 	})// end of productList
 
-
+	
+	let cnt;
 	//최신순, 판매순, 할인율순
 	$('#sort a').on('click', e => {
 		e.preventDefault();
@@ -47,25 +49,35 @@ $(function() {
 		param.order = $(e.target).data('order');
 		pvc.order = $(e.target).data('order');
 
+
 		if (findCate == 'all' || findCate == 'yogi') {
 			order = param.order;
-			svc.productList(param, function(result) {
-				all(result);
+			svc.allCnt(function(cntResult) {
+				cnt = cntResult.totalCount;
+				svc.productList(param, function(result) {
+					all(cnt, result);
+				}, function(err) {
+					console.error(err);
+				})
 			}, function(err) {
-				console.error(err);
+				console.log(err);
 			})
 
 		} else {
 			pvc.category = findCate;
-			console.log(pvc);
-			svc.sortProductList(pvc, function(result) {
-				all(result);
+			svc.selectCnt(pvc.category, function(selectCntResult) {
+				cnt = selectCntResult.totalCount;
+				svc.sortProductList(pvc, function(result) {
+					all(cnt, result);
+				}, function(err) {
+					console.error(err);
+				})
 			}, function(err) {
-				console.error(err);
+				console.log(err);
 			})
 		}
-	})
 
+	})
 	//start show each category
 	$('.side ul li').on('click', function(e) {
 		e.preventDefault();
@@ -79,17 +91,28 @@ $(function() {
 		$(obj).parent().addClass('active');
 
 		let targetId = $(obj).parent().prop('id');
+		let cnt;
+		
 		if (targetId == 'all' || targetId == 'yogi') {
 			svc.productList(param, function(result) {
-				all(result);
+				svc.allCnt(function(cntResult) {
+					cnt = cntResult.totalCount;
+					all(cnt, result);
+				}, function(err) {
+					console.log(err);
+				})
 			}, function(err) {
 				console.log(err);
 			})
 		} else {
 			pvc.category = parseInt(targetId);
-			console.log(pvc);
-			svc.sortProductList(pvc, function(sortResult) {
-				all(sortResult);
+			svc.selectCnt(pvc.category, function(selectCntResult) {
+				cnt = selectCntResult.totalCount;
+				svc.sortProductList(pvc, function(sortResult) {
+					all(cnt, sortResult);
+				}, function(err) {
+					console.log(err);
+				})
 			}, function(err) {
 				console.log(err);
 			})
@@ -98,7 +121,7 @@ $(function() {
 
 })
 //functions 
-function all(result) { // 전체 상품
+function all(cnt, result) { // 전체 상품
 	$('.product:gt(0)').remove();
 	let row = $('.container .one');
 	$('.product:eq(0)').hide();
@@ -109,11 +132,17 @@ function all(result) { // 전체 상품
 		product.find('.title').attr('id', ele.productNo);
 		product.find('.item').attr('href', 'product.do?pno=' + ele.productNo);
 		let discPrice = Math.round(parseInt(ele.productPrice) * (1 - parseInt(ele.discountPct) * 0.01) / 100) * 100;
-		product.find('.discPrice').text(discPrice+'원');
-		product.find('.price').text(ele.productPrice+'원');
+		discPrice = discPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		let price = ele.productPrice;
+		price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		product.find('.discPercent').text(ele.discountPct);
+		product.find('.discPrice').text(discPrice + '원');
+		product.find('.price').text(price + '원');
 		if (parseInt(ele.discountPct) == 0) {
 			product.find('.price').hide();
 			product.find('.badge').hide();
+			product.find('.discPercent').hide();
+			product.find('.discPercent').next().hide();
 		}
 		switch (ele.category) {
 			case 0: product.find('.img').attr('src', 'images/기타잡화/' + ele.productImg); break;
@@ -128,14 +157,8 @@ function all(result) { // 전체 상품
 
 	})
 	like();
-//문제있음!!! allCnt 에 매개변수 받아서 해야 될 듯
-	svc.allCnt(function(result){ // 페이징
-		createPageList(result);
-	}, function(err){
-		console.log(err);
-	})
-	//svc.allCnt(createPageList(result), function(err) {console.error(err);});
-	
+
+	createPageList(cnt);
 }
 
 function like() { // 좋아요 기능
@@ -196,11 +219,10 @@ function like() { // 좋아요 기능
 		}
 	})
 
-	$('.nav-item').on('click', e => { // nav의 메뉴가 바뀔때만 category를 all로 설정 => cart page 에선 유지
+	$('#navbarsFurni li').on('click', e => { // nav의 메뉴가 바뀔때만 category를 all로 설정 => cart page 에선 유지
 		$(window).on('unload', function() {
 			sessionStorage.setItem('eachCategory', 'all');
 		});
-
 	})
 
 }
@@ -231,15 +253,14 @@ function allCnt() { // 전체 count
 
 
 //paging 생성
-let page =1; // page 초기값
+let page = 1; // page 초기값
 let pageTarget = document.querySelector('div.pagination');
 
-function createPageList(result) {
+function createPageList(cnt) {
 	//기존 태그가 존재하면 초기화
 	pageTarget.innerHTML = '';
 
-	//console.log(result); // {"totalCount": 64}
-	let totalCnt = result.totalCount;
+	let totalCnt = cnt;
 	let startPage, endPage; // 시작 페이지, 마지막 페이지
 	let next, prev; // 이전, 이후
 	let realEnd = Math.ceil(totalCnt / 16); // 실제 페이지 -> 37/16 =>  3페이지
@@ -250,15 +271,15 @@ function createPageList(result) {
 
 	next = endPage < realEnd ? true : false;
 	prev = startPage > 1;
-/*	
-	console.log(result);
-	console.log(totalCnt);
-	console.log('page:'+ page);
-	console.log('startpage:'+startPage);
-	console.log('endpage:'+endPage);
-	console.log('realend:'+realEnd);*/
+	/*	
+		console.log(result);
+		console.log(totalCnt);
+		console.log('page:'+ page);
+		console.log('startpage:'+startPage);
+		console.log('endpage:'+endPage);
+		console.log('realend:'+realEnd);*/
 
-	
+
 	if (prev) {
 		let aTag = document.createElement('a');
 		aTag.innerHTML = "&laquo;";
@@ -294,11 +315,21 @@ function createPageList(result) {
 			e.preventDefault(); // 페이지 이동 차단 : a 태그는 원래 클릭하면 다른 페이지로 넘어가기 때문
 			$(item).addClass('active');
 			param.page = item.dataset.page;
-			svc.productList(param, function(result) {	// start of productList
-				all(result); // 처음 들어 갔을 때 show all category
-			}, function(err) {
-				console.error(err);
-			})// end of productList;
+			pvc.page = item.dataset.page; 
+			let menu = $('.side ul');
+			if(menu.find('#yogi').hasClass('active') == false && menu.find('#all').hasClass('active') == false){
+				svc.sortProductList(pvc, function(result){
+					all(totalCnt, result);
+				}, function(err){
+					console.error(err);
+				})
+			}else{
+				svc.productList(param, function(result) {	// start of productList
+					all(totalCnt, result); // 처음 들어 갔을 때 show all category
+				}, function(err) {
+					console.error(err);
+				})// end of productList;
+			}
 		})
 	})
 
@@ -306,13 +337,13 @@ function createPageList(result) {
 
 const svc = {
 	//상품 리스트
-	productList(param={order:'product_no', page:1}, successCall, errorCall) {
-		fetch('/yogidogi/productListAjax.do?order=' + param.order +'&page='+ param.page) /*최신순 : 1, 할인순: 11*/
+	productList(param = { order: 'product_no', page: 1 }, successCall, errorCall) {
+		fetch('/yogidogi/productListAjax.do?order=' + param.order + '&page=' + param.page) /*최신순 : 1, 할인순: 11*/
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, sortProductList(pvc = { order: 'product_no', category: 1 }, successCall, errorCall) {
-		fetch('/yogidogi/sortProductListAjax.do?order=' + pvc.order + '&category=' + pvc.category)
+	}, sortProductList(pvc = { order: 'product_no', category: 1, page: 1 }, successCall, errorCall) {
+		fetch('/yogidogi/sortProductListAjax.do?order=' + pvc.order + '&category=' + pvc.category + '&page=' + pvc.page)
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
@@ -334,18 +365,18 @@ const svc = {
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, wishList(memberNo = 0, successCall, errorCall ){
+	}, wishList(memberNo = 0, successCall, errorCall) {
 		fetch('/yogidogi/wishListAjax.do?memberNo=' + memberNo) /*최신순 : 1, 할인순: 11*/
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, allCnt(successCall, errorCall){
+	}, allCnt(successCall, errorCall) {
 		fetch('/yogidogi/getProdCount.do')
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);
-	}, selectCnt(category =0, successCall, errorCall){
-		fetch('/yogidogi/selectProdCount.do?category='+ category)
+	}, selectCnt(category = 0, successCall, errorCall) {
+		fetch('/yogidogi/selectProdCount.do?category=' + category)
 			.then(result => result.json())
 			.then(successCall)
 			.catch(errorCall);

@@ -32,9 +32,9 @@
 				<div class="d-flex mb-3">
 
 					<fieldset class="block_rating__stars">
-						<input type="radio" id="star5" name="rating" value="5"
-							onclick="return(false);"> <label class="full" for="star5"
-							title="Awesome - 5 stars"></label> <input type="radio"
+						<input type="radio" id="star5" name="rating" value="5" onclick="return(false);"> 
+						<label class="full" for="star5" title="Awesome - 5 stars"></label> 
+						<input type="radio"
 							id="star4half" name="rating" value="4.5" onclick="return(false);" />
 						<label class="half" for="star4half"
 							title="Pretty good - 4.5 stars"></label> <input type="radio"
@@ -62,7 +62,7 @@
 
 					<small class="pt-1">(0 Reviews)</small>
 				</div>
-				<span class=discPercent></span> <span>%&#129047;</span> <span
+				<span class=discPercent></span> <span>% &#129047;</span> <span
 					class="text-muted text-decoration-line-through price">$20.00</span>
 				<h3 class="product-price discPrice">$50.00</h3>
 

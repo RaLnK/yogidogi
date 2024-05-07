@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import co.yedam.common.Control;
 import co.yedam.service.ProductService;
 import co.yedam.service.ProductServiceImpl;
+import co.yedam.vo.PageVO;
 import co.yedam.vo.ProductVO;
 
 public class SortProductListAjaxControl implements Control {
@@ -23,10 +24,13 @@ public class SortProductListAjaxControl implements Control {
 		
 		String order = req.getParameter("order");
 		String category = req.getParameter("category");
+		String page = req.getParameter("page");
+		page = page == null ? "1" : page;
 		
-		ProductVO pvo = new ProductVO();
+		PageVO pvo = new PageVO();
 		pvo.setOrder(order);
 		pvo.setCategory(Integer.parseInt(category));
+		pvo.setPage(Integer.parseInt(page));
 		
 		ProductService svc = new ProductServiceImpl();
 		

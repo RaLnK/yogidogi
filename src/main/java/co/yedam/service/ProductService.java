@@ -21,7 +21,7 @@ public interface ProductService {
 	public ProductVO getProduct(int pno);
 	
 	// 카테고리
-	public List<ProductVO> sortProductList(ProductVO pvo);
+	public List<ProductVO> sortProductList(PageVO pageVO);
 
 	//회원가입
 	public boolean addProduct(ProductVO pvo);

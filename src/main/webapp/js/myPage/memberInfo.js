@@ -2,8 +2,6 @@
  * 
  */
 
-const fields = ['bookCode', 'bookTitle', 'author', 'company', 'price'];
-
 const svc = {
 	memberList(successCall, errorCall) {
 		fetch('/yogidogi/memberList.do')

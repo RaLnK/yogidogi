@@ -48,4 +48,10 @@ public class CartServiceImpl implements CartService {
 		return mapper.cartUpDate(vo) == 1;
 	}
 
+	@Override
+	public boolean clearCart(CartVO cvo) {
+		// TODO Auto-generated method stub
+		return mapper.clearCart(cvo) == 1;
+	}
+
 }

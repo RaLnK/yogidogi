@@ -7493,3 +7493,6 @@ span img:hover{
 	margin-right: 20px;
 }
 
+.discPercent, .discPercent+span {
+	color: red;
+}

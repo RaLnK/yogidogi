@@ -44,15 +44,22 @@ $(function() {
 				$('.productDetail .proddesc').text(product.descText);
 			}
 			let discPrice = Math.round(parseInt(product.productPrice) * (1 - parseInt(product.discountPct) * 0.01) / 100) * 100;
+			discPrice = discPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			let price = product.productPrice;
+			price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			$('.productDetail').attr('id', product.productNo);
 			$('.productDetail .discPercent').text(product.discountPct);
-			$('.productDetail .price').text(product.productPrice + '원');
+			$('.productDetail .price').text(price + '원');
 			$('.productDetail .discPrice').text(discPrice + '원');
 			if (parseInt(product.discountPct) == 0) {
 				$('.productDetail .discPercent').hide();
 				$('.productDetail .discPercent').next().hide();
 				$('.productDetail .price').hide();
 				$('.showProduct .badge').hide();
+			}
+			if(parseInt(product.leftCnt) == 0){
+				$('#btnCartAdd').html('품 절');
+				$('#btnCartAdd').attr('disabled', ture);
 			}
 			switch (product.category) {
 				case 0: $('.showProduct').find('.img').attr('src', '/yogidogi/images/기타잡화/' + product.productImg);
@@ -151,7 +158,8 @@ function allReview(result) { // 리뷰
 	result.forEach((ele, idx) => {
 		$('.oneReview:eq(0)').hide();
 		let review = $('.oneReview:eq(0)').clone().show();
-		//review.find('.rinfo img').attr('src', 'images/기타잡화/' + ele.productImg);  이미지 넣기
+		console.log(ele.reviewPhoto);
+		review.find('.reviewImg').attr('src', 'images/리뷰/' + ele.reviewPhoto); // 이미지 넣기
 		review.find('.rinfo h6').text(ele.memberVO.memberName);
 		review.find('.rinfo h6').append('<small> - </small>');
 		review.find('.rinfo h6 small').append('<i/>');
