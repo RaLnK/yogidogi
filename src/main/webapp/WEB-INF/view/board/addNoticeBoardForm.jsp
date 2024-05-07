@@ -1,7 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
+  <style>
+.btn {
+    font-weight: 600;
+    font-size: 12px;
+    padding: 5px 15px;
+    margin:20px 3px;
+    border-radius: 30px;
+    color: #ffffff;
+    background: #2f2f2f;
+    border-color: #2f2f2f;
+   
+}
+</style>    
 	<h3>공지 등록</h3>
 	
 	<form action = "/yogidogi/addNoticeBoard.do" method="post" enctype="multipart/form-data">
@@ -24,7 +36,7 @@
 		<input class="form-control" type="hidden" name="mno" value="${memberNo }" readonly ></td>
 	</tr>
 	<tr>
-		<td colspan="2" align = "center"><input class="btn-primary" type = "submit" value="글등록"></td>
+		<td colspan="2" align = "center"><input class="btn" type = "submit" value="글등록"></td>
 	</tr>
 	</table>
 	</form>

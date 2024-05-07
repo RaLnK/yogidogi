@@ -10,7 +10,7 @@
  })
 
  function movepage(page){
-	 console.log('페이지:', page);
+	console.log('페이지:', page);
 	event.preventDefault(); // 기본 동작인 페이지 이동 방지
 	boardList(page);
 }
@@ -76,6 +76,6 @@
 				pagetag += `<a href="#" onclick="movepage(${paging.endPage+1 })">&raquo;</a>`
 			}
 			
-			$('.paging').attr('class','pagination').html(pagetag)
+			$('.pagination').html(pagetag)
 		 })
  }

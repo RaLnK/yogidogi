@@ -45,6 +45,10 @@ h4{
 .backBtn{
 	width:52px;
 }
+.upContent{
+	width:540px;
+	height:30px;
+}
 
 </style>
 
