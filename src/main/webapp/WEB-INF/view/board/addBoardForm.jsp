@@ -13,6 +13,9 @@
     border-color: #2f2f2f;
    
 }
+textarea{
+	height:200px;
+}
 </style>   
    
     
@@ -26,7 +29,7 @@
 	</tr>
 	<tr>
 		<th>내용</th>
-		<td><textarea class="form-control" name="content"></textarea></td>
+		<td><textarea class="form-control"  name="content"></textarea></td>
 	</tr>
 	<tr>
 		<th>이미지</th>

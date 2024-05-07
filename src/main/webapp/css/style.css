@@ -681,7 +681,7 @@ a {
     color: #ffffff; }
 
 textarea {
-  height: auto !important; }
+  height: 200px !important; }
 
 .site-blocks-table {
   overflow: auto; }
