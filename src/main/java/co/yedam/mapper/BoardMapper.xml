@@ -5,6 +5,25 @@
 	<select id="boardList" parameterType="co.yedam.vo.PageVO" resultType="co.yedam.vo.BoardVO">
 		SELECT *  
 		FROM    (
+		
+			 SELECT a.*, rownum rn 
+		        FROM    (   
+		                SELECT
+		                    '1' gb,
+		                    b.*,
+		                    m.member_id
+		                FROM
+		                         board b
+		                    JOIN member m ON b.member_no = m.member_no
+		                WHERE
+		                    board_category = 1 ANd board_no = 304
+		               
+		            )a
+		      
+		                   
+	        UNION ALL
+		
+		
 
 	        SELECT a.*, rownum rn 
 	        FROM    (   
@@ -21,7 +40,7 @@
 	                    board_no DESC
 	            )a
 	        WHERE
-	            ROWNUM <![CDATA[  < ]]> 4
+	            ROWNUM <![CDATA[  < ]]> 3
 	                   
         UNION ALL
         
